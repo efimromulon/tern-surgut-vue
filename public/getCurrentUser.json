@@ -1,0 +1,11 @@
+{
+  "username": "DADASHEV_SP",
+  "sdo_id": "tnp",
+  "sdo_name": "all",
+  "sdo_capital": "Новгород",
+  "sdo_coord_x": "58.521475",
+  "sdo_coord_y": "31.275475",
+  "sdo_zoom": "11",
+  "can_edit_rival_stations": true,
+  "can_edit_other_users": true
+}

@@ -1,0 +1,401 @@
+{
+	"data": [
+		{
+			"sStationId": "kas-m1_106",
+			"aArticleSell": [{
+				"Всего": -25
+			}]
+		}, {
+			"sStationId": "kas-m1_119464",
+			"aArticleSell": [{
+				"Всего": 18
+			}]
+		}, {
+			"sStationId": "kas-m1_130425",
+			"aArticleSell": [{
+				"Всего": 10
+			}]
+		}, {
+			"sStationId": "kas-m1_143547",
+			"aArticleSell": [{
+				"Всего": 18
+			}]
+		}, {
+			"sStationId": "kas-m1_153160",
+			"aArticleSell": [{
+				"Всего": -28
+			}]
+		}, {
+			"sStationId": "kas-m1_168",
+			"aArticleSell": [{
+				"Всего": -96
+			}]
+		}, {
+			"sStationId": "kas-m1_17778",
+			"aArticleSell": [{
+				"Всего": 23
+			}]
+		}, {
+			"sStationId": "kas-m1_21111",
+			"aArticleSell": [{
+				"Всего": -6
+			}]
+		}, {
+			"sStationId": "kas-m1_2193",
+			"aArticleSell": [{
+				"Всего": 14
+			}]
+		}, {
+			"sStationId": "kas-m1_246433",
+			"aArticleSell": [{
+				"Всего": 7
+			}]
+		}, {
+			"sStationId": "kas-m1_279549",
+			"aArticleSell": [{
+				"Всего": 12
+			}]
+		}, {
+			"sStationId": "kas-m1_31",
+			"aArticleSell": [{
+				"Всего": 7
+			}]
+		}, {
+			"sStationId": "kas-m1_33561",
+			"aArticleSell": [{
+				"Всего": 32
+			}]
+		}, {
+			"sStationId": "kas-m1_3828328",
+			"aArticleSell": [{
+				"Всего": 16
+			}]
+		}, {
+			"sStationId": "kas-m1_3828330",
+			"aArticleSell": [{
+				"Всего": 12
+			}]
+		}, {
+			"sStationId": "kas-m1_3828332",
+			"aArticleSell": [{
+				"Всего": 5
+			}]
+		}, {
+			"sStationId": "kas-m1_3828888",
+			"aArticleSell": [{
+				"Всего": 20
+			}]
+		}, {
+			"sStationId": "kas-m1_3828936",
+			"aArticleSell": [{
+				"Всего": 11
+			}]
+		}, {
+			"sStationId": "kas-m1_3829807",
+			"aArticleSell": [{
+				"Всего": 3
+			}]
+		}, {
+			"sStationId": "kas-m1_3830215",
+			"aArticleSell": [{
+				"Всего": -1
+			}]
+		}, {
+			"sStationId": "kas-m1_3830217",
+			"aArticleSell": [{
+				"Всего": 27
+			}]
+		}, {
+			"sStationId": "kas-m1_3830219",
+			"aArticleSell": [{
+				"Всего": 14
+			}]
+		}, {
+			"sStationId": "kas-m1_3834539",
+			"aArticleSell": [{
+				"Всего": 16
+			}]
+		}, {
+			"sStationId": "kas-m1_3834541",
+			"aArticleSell": [{
+				"Всего": 22
+			}]
+		}, {
+			"sStationId": "kas-m1_3834543",
+			"aArticleSell": [{
+				"Всего": 16
+			}]
+		}, {
+			"sStationId": "kas-m1_3834545",
+			"aArticleSell": [{
+				"Всего": 13
+			}]
+		}, {
+			"sStationId": "kas-m1_3834547",
+			"aArticleSell": [{
+				"Всего": 4
+			}]
+		}, {
+			"sStationId": "kas-m1_3834553",
+			"aArticleSell": [{
+				"Всего": 26
+			}]
+		}, {
+			"sStationId": "kas-m1_3835865",
+			"aArticleSell": [{
+				"Всего": -47
+			}]
+		}, {
+			"sStationId": "kas-m1_39840",
+			"aArticleSell": [{
+				"Всего": 1
+			}]
+		}, {
+			"sStationId": "kas-m1_39846",
+			"aArticleSell": [{
+				"Всего": 32
+			}]
+		}, {
+			"sStationId": "kas-m1_52194",
+			"aArticleSell": [{
+				"Всего": -1
+			}]
+		}, {
+			"sStationId": "kas-m1_53383",
+			"aArticleSell": [{
+				"Всего": 22
+			}]
+		}, {
+			"sStationId": "kas-m1_53625",
+			"aArticleSell": [{
+				"Всего": 38
+			}]
+		}, {
+			"sStationId": "kas-m1_58841",
+			"aArticleSell": [{
+				"Всего": -187
+			}]
+		}, {
+			"sStationId": "kas-m1_58846",
+			"aArticleSell": [{
+				"Всего": 24
+			}]
+		}, {
+			"sStationId": "kas-m1_58851",
+			"aArticleSell": [{
+				"Всего": 7
+			}]
+		}, {
+			"sStationId": "kas-m1_58853",
+			"aArticleSell": [{
+				"Всего": 44
+			}]
+		}, {
+			"sStationId": "kas-m1_704",
+			"aArticleSell": [{
+				"Всего": 16
+			}]
+		}, {
+			"sStationId": "knp-m1_1",
+			"aArticleSell": [{
+				"Всего": 2
+			}]
+		}, {
+			"sStationId": "knp-m1_11",
+			"aArticleSell": [{
+				"Всего": 9
+			}]
+		}, {
+			"sStationId": "knp-m1_13",
+			"aArticleSell": [{
+				"Всего": 52
+			}]
+		}, {
+			"sStationId": "knp-m1_17",
+			"aArticleSell": [{
+				"Всего": 47
+			}]
+		}, {
+			"sStationId": "knp-m1_19",
+			"aArticleSell": [{
+				"Всего": 10
+			}]
+		}, {
+			"sStationId": "knp-m1_21",
+			"aArticleSell": [{
+				"Всего": 19
+			}]
+		}, {
+			"sStationId": "knp-m1_23",
+			"aArticleSell": [{
+				"Всего": 37
+			}]
+		}, {
+			"sStationId": "knp-m1_2490374",
+			"aArticleSell": [{
+				"Всего": 1
+			}]
+		}, {
+			"sStationId": "knp-m1_25",
+			"aArticleSell": [{
+				"Всего": 33
+			}]
+		}, {
+			"sStationId": "knp-m1_27",
+			"aArticleSell": [{
+				"Всего": 6
+			}]
+		}, {
+			"sStationId": "knp-m1_29",
+			"aArticleSell": [{
+				"Всего": 28
+			}]
+		}, {
+			"sStationId": "knp-m1_3",
+			"aArticleSell": [{
+				"Всего": 19
+			}]
+		}, {
+			"sStationId": "knp-m1_31",
+			"aArticleSell": [{
+				"Всего": 13
+			}]
+		}, {
+			"sStationId": "knp-m1_33",
+			"aArticleSell": [{
+				"Всего": 24
+			}]
+		}, {
+			"sStationId": "knp-m1_35",
+			"aArticleSell": [{
+				"Всего": 12
+			}]
+		}, {
+			"sStationId": "knp-m1_41",
+			"aArticleSell": [{
+				"Всего": 42
+			}]
+		}, {
+			"sStationId": "knp-m1_43",
+			"aArticleSell": [{
+				"Всего": 16
+			}]
+		}, {
+			"sStationId": "knp-m1_45",
+			"aArticleSell": [{
+				"Всего": 25
+			}]
+		}, {
+			"sStationId": "knp-m1_47",
+			"aArticleSell": [{
+				"Всего": 17
+			}]
+		}, {
+			"sStationId": "knp-m1_49",
+			"aArticleSell": [{
+				"Всего": 5
+			}]
+		}, {
+			"sStationId": "knp-m1_5",
+			"aArticleSell": [{
+				"Всего": 33
+			}]
+		}, {
+			"sStationId": "knp-m1_51",
+			"aArticleSell": [{
+				"Всего": 39
+			}]
+		}, {
+			"sStationId": "knp-m1_53",
+			"aArticleSell": [{
+				"Всего": 19
+			}]
+		}, {
+			"sStationId": "knp-m1_55",
+			"aArticleSell": [{
+				"Всего": 4
+			}]
+		}, {
+			"sStationId": "knp-m1_59",
+			"aArticleSell": [{
+				"Всего": 20
+			}]
+		}, {
+			"sStationId": "knp-m1_61",
+			"aArticleSell": [{
+				"Всего": 10
+			}]
+		}, {
+			"sStationId": "knp-m1_65",
+			"aArticleSell": [{
+				"Всего": 24
+			}]
+		}, {
+			"sStationId": "knp-m1_67",
+			"aArticleSell": [{
+				"Всего": 13
+			}]
+		}, {
+			"sStationId": "knp-m1_69",
+			"aArticleSell": [{
+				"Всего": 37
+			}]
+		}, {
+			"sStationId": "knp-m1_75",
+			"aArticleSell": [{
+				"Всего": 30
+			}]
+		}, {
+			"sStationId": "knp-m1_9",
+			"aArticleSell": [{
+				"Всего": 38
+			}]
+		}, {
+			"sStationId": "nnp-m1_103",
+			"aArticleSell": [{
+				"Всего": 18
+			}]
+		}, {
+			"sStationId": "nnp-m1_117",
+			"aArticleSell": [{
+				"Всего": 4
+			}]
+		}, {
+			"sStationId": "nnp-m1_123",
+			"aArticleSell": [{
+				"Всего": 22
+			}]
+		}, {
+			"sStationId": "nnp-m1_130747",
+			"aArticleSell": [{
+				"Всего": -142
+			}]
+		}, {
+			"sStationId": "tnp-m1_111",
+			"aArticleSell": [{
+				"Всего": 100
+			}]
+		}
+	],
+	"indicator": {
+		"name": "Реализация сопутствующих товаров относительно плана",
+		"inverted": false,
+		"range": [-100, 100],
+		"type": "Процент прироста, %",
+		"subFilters": ["Всего"],
+		"correspondingFeature": "aArticleSell",
+		"dates": {
+			"compare": ["2018-11-20", "2018-11-26"],
+			"analysis": ["2018-11-27", "2018-12-03"]
+		}
+	},
+	"express": {
+		"name": "Динамика реализации сопутствующих товаров по сравнению с прошлой неделей",
+		"indicator": {
+			"correspondingFeature": "aArticleSell",
+			"range": [25, 75],
+			"subFilters": "Всего",
+			"type": "Реализация сопутствующих товаров относительно плана"
+		}
+	}
+}

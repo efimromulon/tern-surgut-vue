@@ -1,0 +1,110 @@
+<template>
+	<button class="colors_buttons_wrapper_item" 
+		:class = "buttonData.buttonName"
+		@click = "TOGGLE_CURRENT_COLOR_BUTTON"
+	>
+		<div class="button_circle_part">
+			<div :class="['circle_part', getColorClass()]"></div>
+		</div>
+		<div class="button_rect_part">{{buttonData.buttonState}}</div>
+	</button>
+</template>
+
+<script>
+	// в props buttonData приходит инфа о названии кнопки и ее класс
+	// из props ButtonName с пом. methods.getColorClass() получается
+	// доп класс для кнопки 'circle_' + G или O, R и т.д.
+	export default {
+		name: 'color-switch-button',
+		props: {
+			buttonData: {
+				type: Object,
+				required: true,
+			},
+		},
+		data () {
+			return {}
+		},
+		methods: {		
+			getColorClass(){
+				let a = this.buttonData.buttonName.substring(7);//button_>>Green<< 7 
+				let b = 'circle_' + a;
+				return b;
+			},
+			TOGGLE_CURRENT_COLOR_BUTTON(){
+				let payload = {buttonArray: 'buttonColors', id: this.buttonData.buttonName};
+				this.$store.dispatch('toggle_interfacetop_button', payload);
+			},
+		},
+	}
+</script>
+
+<style lang='sass'>
+
+	@import "@/sass/base/_typography.sass"
+	@import "@/sass/abstracts/_variables.sass"
+	@import "@/sass/abstracts/_mixins.sass"
+	.colors_buttons_wrapper_item
+		background: $background-color-white
+		@include shadow(2)
+		width: calc(100% / 3)
+		position: relative
+		display: flex
+		flex-basis: auto
+		flex-direction: row
+		flex-grow: 0
+		flex-shrink: 1
+		flex-wrap: nowrap
+		justify-content: space-between
+		margin-right: 20px
+		&:last-child
+			margin-right: 0
+		.button_circle_part
+			position: absolute
+			top: 50%
+			transform: translate(-50%, -50%)
+			width: 25px
+			.circle_part
+				vertical-align: middle
+				height: 25px
+				width: 25px
+				border-radius: 50%
+			.circle_Green
+				transition: all .3s
+				box-shadow: 0 3px 6px rgba(#51CC00, 0.16), 0 3px 6px rgba(#51CC00, 0.23)
+				background: #51CC00
+			.circle_Orange
+				transition: all .3s
+				box-shadow: 0 3px 6px rgba(#FF9100, 0.16), 0 3px 6px rgba(#FF9100, 0.23)
+				background: #FF9100
+			.circle_Red
+				transition: all .3s
+				box-shadow: 0 3px 6px rgba(#CC0000, 0.16), 0 3px 6px rgba(#CC0000, 0.23)
+				background: #CC0000
+			.circle_Grey
+				transition: all .3s
+				box-shadow: 0 3px 6px rgba(#C8C8C8, 0.16), 0 3px 6px rgba(#C8C8C8, 0.23)
+				background: #C8C8C8
+		.button_rect_part
+			position: absolute
+			transform: translate(0%, -50%)
+			right: 0% 
+			height: 45px
+			//background: green
+			width: calc(100% - 12.5px)
+	.colors_buttons_wrapper_item
+		transition: all .3s
+		&:hover
+			//background: leighter($background-color-white, 10%)
+			//@include shadow(3)
+			.button_circle_part
+				.circle_G
+					box-shadow: 0 10px 20px rgba(#51CC00, 0.16), 0 6px 6px rgba(#51CC00, 0.23)
+				.circle_O
+					box-shadow: 0 10px 20px rgba(#FF9100, 0.16), 0 6px 6px rgba(#FF9100, 0.23)
+				.circle_R
+					box-shadow: 0 10px 20px rgba(#CC0000, 0.16), 0 6px 6px rgba(#CC0000, 0.23)
+		&:active
+			background: darker($background-color-white, 10%)
+			@include shadow(1)
+</style>

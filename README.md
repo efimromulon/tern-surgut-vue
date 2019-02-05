@@ -1,4 +1,4 @@
-# test-project
+# tern-surgut-vue
 
 ## Project setup
 ```

@@ -1,28 +1,24 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div id="app">
+		<!-- <app-preloader></app-preloader> -->
+		<!-- <app-map></app-map> -->
+		<app-ui></app-ui>
+		<!-- <app-popup-extended></app-popup-extended> -->
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+	import appUi 	from '@/components/app-ui/app-ui.vue';
+	import $ 		from 'jquery';
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+	name: 'app',
+	components: {
+		appUi,
+	}
 }
 </script>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
 </style>
