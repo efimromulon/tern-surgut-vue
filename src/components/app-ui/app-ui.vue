@@ -4,8 +4,9 @@
 		<div class="app-ui__header">
 			<header class="header-view">
 				<div class="header-view__search-layout">
-					
-
+					<div class="header-view__form-layout">
+						<search-input/>
+					</div>
 				</div>
 				<div class="header-view__settings-layout">
 
@@ -53,11 +54,13 @@
 </template>
 
 <script>
+	import searchInput from './app-ui-components/_search-input.vue'
 	import searchList from './app-ui-components/_search-list.vue'
 	export default {
 		name: 'app-ui',
 		components: {
 			searchList,
+			searchInput,
 			//appUiSettings,
 			//search,
 		},
@@ -86,6 +89,25 @@
 		// top: 1rem
 		// left: 1rem
 		// right: 1rem
+	.header-view
+		position: absolute
+		display: flex
+		top: 12px
+		right: 12px
+		left: 12px
+		height: auto
+		user-select: none
+		white-space: nowrap
+	.header-view__form-layout
+		position: relative
+		display: flex
+		width: 100%
+		min-width: 384px
+		max-width: 384px
+	.header-view__search-layout
+		display: flex
+		flex-shrink: 2
+		min-width: 448px
 	.sidebar-left-container
 		display: block
 	.sidebar-left-view
