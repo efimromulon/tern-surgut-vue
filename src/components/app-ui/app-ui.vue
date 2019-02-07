@@ -24,7 +24,24 @@
 						
 						</div>
 					</div>
-
+					<div class="sidebar-left-panel-view__collapse" title="Свернуть">
+						<span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								<path d="M15.293 14.707a1 1 0 0 0 1.414-1.414l-4-4a1 1 0 0 0-1.414 0l-4 4a1 1 0 0 0 1.414 1.414L12 11.414l3.293 3.293z">
+								
+								</path>
+							</svg>
+						</span>
+					</div>
+					<div class="sidebar-left-panel-view__close" title="Закрыть">
+						<span>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								<path fill-rule="evenodd" d="M12 10.586L8.707 7.293a1 1 0 0 0-1.414 1.414L10.586 12l-3.293 3.293a1 1 0 0 0 1.414 1.414L12 13.414l3.293 3.293a1 1 0 0 0 1.414-1.414L13.414 12l3.293-3.293a1 1 0 1 0-1.414-1.414L12 10.586z">
+									
+								</path>
+							</svg>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -102,4 +119,22 @@
 		min-height: 1em
 		height: calc(100vh - 64px - 12px)
 		overflow: auto
+	.sidebar-left-panel-view__collapse
+		position: absolute
+		top: 0
+		right: 0
+		width: 24px
+		height: 24px
+		margin: 6px
+		cursor: pointer
+		opacity: .4
+	.sidebar-left-panel-view__close
+		right: 36px
+		position: absolute
+		top: 0
+		width: 24px
+		height: 24px
+		margin: 6px
+		cursor: pointer
+		opacity: .4
 </style>

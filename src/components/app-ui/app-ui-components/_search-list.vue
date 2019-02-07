@@ -1,79 +1,86 @@
 <template>
 	<div class="search-list-view">
-	<div class="Search-results"  data-scrollbar tabindex="1" >
-		<div class="scroll-content" style="overflow: hidden; outline: none;">
-			<div class="search-list-view__list">
-			<ul class="search-page-view">
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, rem.</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Ad voluptate harum perspiciatis, quisquam voluptatum, optio aspernatur hic quod.</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Nesciunt iure officiis sequi quaerat eaque iste dolore porro cum.</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Architecto veritatis qui vel a maiores, deleniti odit officiis natus.</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Sit quasi quisquam vitae, perspiciatis voluptatem esse commodi ipsum repudiandae.</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Dolore est excepturi animi atque culpa placeat, nesciunt eaque vitae.</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Voluptatem officia molestiae quaerat harum porro, expedita iusto cum aliquid!</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Distinctio eius, illo vero magni veritatis voluptatem, nobis nesciunt nam.</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Adipisci, sunt, facere. Reprehenderit quam adipisci debitis blanditiis optio eaque!</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Molestiae a labore commodi, itaque vero quidem rem possimus voluptates?</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Illo laudantium doloribus quisquam culpa officia molestias saepe, in neque!</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Nisi expedita praesentium harum laborum a distinctio ad suscipit aliquam!</div>
-					</div>
-				</li>
-				<li class="search-snippet-view">
-					<div class="search-business-snippet-view">
-						<div class="search-business-snippet-view__body">Cupiditate odit ea consequuntur itaque culpa officia odio, repellat tempore.</div>
-					</div>
-				</li>
-			</ul>
+		<div class="sidebar-left-panel-header-view">
+			<div class="sidebar-left-panel-header-view__title">
+				<div class="sidebar-left-panel-header-view__title-text">
+					Результаты поиска
+				</div>
+			</div>
+		</div>
+		<div class="Search-results"  data-scrollbar tabindex="1" >
+			<div class="scroll-content" style="overflow: hidden; outline: none;">
+				<div class="search-list-view__list">
+				<ul class="search-page-view">
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, rem.</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Ad voluptate harum perspiciatis, quisquam voluptatum, optio aspernatur hic quod.</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Nesciunt iure officiis sequi quaerat eaque iste dolore porro cum.</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Architecto veritatis qui vel a maiores, deleniti odit officiis natus.</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Sit quasi quisquam vitae, perspiciatis voluptatem esse commodi ipsum repudiandae.</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Dolore est excepturi animi atque culpa placeat, nesciunt eaque vitae.</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Voluptatem officia molestiae quaerat harum porro, expedita iusto cum aliquid!</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Distinctio eius, illo vero magni veritatis voluptatem, nobis nesciunt nam.</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Adipisci, sunt, facere. Reprehenderit quam adipisci debitis blanditiis optio eaque!</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Molestiae a labore commodi, itaque vero quidem rem possimus voluptates?</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Illo laudantium doloribus quisquam culpa officia molestias saepe, in neque!</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Nisi expedita praesentium harum laborum a distinctio ad suscipit aliquam!</div>
+						</div>
+					</li>
+					<li class="search-snippet-view">
+						<div class="search-business-snippet-view">
+							<div class="search-business-snippet-view__body">Cupiditate odit ea consequuntur itaque culpa officia odio, repellat tempore.</div>
+						</div>
+					</li>
+				</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </template>
 <script>
 	
@@ -196,4 +203,21 @@
 			height: 1px
 	.search-business-snippet-view
 	.search-business-snippet-view__body
+	.sidebar-left-panel-header-view
+		border-bottom: 1px solid #ededed
+		padding-right: 70px
+		user-select: none
+		background-color: #fff
+		flex-shrink: 0
+	.sidebar-left-panel-header-view__title
+		position: relative
+	.sidebar-left-panel-header-view__title-text
+		white-space: nowrap
+		text-overflow: ellipsis
+		overflow: hidden
+		font-size: 13px
+		line-height: 36px
+		padding-left: 16px
+		padding-right: 70px
+		color: #999
 </style>
