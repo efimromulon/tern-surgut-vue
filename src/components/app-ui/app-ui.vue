@@ -9,9 +9,22 @@
 					</div>
 				</div>
 				<div class="header-view__settings-layout">
-					<ui-settings/>
+					<ui-settings-header/>
 				</div>
 			</header>
+		</div>
+		<div class="app-ui-main-container">
+			<div class="app-ui-main-view">
+				<div class="app-ui-main-view__panel-core-menu">
+					<ui-settings-panel-core-menu/>
+				</div>
+				<div class="app-ui-main-view__panel-menu">
+					
+				</div>
+				<div class="app-ui-main-view__panel-view">
+					<ui-settings-panel-views/>
+				</div>
+			</div>
 		</div>
 		<div class="sidebar-left-container">
 			<div class="sidebar-left-view">	
@@ -60,13 +73,17 @@
 <script>
 	import searchInput from './app-ui-components/_search-input.vue'
 	import searchList from './app-ui-components/_search-list.vue'
-	import uiSettings from './app-ui-components/_ui-settings.vue'
+	import uiSettingsHeader from './app-ui-components/_ui-settings-header.vue'
+	import uiSettingsPanelCoreMenu from './app-ui-components/_ui-settings-panel-core-menu.vue'
+	import uiSettingsPanelViews from './app-ui-components/_ui-settings-panel-views.vue'
 	export default {
 		name: 'app-ui',
 		components: {
 			searchList,
 			searchInput,
-			uiSettings,
+			uiSettingsHeader,
+			uiSettingsPanelCoreMenu,
+			uiSettingsPanelViews,
 			//appUiSettings,
 			//search,
 		},
@@ -120,6 +137,37 @@
 		left: 50%
 		transform: translateX(-50%)
 		width: 40vw
+	.app-ui-main-container
+		position: absolute
+		display: flex
+		top: 64px
+		left: 50%
+		flex-direction: column
+		transform: translateX(-50%)
+		height: auto
+		user-select: none
+		white-space: nowrap
+		background-color: red
+		width: 40vw
+	.app-ui-main-view
+	.app-ui-main-view__panel-core-menu
+		position: relative
+		width: 100%
+		background-color: green
+		height: 100px
+		opacity: .5
+	.app-ui-main-view__panel-menu
+		position: relative
+		width: 100%
+		background-color: gray
+		height: 100px
+		opacity: .5
+	.app-ui-main-view__panel-view
+		position: relative
+		width: 100%
+		background-color: blue
+		height: 100px
+		opacity: .5
 	.sidebar-left-container, .sidebar-right-container
 		display: block
 	.sidebar-left-view, .sidebar-right-view

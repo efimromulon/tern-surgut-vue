@@ -18,7 +18,7 @@
 	import svgIconFunnel 		from '@/components/app-common/svg/svg-icon-funnel.vue'
 	export default {
 
-		name: '_ui-settings',
+		name: '_ui-settings-header',
 		components: {
 			buttonSquare,
 			settingsColorSwitch,
