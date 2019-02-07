@@ -9,8 +9,7 @@
 					</div>
 				</div>
 				<div class="header-view__settings-layout">
-
-
+					<ui-settings/>
 				</div>
 			</header>
 		</div>
@@ -43,11 +42,16 @@
 							</svg>
 						</span>
 					</div>
+
 				</div>
 			</div>
 		</div>
-		<div class="app-ui__sidebar-container-right">
+		<div class="sidebar-right-container">
+			<div class="sidebar-right-view">	
+				<div class="sidebar-right-panel-view">
 
+				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -56,11 +60,13 @@
 <script>
 	import searchInput from './app-ui-components/_search-input.vue'
 	import searchList from './app-ui-components/_search-list.vue'
+	import uiSettings from './app-ui-components/_ui-settings.vue'
 	export default {
 		name: 'app-ui',
 		components: {
 			searchList,
 			searchInput,
+			uiSettings,
 			//appUiSettings,
 			//search,
 		},
@@ -86,7 +92,8 @@
 	.app-ui
 		z-index: 7000
 		position: absolute
-		// top: 1rem
+		top: 0
+		width: 100vw
 		// left: 1rem
 		// right: 1rem
 	.header-view
@@ -102,24 +109,33 @@
 		position: relative
 		display: flex
 		width: 100%
-		min-width: 384px
-		max-width: 384px
+		min-width: 20vw
+		max-width: 20vw
 	.header-view__search-layout
 		display: flex
 		flex-shrink: 2
 		min-width: 448px
-	.sidebar-left-container
+	.header-view__settings-layout
+		position: absolute
+		left: 50%
+		transform: translateX(-50%)
+		width: 40vw
+	.sidebar-left-container, .sidebar-right-container
 		display: block
-	.sidebar-left-view
+	.sidebar-left-view, .sidebar-right-view
 		position: absolute
 		display: flex
 		flex-direction: column
 		width: 0
+	.sidebar-left-view
 		top: 64px
 		left: 12px
-	.sidebar-left-panel-view
+	.sidebar-right-view
+		top: 64px
+		right: 12px
+	.sidebar-left-panel-view, .sidebar-right-panel-view
 		position: relative
-		width: 384px
+		width: 20vw
 		min-height: 36px
 		background: #fff
 		border-radius: 4px
@@ -127,6 +143,8 @@
 		@include shadow(2)
 		color: $newcolour2
 
+	.sidebar-right-panel-view
+		transform: translateX(-100%)
 	.sidebar-left-panel-view__content
 		border-radius: 4px
 		overflow: hidden

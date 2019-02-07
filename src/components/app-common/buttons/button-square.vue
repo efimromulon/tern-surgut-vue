@@ -1,5 +1,5 @@
 <template>
-	<button @click="onClick" class="appInterface_button_base" :class="[buttonBackroundActive ? 'appInterface_button' : '', buttonClass, get_buttonIsActive ? buttonClass + '_active' : '']">
+	<button @click="onClick" class="app-ui__button" :class="[buttonBackroundActive ? 'appInterface_button' : '', buttonClass, get_buttonIsActive ? buttonClass + '_active' : '']">
 		<slot></slot>
 	</button>
 </template>
@@ -49,17 +49,21 @@
 </script>
 
 <style lang='sass'>
-	@import "@/sass/abstracts/_variables.sass"
-	@import "@/sass/abstracts/_mixins.sass"
-	.appInterface_button_base
+	.app-ui__button
+		outline: none
+		background: $background-color-white
+		border: none
 		height: $buttonHW
 		width: $buttonHW
+		display: inline-block
+		position: absolute
+		top: 0
+		left: 0
 		svg
 			height: 30px
 			width: 30px
-			vertical-align: middle
+			//vertical-align: middle
 	.appInterface_button
-		background: $background-color-white
 		@include shadow(2)
 	.button_funnel
 		svg
@@ -91,14 +95,6 @@
 					stroke: #ffffff
 	.button_layers	
 		svg
-			//.st0				
-			//	fill: #292929
-			//.st1
-			//	fill: none
-			//	stroke: #292929
-			//	stroke-width: 2.5
-			//	stroke-linecap: square
-			//	stroke-miterlimit: 10
 			.st0
 				fill: none
 				stroke: #292929
@@ -129,8 +125,6 @@
 					stroke-miterlimit: 10
 
 	.button-white
-		background: $background-color-white
-		@include shadow(2)
 
 	.filters_header_button
 		height: 45px

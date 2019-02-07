@@ -15,7 +15,7 @@
 	// из props ButtonName с пом. methods.getColorClass() получается
 	// доп класс для кнопки 'circle_' + G или O, R и т.д.
 	export default {
-		name: 'color-switch-button',
+		name: '_settings-color-switch-button',
 		props: {
 			buttonData: {
 				type: Object,
@@ -40,16 +40,12 @@
 </script>
 
 <style lang='sass'>
-
-	@import "@/sass/base/_typography.sass"
-	@import "@/sass/abstracts/_variables.sass"
-	@import "@/sass/abstracts/_mixins.sass"
 	.colors_buttons_wrapper_item
 		background: $background-color-white
 		@include shadow(2)
-		width: calc(100% / 3)
+		width: calc(((100% - 60px)/ 4))
 		position: relative
-		display: flex
+		display: inline-flex
 		flex-basis: auto
 		flex-direction: row
 		flex-grow: 0
@@ -57,11 +53,13 @@
 		flex-wrap: nowrap
 		justify-content: space-between
 		margin-right: 20px
+		height: 45px
 		&:last-child
 			margin-right: 0
 		.button_circle_part
 			position: absolute
 			top: 50%
+			left: 0%
 			transform: translate(-50%, -50%)
 			width: 25px
 			.circle_part
@@ -88,6 +86,7 @@
 		.button_rect_part
 			position: absolute
 			transform: translate(0%, -50%)
+			top: 50%
 			right: 0% 
 			height: 45px
 			//background: green

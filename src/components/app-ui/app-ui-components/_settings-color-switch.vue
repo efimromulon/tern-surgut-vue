@@ -1,18 +1,18 @@
 <template>
 	<div class="colors_buttons_wrapper">
-		<color-switch-button 
+		<settings-color-switch-button 
 			:buttonData = "buttonData[key]"
 			 v-for = "(item, key) in buttonData"
 			 :key = "key"
-		></color-switch-button>
+		></settings-color-switch-button>
 	</div>
 </template>
 
 <script>
-	import colorSwitchButton from './app-ui--settings--color-switch--button.vue'
+	import settingsColorSwitchButton from './_settings-color-switch-button.vue'
 
 	export default {
-		name: 'settings-color-switch',
+		name: '_settings-color-switch',
 		data () {
 			return {
 				buttonData: null,
@@ -40,17 +40,17 @@
 			},
 		},
 		components: {
-			colorSwitchButton,
+			settingsColorSwitchButton,
 		}
 	}
 </script>
 
 <style lang='sass'>
-	@import "@/sass/base/_typography.sass"
-	@import "@/sass/abstracts/_variables.sass"
-	@import "@/sass/abstracts/_mixins.sass"
 	.colors_buttons_wrapper
-		display: flex
+		position: absolute
+		top: 0
+		left: 65px
+		display: inline-block
 		flex-basis: auto
 		flex-direction: row
 		flex-grow: 0
@@ -58,8 +58,8 @@
 		flex-wrap: nowrap
 		height: 45px
 		width: calc(100% - 65px)
-		text-align: center
+		//text-align: center
 		line-height: 45px
-		margin: 0 0px 0 20px//0 10px 0 10px
+		margin: 0
 
 </style>

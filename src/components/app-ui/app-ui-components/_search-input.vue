@@ -52,7 +52,7 @@ export default {
 		background-color: #fff
 		border: 0
 	.input_air-search-large-context
-		border: 2px solid #fff
+		//border: 2px solid #fff
 		border-right: 0
 		border-left: 0
 		display: block
@@ -63,7 +63,7 @@ export default {
 	.input_air-search-large-control
 		font-size: 14px
 		line-height: 1.2em
-		height: 44px
+		height: 45px
 		color: #000
 		background: 0 0
 		border-left-width: 0
