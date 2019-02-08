@@ -26,11 +26,14 @@
 		methods: {
 			LOAD_JSON_CURRENT_USER(){
 				let STORE = this.$store;
+				console.log('$',$);
 				$.get(
-					'../public/getCurrentUser.json', 
-					function(data){
-						var payload = {jsonName: 'getCurrentUser', jsonData: data};
+					'~@/assets/jsons/getCurrentUser.json', 
+					function(json){
+						console.log(json);
+						var payload = {jsonName: 'getCurrentUser', jsonData: json};
 						STORE.dispatch('get_local_json',payload)
+						console.log(payload)
 					}
 				)
 				.done(
@@ -42,7 +45,7 @@
 			LOAD_JSON_AZS_INFO(){
 				let STORE = this.$store;
 				$.get(
-					'../public/getAzsInfo.json', 
+					'~@/assets/jsons/getAzsInfo.json', 
 					function(data){
 						let payload = {jsonName: 'getAzsInfo', jsonData: data};
 						setTimeout(function() {
@@ -59,7 +62,7 @@
 			LOAD_JSON_FUEL_STOCK(){
 				let STORE = this.$store;
 				$.get(
-					'../public/getFuelStock.json', 
+					'~@/assets/jsons/getFuelStock.json', 
 					function(data){
 						let payload = {
 							jsonName: 'getFuelStock', 
@@ -80,7 +83,7 @@
 			LOAD_JSON_FUEL_SELL(){
 				let STORE = this.$store;
 				$.get(
-					'../public/getFuelSell.json', 
+					'~@/assets/jsons/getFuelSell.json', 
 					function(data){
 						let payload = {
 							jsonName: 'getFuelSell', 
@@ -101,7 +104,7 @@
 			LOAD_JSON_ARTICLE_STOCK(){
 				let STORE = this.$store;
 				$.get(
-					'../public/getArticleSell.json', 
+					'~@/assets/jsons/getArticleSell.json', 
 					function(data){
 						let payload = {
 							jsonName: 'getArticleSell', 
@@ -122,7 +125,7 @@
 			LOAD_JSON_STATION_COORDS(){
 				let STORE = this.$store;
 				$.get(
-					'../public/getStationsLatLng.json', 
+					'~@/assets/jsons/getStationsLatLng.json', 
 					function(data){
 						let payload = {
 							jsonName: 'getStationsLatLng', 
@@ -141,7 +144,7 @@
 			LOAD_JSON_STATION_INFO(){
 				let STORE = this.$store;
 				$.get(
-					'../public/getStationsInfo.json', 
+					'~@/assets/jsons/getStationsInfo.json', 
 					function(data){
 						let payload = {
 							jsonName: 'getStationsInfo', 
@@ -160,7 +163,7 @@
 			LOAD_JSON_STATION_FULL(){
 				let STORE = this.$store;
 				$.get(
-					'../public/getDepartmentFull.json', 
+					'~@/assets/jsons/getDepartmentFull.json', 
 					function(data){
 						let payload = {
 							jsonName: 'getDepartmentFull', 

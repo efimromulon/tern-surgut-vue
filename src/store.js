@@ -787,9 +787,9 @@ export default new Vuex.Store({
 					b = jsonPayload.jsonData;
 				//str.replace(reg, str|func)
 				let promiseForSortByColors = new Promise((resolve, reject) => {
-
+					console.log(jsonPayload);
 				function sortStationsBySDO(b){
-					console.log(b);
+					//console.log(b);
 					let sdo1 = [], 
 						sdo2 = [], 
 						sdo3 = [], 
