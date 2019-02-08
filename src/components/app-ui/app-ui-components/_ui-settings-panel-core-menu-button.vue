@@ -1,5 +1,5 @@
 <template>
-	<div :class="['header_menu_item', getButtonClass()]"
+	<div :class="['core-menu__btn', getButtonClass()]"
 		@click = "TOGGLE_CURRENT_FILTER_MENU_BUTTON"
 	>
 		{{ buttonData.buttonName }}
@@ -7,9 +7,10 @@
 </template>
 
 <script>
+	import {TimelineMax} from 'gsap'
 	//import appInterfaceButton from './appInterfaceButton.vue'
 	export default {
-		name: '_ui-settings-panel-core-menu-button',
+		name: 'ui-settings-panel-core-menu-button',
 		components: {
 
 		},
@@ -65,13 +66,13 @@
 			},
 			getButtonClass(){
 				let a = this.keyOfButton;//button_>>G<< 7 - G
-				let b = 'filtersButton_' + a;
+				let b = 'core-menu__btn-' + a;
 				return b;
 			},
 			animateButtonIn(){
 				this.timelinebutton
 				.to(this.animateTarget, .3,{
-					backgroundColor: '#ff00ff',
+					backgroundColor: '#ededed',
 					ease: Power4.easeOut});
 			},
 			animateButtonOut(){
@@ -91,4 +92,21 @@
 </script>
 
 <style lang='sass'>
+	.core-menu__btn
+		vertical-align: middle
+		position: relative
+		cursor: pointer
+		line-height: 37px
+		margin: 0 10px
+		font-family: 'Montserrat-Medium'
+		font-size: 14px
+		&:hover
+			&:after
+				content: ''
+				position: absolute
+				bottom: 0
+				left: 0
+				color: black
+				width: 100%
+				height: 3px
 </style>

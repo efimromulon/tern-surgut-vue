@@ -12,7 +12,7 @@
 	import settingsColorSwitchButton from './_settings-color-switch-button.vue'
 
 	export default {
-		name: '_settings-color-switch',
+		name: 'settings-color-switch',
 		data () {
 			return {
 				buttonData: null,

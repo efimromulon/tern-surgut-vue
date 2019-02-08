@@ -19,7 +19,7 @@
 <script>
 export default {
 
-	name: '_search-input',
+	name: 'search-input',
 
 	data () {
 		return {

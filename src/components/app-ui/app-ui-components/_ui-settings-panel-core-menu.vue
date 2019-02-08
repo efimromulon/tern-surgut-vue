@@ -1,5 +1,5 @@
 <template>
-	<div class="center_group_filters_menu_wrapper">
+	<div class="core-menu">
 		<ui-settings-panel-core-menu-button
 			:buttonData = "buttonsArray[buttonID]"
 			:keyOfButton = "buttonID"
@@ -7,15 +7,19 @@
 			 v-for = "(buttonName, buttonID) in buttonsArray"
 			:key = "buttonID"
 			></ui-settings-panel-core-menu-button>
+		<button-cross
+			:btnClassName = "`core-menu`"
+		></button-cross>
 	</div>
 </template>
-
 <script>
 	import uiSettingsPanelCoreMenuButton from './_ui-settings-panel-core-menu-button.vue'
+	import buttonCross from '@/components/app-common/buttons/button-cross.vue'
 	export default {
-		name: '_ui-settings-panel-core-menu',
+		name: 'ui-settings-panel-core-menu',
 		components: {
 			uiSettingsPanelCoreMenuButton,
+			buttonCross,
 		},
 		data () {
 			return {
@@ -59,14 +63,12 @@
 </script>
 
 <style lang='sass'>
-	.center_group_filters_menu_wrapper
+	.core-menu
 		width: 100%
 		overflow: hidden
-		position: absolute 
-		//top: calc(100% + 10px)
+		position: relative
 		top: 0
 		left: 0
-		//height: 0px
 		height: 37px
 		display: flex
 		flex-basis: auto
@@ -74,26 +76,12 @@
 		flex-grow: 0
 		flex-shrink: 1
 		flex-wrap: nowrap
-		justify-content: space-between
-		//line-height: 45px
-	.header_menu_item
-		vertical-align: middle
-		position: relative
-		cursor: pointer
-		&:nth-child(1n)
-			padding-left: 8px
-			padding-right: 4px
-		&:nth-child(2n)
-			padding-left: 4px
-			padding-right: 8px
-		&:hover
-			&:after
-				content: ''
-				position: absolute
-				bottom: 0
-				left: 0
-				color: black
-				width: 100%
-				height: 3px
-				background-image: linear-gradient(135deg,#5EFCE8 10%,#736EFE 100%)
+		justify-content: start
+		background-color: $color-white
+		@include shadow(2)
+		@include border(2)
+	.core-menu__close
+		position: absolute
+		top: 0
+		right: 0
 </style>

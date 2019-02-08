@@ -18,7 +18,7 @@
 	import svgIconFunnel 		from '@/components/app-common/svg/svg-icon-funnel.vue'
 	export default {
 
-		name: '_ui-settings-header',
+		name: 'ui-settings-header',
 		components: {
 			buttonSquare,
 			settingsColorSwitch,
@@ -31,6 +31,28 @@
 				buttonBackroundActive: true,
 				buttonID: 0,
 			};
+		},
+		computed: {
+			get_buttonInterfaceTopActiveById(){
+				return this.$store.getters.get_buttonInterfaceTopActiveById(this.buttonID).buttonState;
+			},
+		},
+		mounted(){
+			this.UPDATE_BUTTON_FUNNEL_STATE();
+		},
+		methods: {
+			UPDATE_BUTTON_FUNNEL_STATE(){
+				this.buttonFunnelActive = this.get_buttonInterfaceTopActiveById;
+			},
+			toggleButtonFunnel(){
+				let payload = {buttonArray: 'buttonInterfaceTopActive', id: this.buttonID};
+				this.$store.dispatch('toggle_interfacetop_button', payload);
+			},
+		},
+		watch: {
+			get_buttonInterfaceTopActiveById(newCount, oldCount){
+				this.UPDATE_BUTTON_FUNNEL_STATE();
+			},
 		},
 	};
 </script>

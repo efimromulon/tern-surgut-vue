@@ -15,7 +15,7 @@
 	// из props ButtonName с пом. methods.getColorClass() получается
 	// доп класс для кнопки 'circle_' + G или O, R и т.д.
 	export default {
-		name: '_settings-color-switch-button',
+		name: 'settings-color-switch-button',
 		props: {
 			buttonData: {
 				type: Object,

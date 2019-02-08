@@ -11,3 +11,17 @@
 		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(black, 0.22)
 	@else if $level == 6
 		box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(black, 0.22)
+
+@mixin border($level: 1)
+	@if $level == 1
+		border-radius: 1px
+	@else if $level == 2
+		border-radius: 2px
+	@else if $level == 3
+		border-radius: 3px
+	@else if $level == 4
+		border-radius: 4px
+	@else if $level == 5
+		border-radius: 5px
+	@else if $level == 6
+		border-radius: 6px

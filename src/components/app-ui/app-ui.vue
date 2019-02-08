@@ -18,8 +18,14 @@
 				<div class="app-ui-main-view__panel-core-menu">
 					<ui-settings-panel-core-menu/>
 				</div>
-				<div class="app-ui-main-view__panel-menu">
-					
+				<div class="app-ui-main-view__panel-menus">
+					<div class="panel-menus__item">
+						<ui-settings-panel-menus-menu-marking-settings/>
+					</div>
+					<div class="panel-menus__item">
+						<ui-settings-panel-menus-menu-marking-settings-extended-menu/>
+					</div>
+					<div class="panel-menus__item"></div>
 				</div>
 				<div class="app-ui-main-view__panel-view">
 					<ui-settings-panel-views/>
@@ -37,24 +43,12 @@
 						
 						</div>
 					</div>
-					<div class="sidebar-left-panel-view__collapse" title="Свернуть">
-						<span>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-								<path d="M15.293 14.707a1 1 0 0 0 1.414-1.414l-4-4a1 1 0 0 0-1.414 0l-4 4a1 1 0 0 0 1.414 1.414L12 11.414l3.293 3.293z">
-								
-								</path>
-							</svg>
-						</span>
-					</div>
-					<div class="sidebar-left-panel-view__close" title="Закрыть">
-						<span>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-								<path fill-rule="evenodd" d="M12 10.586L8.707 7.293a1 1 0 0 0-1.414 1.414L10.586 12l-3.293 3.293a1 1 0 0 0 1.414 1.414L12 13.414l3.293 3.293a1 1 0 0 0 1.414-1.414L13.414 12l3.293-3.293a1 1 0 1 0-1.414-1.414L12 10.586z">
-									
-								</path>
-							</svg>
-						</span>
-					</div>
+					<button-collapse
+						:btnClassName = "`sidebar-left-panel-view`"
+					></button-collapse>
+					<button-cross
+						:btnClassName = "`sidebar-left-panel-view`"
+					></button-cross>
 
 				</div>
 			</div>
@@ -75,7 +69,11 @@
 	import searchList from './app-ui-components/_search-list.vue'
 	import uiSettingsHeader from './app-ui-components/_ui-settings-header.vue'
 	import uiSettingsPanelCoreMenu from './app-ui-components/_ui-settings-panel-core-menu.vue'
+	import uiSettingsPanelMenusMenuMarkingSettings from './app-ui-components/_ui-settings-panel-menus__menu-marking-settings.vue'
+	import uiSettingsPanelMenusMenuMarkingSettingsExtendedMenu from './app-ui-components/_ui-settings-panel-menus__menu-marking-settings__extended-menu.vue'
 	import uiSettingsPanelViews from './app-ui-components/_ui-settings-panel-views.vue'
+	import buttonCross from '@/components/app-common/buttons/button-cross.vue'
+	import buttonCollapse from '@/components/app-common/buttons/button-collapse.vue'
 	export default {
 		name: 'app-ui',
 		components: {
@@ -83,7 +81,11 @@
 			searchInput,
 			uiSettingsHeader,
 			uiSettingsPanelCoreMenu,
+			uiSettingsPanelMenusMenuMarkingSettings,
+			uiSettingsPanelMenusMenuMarkingSettingsExtendedMenu,
 			uiSettingsPanelViews,
+			buttonCross,
+			buttonCollapse,
 			//appUiSettings,
 			//search,
 		},
@@ -147,27 +149,20 @@
 		height: auto
 		user-select: none
 		white-space: nowrap
-		background-color: red
+		//background-color: red
 		width: 40vw
 	.app-ui-main-view
 	.app-ui-main-view__panel-core-menu
 		position: relative
 		width: 100%
-		background-color: green
-		height: 100px
-		opacity: .5
-	.app-ui-main-view__panel-menu
+	.app-ui-main-view__panel-menus
 		position: relative
 		width: 100%
-		background-color: gray
-		height: 100px
-		opacity: .5
+		top: 4px
 	.app-ui-main-view__panel-view
 		position: relative
 		width: 100%
-		background-color: blue
-		height: 100px
-		opacity: .5
+		top: 4px
 	.sidebar-left-container, .sidebar-right-container
 		display: block
 	.sidebar-left-view, .sidebar-right-view
@@ -189,7 +184,7 @@
 		border-radius: 4px
 		overflow: hidden
 		@include shadow(2)
-		color: $newcolour2
+		color: $color-white
 
 	.sidebar-right-panel-view
 		transform: translateX(-100%)
@@ -211,18 +206,8 @@
 		position: absolute
 		top: 0
 		right: 0
-		width: 24px
-		height: 24px
-		margin: 6px
-		cursor: pointer
-		opacity: .4
 	.sidebar-left-panel-view__close
 		right: 36px
 		position: absolute
 		top: 0
-		width: 24px
-		height: 24px
-		margin: 6px
-		cursor: pointer
-		opacity: .4
 </style>
