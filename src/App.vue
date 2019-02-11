@@ -203,5 +203,5 @@
 	body
 		user-select: none
 		overflow: hidden
-
+		font-family: 'Montserrat-Medium'
 </style>
