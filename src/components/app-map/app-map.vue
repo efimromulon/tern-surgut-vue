@@ -29,7 +29,8 @@
 //error with loading png leaflet markers //https://github.com/KoRiGaN/Vue2Leaflet/issues/103
 //пришлось добавить в markersLatLng 1 любой объект маркера, чтобы при первичном рендере в created не повалилось, 
 //тк не может из null сгенерить маркеры
-import {LMap, LTileLayer, LMarker, LFeatureGroup, LPopup, LIcon, LControlZoom } from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LFeatureGroup, LPopup, LIcon, LControlZoom } from 'vue2-leaflet'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 	export default {
 		name: 'app-map',
 		components: {

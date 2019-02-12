@@ -1310,12 +1310,12 @@ export default new Vuex.Store({
 		//MAP DATA - END
 		//Indicators JSON
 			GET_INDICATOR_JSON: (state, payload) => {
-
+				console.log('T', payload);
 				let jName 		= payload.jsonName,
 					jData 		= payload.jsonData,
 					jIndicator 	= payload.jsonIndicator,
 					jExpress 	= payload.jsonExpress;
-
+				console.log('state.indicators[jName]', state.indicators);
 				state.indicators[jName].data 		= jData;
 				state.indicators[jName].indicator 	= jIndicator;
 				state.indicators[jName].express 	= jExpress;
