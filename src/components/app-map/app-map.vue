@@ -268,6 +268,8 @@
 //пришлось добавить в markersLatLng 1 любой объект маркера, чтобы при первичном рендере в created не повалилось, 
 //тк не может из null сгенерить маркеры
 import {LMap, LTileLayer, LMarker, LFeatureGroup, LPopup, LIcon, LControlZoom } from 'vue2-leaflet';
+import { mapGetters } from 'vuex'
+
 	export default {
 		name: 'app-map',
 		components: {

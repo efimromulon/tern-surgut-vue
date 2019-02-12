@@ -61,7 +61,8 @@ export default ({
 					res.push({id: a, latlng: latlng, category: c, color: null, valueRange: null});
 				};
 
-			})
+			});
+			state.stations = res;
 			console.log(res);
 		},
 
@@ -114,5 +115,9 @@ export default ({
 			}
 		},
 	},
-	getters: {}
+	getters: {
+		GET_stations: (state) => {
+			return state.stations;
+		},
+	}
 })
