@@ -10,27 +10,264 @@
 		@update:center="centerUpdated"
 		@update:bounds="boundsUpdated"
 	>
+
 		<l-control-zoom position="topright"></l-control-zoom>
+
 		<l-tile-layer :url="tileLayer"></l-tile-layer>
+
 		<l-feature-group ref="features">
 			<l-popup>
-				<!-- <map-popup-info 
-					:callerInfo = "callerInfo" 
-					:caller = "caller"
-				>
-				</map-popup-info> -->
+<!-- 				<map-popup-info 
+	:callerInfo = "callerInfo" 
+	:caller = "caller"
+>
+</map-popup-info> -->
 			</l-popup>
 		</l-feature-group>
+
+
+
+		<l-feature-group ref="group-sdo-knp" :visible="knpIsVisible">
+			<l-feature-group ref="group-sdo-knp-green" :visible="get_buttonColorsAll.button_Green.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngKNPgreen"
+					:key="markersLatLngKNPgreen.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_green.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-knp-orange" :visible="get_buttonColorsAll.button_Orange.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngKNPorange"
+					:key="markersLatLngKNPorange.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_orange.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-knp-red" :visible="get_buttonColorsAll.button_Red.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngKNPred"
+					:key="markersLatLngKNPred.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_red.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+		</l-feature-group>
+
+		<l-feature-group ref="group-sdo-kas" :visible="kasIsVisible">
+
+			<l-feature-group ref="group-sdo-kas-green" :visible="get_buttonColorsAll.button_Green.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngKASgreen"
+					:key="markersLatLngKASgreen.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_green.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-kas-orange" :visible="get_buttonColorsAll.button_Orange.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngKASorange"
+					:key="markersLatLngKASorange.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_orange.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-kas-red" :visible="get_buttonColorsAll.button_Red.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngKASred"
+					:key="markersLatLngKASred.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_red.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+
+		</l-feature-group>
+
+		<l-feature-group ref="group-sdo-nnp" :visible="nnpIsVisible">
+
+			<l-feature-group ref="group-sdo-nnp-green" :visible="get_buttonColorsAll.button_Green.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngNNPgreen"
+					:key="markersLatLngNNPgreen.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_green.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-nnp-orange" :visible="get_buttonColorsAll.button_Orange.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngNNPorange"
+					:key="markersLatLngNNPorange.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_orange.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-nnp-red" :visible="get_buttonColorsAll.button_Red.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngNNPred"
+					:key="markersLatLngNNPred.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_red.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+
+		</l-feature-group>
+
+		<l-feature-group ref="group-sdo-pnp" :visible="pnpIsVisible">
+
+			<l-feature-group ref="group-sdo-pnp-green" :visible="get_buttonColorsAll.button_Green.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngPNPgreen"
+					:key="markersLatLngPNPgreen.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_green.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-pnp-orange" :visible="get_buttonColorsAll.button_Orange.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngPNPorange"
+					:key="markersLatLngPNPorange.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_orange.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-pnp-red" :visible="get_buttonColorsAll.button_Red.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngPNPred"
+					:key="markersLatLngPNPred.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_red.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+
+		</l-feature-group>
+
+		<l-feature-group ref="group-sdo-tnp" :visible="tnpIsVisible">
+
+			<l-feature-group ref="group-sdo-tnp-green" :visible="get_buttonColorsAll.button_Green.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngTNPgreen"
+					:key="markersLatLngTNPgreen.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_green.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-tnp-orange" :visible="get_buttonColorsAll.button_Orange.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngTNPorange"
+					:key="markersLatLngTNPorange.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_orange.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+			<l-feature-group ref="group-sdo-tnp-red" :visible="get_buttonColorsAll.button_Red.buttonState">
+				<l-marker 
+					v-for="marker in markersLatLngTNPred"
+					:key="markersLatLngTNPred.id"
+					:lat-lng="marker" 
+					@click="openPopUp(marker, 'marker')"
+				>
+					<l-icon
+						:icon-size="[32, 37]"
+						:icon-anchor="[16, 37]"
+						icon-url="static/marker_red.svg" >
+					</l-icon>
+				</l-marker>
+			</l-feature-group>
+
+		</l-feature-group>
+
 	</l-map>
 	</div>
 </template>
-
 <script>
 //error with loading png leaflet markers //https://github.com/KoRiGaN/Vue2Leaflet/issues/103
 //пришлось добавить в markersLatLng 1 любой объект маркера, чтобы при первичном рендере в created не повалилось, 
 //тк не может из null сгенерить маркеры
-import {LMap, LTileLayer, LMarker, LFeatureGroup, LPopup, LIcon, LControlZoom } from 'vue2-leaflet'
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+import {LMap, LTileLayer, LMarker, LFeatureGroup, LPopup, LIcon, LControlZoom } from 'vue2-leaflet';
 	export default {
 		name: 'app-map',
 		components: {
@@ -363,7 +600,6 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 				this.center = center;
 			},
 			boundsUpdated(bounds){
-				console.log(bounds);
 				this.bounds = bounds;
 			},
 			MAP_INIT(){
@@ -469,55 +705,41 @@ import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 			},
 			get_mapStationsKNPgreen(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsKNPorange(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsKNPred(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsKAS(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsKASgreen(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsKASorange(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsKASred(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsNNP(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsNNPgreen(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
-			get_mapStationsNNPorange(newCount, oldCount){
-				console.log('this.createMarkers');
-				this.createMarkers();
+			get_mapStationsNNPorange(newCount, oldCount){				this.createMarkers();
 			},
 			get_mapStationsNNPred(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsPNP(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 			get_mapStationsTNP(newCount, oldCount){
-				console.log('this.createMarkers');
 				this.createMarkers();
 			},
 		},

@@ -1,9 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import map from './modules/map.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+	modules: {
+		map,
+	},
 	state: {
 
 		//Preloader
@@ -785,170 +789,174 @@ export default new Vuex.Store({
 
 				let a = jsonPayload.jsonName,
 					b = jsonPayload.jsonData;
-				//str.replace(reg, str|func)
+
 				let promiseForSortByColors = new Promise((resolve, reject) => {
-					console.log(jsonPayload);
-				function sortStationsBySDO(b){
-					//console.log(b);
-					let sdo1 = [], 
-						sdo2 = [], 
-						sdo3 = [], 
-						sdo4 = [], 
-						sdo5 = [],
-						stationsInfo = [];
 
-					for (var i = 0; i < b.length; i++) {
+					function sortStationsBySDO(b){
 
-						b[i].sStationCategory = b[i].sStationCategory.replace(/\s+/g, '');
+						let sdo1 = [], 
+							sdo2 = [], 
+							sdo3 = [], 
+							sdo4 = [], 
+							sdo5 = [],
+							stationsInfo = [];
 
-					};
+						for (var i = 0; i < b.length; i++) {
 
-					for (var i = 0; i < b.length; i++) {
+							b[i].sStationCategory = b[i].sStationCategory.replace(/\s+/g, '');
 
-						let currentDataItem = b[i];
-
-						switch (true) {
-							case currentDataItem.sStationCategory == 'Киришиавтосервис' : 
-								sdo1.push(
-									{
-										
-										lat: 				currentDataItem.dStationLatitude,
-										lng: 				currentDataItem.dStationLongitude,
-										id: 				currentDataItem.sStationId
-									}
-								);
-								stationsInfo.push(
-									{
-										sCompanyName:		currentDataItem.sCompanyName,
-										sDepartmentId:		currentDataItem.sDepartmentId,
-										sSort:				currentDataItem.sSort,
-										sStationAddress:	currentDataItem.sStationAddress,
-										sStationCategory:	currentDataItem.sStationCategory,
-										sStationCity:		currentDataItem.sStationCity,
-										sStationId:			currentDataItem.sStationId,
-										sStationImage:		currentDataItem.sStationImage,
-										sStationLabel:		currentDataItem.sStationLabel,
-										sStationName:		currentDataItem.sStationName,
-										sStationPhone:		currentDataItem.sStationPhone,
-										sStationPosta:		currentDataItem.sStationPostal
-									}
-								);
-								break;
-							case currentDataItem.sStationCategory == 'Новгороднефтепродукт' : 
-								sdo2.push(
-									{
-										
-										lat: 				currentDataItem.dStationLatitude,
-										lng: 				currentDataItem.dStationLongitude,
-										id: 				currentDataItem.sStationId
-									}
-								);
-								stationsInfo.push(
-									{
-										sCompanyName:		currentDataItem.sCompanyName,
-										sDepartmentId:		currentDataItem.sDepartmentId,
-										sSort:				currentDataItem.sSort,
-										sStationAddress:	currentDataItem.sStationAddress,
-										sStationCategory:	currentDataItem.sStationCategory,
-										sStationCity:		currentDataItem.sStationCity,
-										sStationId:			currentDataItem.sStationId,
-										sStationImage:		currentDataItem.sStationImage,
-										sStationLabel:		currentDataItem.sStationLabel,
-										sStationName:		currentDataItem.sStationName,
-										sStationPhone:		currentDataItem.sStationPhone,
-										sStationPosta:		currentDataItem.sStationPostal
-									}
-								);
-								break;
-							case currentDataItem.sStationCategory == 'Псковнефтепродукт' : 
-								sdo3.push(
-									{
-										
-										lat: 				currentDataItem.dStationLatitude,
-										lng: 				currentDataItem.dStationLongitude,
-										id: 				currentDataItem.sStationId
-									}
-								);
-								stationsInfo.push(
-									{
-										sCompanyName:		currentDataItem.sCompanyName,
-										sDepartmentId:		currentDataItem.sDepartmentId,
-										sSort:				currentDataItem.sSort,
-										sStationAddress:	currentDataItem.sStationAddress,
-										sStationCategory:	currentDataItem.sStationCategory,
-										sStationCity:		currentDataItem.sStationCity,
-										sStationId:			currentDataItem.sStationId,
-										sStationImage:		currentDataItem.sStationImage,
-										sStationLabel:		currentDataItem.sStationLabel,
-										sStationName:		currentDataItem.sStationName,
-										sStationPhone:		currentDataItem.sStationPhone,
-										sStationPosta:		currentDataItem.sStationPostal
-									}
-								);
-								break;
-							case currentDataItem.sStationCategory == 'Калининграднефтепродукт' : 
-								sdo4.push(
-									{
-										
-										lat: 				currentDataItem.dStationLatitude,
-										lng: 				currentDataItem.dStationLongitude,
-										id: 				currentDataItem.sStationId
-									}
-								);
-								stationsInfo.push(
-									{
-										sCompanyName:		currentDataItem.sCompanyName,
-										sDepartmentId:		currentDataItem.sDepartmentId,
-										sSort:				currentDataItem.sSort,
-										sStationAddress:	currentDataItem.sStationAddress,
-										sStationCategory:	currentDataItem.sStationCategory,
-										sStationCity:		currentDataItem.sStationCity,
-										sStationId:			currentDataItem.sStationId,
-										sStationImage:		currentDataItem.sStationImage,
-										sStationLabel:		currentDataItem.sStationLabel,
-										sStationName:		currentDataItem.sStationName,
-										sStationPhone:		currentDataItem.sStationPhone,
-										sStationPosta:		currentDataItem.sStationPostal
-									}
-								);
-								break;
-							case currentDataItem.sStationCategory == 'Тверьнефтепродукт' : 
-								sdo5.push(
-									{
-										
-										lat: 				currentDataItem.dStationLatitude,
-										lng: 				currentDataItem.dStationLongitude,
-										id: 				currentDataItem.sStationId
-									}
-								);
-								stationsInfo.push(
-									{
-										sCompanyName:		currentDataItem.sCompanyName,
-										sDepartmentId:		currentDataItem.sDepartmentId,
-										sSort:				currentDataItem.sSort,
-										sStationAddress:	currentDataItem.sStationAddress,
-										sStationCategory:	currentDataItem.sStationCategory,
-										sStationCity:		currentDataItem.sStationCity,
-										sStationId:			currentDataItem.sStationId,
-										sStationImage:		currentDataItem.sStationImage,
-										sStationLabel:		currentDataItem.sStationLabel,
-										sStationName:		currentDataItem.sStationName,
-										sStationPhone:		currentDataItem.sStationPhone,
-										sStationPosta:		currentDataItem.sStationPostal
-									}
-								);
-								break;
 						};
+
+						for (var i = 0; i < b.length; i++) {
+
+							let currentDataItem = b[i];
+
+							switch (true) {
+								case currentDataItem.sStationCategory == 'Киришиавтосервис' : 
+									sdo1.push(
+										{
+											
+											lat: 				currentDataItem.dStationLatitude,
+											lng: 				currentDataItem.dStationLongitude,
+											id: 				currentDataItem.sStationId
+										}
+									);
+									stationsInfo.push(
+										{
+											sCompanyName:		currentDataItem.sCompanyName,
+											sDepartmentId:		currentDataItem.sDepartmentId,
+											sSort:				currentDataItem.sSort,
+											sStationAddress:	currentDataItem.sStationAddress,
+											sStationCategory:	currentDataItem.sStationCategory,
+											sStationCity:		currentDataItem.sStationCity,
+											sStationId:			currentDataItem.sStationId,
+											sStationImage:		currentDataItem.sStationImage,
+											sStationLabel:		currentDataItem.sStationLabel,
+											sStationName:		currentDataItem.sStationName,
+											sStationPhone:		currentDataItem.sStationPhone,
+											sStationPosta:		currentDataItem.sStationPostal
+										}
+									);
+									break;
+								case currentDataItem.sStationCategory == 'Новгороднефтепродукт' : 
+									sdo2.push(
+										{
+											
+											lat: 				currentDataItem.dStationLatitude,
+											lng: 				currentDataItem.dStationLongitude,
+											id: 				currentDataItem.sStationId
+										}
+									);
+									stationsInfo.push(
+										{
+											sCompanyName:		currentDataItem.sCompanyName,
+											sDepartmentId:		currentDataItem.sDepartmentId,
+											sSort:				currentDataItem.sSort,
+											sStationAddress:	currentDataItem.sStationAddress,
+											sStationCategory:	currentDataItem.sStationCategory,
+											sStationCity:		currentDataItem.sStationCity,
+											sStationId:			currentDataItem.sStationId,
+											sStationImage:		currentDataItem.sStationImage,
+											sStationLabel:		currentDataItem.sStationLabel,
+											sStationName:		currentDataItem.sStationName,
+											sStationPhone:		currentDataItem.sStationPhone,
+											sStationPosta:		currentDataItem.sStationPostal
+										}
+									);
+									break;
+								case currentDataItem.sStationCategory == 'Псковнефтепродукт' : 
+									sdo3.push(
+										{
+											
+											lat: 				currentDataItem.dStationLatitude,
+											lng: 				currentDataItem.dStationLongitude,
+											id: 				currentDataItem.sStationId
+										}
+									);
+									stationsInfo.push(
+										{
+											sCompanyName:		currentDataItem.sCompanyName,
+											sDepartmentId:		currentDataItem.sDepartmentId,
+											sSort:				currentDataItem.sSort,
+											sStationAddress:	currentDataItem.sStationAddress,
+											sStationCategory:	currentDataItem.sStationCategory,
+											sStationCity:		currentDataItem.sStationCity,
+											sStationId:			currentDataItem.sStationId,
+											sStationImage:		currentDataItem.sStationImage,
+											sStationLabel:		currentDataItem.sStationLabel,
+											sStationName:		currentDataItem.sStationName,
+											sStationPhone:		currentDataItem.sStationPhone,
+											sStationPosta:		currentDataItem.sStationPostal
+										}
+									);
+									break;
+								case currentDataItem.sStationCategory == 'Калининграднефтепродукт' : 
+									sdo4.push(
+										{
+											
+											lat: 				currentDataItem.dStationLatitude,
+											lng: 				currentDataItem.dStationLongitude,
+											id: 				currentDataItem.sStationId
+										}
+									);
+									stationsInfo.push(
+										{
+											sCompanyName:		currentDataItem.sCompanyName,
+											sDepartmentId:		currentDataItem.sDepartmentId,
+											sSort:				currentDataItem.sSort,
+											sStationAddress:	currentDataItem.sStationAddress,
+											sStationCategory:	currentDataItem.sStationCategory,
+											sStationCity:		currentDataItem.sStationCity,
+											sStationId:			currentDataItem.sStationId,
+											sStationImage:		currentDataItem.sStationImage,
+											sStationLabel:		currentDataItem.sStationLabel,
+											sStationName:		currentDataItem.sStationName,
+											sStationPhone:		currentDataItem.sStationPhone,
+											sStationPosta:		currentDataItem.sStationPostal
+										}
+									);
+									break;
+								case currentDataItem.sStationCategory == 'Тверьнефтепродукт' : 
+									sdo5.push(
+										{
+											
+											lat: 				currentDataItem.dStationLatitude,
+											lng: 				currentDataItem.dStationLongitude,
+											id: 				currentDataItem.sStationId
+										}
+									);
+									stationsInfo.push(
+										{
+											sCompanyName:		currentDataItem.sCompanyName,
+											sDepartmentId:		currentDataItem.sDepartmentId,
+											sSort:				currentDataItem.sSort,
+											sStationAddress:	currentDataItem.sStationAddress,
+											sStationCategory:	currentDataItem.sStationCategory,
+											sStationCity:		currentDataItem.sStationCity,
+											sStationId:			currentDataItem.sStationId,
+											sStationImage:		currentDataItem.sStationImage,
+											sStationLabel:		currentDataItem.sStationLabel,
+											sStationName:		currentDataItem.sStationName,
+											sStationPhone:		currentDataItem.sStationPhone,
+											sStationPosta:		currentDataItem.sStationPostal
+										}
+									);
+									break;
+							};
+						};
+
+						console.log('state.mapStationsLatLngKNP0',state.mapStationsLatLngKNP);
+						state.mapStationsLatLngKNP = sdo1;
+						console.log('state.mapStationsLatLngKNP1',state.mapStationsLatLngKNP);
+						state.mapStationsLatLngKAS = sdo2;
+						state.mapStationsLatLngNNP = sdo3;
+						state.mapStationsLatLngPNP = sdo4;
+						state.mapStationsLatLngTNP = sdo5;
+						state.mapStationsInfo = stationsInfo;
 					};
 
-					state.mapStationsLatLngKNP = sdo1;
-					state.mapStationsLatLngKAS = sdo2;
-					state.mapStationsLatLngNNP = sdo3;
-					state.mapStationsLatLngPNP = sdo4;
-					state.mapStationsLatLngTNP = sdo5;
-					state.mapStationsInfo = stationsInfo;
-				};
-				resolve(sortStationsBySDO(b));
+					resolve(sortStationsBySDO(b));
+
 				});
 
 				console.log(a);
@@ -1175,46 +1183,12 @@ export default new Vuex.Store({
 						console.log( currentDataIdsRed);
 						console.log( currentDataIdsOrange);
 						console.log( currentDataIdsGreen);
-						//console.log(state.mapStationsLatLngKNP[0].id);
-						//console.log(state.mapStationsLatLngKNP.filter(a => {a.id == currentDataIdsRed[33]}));
-						//state.mapStationsLatLngKNP = sdo1;
-						//state.mapStationsLatLngKAS = sdo2;
-						//state.mapStationsLatLngNNP = sdo3;
-						//state.mapStationsLatLngPNP = sdo4;
-						//state.mapStationsLatLngTNP = sdo5;
-						// mapStationsLatLngKNPgreen
-						// mapStationsLatLngKNPorange
-						// mapStationsLatLngKNPred
 					},
 					error => {
 						console.log('erererererer')
 					}
 				).then(
 					result => {
-				// mapStationsLatLngKNPgreen: [],
-				// mapStationsLatLngKNPorange: [],
-				// mapStationsLatLngKNPred: [],
-
-				// mapStationsLatLngKASgreen: [],
-				// mapStationsLatLngKASorange: [],
-				// mapStationsLatLngKASred: [],
-
-				// mapStationsLatLngNNPgreen: [],
-				// mapStationsLatLngNNPorange: [],
-				// mapStationsLatLngNNPred: [],
-
-				// mapStationsLatLngPNPgreen: [],
-				// mapStationsLatLngPNPorange: [],
-				// mapStationsLatLngPNPred: [],
-
-				// mapStationsLatLngTNPgreen: [],
-				// mapStationsLatLngTNPorange: [],
-				// mapStationsLatLngTNPred: [],
-				// let knpR = [], knpO = [], knpG = [];
-				// let kasR = [], kasO = [], kasG = [];
-				// let nnpR = [], nnpO = [], nnpG = [];
-				// let pnpR = [], pnpO = [], pnpG = [];
-				// let tnpR = [], tnpO = [], tnpG = [];
 				state.mapStationsLatLngKNPgreen = knpG;
 				state.mapStationsLatLngKNPorange = knpO;
 				state.mapStationsLatLngKNPred = knpR;
