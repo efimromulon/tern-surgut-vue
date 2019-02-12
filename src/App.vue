@@ -35,26 +35,18 @@
 			...mapActions(['get_local_json', 'get_indicator_json', 'get_json_map', 'testaction']),
 
 			/// MAP - JSON's
-			TESTMETHOD(){
-				var a = {jsonName: 'getDepartmentFull', jsonData: jsongetDepartmentFull};
-				var b = {jsonName: 'getFuelSell', jsonData: jsongetFuelSell};
-				this.$store.dispatch('testaction', b).then(result => {this.$store.dispatch('get_json_map', a)})
-			},
-			LOAD_JSON_MAP_STATIONS(){
-				var a = {jsonName: 'getDepartmentFull', jsonData: jsongetDepartmentFull};
-				this.get_json_map(a);
-			},
-			LOAD_JSON_MAP_FUEL_SELL(){
+			LOAD_JSONS_FOR_MAP(){
 				var a = {jsonName: 'getFuelSell', jsonData: jsongetFuelSell};
-				this.get_json_map(a);
-			},
-			LOAD_JSON_MAP_FUEL_STOCK(){
-				var a = {jsonName: 'getFuelStock', jsonData: jsongetFuelStock};
-				this.get_json_map(a);
-			},
-			LOAD_JSON_MAP_ARTICLE_SELL(){
-				var a = {jsonName: 'getArticleSell', jsonData: jsongetArticleSell};
-				this.get_json_map(a);
+				var b = {jsonName: 'getFuelStock', jsonData: jsongetFuelStock};
+				var c = {jsonName: 'getArticleSell', jsonData: jsongetArticleSell};
+				var d = {jsonName: 'getDepartmentFull', jsonData: jsongetDepartmentFull};
+				this.$store.dispatch('testaction', a).then(
+					result => {
+						this.$store.dispatch('get_json_map', b);
+						this.$store.dispatch('get_json_map', c);
+						this.$store.dispatch('get_json_map', d);
+					}
+				)
 			},
 
 			/// USER
@@ -65,53 +57,9 @@
 			// },
 
 
-			// LOAD_JSON_AZS_INFO(){
-			// 	var payload = {jsonName: 'getAzsInfo', jsonData: jsongetAzsInfo};
-			// 	this.get_local_json(payload);
-			// },
-			// LOAD_JSON_FUEL_STOCK(){
-			// 	let payload = {
-			// 		jsonName: 'getFuelStock', 
-			// 		jsonData: jsongetFuelStock.data,
-			// 		jsonIndicator: jsongetFuelStock.indicator,
-			// 		jsonExpress: jsongetFuelStock.express,
-			// 	};
-			// 	this.get_indicator_json(payload);
-			// },
-			// LOAD_JSON_FUEL_SELL(){
-			// 	let payload = {
-			// 		jsonName: 'getFuelSell', 
-			// 		jsonData: jsongetFuelSell.data,
-			// 		jsonIndicator: jsongetFuelSell.indicator,
-			// 		jsonExpress: jsongetFuelSell.express,
-			// 	};
-			// 	this.get_indicator_json(payload);
-			// },
-			// LOAD_JSON_ARTICLE_SELL(){
-			// 	let payload = {
-			// 		jsonName: 'getArticleSell', 
-			// 		jsonData: jsongetArticleSell.data,
-			// 		jsonIndicator: jsongetArticleSell.indicator,
-			// 		jsonExpress: jsongetArticleSell.express,
-			// 	};
-			// 	this.get_indicator_json(payload);
-			// },
-			// LOAD_JSON_STATION_COORDS(){
-			// 	var payload = {jsonName: 'getStationsLatLng', jsonData: jsongetStationsLatLng};
-			// 	this.get_local_json(payload);
-			// },
-			// LOAD_JSON_STATION_INFO(){
-			// 	var payload = {jsonName: 'getStationsInfo', jsonData: jsongetStationsInfo};
-			// 	this.get_local_json(payload);
-			// },
-			// LOAD_JSON_STATION_FULL(){
-			// 	var payload = {jsonName: 'getDepartmentFull', jsonData: jsongetDepartmentFull};
-			// 	this.get_local_json(payload);
-			// },
-
 		},
 		mounted() {
-			this.TESTMETHOD();
+			this.LOAD_JSONS_FOR_MAP();
 			// this.LOAD_JSON_MAP_FUEL_SELL();
 			// this.LOAD_JSON_MAP_FUEL_STOCK();
 			// this.LOAD_JSON_MAP_ARTICLE_SELL();
