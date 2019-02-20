@@ -32,7 +32,7 @@
 
 		},
 		methods: {
-			...mapActions(['get_local_json', 'get_indicator_json', 'get_json_map', 'testaction']),
+			...mapActions(['get_local_json', 'get_indicator_json', 'get_json_map', 'testaction', 'stations_sort_by_colors']),
 
 			/// MAP - JSON's
 			LOAD_JSONS_FOR_MAP(){
@@ -45,6 +45,14 @@
 						this.$store.dispatch('get_json_map', b);
 						this.$store.dispatch('get_json_map', c);
 						this.$store.dispatch('get_json_map', d);
+					}
+				).then(
+					result => {
+						this.$store.dispatch('stations_sort_by_sdo');
+					}
+				).then(
+					result => {
+						this.$store.dispatch('stations_sort_by_colors');
 					}
 				)
 			},
