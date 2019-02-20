@@ -63,7 +63,7 @@ export default ({
 // };
 	mutations: {
 		SET_STATIONS: (state, jsonPayload) => {
-
+			console.log(jsonPayload);
 			let n = jsonPayload.jsonName,
 				d = jsonPayload.jsonData,
 				f = state.subFilter_current,
@@ -73,6 +73,12 @@ export default ({
 
 				let a = item.sStationId,
 					c = item.sStationCategory.replace(/\s+/g, ''),
+					g = item.sCompanyName,//
+					h = item.sStationAddress,
+					k = item.sStationCity,
+					l = item.sStationLabel,
+					u = item.sStationName,
+					p = item.StationPhone,//
 					latlng = [item.dStationLatitude, item.dStationLongitude],
 					fuel = state.data_fuel_sell.data,
 					value,
@@ -99,12 +105,30 @@ export default ({
 						latlng: latlng, 
 						category: c, 
 						color: color, 
-						valueRange: fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)})[f]
+						valueRange: fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)})[f],
+						companyName: g,
+						stationAddress: h,
+						stationCity: k,
+						stationLabel: l,
+						stationName: u,
+						stationPhone: p
 					});
 
 				} else {
 				///Результаты, id которых нет в json
-					res.push({id: a, latlng: latlng, category: c, color: 'colorless', valueRange: null});
+					res.push({
+						id: a, 
+						latlng: latlng, 
+						category: c, 
+						color: 'colorless', 
+						valueRange: null,
+						companyName: g,
+						stationAddress: h,
+						stationCity: k,
+						stationLabel: l,
+						stationName: u,
+						stationPhone: p
+					});
 				};
 
 			});

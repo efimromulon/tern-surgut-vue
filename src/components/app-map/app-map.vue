@@ -15,44 +15,59 @@
 
 		<l-tile-layer :url="tileLayer"></l-tile-layer>
 
-
-
-
+		<l-feature-group ref="features">
+			<l-popup>
+				<map-popup 
+					:popupCaller = "popupCaller"
+				>
+				</map-popup>
+			</l-popup>
+		</l-feature-group>
 
 		<v-marker-cluster :options="clusterOptions_g" @clusterclick="click()">
 			<l-marker 
 				v-for="i in markers_knp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_g"
+				:visible="knpIsVisible && gIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_kas_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_g"
+				:visible="kasIsVisible && gIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_nnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_g"
+				:visible="nnpIsVisible && gIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_pnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_g"
+				:visible="pnpIsVisible && gIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_tnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_g"
+				:visible="tnpIsVisible && gIsVisible"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -61,35 +76,45 @@
 				v-for="i in markers_knp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_o"
+				:visible="knpIsVisible && oIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_kas_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_o"
+				:visible="kasIsVisible && oIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_nnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_o"
+				:visible="nnpIsVisible && oIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_pnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_o"
+				:visible="pnpIsVisible && oIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_tnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_o"
+				:visible="tnpIsVisible && oIsVisible"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -98,35 +123,45 @@
 				v-for="i in markers_knp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_r"
+				:visible="knpIsVisible && rIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_kas_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_r"
+				:visible="kasIsVisible && rIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_nnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_r"
+				:visible="nnpIsVisible && rIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_pnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_r"
+				:visible="pnpIsVisible && rIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_tnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_r"
+				:visible="tnpIsVisible && rIsVisible"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -136,35 +171,45 @@
 				v-for="i in markers_knp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_c"
+				:visible="knpIsVisible && cIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_kas_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_c"
+				:visible="kasIsVisible && cIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_nnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_c"
+				:visible="nnpIsVisible && cIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_pnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_c"
+				:visible="pnpIsVisible && cIsVisible"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_tnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				@click="openPopUp(i)"
 				:icon = "marker_icon_c"
+				:visible="tnpIsVisible && cIsVisible"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -177,6 +222,7 @@
 //тк не может из null сгенерить маркеры
 import { L, LMap, LTileLayer, LMarker, LFeatureGroup, LPopup, LIcon, LControlZoom } from 'vue2-leaflet'
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+import mapPopup from './app-map-components/_map-popup.vue'
 import { mapGetters } from 'vuex'
 
 	export default {
@@ -189,6 +235,7 @@ import { mapGetters } from 'vuex'
 			LPopup,
 			LIcon,
 			LControlZoom,
+			mapPopup,
 			'v-marker-cluster': Vue2LeafletMarkerCluster
 		},
 		data(){
@@ -345,7 +392,7 @@ import { mapGetters } from 'vuex'
 					//shadowSize:   [50, 64], // size of the shadow
 					iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
 					//shadowAnchor: [4, 62],  // the same for the shadow
-					popupAnchor:  [16, 74] // point from which the popup should open relative to the iconAnchor
+					popupAnchor:  [0, -32] // point from which the popup should open relative to the iconAnchor
 				}),
 				marker_icon_o: L.icon({
 					iconUrl: 'marker_o.svg',
@@ -354,16 +401,13 @@ import { mapGetters } from 'vuex'
 					//shadowSize:   [50, 64], // size of the shadow
 					iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
 					//shadowAnchor: [4, 62],  // the same for the shadow
-					popupAnchor:  [16, 74] // point from which the popup should open relative to the iconAnchor
+					popupAnchor:  [0, -32] // point from which the popup should open relative to the iconAnchor
 				}),
 				marker_icon_r: L.icon({
 					iconUrl: 'marker_r.svg',
-					//shadowUrl: 'marker_red.png',
-					iconSize:     [32, 37], // size of the icon
-					//shadowSize:   [50, 64], // size of the shadow
-					iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
-					//shadowAnchor: [4, 62],  // the same for the shadow
-					popupAnchor:  [16, 74] // point from which the popup should open relative to the iconAnchor
+					iconSize:     [32, 37],
+					iconAnchor:   [16, 37], 
+					popupAnchor:  [19, -32]
 				}),
 				marker_icon_c: L.icon({
 					iconUrl: 'marker_c.svg',
@@ -372,9 +416,13 @@ import { mapGetters } from 'vuex'
 					//shadowSize:   [50, 64], // size of the shadow
 					iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
 					//shadowAnchor: [4, 62],  // the same for the shadow
-					popupAnchor:  [16, 74] // point from which the popup should open relative to the iconAnchor
+					popupAnchor:  [0, -32] // point from which the popup should open relative to the iconAnchor
 				}),
-				clusterOptions_g: { 
+				clusterOptions_g: {  
+					disableClusteringAtZoom: 11,
+					spiderfyOnMaxZoom: false,
+					showCoverageOnHover: false,
+					zoomToBoundsOnClick: false,
 					iconCreateFunction: function (cluster) {
 						var childCount = cluster.getChildCount();
 
@@ -396,7 +444,11 @@ import { mapGetters } from 'vuex'
 						);
 					}
 				},
-				clusterOptions_o: { 
+				clusterOptions_o: {  
+					disableClusteringAtZoom: 11,
+					spiderfyOnMaxZoom: false,
+					showCoverageOnHover: false,
+					zoomToBoundsOnClick: false,
 					iconCreateFunction: function (cluster) {
 						var childCount = cluster.getChildCount();
 
@@ -418,7 +470,11 @@ import { mapGetters } from 'vuex'
 						);
 					}
 				},
-				clusterOptions_r: { 
+				clusterOptions_r: {  
+					disableClusteringAtZoom: 11,
+					spiderfyOnMaxZoom: false,
+					showCoverageOnHover: false,
+					zoomToBoundsOnClick: false,
 					iconCreateFunction: function (cluster) {
 						var childCount = cluster.getChildCount();
 
@@ -440,7 +496,11 @@ import { mapGetters } from 'vuex'
 						);
 					}
 				},
-				clusterOptions_c: { 
+				clusterOptions_c: {  
+					disableClusteringAtZoom: 11,
+					spiderfyOnMaxZoom: false,
+					showCoverageOnHover: false,
+					zoomToBoundsOnClick: false,
 					iconCreateFunction: function (cluster) {
 						var childCount = cluster.getChildCount();
 
@@ -462,12 +522,17 @@ import { mapGetters } from 'vuex'
 						);
 					}
 				},
-				caller: {},
-				a: "assets/svgassets/marker_red.svg",
-				callerId: 'knp-m1_1',
-				callerInfo: {},
-				callerImgUrl: '',
+				popupCaller: {},
+				popupCallerId: 'knp-m1_1',
 				knpIsVisible: true,
+				kasIsVisible: true,
+				nnpIsVisible: true,
+				pnpIsVisible: true,
+				tnpIsVisible: true,
+				gIsVisible: true,
+				oIsVisible: true,
+				rIsVisible: true,
+				cIsVisible: true,
 			}
 		},
 		computed:  {
@@ -513,26 +578,6 @@ import { mapGetters } from 'vuex'
 				alert("clusterclick")
 			},
 			UPDATE_stations(){
-				this.markers_knp_g = [];
-				this.markers_knp_o = [];
-				this.markers_knp_r = [];
-				this.markers_knp_c = [];
-				this.markers_kas_g = [];
-				this.markers_kas_o = [];
-				this.markers_kas_r = [];
-				this.markers_kas_c = [];
-				this.markers_nnp_g = [];
-				this.markers_nnp_o = [];
-				this.markers_nnp_r = [];
-				this.markers_nnp_c = [];
-				this.markers_pnp_g = [];
-				this.markers_pnp_o = [];
-				this.markers_pnp_r = [];
-				this.markers_pnp_c = [];
-				this.markers_tnp_g = [];
-				this.markers_tnp_o = [];
-				this.markers_tnp_r = [];
-				this.markers_tnp_c = [];
 				this.markers_knp_g = this.GET_stations_knp_g;
 				this.markers_knp_o = this.GET_stations_knp_o;
 				this.markers_knp_r = this.GET_stations_knp_r;
@@ -554,46 +599,16 @@ import { mapGetters } from 'vuex'
 				this.markers_tnp_r = this.GET_stations_tnp_r;
 				this.markers_tnp_c = this.GET_stations_tnp_c;
 			},
-			CLUSTER(){
-				//.$nextTick(() =>{
-					this.clusterOptions = { 
-						disableClusteringAtZoom: 11,
-						spiderfyOnMaxZoom: false,
-						showCoverageOnHover: false,
-						zoomToBoundsOnClick: false,
-						iconCreateFunction: function (cluster) {
-							var childCount = cluster.getChildCount();
-
-							var c = ' marker-cluster-red-';
-							if (childCount < 10) {
-								c += 'small';
-							} else if (childCount < 100) {
-								c += 'medium';
-							} else {
-								c += 'large';
-							}
-
-							return new L.DivIcon(
-								{ 
-									html: '<div><span>' + childCount + '</span></div>', 
-									className: 'marker-cluster-red' + c + '', 
-									iconSize: new L.Point(40, 40) 
-								}
-							);
-						},
-					};
-				//});
-			},
-			openPopUp (marker, caller) {
-				this.caller 				= marker;
-				this.callerId 				= marker.id;
-				this.callerInfo 			= this.get_mapStationsInfo;
-				this.callerImgUrl 			= this.callerInfo.sStationImage;
-				this.$refs.features.mapObject.openPopup(marker);
+			openPopUp (i) {
+				console.log('popup', i);
+				this.popupCaller 				= i;
+				this.popupCallerId 				= i.id;
+				this.$refs.features.mapObject.openPopup(i.latlng);
 			},
 			zoomUpdated(zoom){
 				this.zoom = zoom;
 				this.UPDATE_stations();
+				this.$refs.features.mapObject.closePopup();
 			},
 			centerUpdated(center){
 				this.center = center;
