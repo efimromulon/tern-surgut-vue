@@ -24,30 +24,35 @@
 				v-for="i in markers_knp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_g"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_kas_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_g"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_nnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_g"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_pnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_g"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_tnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_g"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -56,30 +61,35 @@
 				v-for="i in markers_knp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_o"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_kas_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_o"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_nnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_o"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_pnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_o"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_tnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_o"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -88,30 +98,35 @@
 				v-for="i in markers_knp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_r"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_kas_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_r"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_nnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_r"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_pnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_r"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_tnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_r"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -121,30 +136,35 @@
 				v-for="i in markers_knp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_c"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_kas_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_c"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_nnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_c"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_pnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_c"
 			>
 			</l-marker>
 			<l-marker 
 				v-for="i in markers_tnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
+				:icon = "marker_icon_c"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -318,6 +338,42 @@ import { mapGetters } from 'vuex'
 						id: '1'
 					},
 				],
+				marker_icon_g: L.icon({
+					iconUrl: 'marker_g.svg',
+					//shadowUrl: 'marker_red.png',
+					iconSize:     [32, 37], // size of the icon
+					//shadowSize:   [50, 64], // size of the shadow
+					iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
+					//shadowAnchor: [4, 62],  // the same for the shadow
+					popupAnchor:  [16, 74] // point from which the popup should open relative to the iconAnchor
+				}),
+				marker_icon_o: L.icon({
+					iconUrl: 'marker_o.svg',
+					//shadowUrl: 'marker_red.png',
+					iconSize:     [32, 37], // size of the icon
+					//shadowSize:   [50, 64], // size of the shadow
+					iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
+					//shadowAnchor: [4, 62],  // the same for the shadow
+					popupAnchor:  [16, 74] // point from which the popup should open relative to the iconAnchor
+				}),
+				marker_icon_r: L.icon({
+					iconUrl: 'marker_r.svg',
+					//shadowUrl: 'marker_red.png',
+					iconSize:     [32, 37], // size of the icon
+					//shadowSize:   [50, 64], // size of the shadow
+					iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
+					//shadowAnchor: [4, 62],  // the same for the shadow
+					popupAnchor:  [16, 74] // point from which the popup should open relative to the iconAnchor
+				}),
+				marker_icon_c: L.icon({
+					iconUrl: 'marker_c.svg',
+					//shadowUrl: 'marker_red.png',
+					iconSize:     [32, 37], // size of the icon
+					//shadowSize:   [50, 64], // size of the shadow
+					iconAnchor:   [16, 37], // point of the icon which will correspond to marker's location
+					//shadowAnchor: [4, 62],  // the same for the shadow
+					popupAnchor:  [16, 74] // point from which the popup should open relative to the iconAnchor
+				}),
 				clusterOptions_g: { 
 					iconCreateFunction: function (cluster) {
 						var childCount = cluster.getChildCount();
