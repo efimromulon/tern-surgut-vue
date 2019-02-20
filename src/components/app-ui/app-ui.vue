@@ -198,9 +198,8 @@
 	.search-list-view
 		display: flex
 		flex-direction: column
-		max-height: inherit
-		min-height: 1em
-		height: calc(100vh - 64px - 12px)
+		max-height: calc(100vh - 64px - 12px)
+		min-height: 37px
 		overflow: auto
 	.sidebar-left-panel-view__collapse
 		position: absolute

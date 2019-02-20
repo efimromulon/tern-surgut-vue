@@ -556,7 +556,8 @@ import { mapGetters } from 'vuex'
 				'GET_stations_tnp_g',
 				'GET_stations_tnp_o',
 				'GET_stations_tnp_r',
-				'GET_stations_tnp_c'
+				'GET_stations_tnp_c',
+				'get_buttonColorsAll'
 			]),
 		},
 		beforeCreate(){
@@ -572,6 +573,7 @@ import { mapGetters } from 'vuex'
 					// showCoverageOnHover: false,
 					// zoomToBoundsOnClick: false,
 			this.UPDATE_stations();
+			this.UPDATE_colors_states();
 		},
 		methods: {
 			click: function (e) {
@@ -599,6 +601,13 @@ import { mapGetters } from 'vuex'
 				this.markers_tnp_r = this.GET_stations_tnp_r;
 				this.markers_tnp_c = this.GET_stations_tnp_c;
 			},
+			UPDATE_colors_states(){
+				this.gIsVisible = this.get_buttonColorsAll.button_Green.buttonState;
+				this.oIsVisible = this.get_buttonColorsAll.button_Orange.buttonState;
+				this.rIsVisible = this.get_buttonColorsAll.button_Red.buttonState;
+				this.cIsVisible = this.get_buttonColorsAll.button_Grey.buttonState;
+				console.log('this.gIsVisible', this.gIsVisible);
+			},
 			openPopUp (i) {
 				console.log('popup', i);
 				this.popupCaller 				= i;
@@ -624,6 +633,10 @@ import { mapGetters } from 'vuex'
 			GET_stations_knp_c(newCount, oldCount){
 				console.log('w');
 				this.UPDATE_stations();
+			},			
+			get_buttonColorsAll(newCount, oldCount){
+				console.log('c');
+				this.UPDATE_colors_states();
 			},
 			
 		},
