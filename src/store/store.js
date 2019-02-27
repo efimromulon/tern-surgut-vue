@@ -689,7 +689,8 @@ export default new Vuex.Store({
 
 				let buttonArray = payload.buttonArray,
 					buttonId = payload.id;
-
+				console.log('store buttonArray', buttonArray);
+				console.log('store buttonId', buttonId);
 				switch (true) {
 
 					case buttonArray === 'buttonFiltersMenu' : 

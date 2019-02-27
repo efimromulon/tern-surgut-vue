@@ -600,13 +600,14 @@ import { mapGetters } from 'vuex'
 				this.markers_tnp_o = this.GET_stations_tnp_o;
 				this.markers_tnp_r = this.GET_stations_tnp_r;
 				this.markers_tnp_c = this.GET_stations_tnp_c;
+
 			},
 			UPDATE_colors_states(){
+				this.cIsVisible = this.get_buttonColorsAll.button_Grey.buttonState;
 				this.gIsVisible = this.get_buttonColorsAll.button_Green.buttonState;
 				this.oIsVisible = this.get_buttonColorsAll.button_Orange.buttonState;
 				this.rIsVisible = this.get_buttonColorsAll.button_Red.buttonState;
-				this.cIsVisible = this.get_buttonColorsAll.button_Grey.buttonState;
-				console.log('this.gIsVisible', this.gIsVisible);
+				
 			},
 			openPopUp (i) {
 				console.log('popup', i);
@@ -633,9 +634,89 @@ import { mapGetters } from 'vuex'
 			GET_stations_knp_c(newCount, oldCount){
 				console.log('w');
 				this.UPDATE_stations();
-			},			
+			},
+			GET_stations_knp_g(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_knp_o(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_knp_r(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_knp_c(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_kas_g(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_kas_o(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_kas_r(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_kas_c(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_nnp_g(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_nnp_o(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_nnp_r(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_nnp_c(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_pnp_g(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_pnp_o(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_pnp_r(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_pnp_c(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_tnp_g(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_tnp_o(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_tnp_r(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
+			GET_stations_tnp_c(newCount, oldCount){
+				console.log('w');
+				this.UPDATE_stations();
+			},
 			get_buttonColorsAll(newCount, oldCount){
-				console.log('c');
+				console.log('colors');
 				this.UPDATE_colors_states();
 			},
 			

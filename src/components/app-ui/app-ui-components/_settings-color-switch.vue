@@ -31,6 +31,7 @@
 		},
 		methods: {
 			UPDATE_BUTTON_DATA_STATE(){
+				console.log('i work ><');
 				this.buttonData = this.get_buttonColorsAll;
 			},
 		},

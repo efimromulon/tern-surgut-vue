@@ -15,11 +15,12 @@
     "vue": "^2.5.22",
     "vue2-leaflet": "^1.2.3",
     "vue2-leaflet-markercluster": "^2.1.2",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-search": "^2.2.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-e2e-nightwatch": "^3.4.0",
+    "@vue/cli-plugin-e2e-nightwatch": "^3.4.1",
     "@vue/cli-service": "^3.4.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.1.0",
