@@ -63,7 +63,6 @@ export default ({
 // };
 	mutations: {
 		SET_STATIONS: (state, jsonPayload) => {
-			console.log(jsonPayload);
 			let n = jsonPayload.jsonName,
 				d = jsonPayload.jsonData,
 				f = state.subFilter_current,

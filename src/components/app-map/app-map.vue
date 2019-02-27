@@ -610,7 +610,6 @@ import { mapGetters } from 'vuex'
 				
 			},
 			openPopUp (i) {
-				console.log('popup', i);
 				this.popupCaller 				= i;
 				this.popupCallerId 				= i.id;
 				this.$refs.features.mapObject.openPopup(i.latlng);
@@ -632,91 +631,90 @@ import { mapGetters } from 'vuex'
 		watch: {
 			
 			GET_stations_knp_c(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_knp_g(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_knp_o(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_knp_r(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_knp_c(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_kas_g(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_kas_o(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_kas_r(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_kas_c(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_nnp_g(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_nnp_o(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_nnp_r(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_nnp_c(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_pnp_g(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_pnp_o(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_pnp_r(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_pnp_c(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_tnp_g(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_tnp_o(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_tnp_r(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			GET_stations_tnp_c(newCount, oldCount){
-				console.log('w');
+				
 				this.UPDATE_stations();
 			},
 			get_buttonColorsAll(newCount, oldCount){
-				console.log('colors');
 				this.UPDATE_colors_states();
 			},
 			

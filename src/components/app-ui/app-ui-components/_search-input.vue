@@ -9,6 +9,8 @@
 						placeholder="Поиск АЗС, городов, трасс"
 						autocomplete="off"
 						autocorrect="off"
+						v-model="qQuery"
+						@input="debouncedSearch"
 						>
 				</span>
 			</span>
@@ -17,15 +19,35 @@
 </template>
 
 <script>
+import {mapActions, mapState} from 'vuex'
+import debounce from 'lodash/debounce'
+
 export default {
 
 	name: 'search-input',
 
 	data () {
 		return {
-
 		}
-	}
+	},
+	computed: {
+		...mapState({
+			searchQuery: state => state.search.searchQuery
+		}),
+		qQuery: {
+			get(){return this.searchQuery},
+			set(val){return this.setSearchQuery(val)},
+		}
+	},
+	methods: {
+		...mapActions(['search', 'setSearchQuery']),
+		debouncedSearch: debounce(function(){this.search()}, 500),
+		updateQuery (e) {
+			this.$store.dispatch('search', e.target.value)
+		}
+	},
+	mounted(){
+	},
 }
 </script>
 

@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import map from './modules/map.js'
+import search from './modules/search.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	modules: {
 		map,
+		search,
 	},
 	state: {
-
 		//Preloader
 			appLoading: true,
 			appLoadingText: '',
@@ -654,7 +655,6 @@ export default new Vuex.Store({
 			],
 		//marking-settings - END
 	},
-
 	mutations: {
 		//Preloader
 			CHANGE_APPLOADING: (state, payload) => {
