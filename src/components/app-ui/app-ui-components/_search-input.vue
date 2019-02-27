@@ -41,7 +41,7 @@ export default {
 	},
 	methods: {
 		...mapActions(['search', 'setSearchQuery']),
-		debouncedSearch: debounce(function(){this.search()}, 500),
+		debouncedSearch: debounce(function(){this.search(this.searchQuery);}, 500),
 		updateQuery (e) {
 			this.$store.dispatch('search', e.target.value)
 		}
