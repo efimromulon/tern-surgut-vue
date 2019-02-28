@@ -18,8 +18,7 @@ export default ({
 		},
 
 		SEARCH: (state, payload) => {
-			console.log('search', typeof payload, payload);
-			console.log('search1', $store.state.stations);
+			console.log('SEARCH', typeof payload, payload);
 			state.searchResult = state.buttonInterfaceaTopActive.filter(x => {return x.buttonName === payload});
 
 				// let newarr = state.sta.map(item=>{
@@ -37,18 +36,27 @@ export default ({
 
 
 
-			console.log('searchend', state.searchResult);
+			console.log('SEARCH mutations', state.searchResult);
 		},
 		RESET_SEARCH_RESULT: (state, searchResult) => {
 			state.searchLoading = null
 		},
+		TESTT: (state, payload) => {
+			console.log('payload TEST mutations', payload)
+		}
 	},
 	actions: {
 		setSearchQuery: (state,  searchQuery) => {
 			state.commit('SET_SEARCH_QUERY', searchQuery);
 		},
 		search: (state, payload) => {
+			console.log('search actions');
 			state.commit('SEARCH', payload);
+		},
+		testt({state, commit, rootState}) {
+			console.log('test actions');
+			let a = rootState.map;
+			commit('TESTT', a);
 		},
 	},
 	getters: {

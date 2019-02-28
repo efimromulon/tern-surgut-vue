@@ -10,7 +10,7 @@
 						autocomplete="off"
 						autocorrect="off"
 						v-model="qQuery"
-						@input="debouncedSearch"
+						@input="updateQuery"
 						>
 				</span>
 			</span>
@@ -43,7 +43,9 @@ export default {
 		...mapActions(['search', 'setSearchQuery']),
 		debouncedSearch: debounce(function(){this.search(this.searchQuery);}, 500),
 		updateQuery (e) {
-			this.$store.dispatch('search', e.target.value)
+			console.log('updateQuery');
+			this.$store.dispatch('search', e.target.value);
+			this.$store.dispatch('testt');
 		}
 	},
 	mounted(){
