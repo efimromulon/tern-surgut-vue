@@ -19,6 +19,9 @@ export default ({
 
 		SEARCH: (state, payload) => {
 			console.log('SEARCH', typeof payload, payload);
+			const stations = payload.stations;
+			let query = payload.query;
+
 			state.searchResult = state.buttonInterfaceaTopActive.filter(x => {return x.buttonName === payload});
 
 				// let newarr = state.sta.map(item=>{
@@ -31,33 +34,24 @@ export default ({
 					// 	var ty = item.label;
 					// 	return ty;
 					// } else {return false};
-
-
-
-
-
-			console.log('SEARCH mutations', state.searchResult);
 		},
 		RESET_SEARCH_RESULT: (state, searchResult) => {
 			state.searchLoading = null
-		},
-		TESTT: (state, payload) => {
-			console.log('payload TEST mutations', payload)
 		}
 	},
 	actions: {
 		setSearchQuery: (state,  searchQuery) => {
 			state.commit('SET_SEARCH_QUERY', searchQuery);
 		},
-		search: (state, payload) => {
-			console.log('search actions');
-			state.commit('SEARCH', payload);
-		},
-		testt({state, commit, rootState}) {
-			console.log('test actions');
-			let a = rootState.map;
-			commit('TESTT', a);
-		},
+		// search: (state, payload) => {
+		// 	console.log('search actions');
+		// 	state.commit('SEARCH', payload);
+		// },
+		search({state, commit, rootState}, query) {
+			let stations = rootState.map.stations,
+				payload = {stations, query}
+			commit('SEARCH', payload);
+		}
 	},
 	getters: {
 		getModuleState(state, getters, rootState) {

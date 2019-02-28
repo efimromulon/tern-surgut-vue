@@ -77,7 +77,7 @@ export default ({
 					k = item.sStationCity,
 					l = item.sStationLabel,
 					u = item.sStationName,
-					p = item.StationPhone,//
+					p = item.sStationPhone,//
 					latlng = [item.dStationLatitude, item.dStationLongitude],
 					fuel = state.data_fuel_sell.data,
 					value,
