@@ -1,0 +1,100 @@
+<template>
+	<li class="search-snippet-view">
+		<div class="search-snippet-name">{{searchItemArr[0].category}}</div>
+		<div class="search-business-snippet-view">
+			<div class="search-business-snippet-view__body">
+				<ul>
+					<li v-for="i in searchItemArr">
+						{{i.color}}<br/>
+						{{i.companyName}}<br/>
+						{{i.id}}<br/>
+						{{i.latlng}}<br/>
+						{{i.stationAddress}}<br/>
+						{{i.stationCity}}<br/>
+						{{i.stationLabel}}<br/>
+						{{i.stationName}}<br/>
+						{{i.stationPhone}}<br/>
+						{{i.valueRange}}<br/>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+</template>
+<script>
+
+	import {mapActions, mapGetters} from 'vuex'
+	import Scrollbar from 'smooth-scrollbar'
+	import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
+	export default {
+
+		name: 'search-list-item',
+		props: {
+			searchItemArr: {
+				type: Array,
+				required: true,
+			}
+		},
+		data () {
+			return {
+			}
+		},
+		computed: {
+		},
+		methods: {
+
+		},
+		mounted(){
+
+		},
+		components: {
+		},
+		watch: {
+		}
+	}
+</script>
+
+<style lang='sass'>
+	.search-snippet-view
+		display: list-item
+		background-color: #fff
+		user-select: none
+		text-decoration: none
+		color: #333
+		list-style: none
+		padding: 0
+		margin: 0
+		border-style: none
+		min-height: 50px
+		position: relative
+		&:after
+			position: absolute
+			top: 0
+			margin-bottom: 0
+			display: block
+			margin-right: 0px
+			margin-left: 0px
+			content: ''
+			background-color: #ededed
+			height: 1px
+			width: 100%
+	.search-business-snippet-view
+	.search-business-snippet-view__body
+	.sidebar-left-panel-header-view
+		border-bottom: 1px solid #ededed
+		padding-right: 70px
+		user-select: none
+		background-color: #fff
+		flex-shrink: 0
+	.sidebar-left-panel-header-view__title
+		position: relative
+	.sidebar-left-panel-header-view__title-text
+		white-space: nowrap
+		text-overflow: ellipsis
+		overflow: hidden
+		font-size: 13px
+		line-height: 36px
+		padding-left: 16px
+		padding-right: 70px
+		color: #999
+</style>

@@ -34,7 +34,7 @@
 		</div>
 		<div class="sidebar-left-container">
 			<div class="sidebar-left-view">	
-				<div class="sidebar-left-panel-view">
+				<div class="sidebar-left-panel-view"  v-if="!searchResultTabClosed">
 					
 					<div class="sidebar-left-panel-view__content">
 						<div class="sidebar-left-panel-view__content-wrapper">
@@ -45,9 +45,11 @@
 					</div>
 					<button-collapse
 						:btnClassName = "`sidebar-left-panel-view`"
+						:btnType = "`search`"
 					></button-collapse>
 					<button-cross
 						:btnClassName = "`sidebar-left-panel-view`"
+						:btnType = "`search`"
 					></button-cross>
 
 				</div>
@@ -65,6 +67,7 @@
 </template>
 
 <script>
+	import {mapGetters} from 'vuex'
 	import searchInput from './app-ui-components/_search-input.vue'
 	import searchList from './app-ui-components/_search-list.vue'
 	import uiSettingsHeader from './app-ui-components/_ui-settings-header.vue'
@@ -95,10 +98,11 @@
 			}
 		},
 		computed: {
-
+			...mapGetters([
+				'searchResultTabClosed',
+			]),
 		},
 		methods: {
-
 		},
 		watch: {
 

@@ -9,6 +9,7 @@
 			></ui-settings-panel-core-menu-button>
 		<button-cross
 			:btnClassName = "`core-menu`"
+			:btnType = "`core-menu`"
 		></button-cross>
 	</div>
 </template>

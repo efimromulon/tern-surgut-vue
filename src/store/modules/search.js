@@ -3,6 +3,8 @@ export default ({
 		searchQuery: '',
 		searchLoading: false,
 		searchResult: null,
+		searchResultTabClosed: true,
+		searchCollapsed: true,
 		searchResultKAS: [],
 		searchResultKNP: [],
 		searchResultPNP: [],
@@ -34,23 +36,25 @@ export default ({
 
 			let searchFilterByCat = stations.map( x => {
 
-				var currentCategory = x.category;
+				var currentCategory = x.category,
+					currentResultItem = [];
 				if ( x.stationName === query ) {
+					currentResultItem.push(x);
 					switch (true) {
 						case currentCategory === 'Калининграднефтепродукт' : 
-							state.searchResultKNP.push(x);
+							state.searchResultKNP = currentResultItem;
 							break;
 						case currentCategory === 'Псковнефтепродукт' : 	
-							state.searchResultPNP.push(x);
+							state.searchResultPNP = currentResultItem;
 							break;
 						case currentCategory === 'Тверьнефтепродукт' : 	
-							state.searchResultTNP.push(x);
+							state.searchResultTNP = currentResultItem;
 							break;
 						case currentCategory === 'Новгороднефтепродукт' : 	
-							state.searchResultNNP.push(x);
+							state.searchResultNNP = currentResultItem;
 							break;
 						case currentCategory === 'Киришиавтосервис' : 	
-							state.searchResultKAS.push(x);
+							state.searchResultKAS = currentResultItem;
 							break;
 					};
 				};
@@ -64,11 +68,39 @@ export default ({
 		},
 		RESET_SEARCH_RESULT: (state, searchResult) => {
 			state.searchLoading = null
-		}
+		},
+		COLLAPSE_SEARCH: (state) => {
+			state.searchCollapsed = !state.searchCollapsed;
+		},
+		OPEN_SEARCH: (state) => {
+			state.searchCollapsed = false
+		},
+		CLOSE_SEARCH: (state) => {
+			state.searchCollapsed = true;
+		},
+		CLOSE_SEARCH_RESULT_TAB: (state) => {
+			state.searchResultTabClosed = true;
+		},
+		OPEN_SEARCH_RESULT_TAB: (state) => {
+			state.searchResultTabClosed = false;
+		},
 	},
 	actions: {
 		setSearchQuery: (state,  searchQuery) => {
 			state.commit('SET_SEARCH_QUERY', searchQuery);
+		},
+		collapse_search: (state) => {
+			state.commit('COLLAPSE_SEARCH');
+		},
+		reset_search: (state) => {
+			state.commit('RESET_SEARCH');
+		},
+		close_search: (state) => {
+			state.commit('CLOSE_SEARCH');
+		},
+		close_search_result_tab: (state) => {
+			state.commit('SET_SEARCH_QUERY', '');
+			state.commit('CLOSE_SEARCH_RESULT_TAB');
 		},
 		// search: (state, payload) => {
 		// 	console.log('search actions');
@@ -78,12 +110,15 @@ export default ({
 			let stations = rootState.map.stations,
 				payload = {stations, query};
 
-			commit('SET_SEARCH_LOADING', true);
+			
 
 			let promiseSearchLoading = new Promise((resolve, reject) => {
 				function search(){
 					commit('RESET_SEARCH');
+					commit('OPEN_SEARCH_RESULT_TAB');
+					commit('OPEN_SEARCH');
 					commit('SEARCH', payload);
+					commit('SET_SEARCH_LOADING', true);
 				};
 				resolve(search());
 			});
@@ -100,6 +135,30 @@ export default ({
 	getters: {
 		getModuleState(state, getters, rootState) {
 			return rootState.stations;
+		},
+		getSearchLoading(state){
+			return state.searchLoading;
+		},
+		searchResultTabClosed(state){
+			return state.searchResultTabClosed;
+		},
+		searchCollapsed(state){
+			return state.searchCollapsed;
+		},
+		getSearchResultKNP(state){
+			return state.searchResultKNP;
+		},
+		getSearchResultPNP(state){
+			return state.searchResultPNP;
+		},
+		getSearchResultTNP(state){
+			return state.searchResultTNP;
+		},
+		getSearchResultNNP(state){
+			return state.searchResultNNP;
+		},
+		getSearchResultKAS(state){
+			return state.searchResultKAS;
 		},
 	}
 })

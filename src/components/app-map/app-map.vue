@@ -557,7 +557,8 @@ import { mapGetters } from 'vuex'
 				'GET_stations_tnp_o',
 				'GET_stations_tnp_r',
 				'GET_stations_tnp_c',
-				'get_buttonColorsAll'
+				'get_buttonColorsAll',
+				'searchCollapsed',
 			]),
 		},
 		beforeCreate(){
@@ -623,13 +624,16 @@ import { mapGetters } from 'vuex'
 				this.center = center;
 			},
 			boundsUpdated(bounds){
+				if (this.searchCollapsed === false){this.$store.dispatch('close_search');};
 				this.bounds = bounds;
+				
 			},
 
 			
 		},
 		watch: {
 			
+			searchCollapsed(newCount, oldCount){},
 			GET_stations_knp_c(newCount, oldCount){
 				
 				this.UPDATE_stations();

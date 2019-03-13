@@ -11,7 +11,7 @@
 						autocorrect="off"
 						v-model="qQuery"
 						@input="debouncedSearch"
-						>
+					>
 				</span>
 			</span>
 		</div>
@@ -40,13 +40,21 @@ export default {
 		}
 	},
 	methods: {
+		blurSearch(){
+			//@blur="blurSearch" - вставить в input
+			//this.qQuery = "";
+			//this.$store.dispatch('reset_search');
+			this.$store.dispatch('close_search');
+		},
 		...mapActions(['search', 'setSearchQuery']),
-		debouncedSearch: debounce(
-			function(e){
-				this.$store.dispatch('search', e.target.value);
-			}, 
-			500
-		)
+		debouncedSearch: 
+			debounce(
+				function(e){
+					console.log('Starting search');
+					this.$store.dispatch('search', e.target.value);
+				}, 
+				500
+			)
 	},
 	mounted(){
 	},

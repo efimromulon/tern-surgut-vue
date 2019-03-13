@@ -2,6 +2,7 @@
 	<div 
 		:class="['btn-cross', getBtnClassName()]"
 		title="Закрыть"
+		@click = "close"
 	>
 		<span>
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -22,6 +23,10 @@ export default {
 			type: String,
 			required: true,
 		},
+		btnType: {
+			type: String,
+			required: true,
+		},
 	},
 	data() {
 		return {
@@ -33,6 +38,12 @@ export default {
 			let a = this.btnClassName;//button_>>G<< 7 - G
 			let b = a + '__close';
 			return b;
+		},
+		close(){
+			switch (true){
+				case this.btnType === 'search' :
+					this.$store.dispatch('close_search_result_tab');
+			};			
 		},
 	},
 };
