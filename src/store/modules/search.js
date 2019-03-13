@@ -3,10 +3,11 @@ export default ({
 		searchQuery: '',
 		searchLoading: false,
 		searchResult: null,
-		buttonInterfaceaTopActive: [
-			{buttonID: 'a', buttonName: 'funnel', buttonState: false},
-			{buttonID: 1, buttonName: 'layers', buttonState: false}
-		],
+		searchResultKAS: [],
+		searchResultKNP: [],
+		searchResultPNP: [],
+		searchResultTNP: [],
+		searchResultNNP: [],
 		searchStations: null,
 	},
 	mutations: {
@@ -16,19 +17,45 @@ export default ({
 		SET_SEARCH_LOADING: (state, searchLoading) => {
 			state.searchLoading = searchLoading
 		},
-
+		REFRESH_SEARCH: (state) => {
+			state.searchResultKNP = [];
+			state.searchResultPNP = [];
+			state.searchResultTNP = [];
+			state.searchResultNNP = [];
+			state.searchResultKAS = [];
+		},
 		SEARCH: (state, payload) => {
 			console.log('SEARCH', typeof payload, payload);
-			const stations = payload.stations;
-			let query = payload.query;
+			const 	stations 	= payload.stations;
+			let 	query 		= payload.query;
 
-			state.searchResult = state.buttonInterfaceaTopActive.filter(x => {return x.buttonName === payload});
+			//let searchResult = stations.filter(x => {return x.stationName === query});
+		 
 
-				// let newarr = state.sta.map(item=>{
-				// 	var new_item = {category: item.category, label: item.label};
-				// 	return new_item;
-				// });
+			let searchFilterByCat = stations.map( x => {
 
+				var currentCategory = x.category;
+				if ( x.stationName === query ) {
+					switch (true) {
+						case currentCategory === 'Калининграднефтепродукт' : 
+							state.searchResultKNP.push(x);
+							break;
+						case currentCategory === 'Псковнефтепродукт' : 	
+							state.searchResultPNP.push(x);
+							break;
+						case currentCategory === 'Тверьнефтепродукт' : 	
+							state.searchResultTNP.push(x);
+							break;
+						case currentCategory === 'Новгороднефтепродукт' : 	
+							state.searchResultNNP.push(x);
+							break;
+						case currentCategory === 'Киришиавтосервис' : 	
+							state.searchResultKAS.push(x);
+							break;
+					};
+				};
+			
+			});
 
 					// if(item.label.toLowerCase().indexOf(keyword)!==-1){
 					// 	var ty = item.label;
@@ -50,6 +77,7 @@ export default ({
 		search({state, commit, rootState}, query) {
 			let stations = rootState.map.stations,
 				payload = {stations, query}
+			commit('REFRESH_SEARCH');
 			commit('SEARCH', payload);
 		}
 	},
