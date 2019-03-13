@@ -13,6 +13,7 @@
 </template>
 
 <script>
+	import {mapGetters} from 'vuex'
 	import settingsColorSwitch 	from './_settings-color-switch.vue'
 	import buttonSquare 		from '@/components/app-common/buttons/button-square.vue'
 	import svgIconFunnel 		from '@/components/app-common/svg/svg-icon-funnel.vue'
@@ -33,25 +34,31 @@
 			};
 		},
 		computed: {
+			...mapGetters([
+				'getButtonSquareById',
+			]),
 			get_buttonInterfaceTopActiveById(){
 				return this.$store.getters.get_buttonInterfaceTopActiveById(this.buttonID).buttonState;
 			},
 		},
 		mounted(){
-			this.UPDATE_BUTTON_FUNNEL_STATE();
+			this.UPDATE_BUTTON_FUNNEL();
 		},
 		methods: {
-			UPDATE_BUTTON_FUNNEL_STATE(){
-				this.buttonFunnelActive = this.get_buttonInterfaceTopActiveById;
+			UPDATE_BUTTON_FUNNEL(){
+				this.buttonFunnelActive = this.getButtonSquareById(this.buttonID);
 			},
 			toggleButtonFunnel(){
-				let payload = {buttonArray: 'buttonInterfaceTopActive', id: this.buttonID};
+				let payload = {
+					buttonArray: 'buttonInterfaceTopActive', 
+					id: this.buttonID
+				};
 				this.$store.dispatch('toggle_interfacetop_button', payload);
 			},
 		},
 		watch: {
-			get_buttonInterfaceTopActiveById(newCount, oldCount){
-				this.UPDATE_BUTTON_FUNNEL_STATE();
+			getButtonSquareById(newCount, oldCount){
+				this.UPDATE_BUTTON_FUNNEL();
 			},
 		},
 	};

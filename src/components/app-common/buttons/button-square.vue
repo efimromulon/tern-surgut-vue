@@ -1,5 +1,13 @@
 <template>
-	<button @click="onClick" class="app-ui__button" :class="[buttonBackroundActive ? 'appInterface_button' : '', buttonClass, get_buttonIsActive ? buttonClass + '_active' : '']">
+	<button 
+		@click="onClick" 
+		class="app-ui__button" 
+		:class="[
+			buttonBackroundActive ? 'appInterface_button' : '', 
+			buttonClass, 
+			isActive ? buttonClass + '_active' : ''
+		]"
+	>
 		<slot></slot>
 	</button>
 </template>
@@ -32,8 +40,8 @@
 			}
 		},
 		computed: {
-			get_buttonIsActive(){
-				return this.$store.getters.get_buttonInterfaceTopActiveById(this.buttonID).buttonState;
+			isActive(){
+				return this.$store.getters.getButtonSquareById(this.buttonID).buttonState;
 			},
 		},
 		methods: {

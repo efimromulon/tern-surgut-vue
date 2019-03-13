@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import map from './modules/map.js'
 import search from './modules/search.js'
+import uiSettings from './modules/uiSettings.js'
 
 Vue.use(Vuex)
 
@@ -9,6 +10,7 @@ export default new Vuex.Store({
 	modules: {
 		map,
 		search,
+		uiSettings,
 	},
 	state: {
 		//Preloader
