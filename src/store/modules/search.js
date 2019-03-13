@@ -17,7 +17,7 @@ export default ({
 		SET_SEARCH_LOADING: (state, searchLoading) => {
 			state.searchLoading = searchLoading
 		},
-		REFRESH_SEARCH: (state) => {
+		RESET_SEARCH: (state) => {
 			state.searchResultKNP = [];
 			state.searchResultPNP = [];
 			state.searchResultTNP = [];
@@ -76,9 +76,25 @@ export default ({
 		// },
 		search({state, commit, rootState}, query) {
 			let stations = rootState.map.stations,
-				payload = {stations, query}
-			commit('REFRESH_SEARCH');
-			commit('SEARCH', payload);
+				payload = {stations, query};
+
+			commit('SET_SEARCH_LOADING', true);
+
+			let promiseSearchLoading = new Promise((resolve, reject) => {
+				function search(){
+					commit('RESET_SEARCH');
+					commit('SEARCH', payload);
+				};
+				resolve(search());
+			});
+			promiseSearchLoading.then(
+				result => {
+					commit('SET_SEARCH_LOADING', false);
+				},
+				error => {
+					console.log('error in module_search of store')
+				}
+			);
 		}
 	},
 	getters: {
