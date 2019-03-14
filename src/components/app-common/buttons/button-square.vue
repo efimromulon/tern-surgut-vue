@@ -36,12 +36,12 @@
 		},
 		data () {
 			return {
-
+				isActive: true
 			}
 		},
 		computed: {
-			isActive(){
-				return this.$store.getters.getButtonSquareById(this.buttonID).buttonState;
+			r(){
+				return this.$store.getters.getButtonSquare;
 			},
 		},
 		methods: {

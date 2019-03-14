@@ -1,23 +1,27 @@
 <template>
 	<button class="colors_buttons_wrapper_item" 
-		:class = "buttonData.buttonName"
+		:class = "buttonsData.buttonName"
 		@click = "TOGGLE_CURRENT_COLOR_BUTTON"
 	>
 		<div class="button_circle_part">
 			<div :class="['circle_part', getColorClass()]"></div>
 		</div>
-		<div class="button_rect_part">{{buttonData.buttonState}}</div>
+		<div class="button_rect_part">{{buttonsData.buttonState}}</div>
 	</button>
 </template>
 
 <script>
-	// в props buttonData приходит инфа о названии кнопки и ее класс
+
+	// в props buttonsData приходит инфа о названии кнопки и ее класс
 	// из props ButtonName с пом. methods.getColorClass() получается
 	// доп класс для кнопки 'circle_' + G или O, R и т.д.
+
+	import debounce from 'lodash/debounce'
+
 	export default {
 		name: 'settings-color-switch-button',
 		props: {
-			buttonData: {
+			buttonsData: {
 				type: Object,
 				required: true,
 			},
@@ -27,19 +31,26 @@
 		},
 		methods: {		
 			getColorClass(){
-				let a = this.buttonData.buttonName.substring(7);//button_>>Green<< 7 
+				let a = this.buttonsData.buttonName.substring(7);//button_>>Green<< 7 
 				let b = 'circle_' + a;
 				return b;
 			},
-			TOGGLE_CURRENT_COLOR_BUTTON(){
-				let payload = {buttonArray: 'buttonColors', id: this.buttonData.buttonName};
-				this.$store.dispatch('toggle_interfacetop_button', payload);
-			},
+			TOGGLE_CURRENT_COLOR_BUTTON:
+				debounce(
+					function(){
+
+						let payload = {buttonArray: 'colorSwitchButtons', id: this.buttonsData.buttonID};
+						this.$store.dispatch('toggle_ui_settings_button', payload);
+
+					},
+					125
+			)
 		},
 	}
 </script>
 
 <style lang='sass'>
+
 	.colors_buttons_wrapper_item
 		background: $background-color-white
 		@include shadow(2)
@@ -89,8 +100,8 @@
 			top: 50%
 			right: 0% 
 			height: 45px
-			//background: green
 			width: calc(100% - 12.5px)
+
 	.colors_buttons_wrapper_item
 		transition: all .3s
 		&:hover

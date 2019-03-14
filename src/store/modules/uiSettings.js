@@ -1,7 +1,7 @@
 export default ({
 	state: {
 		uiButtonSquare: [
-			{buttonID: 0, buttonName: 'funnel', buttonState: false},
+			{buttonID: 0, buttonName: 'funnel', 		buttonState: false},
 		],
 		colorSwitchButtons: [
 			{buttonID: 0, buttonName: 'button_Green', 	buttonState: true},
@@ -11,36 +11,40 @@ export default ({
 		],
 	},
 	mutations: {
+		TOGGLE_UI_SETTINGS_BUTTON: (state, payload) => {
 
+			let buttonArray = payload.buttonArray,
+				buttonId = payload.id,
+				a;
+
+			a = state[buttonArray].find(button => button.buttonID === buttonId).buttonState;
+
+			
+				
+			switch (true) {
+				case buttonArray === 'uiButtonSquare' : 
+					state[buttonArray].find(button => button.buttonID === buttonId).buttonState = !a;
+					break;
+				case buttonArray === 'colorSwitchButtons' : 
+					state[buttonArray].find(button => button.buttonID === buttonId).buttonState = !a;
+					break;
+			};
+
+		},
 	},
 	actions: {
-			toggle_interfacetop_button: (state, payload) => {
+		toggle_ui_settings_button: (state, payload) => {
+				
+			state.commit('TOGGLE_UI_SETTINGS_BUTTON', payload);
 
-				let buttonArray 	= payload.buttonArray,
-					buttonId 		= payload.id;
-					
-				buttonArray === 'buttonColors' ? case_buttonColor(buttonArray,buttonId) : false;
-
-				function case_buttonColor(){
-					var	filterName 	= 'layersByColor',
-						filterItemId,
-						payload_for_filter;
-
-					filterItemId 		= state.getters.get_buttonColorsByColor(buttonId).buttonID;
-					payload_for_filter 	= {filterName: filterName, filterItemId: filterItemId};
-
-					state.commit('TOGGLE_FILTERS_TOP_BY_FILTER', payload_for_filter);
-				};
-
-
-
-				state.commit('TOGGLE_INTERFACETOP_BUTTON', payload);
-
-			},
+		},
 	},
 	getters: {
-		getButtonSquareById: (state) => (id) => {
-			return state.uiButtonSquare.find(button => button.buttonID === id).buttonState;
+		getButtonSquareById: (state) => {
+			return x => state.uiButtonSquare.find( btn => { return btn.buttonID === x }).buttonState
+		},
+		get_colorSwitchButtons: (state) => {
+			return state.colorSwitchButtons
 		},
 	}
 })

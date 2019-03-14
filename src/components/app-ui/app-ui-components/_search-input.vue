@@ -19,46 +19,62 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'vuex'
-import debounce from 'lodash/debounce'
 
-export default {
+	import {mapActions, mapState} from 'vuex'
+	import debounce from 'lodash/debounce'
 
-	name: 'search-input',
+	export default {
 
-	data () {
-		return {
-		}
-	},
-	computed: {
-		...mapState({
-			searchQuery: state => state.search.searchQuery
-		}),
-		qQuery: {
-			get(){return this.searchQuery},
-			set(val){return this.setSearchQuery(val)},
-		}
-	},
-	methods: {
-		blurSearch(){
-			//@blur="blurSearch" - вставить в input
-			//this.qQuery = "";
-			//this.$store.dispatch('reset_search');
-			this.$store.dispatch('close_search');
+		name: 'search-input',
+
+		data () {
+
+			return {
+
+			}
+			
 		},
-		...mapActions(['search', 'setSearchQuery']),
-		debouncedSearch: 
-			debounce(
-				function(e){
-					console.log('Starting search');
-					this.$store.dispatch('search', e.target.value);
-				}, 
-				500
-			)
-	},
-	mounted(){
-	},
-}
+
+		computed: {
+
+			...mapState({
+				searchQuery: state => state.search.searchQuery
+			}),
+
+			qQuery: {
+				get(){return this.searchQuery},
+				set(val){return this.setSearchQuery(val)},
+			}
+
+		},
+
+		methods: {
+
+			blurSearch(){
+				//@blur="blurSearch" - вставить в input
+				//this.qQuery = "";
+				//this.$store.dispatch('reset_search');
+				this.$store.dispatch('close_search');
+			},
+
+			...mapActions(['search', 'setSearchQuery']),
+
+			debouncedSearch: 
+				debounce(
+					function(e){
+						console.log('Starting search');
+						this.$store.dispatch('search', e.target.value);
+					}, 
+					500
+				)
+
+		},
+
+		mounted(){
+
+		},
+	}
+
 </script>
 
 <style lang="sass">

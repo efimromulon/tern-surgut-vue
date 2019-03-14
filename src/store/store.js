@@ -7,6 +7,7 @@ import uiSettings from './modules/uiSettings.js'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+	strict: process.env.NODE_ENV !== 'production',
 	modules: {
 		map,
 		search,
@@ -687,44 +688,44 @@ export default new Vuex.Store({
 			},
 		//Search - END
 		//InterfaceTop
-			TOGGLE_INTERFACETOP_BUTTON: (state, payload) => {
+			// TOGGLE_INTERFACETOP_BUTTON: (state, payload) => {
 
-				let buttonArray = payload.buttonArray,
-					buttonId = payload.id;
-				console.log('store buttonArray', buttonArray);
-				console.log('store buttonId', buttonId);
-				switch (true) {
+			// 	let buttonArray = payload.buttonArray,
+			// 		buttonId = payload.id;
+			// 	console.log('store buttonArray', buttonArray);
+			// 	console.log('store buttonId', buttonId);
+			// 	switch (true) {
 
-					case buttonArray === 'buttonFiltersMenu' : 
+			// 		case buttonArray === 'buttonFiltersMenu' : 
 
-						if(state[buttonArray].find(button => button.buttonID === buttonId).buttonState){
-							return
-						} else {
-							state[buttonArray].find(button => button.buttonID === buttonId).buttonState = 
-							!state[buttonArray].find(button => button.buttonID === buttonId).buttonState;
-							for(var i = 0; i < state.buttonFiltersMenu.length - 1; i++){
-								state[buttonArray].forEach(function(e) {
-								if(e.buttonID !== buttonId){e.buttonState = false};
-								});
-							};
-						};					
-						break;
+			// 			if(state[buttonArray].find(button => button.buttonID === buttonId).buttonState){
+			// 				return
+			// 			} else {
+			// 				state[buttonArray].find(button => button.buttonID === buttonId).buttonState = 
+			// 				!state[buttonArray].find(button => button.buttonID === buttonId).buttonState;
+			// 				for(var i = 0; i < state.buttonFiltersMenu.length - 1; i++){
+			// 					state[buttonArray].forEach(function(e) {
+			// 					if(e.buttonID !== buttonId){e.buttonState = false};
+			// 					});
+			// 				};
+			// 			};					
+			// 			break;
 
-					case buttonArray === 'buttonColors' :
+			// 		case buttonArray === 'buttonColors' :
 
-						state[buttonArray][buttonId].buttonState = 
-						!state[buttonArray][buttonId].buttonState;
-						break;
+			// 			state[buttonArray][buttonId].buttonState = 
+			// 			!state[buttonArray][buttonId].buttonState;
+			// 			break;
 
-					case buttonArray !== 'buttonFiltersMenu' :
+			// 		case buttonArray !== 'buttonFiltersMenu' :
 
-						state[buttonArray].find(button => button.buttonID === buttonId).buttonState = 
-						!state[buttonArray].find(button => button.buttonID === buttonId).buttonState;
-						break;
+			// 			state[buttonArray].find(button => button.buttonID === buttonId).buttonState = 
+			// 			!state[buttonArray].find(button => button.buttonID === buttonId).buttonState;
+			// 			break;
 
-				};
+			// 	};
 
-			},
+			// },
 		//InterfaceTop - END
 		//InterfaceLeft
 			TOGGLE_FILTERS_TOP_BY_FILTER: (state, payload) => {
@@ -1511,29 +1512,29 @@ export default new Vuex.Store({
 			},
 		//Search - END
 		//InterfaceTopCenter
-			toggle_interfacetop_button: (state, payload) => {
+			// toggle_interfacetop_button: (state, payload) => {
 
-				let buttonArray 	= payload.buttonArray,
-					buttonId 		= payload.id;
+			// 	let buttonArray 	= payload.buttonArray,
+			// 		buttonId 		= payload.id;
 					
-				buttonArray === 'buttonColors' ? case_buttonColor(buttonArray,buttonId) : false;
+			// 	buttonArray === 'buttonColors' ? case_buttonColor(buttonArray,buttonId) : false;
 
-				function case_buttonColor(){
-					var	filterName 	= 'layersByColor',
-						filterItemId,
-						payload_for_filter;
+			// 	function case_buttonColor(){
+			// 		var	filterName 	= 'layersByColor',
+			// 			filterItemId,
+			// 			payload_for_filter;
 
-					filterItemId 		= state.getters.get_buttonColorsByColor(buttonId).buttonID;
-					payload_for_filter 	= {filterName: filterName, filterItemId: filterItemId};
+			// 		filterItemId 		= state.getters.get_buttonColorsByColor(buttonId).buttonID;
+			// 		payload_for_filter 	= {filterName: filterName, filterItemId: filterItemId};
 
-					state.commit('TOGGLE_FILTERS_TOP_BY_FILTER', payload_for_filter);
-				};
+			// 		state.commit('TOGGLE_FILTERS_TOP_BY_FILTER', payload_for_filter);
+			// 	};
 
 
 
-				state.commit('TOGGLE_INTERFACETOP_BUTTON', payload);
+			// 	state.commit('TOGGLE_INTERFACETOP_BUTTON', payload);
 
-			},
+			// },
 		//InterfaceTopCenter - END
 		//Filters Top
 			toggle_filters_top_by_filter: (state, payload) => {

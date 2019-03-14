@@ -3,6 +3,8 @@
 	<l-map
 		style="height: 100%; width: 100%"
 		:zoom="zoom"
+		:minZoom="minZoom"
+		:maxZoom="maxZoom"
 		:center="center"
 		:bounds="bounds"
 		:options="{zoomControl: false}"
@@ -243,7 +245,9 @@ import { mapGetters } from 'vuex'
 				tileLayer: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png',
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
 				center: [59.938504,30.305786],
-				zoom: 12,
+				zoom: 11,
+				minZoom: 6,
+				maxZoom: 11,
 				bounds: null,
 				markers_knp_g: [
 					{

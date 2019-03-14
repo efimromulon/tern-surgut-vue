@@ -1,48 +1,51 @@
 <template>
 	<div class="colors_buttons_wrapper">
 		<settings-color-switch-button 
-			:buttonData = "buttonData[key]"
-			 v-for = "(item, key) in buttonData"
+			:buttonsData = "buttonsData[key]"
+			 v-for = "(item, key) in buttonsData"
 			 :key = "key"
 		></settings-color-switch-button>
 	</div>
 </template>
 
 <script>
+
+	import {mapGetters} from 'vuex'
 	import settingsColorSwitchButton from './_settings-color-switch-button.vue'
 
 	export default {
 		name: 'settings-color-switch',
+		components: {
+			settingsColorSwitchButton,
+		},
 		data () {
 			return {
-				buttonData: null,
+				buttonsData: null,
 			}
 		},
-		created(){
-			this.UPDATE_BUTTON_DATA_STATE();
-		},
 		computed: {
-			get_buttonColorsL(){
-				return this.$store.getters.get_buttonColorsL;
+			...mapGetters([
+				'get_colorSwitchButtons',
+			]),
+			getcolorSwitchButtons(){
+				return this.get_colorSwitchButtons
 			},
-			get_buttonColorsAll(){
-				return this.$store.getters.get_buttonColorsAll;
-			},
+		},
+		created(){
+			this.UPDATE_BUTTONS_DATA();
 		},
 		methods: {
-			UPDATE_BUTTON_DATA_STATE(){
-				console.log('i work ><');
-				this.buttonData = this.get_buttonColorsAll;
+			UPDATE_BUTTONS_DATA(){
+
+				this.buttonsData = this.getcolorSwitchButtons;
+
 			},
 		},
 		watch: {
-			get_buttonColorsAll(newCount, oldCount){
-				this.UPDATE_BUTTON_DATA_STATE();
+			getcolorSwitchButtons(newCount, oldCount){
+				this.UPDATE_BUTTONS_DATA();
 			},
 		},
-		components: {
-			settingsColorSwitchButton,
-		}
 	}
 </script>
 
