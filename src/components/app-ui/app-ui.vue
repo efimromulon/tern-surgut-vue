@@ -19,7 +19,9 @@
 					<ui-settings-panel-core-menu/>
 				</div>
 				<div class="app-ui-main-view__panel-menus">
-					<component v-bind:is="activeComponentName"></component>
+					<div class="panel-menus">
+						<component v-bind:is="activeComponentName"></component>
+					</div>
 				</div>
 				<div class="app-ui-main-view__panel-view">
 					<ui-settings-panel-view/>
@@ -187,6 +189,19 @@
 		width: 100%
 		top: 4px
 
+	.panel-menus
+		//visibility: hidden
+		//position: absolute
+		display: flex
+		flex-basis: auto
+		flex-direction: row
+		flex-grow: 0
+		flex-shrink: 1
+		flex-wrap: no-wrap
+		min-height: 30px
+		width: 100%
+		@include shadow(2)
+		
 	.app-ui-main-view__panel-view
 		position: relative
 		width: 100%

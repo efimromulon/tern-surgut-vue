@@ -12,8 +12,12 @@ export default ({
 			{buttonID: 3, buttonName: 'button_Grey', 	buttonState: true}
 		],
 		uiCoreMenuButtons: [
-			{buttonID: 0, buttonName: 'Слои', buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', buttonState: true},
-			{buttonID: 1, buttonName: 'Настройки маркировки', buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', buttonState: false},
+			{buttonID: 0, buttonName: 'Слои', 					buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', 	buttonState: true},
+			{buttonID: 1, buttonName: 'Настройки маркировки', 	buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', 	buttonState: false},
+		],
+		uiMarkingMenuButtons: [
+			{buttonID: 0, buttonName: 'Экспресс маркировка', 	buttonFilterName: 'marking-settings-express-container', 			buttonState: true},
+			{buttonID: 1, buttonName: 'Расширенные настройки', 	buttonFilterName: 'marking-settings-container', 					buttonState: false},
 		],
 
 	},
@@ -33,7 +37,7 @@ export default ({
 					buttonPressType = 0; //allButtonsCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
-				case buttonArray === 'uiCoreMenuButtons' : 
+				case buttonArray === 'uiCoreMenuButtons' || buttonArray === 'uiMarkingMenuButtons': 
 					buttonPressType = 1; //onlyOneButtonCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
@@ -93,6 +97,13 @@ export default ({
 		get_uiCoreMenuButton_active_componentName: (state) => {
 			return state.uiCoreMenuButtons.find(button => button.buttonState === true).buttonFilterName
 		},
+		get_uiMarkingMenuButtonsById: (state) => {
+			return x => state.uiMarkingMenuButtons.find( btn => { return btn.buttonID === x }).buttonState
+		},
+		get_uiMarkingMenuButtons: (state) => {
+			return state.uiMarkingMenuButtons
+		},
+
 
 	}
 })
