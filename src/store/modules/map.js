@@ -133,7 +133,6 @@ export default ({
 			});
 			state.stations = res;
 		},
-
 		SET_FUEL_SELL: (state, jsonPayload) => {
 			let n = jsonPayload.jsonName,
 				d = jsonPayload.jsonData;			
@@ -187,9 +186,91 @@ export default ({
 					j++;
 				};
 			};
-
-
 		},
+		// UPDATE_COLORS: (state, jsonPayload) => {
+		// 	// console.log(
+		// 		// `%c kas %c i = ${i} %c`,
+		// 		// `background:#ededed ; 
+		// 		// padding: 1px; 
+		// 		// border-radius: 3px 0 0 3px;  
+		// 		// color: #fff`,
+		// 		// `background:#19bb5b ; 
+		// 		// padding: 1px; 
+		// 		// border-radius: 0 3px 3px 0;  
+		// 		// color: #fff`,
+		// 		// `background:transparent`,
+		// 		// state[kasFromState][i].id
+		// 	// );
+		// 	let n = jsonPayload.jsonName,
+		// 		d = jsonPayload.jsonData,
+		// 		f = state.subFilter_current,
+		// 		res =[];
+
+		// 	d.forEach(item => {
+
+		// 		let a = item.sStationId,
+		// 			c = item.sStationCategory.replace(/\s+/g, ''),
+		// 			g = item.sCompanyName,//
+		// 			h = item.sStationAddress,
+		// 			k = item.sStationCity,
+		// 			l = item.sStationLabel,
+		// 			u = item.sStationName,
+		// 			p = item.sStationPhone,//
+		// 			latlng = [item.dStationLatitude, item.dStationLongitude],
+		// 			fuel = state.data_fuel_sell.data,
+		// 			value,
+		// 			color;
+
+		// 		fuel = fuel.find(i => {return i.sStationId === a;});
+		// 		///результаты, id которых есть в json
+		// 		if ( (fuel !== undefined) && (fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)}) ) ) {
+
+		// 			value = fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)})[f] ;
+		// 			switch (true) {
+		// 				case value > ( (state.range_current[1] * 2) / 3):
+		// 					color = 'g';
+		// 					break;
+		// 				case ((value < ( (state.range_current[1] * 2) / 3))&&(value > ( (state.range_current[1] * 1) / 3))):
+		// 					color = 'o';
+		// 					break;
+		// 				case value < ( (state.range_current[1] * 1) / 3):
+		// 					color = 'r';
+		// 					break;
+		// 			};
+		// 			res.push({
+		// 				id: a, 
+		// 				latlng: latlng, 
+		// 				category: c, 
+		// 				color: color, 
+		// 				valueRange: fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)})[f],
+		// 				companyName: g,
+		// 				stationAddress: h,
+		// 				stationCity: k,
+		// 				stationLabel: l,
+		// 				stationName: u,
+		// 				stationPhone: p
+		// 			});
+
+		// 		} else {
+		// 		///Результаты, id которых нет в json
+		// 			res.push({
+		// 				id: a, 
+		// 				latlng: latlng, 
+		// 				category: c, 
+		// 				color: 'colorless', 
+		// 				valueRange: null,
+		// 				companyName: g,
+		// 				stationAddress: h,
+		// 				stationCity: k,
+		// 				stationLabel: l,
+		// 				stationName: u,
+		// 				stationPhone: p
+		// 			});
+		// 		};
+
+		// 	});
+		// 	state.stations = res;
+		// },
 	},
 	actions: {
 

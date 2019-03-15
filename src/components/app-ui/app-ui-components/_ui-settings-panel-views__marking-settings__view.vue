@@ -4,7 +4,7 @@
 <script>
 export default {
 
-	name: 'ui-settings-panel-views',
+	name: 'ui-settings-panel-views__marking-settings__view',
 
 	data () {
 		return {
@@ -14,5 +14,5 @@ export default {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="sass">
 </style>
