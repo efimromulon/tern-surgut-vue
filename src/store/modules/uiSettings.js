@@ -19,8 +19,6 @@ export default ({
 
 			a = state[buttonArray].find(button => button.buttonID === buttonId).buttonState;
 
-			
-				
 			switch (true) {
 				case buttonArray === 'uiButtonSquare' : 
 					state[buttonArray].find(button => button.buttonID === buttonId).buttonState = !a;
@@ -42,6 +40,9 @@ export default ({
 	getters: {
 		getButtonSquareById: (state) => {
 			return x => state.uiButtonSquare.find( btn => { return btn.buttonID === x }).buttonState
+		},
+		get_colorSwitchButtonsById: (state) => {
+			return x => state.colorSwitchButtons.find( btn => { return btn.buttonID === x }).buttonState
 		},
 		get_colorSwitchButtons: (state) => {
 			return state.colorSwitchButtons

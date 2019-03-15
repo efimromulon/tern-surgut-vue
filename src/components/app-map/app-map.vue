@@ -537,6 +537,10 @@ import { mapGetters } from 'vuex'
 				oIsVisible: true,
 				rIsVisible: true,
 				cIsVisible: true,
+				gId: 0,
+				oId: 1,
+				rId: 2,
+				cId: 3,
 			}
 		},
 		computed:  {
@@ -563,7 +567,24 @@ import { mapGetters } from 'vuex'
 				'GET_stations_tnp_c',
 				'get_buttonColorsAll',
 				'searchCollapsed',
+				'get_colorSwitchButtons',
+				'get_colorSwitchButtonsById',
 			]),
+			colorSwitchButtons(){
+				return this.get_colorSwitchButtons;
+			},
+			colorSwitchButtonG(){
+				return this.get_colorSwitchButtonsById(this.gId);
+			},
+			colorSwitchButtonO(){
+				return this.get_colorSwitchButtonsById(this.oId);
+			},
+			colorSwitchButtonR(){
+				return this.get_colorSwitchButtonsById(this.rId);
+			},
+			colorSwitchButtonC(){
+				return this.get_colorSwitchButtonsById(this.cId);
+			},
 		},
 		beforeCreate(){
 		},
@@ -608,10 +629,16 @@ import { mapGetters } from 'vuex'
 
 			},
 			UPDATE_colors_states(){
-				this.cIsVisible = this.get_buttonColorsAll.button_Grey.buttonState;
-				this.gIsVisible = this.get_buttonColorsAll.button_Green.buttonState;
-				this.oIsVisible = this.get_buttonColorsAll.button_Orange.buttonState;
-				this.rIsVisible = this.get_buttonColorsAll.button_Red.buttonState;
+				console.log('color switched');
+				// this.cIsVisible = this.get_buttonColorsAll.button_Grey.buttonState;
+				// this.gIsVisible = this.get_buttonColorsAll.button_Green.buttonState;
+				// this.oIsVisible = this.get_buttonColorsAll.button_Orange.buttonState;
+				// this.rIsVisible = this.get_buttonColorsAll.button_Red.buttonState;
+
+				this.gIsVisible = this.colorSwitchButtonG;
+				this.oIsVisible = this.colorSwitchButtonO;
+				this.rIsVisible = this.colorSwitchButtonR;
+				this.cIsVisible = this.colorSwitchButtonC;
 				
 			},
 			openPopUp (i) {
@@ -638,6 +665,34 @@ import { mapGetters } from 'vuex'
 		watch: {
 			
 			searchCollapsed(newCount, oldCount){},
+			get_colorSwitchButtons(newCount, oldCount){
+				console.log('get_colorSwitchButtons');
+				this.UPDATE_colors_states();
+			},
+			colorSwitchButtons(newCount, oldCount){
+				console.log('colorSwitchButtons');
+				this.UPDATE_colors_states();
+			},
+			get_colorSwitchButtonsById(newCount, oldCount){
+				console.log('get_colorSwitchButtonsById');
+				this.UPDATE_colors_states();
+			},
+			colorSwitchButtonG(newCount, oldCount){
+				console.log('colorSwitchButtonG');
+				this.UPDATE_colors_states();
+			},
+			colorSwitchButtonO(newCount, oldCount){
+				console.log('colorSwitchButtonO');
+				this.UPDATE_colors_states();
+			},
+			colorSwitchButtonR(newCount, oldCount){
+				console.log('colorSwitchButtonR');
+				this.UPDATE_colors_states();
+			},
+			colorSwitchButtonC(newCount, oldCount){
+				console.log('colorSwitchButtonC');
+				this.UPDATE_colors_states();
+			},
 			GET_stations_knp_c(newCount, oldCount){
 				
 				this.UPDATE_stations();
