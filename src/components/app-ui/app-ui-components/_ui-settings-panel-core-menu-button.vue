@@ -7,65 +7,64 @@
 </template>
 
 <script>
+
+	import {mapGetters} from 'vuex'
 	import {TimelineMax} from 'gsap'
 	//import appInterfaceButton from './appInterfaceButton.vue'
+
 	export default {
+
 		name: 'ui-settings-panel-core-menu-button',
+
 		components: {
 
 		},
+
 		props: {
 			buttonData: {
 				type: Object,
 				required: true,
 			},
-			keyOfButton: {
-				type: Number,
-				required: true,
-			},
-			buttonState: {
-				type: Boolean,
-				required: true,
-			},
 		},
+
 		data () {
 			return {
-				buttonActive: false,
 				timelinebutton: null,
 				animateTarget: null,
 				animateTargetClass: null,				
 			}
 		},
+
 		computed: {
-			get_buttonFiltersMenuById(){
-				return this.$store.getters.get_buttonFiltersMenuById(this.keyOfButton).buttonState;
+			...mapGetters([
+				'get_uiCoreMenuButtonsById',
+			]),
+			uiCoreMenuButtons(){
+				return this.get_uiCoreMenuButtonsById(this.buttonData.buttonID)
 			},
-		},
-		created(){
-			this.UPDATE_BUTTON_STATE();
-		},
-		beforeMounted(){
 
 		},
+
 		mounted(){
 			this.timelinebutton = new TimelineMax();
 			this.UPDATE_BUTTON_ANIMATION();
 		},
+
 		methods: {
+
 			TOGGLE_CURRENT_FILTER_MENU_BUTTON(){
-				let payload = {buttonArray: 'buttonFiltersMenu', id: this.keyOfButton};
-				this.$store.dispatch('toggle_interfacetop_button', payload);
-			},
-			UPDATE_BUTTON_STATE(){
-				this.buttonActive = this.get_buttonFiltersMenuById;
+				let payload = {buttonArray: 'uiCoreMenuButtons', id: this.buttonData.buttonID};
+				this.$store.dispatch('toggle_ui_settings_button', payload);
 			},
 			UPDATE_BUTTON_ANIMATION(){
+
 				this.animateTargetClass = '.' + this.getButtonClass().toString();
 				this.animateTarget = document.querySelector(''+ this.animateTargetClass);
-				this.buttonActive ? this.animateButtonIn() : this.animateButtonOut();
+				this.buttonData.buttonState ? this.animateButtonIn() : this.animateButtonOut();
+
 			},
 			getButtonClass(){
-				let a = this.keyOfButton;//button_>>G<< 7 - G
+				let a = this.buttonData.buttonID;//button_>>G<< 7 - G
 				let b = 'core-menu__btn-' + a;
 				return b;
 			},
@@ -83,8 +82,7 @@
 			},
 		},
 		watch: {
-			get_buttonFiltersMenuById(newCount, oldCount){
-				this.UPDATE_BUTTON_STATE();
+			uiCoreMenuButtons(newCount, oldCount){
 				this.UPDATE_BUTTON_ANIMATION();
 			},
 		},

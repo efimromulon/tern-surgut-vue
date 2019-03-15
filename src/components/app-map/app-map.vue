@@ -588,11 +588,6 @@ import { mapGetters } from 'vuex'
 		beforeMounted(){
 		},
 		mounted(){
-
-					// disableClusteringAtZoom: 11,
-					// spiderfyOnMaxZoom: false,
-					// showCoverageOnHover: false,
-					// zoomToBoundsOnClick: false,
 			this.UPDATE_stations();
 			this.UPDATE_colors_states();
 		},
@@ -621,19 +616,16 @@ import { mapGetters } from 'vuex'
 				this.markers_tnp_o = this.GET_stations_tnp_o;
 				this.markers_tnp_r = this.GET_stations_tnp_r;
 				this.markers_tnp_c = this.GET_stations_tnp_c;
-
 			},
 			UPDATE_colors_states(){
-				console.log('color switched');
 				this.gIsVisible = this.colorSwitchButtonG;
 				this.oIsVisible = this.colorSwitchButtonO;
 				this.rIsVisible = this.colorSwitchButtonR;
 				this.cIsVisible = this.colorSwitchButtonC;
-				
 			},
 			openPopUp (i) {
-				this.popupCaller 				= i;
-				this.popupCallerId 				= i.id;
+				this.popupCaller 	= i;
+				this.popupCallerId 	= i.id;
 				this.$refs.features.mapObject.openPopup(i.latlng);
 			},
 			zoomUpdated(zoom){
@@ -647,9 +639,7 @@ import { mapGetters } from 'vuex'
 			boundsUpdated(bounds){
 				if (this.searchCollapsed === false){this.$store.dispatch('close_search');};
 				this.bounds = bounds;
-				
 			},
-
 			
 		},
 		watch: {

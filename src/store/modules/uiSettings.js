@@ -1,5 +1,7 @@
 export default ({
+
 	state: {
+
 		uiButtonSquare: [
 			{buttonID: 0, buttonName: 'funnel', 		buttonState: false},
 		],
@@ -10,51 +12,69 @@ export default ({
 			{buttonID: 3, buttonName: 'button_Grey', 	buttonState: true}
 		],
 		uiCoreMenuButtons: [
-			{
-				buttonID: 0, 
-				buttonName: 'Слои', 
-				buttonFilterName: 'filter-layers-settings', 
-				buttonState: true
-
-			},
-			{
-
-				buttonID: 1, 
-				buttonName: 'Настройки маркировки', 
-				buttonFilterName: 'filter-marking-settings', 
-				buttonState: false
-
-			},
+			{buttonID: 0, buttonName: 'Слои', buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', buttonState: true},
+			{buttonID: 1, buttonName: 'Настройки маркировки', buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', buttonState: false},
 		],
+
 	},
+
 	mutations: {
+
 		TOGGLE_UI_SETTINGS_BUTTON: (state, payload) => {
 
 			let buttonArray = payload.buttonArray,
 				buttonId = payload.id,
-				a;
+				buttonPressedState,
+				buttonPressType;
 
-			a = state[buttonArray].find(button => button.buttonID === buttonId).buttonState;
-
+			buttonPressedState = state[buttonArray].find(button => button.buttonID === buttonId).buttonState;
 			switch (true) {
-				case buttonArray === 'uiButtonSquare' : 
-					state[buttonArray].find(button => button.buttonID === buttonId).buttonState = !a;
+				case buttonArray === 'uiButtonSquare' || buttonArray === 'uiColorSwitchButtons': 
+					buttonPressType = 0; //allButtonsCanBePressed
+					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
-				case buttonArray === 'uiColorSwitchButtons' : 
-					state[buttonArray].find(button => button.buttonID === buttonId).buttonState = !a;
+				case buttonArray === 'uiCoreMenuButtons' : 
+					buttonPressType = 1; //onlyOneButtonCanBePressed
+					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
 			};
 
+			///
+			function toggleUiButton (a, b, c){
+
+				a === 0 ? state[b].find(button => button.buttonID === buttonId).buttonState = !c : false;
+
+				if ( a === 1 ) {
+					for(var i = 0; i < state[b].length - 1; i++){
+						state[b].forEach(function(button) {
+							if ( button.buttonID === buttonId ) {
+								button.buttonState = !c
+							} else {
+								button.buttonState = c
+							};
+						});
+					};
+				};
+
+			};
+			///
+
 		},
+
 	},
+
 	actions: {
+
 		toggle_ui_settings_button: (state, payload) => {
 				
 			state.commit('TOGGLE_UI_SETTINGS_BUTTON', payload);
 
 		},
+
 	},
+
 	getters: {
+
 		getButtonSquareById: (state) => {
 			return x => state.uiButtonSquare.find( btn => { return btn.buttonID === x }).buttonState
 		},
@@ -64,5 +84,15 @@ export default ({
 		get_uiColorSwitchButtons: (state) => {
 			return state.uiColorSwitchButtons
 		},
+		get_uiCoreMenuButtonsById: (state) => {
+			return x => state.uiCoreMenuButtons.find( btn => { return btn.buttonID === x }).buttonState
+		},
+		get_uiCoreMenuButtons: (state) => {
+			return state.uiCoreMenuButtons
+		},
+		get_uiCoreMenuButton_active_componentName: (state) => {
+			return state.uiCoreMenuButtons.find(button => button.buttonState === true).buttonFilterName
+		},
+
 	}
 })

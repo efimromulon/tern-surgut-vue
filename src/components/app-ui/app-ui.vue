@@ -19,13 +19,7 @@
 					<ui-settings-panel-core-menu/>
 				</div>
 				<div class="app-ui-main-view__panel-menus">
-					<div class="panel-menus__item">
-						<ui-settings-panel-menus-menu-marking-settings/>
-					</div>
-					<div class="panel-menus__item">
-						<ui-settings-panel-menus-menu-marking-settings-extended-menu/>
-					</div>
-					<div class="panel-menus__item"></div>
+					<component v-bind:is="activeComponentName"></component>
 				</div>
 				<div class="app-ui-main-view__panel-view">
 					<ui-settings-panel-views/>
@@ -72,6 +66,7 @@
 	import searchList from './app-ui-components/_search-list.vue'
 	import uiSettingsHeader from './app-ui-components/_ui-settings-header.vue'
 	import uiSettingsPanelCoreMenu from './app-ui-components/_ui-settings-panel-core-menu.vue'
+	import uiSettingsPanelMenusMenuLayersSettings from './app-ui-components/_ui-settings-panel-menus__menu-layers-settings.vue'
 	import uiSettingsPanelMenusMenuMarkingSettings from './app-ui-components/_ui-settings-panel-menus__menu-marking-settings.vue'
 	import uiSettingsPanelMenusMenuMarkingSettingsExtendedMenu from './app-ui-components/_ui-settings-panel-menus__menu-marking-settings__extended-menu.vue'
 	import uiSettingsPanelViews from './app-ui-components/_ui-settings-panel-views.vue'
@@ -84,6 +79,7 @@
 			searchInput,
 			uiSettingsHeader,
 			uiSettingsPanelCoreMenu,
+			uiSettingsPanelMenusMenuLayersSettings,
 			uiSettingsPanelMenusMenuMarkingSettings,
 			uiSettingsPanelMenusMenuMarkingSettingsExtendedMenu,
 			uiSettingsPanelViews,
@@ -101,15 +97,20 @@
 			...mapGetters([
 				'searchResultTabClosed',
 				'getButtonSquareById',
+				'get_uiCoreMenuButton_active_componentName',
 			]),
 			buttonFunnel(){
 				return this.getButtonSquareById(this.buttonFunnelId)
+			},
+			activeComponentName(){
+				return this.get_uiCoreMenuButton_active_componentName
 			},
 		},
 		methods: {
 		},
 		watch: {
 			buttonFunnel(newCount, oldCount){},
+			activeComponentName(newCount, oldCount){},
 		},
 	}
 

@@ -1,8 +1,8 @@
 <template>
 	<div class="colors_buttons_wrapper">
 		<settings-color-switch-button 
-			:buttonsData = "buttonsData[key]"
-			 v-for = "(item, key) in buttonsData"
+			:buttonsData = "uiColorSwitchButtons[key]"
+			 v-for = "(item, key) in uiColorSwitchButtons"
 			 :key = "key"
 		></settings-color-switch-button>
 	</div>
@@ -14,15 +14,18 @@
 	import settingsColorSwitchButton from './_settings-color-switch-button.vue'
 
 	export default {
+
 		name: 'settings-color-switch',
+
 		components: {
 			settingsColorSwitchButton,
 		},
+
 		data () {
 			return {
-				buttonsData: null,
 			}
 		},
+
 		computed: {
 			...mapGetters([
 				'get_uiColorSwitchButtons',
@@ -31,25 +34,17 @@
 				return this.get_uiColorSwitchButtons
 			},
 		},
-		created(){
-			this.UPDATE_BUTTONS_DATA();
-		},
-		methods: {
-			UPDATE_BUTTONS_DATA(){
 
-				this.buttonsData = this.get_uiColorSwitchButtons;
-
-			},
-		},
 		watch: {
-			uiColorSwitchButtons(newCount, oldCount){
-				this.UPDATE_BUTTONS_DATA();
-			},
+			uiColorSwitchButtons(newCount, oldCount){},
 		},
+		
 	}
+
 </script>
 
 <style lang='sass'>
+
 	.colors_buttons_wrapper
 		position: absolute
 		top: 0
