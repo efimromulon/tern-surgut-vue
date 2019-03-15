@@ -13,7 +13,7 @@
 				</div>
 			</header>
 		</div>
-		<div class="app-ui-main-container">
+		<div class="app-ui-main-container" v-show="buttonFunnel">
 			<div class="app-ui-main-view">
 				<div class="app-ui-main-view__panel-core-menu">
 					<ui-settings-panel-core-menu/>
@@ -94,18 +94,22 @@
 		},
 		data () {
 			return {
-
+				buttonFunnelId: 0,
 			}
 		},
 		computed: {
 			...mapGetters([
 				'searchResultTabClosed',
+				'getButtonSquareById',
 			]),
+			buttonFunnel(){
+				return this.getButtonSquareById(this.buttonFunnelId)
+			},
 		},
 		methods: {
 		},
 		watch: {
-
+			buttonFunnel(newCount, oldCount){},
 		},
 	}
 

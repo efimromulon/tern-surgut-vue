@@ -39,7 +39,7 @@
 				debounce(
 					function(){
 
-						let payload = {buttonArray: 'colorSwitchButtons', id: this.buttonsData.buttonID};
+						let payload = {buttonArray: 'uiColorSwitchButtons', id: this.buttonsData.buttonID};
 						this.$store.dispatch('toggle_ui_settings_button', payload);
 
 					},

@@ -25,10 +25,10 @@
 		},
 		computed: {
 			...mapGetters([
-				'get_colorSwitchButtons',
+				'get_uiColorSwitchButtons',
 			]),
-			getcolorSwitchButtons(){
-				return this.get_colorSwitchButtons
+			uiColorSwitchButtons(){
+				return this.get_uiColorSwitchButtons
 			},
 		},
 		created(){
@@ -37,12 +37,12 @@
 		methods: {
 			UPDATE_BUTTONS_DATA(){
 
-				this.buttonsData = this.getcolorSwitchButtons;
+				this.buttonsData = this.get_uiColorSwitchButtons;
 
 			},
 		},
 		watch: {
-			getcolorSwitchButtons(newCount, oldCount){
+			uiColorSwitchButtons(newCount, oldCount){
 				this.UPDATE_BUTTONS_DATA();
 			},
 		},
