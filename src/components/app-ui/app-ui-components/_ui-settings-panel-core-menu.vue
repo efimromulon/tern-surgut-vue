@@ -6,18 +6,18 @@
 			:key = "buttonID"
 		>		
 		</ui-settings-panel-core-menu-button>
-		<button-cross
+		<button-erase
 			:btnClassName = "`core-menu`"
 			:btnType = "`core-menu`"
 		>
-		</button-cross>
+		</button-erase>
 	</div>
 </template>
 <script>
 
 	import {mapGetters} from 'vuex'
 	import uiSettingsPanelCoreMenuButton from './_ui-settings-panel-core-menu-button.vue'
-	import buttonCross from '@/components/app-common/buttons/button-cross.vue'
+	import buttonErase from '@/components/app-common/buttons/button-erase.vue'
 
 	export default {
 
@@ -25,7 +25,7 @@
 
 		components: {
 			uiSettingsPanelCoreMenuButton,
-			buttonCross,
+			buttonErase,
 		},
 
 		data () {
@@ -73,7 +73,7 @@
 		@include shadow(2)
 		@include border(2)
 
-	.core-menu__close
+	.core-menu__erase
 		position: absolute
 		top: 0
 		right: 0
