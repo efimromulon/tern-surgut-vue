@@ -3,21 +3,78 @@ export default ({
 	state: {
 
 		uiButtonSquare: [
-			{buttonID: 0, buttonName: 'funnel', 		buttonState: false},
+			{
+				buttonID: 0, 
+				buttonName: 'funnel', 
+				buttonState: false
+			},
 		],
 		uiColorSwitchButtons: [
-			{buttonID: 0, buttonName: 'button_Green', 	buttonState: true},
-			{buttonID: 1, buttonName: 'button_Orange', 	buttonState: true},
-			{buttonID: 2, buttonName: 'button_Red', 	buttonState: true},
-			{buttonID: 3, buttonName: 'button_Grey', 	buttonState: true}
+			{
+				buttonID: 0, 
+				buttonName: 'button_Green',
+				buttonState: true
+			},
+			{
+				buttonID: 1, 
+				buttonName: 'button_Orange', 
+				buttonState: true
+			},
+			{
+				buttonID: 2, 
+				buttonName: 'button_Red', 
+				buttonState: true
+			},
+			{
+				buttonID: 3, 
+				buttonName: 'button_Grey', 
+				buttonState: true
+			}
 		],
 		uiCoreMenuButtons: [
-			{buttonID: 0, buttonName: 'Слои', 					buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', 	buttonState: true},
-			{buttonID: 1, buttonName: 'Настройки маркировки', 	buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', 	buttonState: false},
+			{
+				buttonID: 0, 
+				buttonName: 'Слои', 
+				buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', 
+				buttonState: true
+			},
+			{
+				buttonID: 1, 
+				buttonName: 'Настройки маркировки', 
+				buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', 
+				buttonState: false
+			},
 		],
 		uiMarkingMenuButtons: [
-			{buttonID: 0, buttonName: 'Экспресс маркировка', 	buttonFilterName: 'ui-settings-panel-views-view-marking-express', 	buttonState: true},
-			{buttonID: 1, buttonName: 'Расширенные настройки', 	buttonFilterName: 'ui-settings-panel-views-view-marking-settings', 	buttonState: false},
+			{
+				buttonID: 0, 
+				buttonName: 'Экспресс маркировка', 
+				buttonFilterName: 'ui-settings-panel-views-view-marking-express', 
+				buttonState: true
+			},
+			{
+				buttonID: 1, 
+				buttonName: 'Расширенные настройки', 
+				buttonFilterName: 'ui-settings-panel-views-view-marking-settings', 
+				buttonState: false
+			},
+		],
+		uiMarkingExpressButtons: [
+			{
+				buttonID: 0, 
+				buttonName: 'Минимальный срок до исчерпания резервуара по всем видам топлива',
+				buttonState: true
+			},
+			{
+				buttonID: 1, 
+				buttonName: 'Динамика реализации топлива по сравнению с прошлой неделей',
+				buttonState: false
+			},
+			{
+				buttonID: 2, 
+				buttonName: 'Динамика реализации сопутствующих товаров по сравнению с прошлой неделей',
+				buttonState: false
+			},
 		],
 
 	},
@@ -37,7 +94,7 @@ export default ({
 					buttonPressType = 0; //allButtonsCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
-				case buttonArray === 'uiCoreMenuButtons' || buttonArray === 'uiMarkingMenuButtons': 
+				case buttonArray === 'uiCoreMenuButtons' || buttonArray === 'uiMarkingMenuButtons' || buttonArray === 'uiMarkingExpressButtons': 
 					buttonPressType = 1; //onlyOneButtonCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
@@ -120,6 +177,12 @@ export default ({
 		},
 		get_uiMarkingMenuButtons_active_componentName: (state) => {
 			return state.uiMarkingMenuButtons.find(button => button.buttonState === true).buttonFilterName
+		},
+		get_uiMarkingExpressButtonsById: (state) => {
+			return x => state.uiMarkingExpressButtons.find( btn => { return btn.buttonID === x }).buttonState
+		},
+		get_uiMarkingExpressButtons: (state) => {
+			return state.uiMarkingExpressButtons
 		},
 
 

@@ -1,19 +1,49 @@
 <template>
-	<div>1</div>
+
+	<div class="view-marking-express">
+		<ui-settings-panel-views-view-marking-express-button 
+			:buttonData = "uiMarkingExpressButtons[key]"
+			 v-for = "(item, key) in uiMarkingExpressButtons"
+			 :key = "key"
+		></ui-settings-panel-views-view-marking-express-button>
+	</div>
+
 </template>
 
 <script>
-export default {
 
-	name: 'ui-settings-panel-views__view-marking-express',
+	import {mapGetters} from 'vuex'
+	import uiSettingsPanelViewsViewMarkingExpressButton from './_ui-settings-panel-views__view-marking-express-button.vue'
 
-	data () {
-		return {
+	export default {
 
-		}
+		name: 'ui-settings-panel-views__view-marking-express',
+		components: {
+			uiSettingsPanelViewsViewMarkingExpressButton,
+		},
+		data () {
+			return {
+
+			}
+		},
+		computed: {
+			...mapGetters([
+				'get_uiMarkingExpressButtons',
+			]),
+			uiMarkingExpressButtons(){
+				return this.get_uiMarkingExpressButtons
+			},
+		},
+
+		watch: {
+			uiMarkingExpressButtons(newCount, oldCount){},
+		},
 	}
-}
+
 </script>
 
 <style lang="sass">
+
+
+
 </style>

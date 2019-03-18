@@ -1,6 +1,7 @@
 <template>
 
 	<div class="app-ui">
+
 		<div class="app-ui__header">
 			<header class="header-view">
 				<div class="header-view__search-layout">
@@ -13,6 +14,7 @@
 				</div>
 			</header>
 		</div>
+		
 		<div class="app-ui-main-container" v-show="buttonFunnel">
 			<div class="app-ui-main-view">
 				<div class="app-ui-main-view__panel-core-menu">
@@ -26,6 +28,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="sidebar-left-container">
 			<div class="sidebar-left-view">	
 				<div class="sidebar-left-panel-view"  v-if="!searchResultTabClosed">
@@ -49,6 +52,7 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="sidebar-right-container">
 			<div class="sidebar-right-view">	
 				<div class="sidebar-right-panel-view">
@@ -56,6 +60,7 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 	
 </template>
@@ -70,7 +75,6 @@
 	import uiSettingsHeader from './app-ui-components/_ui-settings-header.vue'
 
 	import uiSettingsPanelCoreMenu from './app-ui-components/_ui-settings-panel-core-menu.vue'
-
 
 	import uiSettingsPanelMenu from './app-ui-components/_ui-settings-panel-menu.vue'
 	import uiSettingsPanelView from './app-ui-components/_ui-settings-panel-view.vue'
