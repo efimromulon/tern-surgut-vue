@@ -1,12 +1,12 @@
 <template>
 
-	<div class="view-marking-express-snippet">
 		<div :class="['marking-express__btn', getButtonClass()]"
 			@click = "TOGGLE_CURRENT_MARKING_EXPRESS_BUTTON"
 		>
-			{{ buttonData.buttonName }}
+			<span>
+				{{ buttonData.buttonName }}
+			</span>
 		</div>
-	</div>
 
 </template>
 
@@ -93,6 +93,19 @@
 
 <style lang="sass">
 
-
+	.marking-express__btn
+		@include border-top-bottom-child(2)
+		max-width: 100%
+		white-space: pre-wrap
+		display: flex
+		margin: auto
+		height: 75px
+		line-height: 75px
+		text-align: center
+		span
+			display: inline-block
+			margin: auto
+			vertical-align: middle
+			line-height: normal
 
 </style>

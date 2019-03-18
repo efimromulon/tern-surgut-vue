@@ -53,14 +53,7 @@ export default ({
 		data_fuel_stock: [],
 		data_article_sell: [],
 	},
-// knp
-// kas
-// nnp
-// pnp
-// tnp
-// for (var i = 0; i < b.length; i++) {
-// 	b[i].sStationCategory = b[i].sStationCategory.replace(/\s+/g, '');
-// };
+
 	mutations: {
 		SET_STATIONS: (state, jsonPayload) => {
 			let n = jsonPayload.jsonName,

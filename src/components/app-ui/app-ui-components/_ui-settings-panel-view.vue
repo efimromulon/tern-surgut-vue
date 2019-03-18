@@ -71,6 +71,8 @@
 		flex-direction: column
 		flex-grow: 0
 		flex-shrink: 1
-		flex-wrap: no-wrap
+		flex-wrap: nowrap
 		min-height: 30px
+		@include border(2)
+
 </style>
