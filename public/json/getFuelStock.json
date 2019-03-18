@@ -1664,21 +1664,5 @@
 			}]
 		}
 	],
-	"indicator": {
-		"name": "Дней до исчерпания резервуара",
-		"inverted": false,
-		"range": [0, 14],
-		"type": "До исчерпания, дней",
-		"subFilters": ["ВСЕ", "А92", "А95", "А98", "ДТМ", "ДТЗ", "ДТЛ"],
-		"correspondingFeature": "aFuelStock"
-	},
-	"express": {
-		"name": "Минимальный срок до исчерпания резервуара по всем видам топлива",
-		"indicator": {
-			"correspondingFeature": "aFuelStock",
-			"range": [3, 11],
-			"subFilters": "ВСЕ",
-			"type": "Дней до исчерпания резервуара"
-		}
-	}
+	"filters": ["ВСЕ", "А92", "А95", "А98", "ДТМ", "ДТЗ", "ДТЛ"]
 }

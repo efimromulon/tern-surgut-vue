@@ -3,9 +3,7 @@
 		<div :class="['marking-express__btn', getButtonClass()]"
 			@click = "TOGGLE_CURRENT_MARKING_EXPRESS_BUTTON"
 		>
-			<span>
-				{{ buttonData.buttonName }}
-			</span>
+			<span>{{ buttonData.buttonName }}</span>
 		</div>
 
 </template>

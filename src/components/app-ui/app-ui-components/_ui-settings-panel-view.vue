@@ -10,9 +10,6 @@
 
 	import uiSettingsPanelViewsViewMarkingExpress from './_ui-settings-panel-views__view-marking-express.vue'
 	import uiSettingsPanelViewsViewMarkingSettings from './_ui-settings-panel-views__view-marking-settings.vue'
-			//ui-settings-panel-menus-menu-marking-settings
-	// import buttonCross from '@/components/app-common/buttons/button-cross.vue'
-	// import buttonCollapse from '@/components/app-common/buttons/button-collapse.vue'
 
 	export default {
 

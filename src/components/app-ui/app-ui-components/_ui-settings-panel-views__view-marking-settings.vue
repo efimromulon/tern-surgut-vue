@@ -13,6 +13,8 @@ export default {
 		}
 	}
 }
+// "air-datepicker": "^2.2.3",
+// "nouislider": "^12.1.0",
 </script>
 
 <style lang="sass">
