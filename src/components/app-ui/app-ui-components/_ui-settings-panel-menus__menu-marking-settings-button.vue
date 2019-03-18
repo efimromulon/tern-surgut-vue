@@ -50,12 +50,15 @@
 				return this.get_uiMarkingMenuButtonsById(this.buttonData.buttonID)
 			},
 		},
-
+		created(){
+			this.animateTargetClass = '.' + this.getButtonClass().toString();
+		},
 		mounted(){
+			this.animateTarget = document.querySelector(''+ this.animateTargetClass);
 			this.timelinebutton = new TimelineMax();
 			this.UPDATE_BUTTON_ANIMATION();
 		},
-		
+
 		methods: {
 			TOGGLE_CURRENT_FILTER_MENU_MARKING_BUTTON(){
 				let payload = {buttonArray: 'uiMarkingMenuButtons', id: this.buttonData.buttonID};
@@ -65,6 +68,25 @@
 				let a = this.buttonData.buttonID;//button_>>G<< 7 - G
 				let b = 'menu-marking__btn-' + a;
 				return b;
+			},
+			UPDATE_BUTTON_ANIMATION(){
+
+				this.buttonData.buttonState ? this.animateButtonIn() : this.animateButtonOut();
+
+			},
+			animateButtonIn(){
+				console.log('animateButtonIn');
+				this.timelinebutton
+				.to(this.animateTarget, .3,{
+					backgroundColor: '#ededed',
+					ease: Power4.easeOut});
+			},
+			animateButtonOut(){
+				console.log('animateButtonOut');
+				this.timelinebutton
+				.to(this.animateTarget, .3,{
+					backgroundColor: '#ffffff',
+					ease: Power4.easeOut});
 			},
 			fluent(){
 				FluentRevealEffect.applyEffect(".marking-settings-menu_item", {
@@ -91,6 +113,7 @@
 
 		watch: {
 			uiMarkingMenuButtonsById(newCount, oldCount){
+				this.UPDATE_BUTTON_ANIMATION();
 			},
 		},
 

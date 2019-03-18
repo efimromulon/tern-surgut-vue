@@ -19,9 +19,7 @@
 					<ui-settings-panel-core-menu/>
 				</div>
 				<div class="app-ui-main-view__panel-menus">
-					<div class="panel-menus">
-						<component v-bind:is="activeComponentName"></component>
-					</div>
+					<ui-settings-panel-menu/>
 				</div>
 				<div class="app-ui-main-view__panel-view">
 					<ui-settings-panel-view/>
@@ -73,8 +71,8 @@
 
 	import uiSettingsPanelCoreMenu from './app-ui-components/_ui-settings-panel-core-menu.vue'
 
-	import uiSettingsPanelMenusMenuLayersSettings from './app-ui-components/_ui-settings-panel-menus__menu-layers-settings.vue'
-	import uiSettingsPanelMenusMenuMarkingSettings from './app-ui-components/_ui-settings-panel-menus__menu-marking-settings.vue'
+
+	import uiSettingsPanelMenu from './app-ui-components/_ui-settings-panel-menu.vue'
 	import uiSettingsPanelView from './app-ui-components/_ui-settings-panel-view.vue'
 
 	import buttonCross from '@/components/app-common/buttons/button-cross.vue'
@@ -89,8 +87,7 @@
 			searchInput,
 			uiSettingsHeader,
 			uiSettingsPanelCoreMenu,
-			uiSettingsPanelMenusMenuLayersSettings,
-			uiSettingsPanelMenusMenuMarkingSettings,
+			uiSettingsPanelMenu,
 			uiSettingsPanelView,
 			buttonCross,
 			buttonCollapse,
@@ -106,13 +103,9 @@
 			...mapGetters([
 				'searchResultTabClosed',
 				'getButtonSquareById',
-				'get_uiCoreMenuButton_active_componentName',
 			]),
 			buttonFunnel(){
 				return this.getButtonSquareById(this.buttonFunnelId)
-			},
-			activeComponentName(){
-				return this.get_uiCoreMenuButton_active_componentName
 			},
 		},
 
@@ -121,7 +114,6 @@
 
 		watch: {
 			buttonFunnel(newCount, oldCount){},
-			activeComponentName(newCount, oldCount){},
 		},
 
 	}
@@ -189,23 +181,17 @@
 		width: 100%
 		top: 4px
 
-	.panel-menus
-		//visibility: hidden
-		//position: absolute
-		display: flex
-		flex-basis: auto
-		flex-direction: row
-		flex-grow: 0
-		flex-shrink: 1
-		flex-wrap: no-wrap
-		min-height: 30px
+	.panel-view__layout, .panel-menu__layout
 		width: 100%
 		@include shadow(2)
-		
+		background-color: $color-white
+
+
+
 	.app-ui-main-view__panel-view
 		position: relative
 		width: 100%
-		top: 4px
+		top: 8px
 
 	.sidebar-left-container, .sidebar-right-container
 		display: block

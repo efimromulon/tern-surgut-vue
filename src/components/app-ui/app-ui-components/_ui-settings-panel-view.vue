@@ -8,7 +8,8 @@
 
 	import {mapGetters} from 'vuex'
 
-	import uiSettingsPanelViewsMarkingSettingsView from './_ui-settings-panel-views__marking-settings__view.vue'
+	import uiSettingsPanelViewsViewMarkingExpress from './_ui-settings-panel-views__view-marking-express.vue'
+	import uiSettingsPanelViewsViewMarkingSettings from './_ui-settings-panel-views__view-marking-settings.vue'
 			//ui-settings-panel-menus-menu-marking-settings
 	// import buttonCross from '@/components/app-common/buttons/button-cross.vue'
 	// import buttonCollapse from '@/components/app-common/buttons/button-collapse.vue'
@@ -17,7 +18,8 @@
 
 		name: 'ui-settings-panel-view',
 		components: {
-			uiSettingsPanelViewsMarkingSettingsView,
+			uiSettingsPanelViewsViewMarkingExpress,
+			uiSettingsPanelViewsViewMarkingSettings,
 		},
 		data () {
 			return {
@@ -26,32 +28,32 @@
 		},
 		computed: {
 			...mapGetters([
-				'get_uiCoreMenuButton_active_componentName',
+				'get_uiMarkingMenuButtons_active_componentName',
 			]),
 			activePanelView(){
 				
-				var testString  = this.get_uiCoreMenuButton_active_componentName;
+				// var testString  = this.get_uiMarkingMenuButtons_active_componentName;
 
-				function testInput(str) {
+				// function testInput(str) {
 
-					var re = /marking-settings/g;
+				// 	var re = /marking-settings/g;
 
-					var components = [/marking-settings/g];
+				// 	var components = [/marking-settings/g];
 
 
-					for(var i = 0; i < components.length - 1; i++){
-						var r = components[i];
-						if (str.search(/marking-settings/g) != -1) {
-							return `uiSettingsPanelViews${components[i]}View`
-						};
+				// 	for(var i = 0; i < components.length - 1; i++){
+				// 		var r = components[i];
+				// 		if (str.search(/marking-settings/g) != -1) {
+				// 			return `uiSettingsPanelViews${components[i]}View`
+				// 		};
 
-					};
+				// 	};
 
-				};
+				// };
 
 				// console.log(testInput(testString));
 
-				// return this.get_uiCoreMenuButton_active_componentName
+				return this.get_uiMarkingMenuButtons_active_componentName
 			},
 		},
 		watch: {
@@ -64,8 +66,11 @@
 <style lang="sass">
 
 	.panel-view__layout
-		position: relative
-		width: 100%
-		//top: 4px
-
+		display: flex
+		flex-basis: auto
+		flex-direction: column
+		flex-grow: 0
+		flex-shrink: 1
+		flex-wrap: no-wrap
+		min-height: 30px
 </style>

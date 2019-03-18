@@ -91,28 +91,32 @@
 </script>
 
 <style lang='sass'>
-.marking-settings-menu-main_wrapper
-	//visibility: hidden
-	//position: absolute
-	display: flex
-	flex-basis: auto
-	flex-direction: row
-	flex-grow: 0
-	flex-shrink: 1
-	flex-wrap: no-wrap
-	min-height: 30px
-	width: 100%
-	@include shadow(2)
-	background-color: $data-item-color
-.marking-settings-menu-main_item
-	cursor: pointer
-	color: #6c6c6c
-	width: calc(100%/2)
-	text-align: center
-	padding: 3px 1.5px
-	background-color: $btn-color
-	display: inline-block
-	font-size: 14px 
-.marking-settings-menu-main_typeActive
-	background-color: pink !important
+
+	.marking-settings-menu-main_wrapper
+		//visibility: hidden
+		//position: absolute
+		display: flex
+		flex-basis: auto
+		flex-direction: row
+		flex-grow: 0
+		flex-shrink: 1
+		flex-wrap: no-wrap
+		min-height: 30px
+		width: 100%
+		@include shadow(2)
+		background-color: $data-item-color
+
+	.marking-settings-menu-main_item
+		cursor: pointer
+		color: #6c6c6c
+		width: calc(100%/2)
+		text-align: center
+		padding: 3px 1.5px
+		background-color: $btn-color
+		display: inline-block
+		font-size: 14px 
+
+	.marking-settings-menu-main_typeActive
+		background-color: pink !important
+		
 </style>

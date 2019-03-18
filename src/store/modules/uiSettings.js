@@ -16,8 +16,8 @@ export default ({
 			{buttonID: 1, buttonName: 'Настройки маркировки', 	buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', 	buttonState: false},
 		],
 		uiMarkingMenuButtons: [
-			{buttonID: 0, buttonName: 'Экспресс маркировка', 	buttonFilterName: 'marking-settings-express-container', 			buttonState: true},
-			{buttonID: 1, buttonName: 'Расширенные настройки', 	buttonFilterName: 'marking-settings-container', 					buttonState: false},
+			{buttonID: 0, buttonName: 'Экспресс маркировка', 	buttonFilterName: 'ui-settings-panel-views-view-marking-express', 	buttonState: true},
+			{buttonID: 1, buttonName: 'Расширенные настройки', 	buttonFilterName: 'ui-settings-panel-views-view-marking-settings', 	buttonState: false},
 		],
 
 	},
@@ -51,11 +51,26 @@ export default ({
 				if ( a === 1 ) {
 					for(var i = 0; i < state[b].length - 1; i++){
 						state[b].forEach(function(button) {
-							if ( button.buttonID === buttonId ) {
-								button.buttonState = !c
-							} else {
-								button.buttonState = c
+
+							// if ( button.buttonID === buttonId ) {
+							// 	button.buttonState = !c
+							// } else {
+							// 	button.buttonState = c
+							// };
+
+							switch (true) {
+								case ( ( button.buttonID === buttonId ) && ( button.buttonState !== true ) ):
+									button.buttonState = !c;
+									break;
+								case ( ( button.buttonID === buttonId ) && ( button.buttonState === true ) ):
+									break;
+								case ( ( button.buttonID !== buttonId ) && ( button.buttonState !== true ) ):
+									break;									break;
+								case ( ( button.buttonID !== buttonId ) && ( button.buttonState === true ) ):
+									button.buttonState = false;
+									break;
 							};
+
 						});
 					};
 				};
@@ -102,6 +117,9 @@ export default ({
 		},
 		get_uiMarkingMenuButtons: (state) => {
 			return state.uiMarkingMenuButtons
+		},
+		get_uiMarkingMenuButtons_active_componentName: (state) => {
+			return state.uiMarkingMenuButtons.find(button => button.buttonState === true).buttonFilterName
 		},
 
 
