@@ -1,21 +1,23 @@
 <template>
-<!-- 	<ui-settings-panel-views-view-marking-settings-menu-gas-button
-		:buttonData = "uiMarkingExpressButtons[key]"
-		 v-for = "(item, key) in uiMarkingExpressButtons"
-		 :key = "key"
-	></ui-settings-panel-views-view-marking-settings-menu-gas-button> -->
+	<div class="menu-datatype">
+		<menu-gas-button
+			:buttonData = "uiMarkingMenuDatatypeButtons[key]"
+			 v-for = "(item, key) in uiMarkingMenuDatatypeButtons"
+			 :key = "key"
+		></menu-gas-button>
+	</div>
 </template>
 
 <script>
 
 	import {mapGetters} from 'vuex'
-	import uiSettingsPanelViewsViewMarkingSettingsMenuGasButton from './_ui-settings-panel-views__view-marking-settings__menu-gas-button.vue'
+	import uiSettingsPanelViewsViewMarkingSettingsMenudDtafilter from './_ui-settings-panel-views__view-marking-settings__menu-datafilter.vue'
 
 	export default {
 
-		name: 'ui-settings-panel-views__view-marking-settings__menu-gas',
+		name: 'ui-settings-panel-views__view-marking-settings__menu-datafilter',
 		components: {
-			uiSettingsPanelViewsViewMarkingSettingsMenuGasButton,
+			'menu-gas-button': uiSettingsPanelViewsViewMarkingSettingsMenudDtafilter,
 		},
 		data () {
 			return {
@@ -24,15 +26,15 @@
 		},
 		computed: {
 			...mapGetters([
-				'get_testById',
+				'get_uiMarkingMenuDatafilterById',
 			]),
-			uiMarkingExpressButtons(){
-				return this.get_testById(0, 'uiMarkingMenuFuelStockButtons')
+			uiMarkingMenuDatafilterById(){
+				return this.get_uiMarkingMenuDatafilterById(0, 'uiMarkingMenuDatafilterFuelStockButtons')
 			},
 		},
 
 		watch: {
-			uiMarkingExpressButtons(newCount, oldCount){},
+			uiMarkingMenuDatafilterById(newCount, oldCount){},
 		},
 	}
 </script>

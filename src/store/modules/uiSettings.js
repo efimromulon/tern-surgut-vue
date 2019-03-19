@@ -93,9 +93,9 @@ export default ({
 				buttonState: false
 			},
 		],
-		uiMarkingMenuFuelStockButtons: [],
-		uiMarkingMenuFuelSellButtons: [],
-		uiMarkingMenuArticleSellButtons: [],
+		uiMarkingMenuDatafilterFuelStockButtons: [],
+		uiMarkingMenuDatafilterFuelSellButtons: [],
+		uiMarkingMenuDatafilterArticleSellButtons: [],
 
 	},
 
@@ -118,9 +118,9 @@ export default ({
 					buttonArray === 'uiMarkingMenuButtons' 				|| 
 					buttonArray === 'uiMarkingExpressButtons'			||
 					buttonArray === 'uiMarkingMenuDatatypeButtons' 		|| 
-					buttonArray === 'uiMarkingMenuFuelStockButtons' 	||
-					buttonArray === 'uiMarkingMenuFuelSellButtons' 		||
-					buttonArray === 'uiMarkingMenuArticleSellButtons' 	: 
+					buttonArray === 'uiMarkingMenuDatafilterFuelStockButtons' 	||
+					buttonArray === 'uiMarkingMenuDatafilterFuelSellButtons' 		||
+					buttonArray === 'uiMarkingMenuDatafilterArticleSellButtons' 	: 
 					buttonPressType = 1; //onlyOneButtonCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
@@ -168,9 +168,9 @@ export default ({
 				fsell = payload.fsell,
 				asell = payload.asell,
 				target = [
-					'uiMarkingMenuFuelStockButtons',
-					'uiMarkingMenuFuelSellButtons',
-					'uiMarkingMenuArticleSellButtons'
+					'uiMarkingMenuDatafilterFuelStockButtons',
+					'uiMarkingMenuDatafilterFuelSellButtons',
+					'uiMarkingMenuDatafilterArticleSellButtons'
 				];
 
 			function setButtons(d, r){
@@ -272,10 +272,10 @@ export default ({
 		get_uiMarkingMenuDatatypeButtons: (state) => {
 			return state.uiMarkingMenuDatatypeButtons
 		},
-		get_testById: (state) => {
+		get_uiMarkingMenuDatafilterById: (state) => {
 			return (x, y) => state[y].find( btn => { return btn.buttonID === x }).buttonState
 		},
-		get_testButtons: (state) => {
+		get_uiMarkingMenuDatafilter: (state) => {
 			return y => state[y]
 		},
 
