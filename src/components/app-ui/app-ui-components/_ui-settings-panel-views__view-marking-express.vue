@@ -45,6 +45,9 @@
 <style lang="sass">
 
 	.view-marking-express
+		@include shadow(2)
+		@include border(2)
+		background-color: $color-white
 
 
 </style>

@@ -187,9 +187,6 @@
 
 	.panel-view__layout, .panel-menu__layout
 		width: 100%
-		@include shadow(2)
-		@include border(2)
-		background-color: $color-white
 
 
 

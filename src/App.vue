@@ -54,6 +54,10 @@
 					result => {
 						this.$store.dispatch('stations_sort_by_colors');
 					}
+				).then(
+					result => {
+						this.$store.dispatch('set_ui_marking_menu_gas_buttons');
+					}
 				)
 			},
 

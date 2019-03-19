@@ -45,21 +45,19 @@ export default ({
 		fuel_sell_dates_compare: [],
 		fuel_sell_dates_analysis: [],
 		fuel_sell_filters: '',
-		fuel_sell_filter_current: '',
 
 		fuel_stock_data: [],
 		fuel_stock_filters: '',
-		fuel_stock_filter_current: '',
 
 		acrticle_sell_data: [],
 		acrticle_sell_dates_compare: [],
 		acrticle_sell_dates_analysis: [],
 		acrticle_sell_filters: '',
-		acrticle_sell_filter_current: '',
 	},
 
 	mutations: {
 		SET_STATIONS: (state, jsonPayload) => {
+
 			let n = jsonPayload.jsonName,
 				d = jsonPayload.jsonData,
 				f = state.fuel_sell_filter_current,
@@ -133,7 +131,9 @@ export default ({
 				};
 
 			});
+
 			state.stations = res;
+
 		},
 		SET_FUEL_SELL: (state, jsonPayload) => {
 
@@ -145,10 +145,6 @@ export default ({
 			state.fuel_sell_dates_analysis 		= d.dates_analysis;
 			state.fuel_sell_filters 			= d.filters;
 
-			if ( state.fuel_sell_filter_current === '' ) {
-				state.fuel_sell_filter_current = d.filters[0];
-			};
-
 		},
 		SET_FUEL_STOCK: (state, jsonPayload) => {
 
@@ -158,10 +154,6 @@ export default ({
 			state.fuel_stock_data 				= d.data;
 			state.fuel_stock_filters 			= d.filters;
 			state.fuel_stock_filter_current 	= d.filters[0];
-
-			if ( state.fuel_stock_filter_current === '' ) {
-				state.fuel_stock_filter_current = d.filters[0];
-			};
 
 		},
 		SET_ARTICLE_SELL: (state, jsonPayload) => {
@@ -174,17 +166,9 @@ export default ({
 			state.acrticle_sell_dates_analysis 	= d.dates_analysis;
 			state.acrticle_sell_filters 		= d.filters;
 
-			if ( state.acrticle_sell_filter_current === '' ) {
-				state.acrticle_sell_filter_current = d.filters[0];
-			};
-
 		},
-
-
-
-
-
 		STATIONS_SORT_BY_SDO: (state) => {
+
 			state.stations_knp = state.stations.filter(i => {
 				return i.category === 'Калининграднефтепродукт'
 			});
@@ -200,111 +184,33 @@ export default ({
 			state.stations_tnp = state.stations.filter(i => {
 				return i.category === 'Тверьнефтепродукт'
 			});	
+
 		},
 		STATIONS_SORT_BY_COLORS: (state) => {
-			//state.obj = { ...state.obj, newProp: 123 }
 
-			let //sdo = 'stations_knp',
-				g 	= 'g',
+			let g 	= 'g',
 				o 	= 'o',
 				r 	= 'r',
 				c 	= 'colorless',
 				sdo = ['stations_knp','stations_kas','stations_nnp','stations_pnp','stations_tnp'],
 				colors = [g, o, r, c];
+
 			for (var i = 0, j = 0; i < colors.length, j < sdo.length; i++) {
+
 				var currentColor = colors[i],
 					currentSdo = sdo[j];
+
 				state.stations_sorted[currentSdo][currentColor] = state[currentSdo].filter(i => {return i.color === currentColor});
+
 				if(i > 3){
 					i = 0; 
 					j++;
 				};
+
 			};
+
 		},
-		// UPDATE_COLORS: (state, jsonPayload) => {
-		// 	// console.log(
-		// 		// `%c kas %c i = ${i} %c`,
-		// 		// `background:#ededed ; 
-		// 		// padding: 1px; 
-		// 		// border-radius: 3px 0 0 3px;  
-		// 		// color: #fff`,
-		// 		// `background:#19bb5b ; 
-		// 		// padding: 1px; 
-		// 		// border-radius: 0 3px 3px 0;  
-		// 		// color: #fff`,
-		// 		// `background:transparent`,
-		// 		// state[kasFromState][i].id
-		// 	// );
-		// 	let n = jsonPayload.jsonName,
-		// 		d = jsonPayload.jsonData,
-		// 		f = state.fuel_sell_filters,
-		// 		res =[];
 
-		// 	d.forEach(item => {
-
-		// 		let a = item.sStationId,
-		// 			c = item.sStationCategory.replace(/\s+/g, ''),
-		// 			g = item.sCompanyName,//
-		// 			h = item.sStationAddress,
-		// 			k = item.sStationCity,
-		// 			l = item.sStationLabel,
-		// 			u = item.sStationName,
-		// 			p = item.sStationPhone,//
-		// 			latlng = [item.dStationLatitude, item.dStationLongitude],
-		// 			fuel = state.fuel_sell_data.data,
-		// 			value,
-		// 			color;
-
-		// 		fuel = fuel.find(i => {return i.sStationId === a;});
-		// 		///результаты, id которых есть в json
-		// 		if ( (fuel !== undefined) && (fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)}) ) ) {
-
-		// 			value = fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)})[f] ;
-		// 			switch (true) {
-		// 				case value > ( (state.range_current[1] * 2) / 3):
-		// 					color = 'g';
-		// 					break;
-		// 				case ((value < ( (state.range_current[1] * 2) / 3))&&(value > ( (state.range_current[1] * 1) / 3))):
-		// 					color = 'o';
-		// 					break;
-		// 				case value < ( (state.range_current[1] * 1) / 3):
-		// 					color = 'r';
-		// 					break;
-		// 			};
-		// 			res.push({
-		// 				id: a, 
-		// 				latlng: latlng, 
-		// 				category: c, 
-		// 				color: color, 
-		// 				valueRange: fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)})[f],
-		// 				companyName: g,
-		// 				stationAddress: h,
-		// 				stationCity: k,
-		// 				stationLabel: l,
-		// 				stationName: u,
-		// 				stationPhone: p
-		// 			});
-
-		// 		} else {
-		// 		///Результаты, id которых нет в json
-		// 			res.push({
-		// 				id: a, 
-		// 				latlng: latlng, 
-		// 				category: c, 
-		// 				color: 'colorless', 
-		// 				valueRange: null,
-		// 				companyName: g,
-		// 				stationAddress: h,
-		// 				stationCity: k,
-		// 				stationLabel: l,
-		// 				stationName: u,
-		// 				stationPhone: p
-		// 			});
-		// 		};
-
-		// 	});
-		// 	state.stations = res;
-		// },
 	},
 	actions: {
 
@@ -413,5 +319,15 @@ export default ({
 		GET_stations_tnp_c: (state) => {
 			return state.stations_sorted.stations_tnp.colorless;
 		},
+		GET_fuel_sell_filters: (state) => {
+			return state.fuel_sell_filters;
+		},
+		GET_fuel_stock_filters: (state) => {
+			return state.fuel_stock_filters;
+		},
+		GET_acrticle_sell_filters: (state) => {
+			return state.acrticle_sell_filters;
+		},
+
 	}
 })

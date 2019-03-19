@@ -63,13 +63,12 @@
 <style lang="sass">
 
 	.panel-view__layout
-		display: flex
-		flex-basis: auto
-		flex-direction: column
-		flex-grow: 0
-		flex-shrink: 1
-		flex-wrap: nowrap
-		min-height: 30px
-		@include border(2)
+		// display: flex
+		// flex-basis: auto
+		// flex-direction: column
+		// flex-grow: 0
+		// flex-shrink: 1
+		// flex-wrap: nowrap
+		// min-height: 30px
 
 </style>

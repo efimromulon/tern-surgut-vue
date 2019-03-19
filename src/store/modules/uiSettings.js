@@ -76,6 +76,26 @@ export default ({
 				buttonState: false
 			},
 		],
+		uiMarkingMenuDatatypeButtons: [
+			{
+				buttonID: 0, 
+				buttonName: 'Дней до исчерпания резервуара',
+				buttonState: true
+			},
+			{
+				buttonID: 1, 
+				buttonName: 'Динамика реализации топлива',
+				buttonState: false
+			},
+			{
+				buttonID: 2, 
+				buttonName: 'Динамика реализации сопутствующих товаров',
+				buttonState: false
+			},
+		],
+		uiMarkingMenuFuelStockButtons: [],
+		uiMarkingMenuFuelSellButtons: [],
+		uiMarkingMenuArticleSellButtons: [],
 
 	},
 
@@ -94,7 +114,10 @@ export default ({
 					buttonPressType = 0; //allButtonsCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
-				case buttonArray === 'uiCoreMenuButtons' || buttonArray === 'uiMarkingMenuButtons' || buttonArray === 'uiMarkingExpressButtons': 
+				case buttonArray === 'uiCoreMenuButtons' 		|| 
+					buttonArray === 'uiMarkingMenuButtons' 		|| 
+					buttonArray === 'uiMarkingExpressButtons'	||
+					buttonArray === 'uiMarkingMenuDatatypeButtons': 
 					buttonPressType = 1; //onlyOneButtonCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
@@ -136,6 +159,63 @@ export default ({
 			///
 
 		},
+		SET_UI_MARKING_MENU_GAS_BUTTONS: (state, payload) => {
+			
+			let fstock = payload.fstock,
+				fsell = payload.fsell,
+				asell = payload.asell,
+				target = [
+					'uiMarkingMenuFuelStockButtons',
+					'uiMarkingMenuFuelSellButtons',
+					'uiMarkingMenuArticleSellButtons'
+				];
+
+			state.uiMarkingMenuFuelStockButtons = payload.fstock;
+			state.uiMarkingMenuFuelSellButtons = payload.fsell;
+			state.uiMarkingMenuArticleSellButtons = payload.asell;
+
+			function setButtons(d, r){
+				
+				var currentState,
+					result = [];
+
+				for (var i = r.length - 1; i >= 0; i++) {
+					i === 0 ? currentState = true : currentState = false;
+					result.push({
+						buttonID: i, 
+						buttonName: r[i],
+						buttonState: currentState
+					});
+				};
+
+				state[d] = result;
+
+			};
+
+			for (var i = payload.length - 1; i >= 0; i++) {
+
+				var x, h;
+
+				switch (true) {
+					case i === 0 :
+						x = fstock;
+						h = target[i];
+						break;
+					case i === 1 : 
+						x = fsell;
+						h = target[i];
+						break;
+					case i === 2 :
+						x = asell;
+						h = target[i];
+						break;
+				};
+
+				setButtons(h, payload[x]);
+
+			};
+
+		},
 
 	},
 
@@ -146,6 +226,21 @@ export default ({
 			state.commit('TOGGLE_UI_SETTINGS_BUTTON', payload);
 
 		},
+		set_ui_marking_menu_gas_buttons({state, commit, rootState}, query) {
+			console.log('uuuuuuuuuuuuuuu')
+			let fstock = rootState.map.fuel_stock_filters,
+				fsell = rootState.map.fuel_sell_filters,
+				asell = rootState.map.acrticle_sell_filters,
+				payload = {'fstock': fstock, 'fsell': fsell, 'asell': asell};
+
+			
+
+				commit('SET_UI_MARKING_MENU_GAS_BUTTONS', payload);
+
+		},
+
+
+
 
 	},
 
@@ -183,6 +278,12 @@ export default ({
 		},
 		get_uiMarkingExpressButtons: (state) => {
 			return state.uiMarkingExpressButtons
+		},
+		get_uiMarkingMenuDatatypeButtonsById: (state) => {
+			return x => state.uiMarkingMenuDatatypeButtons.find( btn => { return btn.buttonID === x }).buttonState
+		},
+		get_uiMarkingMenuDatatypeButtons: (state) => {
+			return state.uiMarkingMenuDatatypeButtons
 		},
 
 

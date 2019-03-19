@@ -1,21 +1,41 @@
 <template>
-	<div>2</div>
+	<div class="marking-settings">
+		<menu-datatype/>
+		<menu-gas/>
+
+	</div>
 </template>
 
 <script>
-export default {
 
-	name: 'ui-settings-panel-views__view-marking-settings',
+	import {mapGetters} from 'vuex'
 
-	data () {
-		return {
+	import uiSettingsPanelViewsViewMarkingSettingsMenuDatatype from './_ui-settings-panel-views__view-marking-settings__menu-datatype.vue'
+	import uiSettingsPanelViewsViewMarkingSettingsMenuGas from './_ui-settings-panel-views__view-marking-settings__menu-gas.vue'
 
+	export default {
+
+		name: 'ui-settings-panel-views__view-marking-settings',
+		components: {
+			'menu-datatype': uiSettingsPanelViewsViewMarkingSettingsMenuDatatype,
+			'menu-gas': uiSettingsPanelViewsViewMarkingSettingsMenuGas,
+		},
+
+
+		data () {
+			return {
+
+			}
 		}
+
 	}
-}
+
 // "air-datepicker": "^2.2.3",
 // "nouislider": "^12.1.0",
 </script>
 
 <style lang="sass">
+
+	.marking-settings
+
 </style>
