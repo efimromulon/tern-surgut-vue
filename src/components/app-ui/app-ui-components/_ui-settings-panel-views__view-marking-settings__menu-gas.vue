@@ -22,18 +22,18 @@
 
 			}
 		},
-		// computed: {
-		// 	...mapGetters([
-		// 		'get_uiMarkingExpressButtons',
-		// 	]),
-		// 	uiMarkingExpressButtons(){
-		// 		return this.get_uiMarkingExpressButtons
-		// 	},
-		// },
+		computed: {
+			...mapGetters([
+				'get_testById',
+			]),
+			uiMarkingExpressButtons(){
+				return this.get_testById(0, 'uiMarkingMenuFuelStockButtons')
+			},
+		},
 
-		// watch: {
-		// 	uiMarkingExpressButtons(newCount, oldCount){},
-		// },
+		watch: {
+			uiMarkingExpressButtons(newCount, oldCount){},
+		},
 	}
 </script>
 

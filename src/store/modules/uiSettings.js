@@ -114,10 +114,13 @@ export default ({
 					buttonPressType = 0; //allButtonsCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
-				case buttonArray === 'uiCoreMenuButtons' 		|| 
-					buttonArray === 'uiMarkingMenuButtons' 		|| 
-					buttonArray === 'uiMarkingExpressButtons'	||
-					buttonArray === 'uiMarkingMenuDatatypeButtons': 
+				case buttonArray === 'uiCoreMenuButtons' 				|| 
+					buttonArray === 'uiMarkingMenuButtons' 				|| 
+					buttonArray === 'uiMarkingExpressButtons'			||
+					buttonArray === 'uiMarkingMenuDatatypeButtons' 		|| 
+					buttonArray === 'uiMarkingMenuFuelStockButtons' 	||
+					buttonArray === 'uiMarkingMenuFuelSellButtons' 		||
+					buttonArray === 'uiMarkingMenuArticleSellButtons' 	: 
 					buttonPressType = 1; //onlyOneButtonCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
@@ -170,16 +173,15 @@ export default ({
 					'uiMarkingMenuArticleSellButtons'
 				];
 
-			state.uiMarkingMenuFuelStockButtons = payload.fstock;
-			state.uiMarkingMenuFuelSellButtons = payload.fsell;
-			state.uiMarkingMenuArticleSellButtons = payload.asell;
-
 			function setButtons(d, r){
+
+				console.log('setButtons', d, r);
 				
 				var currentState,
 					result = [];
 
-				for (var i = r.length - 1; i >= 0; i++) {
+				for (var i = 0; i <= Object.keys(r).length - 1; i++) {
+
 					i === 0 ? currentState = true : currentState = false;
 					result.push({
 						buttonID: i, 
@@ -192,26 +194,11 @@ export default ({
 
 			};
 
-			for (var i = payload.length - 1; i >= 0; i++) {
+			for (var i = 0; i <= Object.keys(payload).length - 1; i++) {
 
-				var x, h;
 
-				switch (true) {
-					case i === 0 :
-						x = fstock;
-						h = target[i];
-						break;
-					case i === 1 : 
-						x = fsell;
-						h = target[i];
-						break;
-					case i === 2 :
-						x = asell;
-						h = target[i];
-						break;
-				};
 
-				setButtons(h, payload[x]);
+				setButtons(target[i], payload[Object.keys(payload)[i]]);
 
 			};
 
@@ -285,7 +272,12 @@ export default ({
 		get_uiMarkingMenuDatatypeButtons: (state) => {
 			return state.uiMarkingMenuDatatypeButtons
 		},
-
+		get_testById: (state) => {
+			return (x, y) => state[y].find( btn => { return btn.buttonID === x }).buttonState
+		},
+		get_testButtons: (state) => {
+			return y => state[y]
+		},
 
 	}
 })
