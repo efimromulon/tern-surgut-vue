@@ -272,11 +272,29 @@ export default ({
 		get_uiMarkingMenuDatatypeButtons: (state) => {
 			return state.uiMarkingMenuDatatypeButtons
 		},
-		get_uiMarkingMenuDatafilterById: (state) => {
-			return (x, y) => state[y].find( btn => { return btn.buttonID === x }).buttonState
+		get_uiMarkingMenuDatatypeButton_active: (state) => {
+
+			let currentDatatypeButtonName = state.uiMarkingMenuDatatypeButtons.find(button => button.buttonState === true).buttonName,
+				menuDatafilter;
+			switch (true) {
+				case currentDatatypeButtonName === 'Дней до исчерпания резервуара':
+					menuDatafilter = 'uiMarkingMenuDatafilterFuelStockButtons';
+					break;
+				case currentDatatypeButtonName === 'Динамика реализации топлива':
+					menuDatafilter = 'uiMarkingMenuDatafilterFuelSellButtons';
+					break;
+				case currentDatatypeButtonName === 'Динамика реализации сопутствующих товаров':
+					menuDatafilter = 'uiMarkingMenuDatafilterArticleSellButtons';
+					break;
+			};
+
+			return menuDatafilter;
 		},
-		get_uiMarkingMenuDatafilter: (state) => {
-			return y => state[y]
+		get_uiMarkingMenuDatafilterById: (state, getters) => {
+			return x => state[getters.get_uiMarkingMenuDatatypeButton_active].find( btn => { return btn.buttonID === x }).buttonState
+		},
+		get_uiMarkingMenuDatafilter: (state, getters) => {
+			return state[getters.get_uiMarkingMenuDatatypeButton_active]
 		},
 
 	}

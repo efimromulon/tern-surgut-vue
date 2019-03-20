@@ -1,7 +1,7 @@
 <template>
 	<div class="marking-settings">
 		<menu-datatype/>
-		<menu-gas/>
+		<menu-datafilter/>
 
 	</div>
 </template>
@@ -11,14 +11,14 @@
 	import {mapGetters} from 'vuex'
 
 	import uiSettingsPanelViewsViewMarkingSettingsMenuDatatype from './_ui-settings-panel-views__view-marking-settings__menu-datatype.vue'
-	import uiSettingsPanelViewsViewMarkingSettingsMenuGas from './_ui-settings-panel-views__view-marking-settings__menu-gas.vue'
+	import uiSettingsPanelViewsViewMarkingSettingsMenuDatafilter from './_ui-settings-panel-views__view-marking-settings__menu-datafilter.vue'
 
 	export default {
 
 		name: 'ui-settings-panel-views__view-marking-settings',
 		components: {
 			'menu-datatype': uiSettingsPanelViewsViewMarkingSettingsMenuDatatype,
-			'menu-gas': uiSettingsPanelViewsViewMarkingSettingsMenuGas,
+			'menu-datafilter': uiSettingsPanelViewsViewMarkingSettingsMenuDatafilter,
 		},
 
 
