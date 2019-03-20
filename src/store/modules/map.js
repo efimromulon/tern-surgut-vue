@@ -328,6 +328,9 @@ export default ({
 		GET_acrticle_sell_filters: (state) => {
 			return state.acrticle_sell_filters;
 		},
+		GET_range_current: (state) => {
+			return state.range_current;
+		},
 
 	}
 })

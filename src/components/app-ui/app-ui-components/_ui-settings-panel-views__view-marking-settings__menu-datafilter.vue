@@ -45,7 +45,7 @@
 		width: 100%
 		overflow: hidden
 		position: relative
-		top: 0
+		top: 4px
 		left: 0
 		height: 37px
 		display: flex

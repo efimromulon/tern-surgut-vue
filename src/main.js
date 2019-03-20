@@ -2,8 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import store from './store/store'
 import 'leaflet/dist/leaflet.css'
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
+import uiSettingsPanelViewsViewMarkingSettingsViewLayout from '@/components/app-ui/app-ui-components/_ui-settings-panel-views__view-marking-settings__view-layout.vue'
 
 Vue.config.productionTip = false;
+Vue.component('VueSlider', VueSlider);
+Vue.component('ViewLayout', uiSettingsPanelViewsViewMarkingSettingsViewLayout);
 
 // eslint-disable-next-line  
 delete L.Icon.Default.prototype._getIconUrl  

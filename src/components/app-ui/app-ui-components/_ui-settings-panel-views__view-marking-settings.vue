@@ -2,7 +2,9 @@
 	<div class="marking-settings">
 		<menu-datatype/>
 		<menu-datafilter/>
-
+		<div class="view-layout">
+			<component :is="uiMarkingMenuDatatypeButton_active"/>
+		</div>
 	</div>
 </template>
 
@@ -10,15 +12,21 @@
 
 	import {mapGetters} from 'vuex'
 
-	import uiSettingsPanelViewsViewMarkingSettingsMenuDatatype from './_ui-settings-panel-views__view-marking-settings__menu-datatype.vue'
-	import uiSettingsPanelViewsViewMarkingSettingsMenuDatafilter from './_ui-settings-panel-views__view-marking-settings__menu-datafilter.vue'
+	import uiSettingsPanelViewsViewMarkingSettingsMenuDatatype 		from './_ui-settings-panel-views__view-marking-settings__menu-datatype.vue'
+	import uiSettingsPanelViewsViewMarkingSettingsMenuDatafilter 	from './_ui-settings-panel-views__view-marking-settings__menu-datafilter.vue'
+	import uiSettingsPanelViewsViewMarkingSettingsViewFuelstock 	from './_ui-settings-panel-views__view-marking-settings__view-fuelstock.vue'
+	import uiSettingsPanelViewsViewMarkingSettingsViewFuelsell 		from './_ui-settings-panel-views__view-marking-settings__view-fuelsell.vue'
+	import uiSettingsPanelViewsViewMarkingSettingsViewArticlesell 	from './_ui-settings-panel-views__view-marking-settings__view-articlesell.vue'
 
 	export default {
 
 		name: 'ui-settings-panel-views__view-marking-settings',
 		components: {
-			'menu-datatype': uiSettingsPanelViewsViewMarkingSettingsMenuDatatype,
-			'menu-datafilter': uiSettingsPanelViewsViewMarkingSettingsMenuDatafilter,
+			'menu-datatype'		: uiSettingsPanelViewsViewMarkingSettingsMenuDatatype,
+			'menu-datafilter'	: uiSettingsPanelViewsViewMarkingSettingsMenuDatafilter,
+			'view-fuelstock'	: uiSettingsPanelViewsViewMarkingSettingsViewFuelstock,
+			'view-fuelsell'		: uiSettingsPanelViewsViewMarkingSettingsViewFuelsell,
+			'view-articlesell'	: uiSettingsPanelViewsViewMarkingSettingsViewArticlesell,
 		},
 
 
@@ -26,7 +34,30 @@
 			return {
 
 			}
-		}
+		},
+		computed: {
+			...mapGetters([
+				'get_uiMarkingMenuDatatypeButton_active',
+			]),
+			uiMarkingMenuDatatypeButton_active(){
+				let getter = this.get_uiMarkingMenuDatatypeButton_active;
+				switch (true) {
+					case getter === 'uiMarkingMenuDatafilterFuelStockButtons':
+						return 'view-fuelstock';
+						break;
+					case getter === 'uiMarkingMenuDatafilterFuelSellButtons':
+						return 'view-fuelsell';
+						break;
+					case getter === 'uiMarkingMenuDatafilterArticleSellButtons':
+						return 'view-articlesell';
+						break;
+				};
+			},
+		},
+		watch: {
+			uiMarkingMenuDatatypeButton_active(newCount, oldCount){
+			},
+		},
 
 	}
 
@@ -37,5 +68,22 @@
 <style lang="sass">
 
 	.marking-settings
+	.view-layout
+		width: 100%
+		overflow: hidden
+		position: relative
+		top: 8px
+		left: 0
+		height: 100px
+		display: flex
+		flex-basis: auto
+		flex-direction: column
+		flex-grow: 0
+		flex-shrink: 1
+		flex-wrap: nowrap
+		justify-content: start
+		@include shadow(2)
+		@include border(2)
+		background-color: $color-white
 
 </style>
