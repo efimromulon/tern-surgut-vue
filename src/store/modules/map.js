@@ -39,8 +39,6 @@ export default ({
 		stations_pnp: [],
 		stations_tnp: [],
 
-		range_current: [-50, 13],
-
 		fuel_sell_data: [],
 		fuel_sell_dates_compare: [],
 		fuel_sell_dates_analysis: [],
@@ -327,9 +325,6 @@ export default ({
 		},
 		GET_acrticle_sell_filters: (state) => {
 			return state.acrticle_sell_filters;
-		},
-		GET_range_current: (state) => {
-			return state.range_current;
 		},
 
 	}

@@ -1,7 +1,8 @@
 <template>
 	<view-layout
 		:vueSlider="vueSlider"
-		:datePicker="datePicker"
+		:min="min"
+		:max="max"
 	></view-layout>
 </template>
 
@@ -17,7 +18,9 @@
 		data () {
 			return {
 				vueSlider: true,
-				datePicker: false
+				datePicker: false,
+				min: -100,
+				max: 100
 			}
 		},
 		computed: {

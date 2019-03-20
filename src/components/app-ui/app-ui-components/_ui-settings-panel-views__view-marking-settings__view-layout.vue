@@ -1,15 +1,18 @@
 <template>
-	<vue-slider 
-		v-model="range_current"
-		:min-range="1"
-		:max-range="100"
-		:enable-cross="false"
-	></vue-slider>
+	<div class="marking-settings__view-layout">
+		<vue-slider 
+			v-model="sliderValue"
+			:min="min"
+			:max="max"
+			:min-range="1"
+			:enable-cross="false"
+		></vue-slider>
+	</div>
 </template>
 
 <script>
 
-	import {mapGetters} from 'vuex'
+	import {mapGetters, mapState} from 'vuex'
 
 	export default {
 
@@ -22,32 +25,47 @@
 				type: Boolean,
 				required: false,
 			},
-			datePicker: {
-				type: Boolean,
+			min: {
+				type: Number,
+				required: false,
+			},
+			max: {
+				type: Number,
 				required: false,
 			},
 		},
 		data () {
 			return {
-
+				sliderValue: [33, 47],
 			}
 		},
 		computed: {
 			...mapGetters([
-				'GET_range_current',
+				'get_range_Datafilter_default',
 			]),
-			range_current(){
-				return this.GET_range_current;
+			range_Datafilter_default(){
+				return this.get_range_Datafilter_default
 			},
 		},
 		watch: {
-			range_current(newCount, oldCount){
+			range_Datafilter_default(newCount, oldCount){
+			},
+		},
+		mounted(){
+			this.SET_DEFAULT_VALUE();
+		},
+		methods: {
+			SET_DEFAULT_VALUE(){
+				this.sliderValue.length === 0 ? this.sliderValue = this.range_Datafilter_default : this.sliderValue;
+				//this.sliderValue = this.range_Datafilter_default;
 			},
 		},
 	}
 </script>
 
 <style lang="sass">
-
-
+	.marking-settings__view-layout
+		width: 100%
+		position: relative
+		top: 26px
 </style>

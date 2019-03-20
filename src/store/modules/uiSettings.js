@@ -97,6 +97,9 @@ export default ({
 		uiMarkingMenuDatafilterFuelSellButtons: [],
 		uiMarkingMenuDatafilterArticleSellButtons: [],
 
+		range_Datafilter_default: [0, 13],
+		range_Datafilter_current: [],
+
 	},
 
 	mutations: {
@@ -296,6 +299,11 @@ export default ({
 		get_uiMarkingMenuDatafilter: (state, getters) => {
 			return state[getters.get_uiMarkingMenuDatatypeButton_active]
 		},
+		get_range_Datafilter_default: (state) => {
+			return state.range_Datafilter_default;
+		},
 
 	}
 })
+
+
