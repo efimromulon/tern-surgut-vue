@@ -64,14 +64,12 @@
 
 			},
 			animateButtonIn(){
-				console.log('animateButtonIn');
 				this.timelinebutton
 				.to(this.animateTarget, .3,{
 					backgroundColor: '#ededed',
 					ease: Power4.easeOut});
 			},
 			animateButtonOut(){
-				console.log('animateButtonOut');
 				this.timelinebutton
 				.to(this.animateTarget, .3,{
 					backgroundColor: '#ffffff',

@@ -34,11 +34,24 @@
 		computed: {
 			...mapGetters([
 				'get_uiMarkingMenuDatafilterById',
+				'get_uiMarkingMenuDatatypeButton_active',
 			]),
 			uiMarkingMenuDatafilterById(){
 				return this.get_uiMarkingMenuDatafilterById(this.buttonData.buttonID)
 			},
+			uiMarkingMenuDatatypeButton_active(){
+				return this.get_uiMarkingMenuDatatypeButton_active
+			},
 		},
+
+		watch: {
+			uiMarkingMenuDatafilterById(newCount, oldCount){
+				this.UPDATE_BUTTON_ANIMATION();
+			},
+			uiMarkingMenuDatatypeButton_active(newCount, oldCount){
+			},
+		},
+
 		created(){
 			this.animateTargetClass = '.' + this.getButtonClass().toString();
 		},
@@ -50,7 +63,7 @@
 
 		methods: {
 			TOGGLE_CURRENT_MENU_DATAFILTER_BUTTON(){
-				let payload = {buttonArray: 'uiMarkingMenuDatafilterFuelStockButtons', id: this.buttonData.buttonID};
+				let payload = {buttonArray: this.uiMarkingMenuDatatypeButton_active, id: this.buttonData.buttonID};
 				this.$store.dispatch('toggle_ui_settings_button', payload);
 			},
 			getButtonClass(){
@@ -64,24 +77,16 @@
 
 			},
 			animateButtonIn(){
-				console.log('animateButtonIn');
 				this.timelinebutton
 				.to(this.animateTarget, .3,{
 					backgroundColor: '#ededed',
 					ease: Power4.easeOut});
 			},
 			animateButtonOut(){
-				console.log('animateButtonOut');
 				this.timelinebutton
 				.to(this.animateTarget, .3,{
 					backgroundColor: '#ffffff',
 					ease: Power4.easeOut});
-			},
-		},
-
-		watch: {
-			uiMarkingMenuDatafilterById(newCount, oldCount){
-				this.UPDATE_BUTTON_ANIMATION();
 			},
 		},
 

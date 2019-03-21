@@ -29,12 +29,14 @@
 				'get_uiMarkingMenuDatafilter',
 			]),
 			uiMarkingMenuDatafilter(){
-				return this.get_uiMarkingMenuDatafilter
+				return this.$store.getters.get_uiMarkingMenuDatafilter
 			},
 		},
 
 		watch: {
-			uiMarkingMenuDatafilter(newCount, oldCount){},
+			uiMarkingMenuDatafilter(newCount, oldCount){
+				return this.get_uiMarkingMenuDatafilter
+			},
 		},
 	}
 </script>

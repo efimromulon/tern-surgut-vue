@@ -131,7 +131,7 @@ export default ({
 
 			///
 			function toggleUiButton (a, b, c){
-
+				console.log('a', a, 'b', b, 'c', c);
 				a === 0 ? state[b].find(button => button.buttonID === buttonId).buttonState = !c : false;
 
 				if ( a === 1 ) {
@@ -177,8 +177,6 @@ export default ({
 				];
 
 			function setButtons(d, r){
-
-				console.log('setButtons', d, r);
 				
 				var currentState,
 					result = [];
@@ -217,7 +215,7 @@ export default ({
 
 		},
 		set_ui_marking_menu_gas_buttons({state, commit, rootState}, query) {
-			console.log('uuuuuuuuuuuuuuu')
+
 			let fstock = rootState.map.fuel_stock_filters,
 				fsell = rootState.map.fuel_sell_filters,
 				asell = rootState.map.acrticle_sell_filters,
