@@ -1,7 +1,6 @@
 <template>
 	<div class="marking-settings">
 		<menu-datatype/>
-		<menu-datafilter/>
 		<div class="view-layout">
 			<component :is="uiMarkingMenuDatatypeButton_active"/>
 		</div>
@@ -13,7 +12,6 @@
 	import {mapGetters} from 'vuex'
 
 	import uiSettingsPanelViewsViewMarkingSettingsMenuDatatype 		from './_ui-settings-panel-views__view-marking-settings__menu-datatype.vue'
-	import uiSettingsPanelViewsViewMarkingSettingsMenuDatafilter 	from './_ui-settings-panel-views__view-marking-settings__menu-datafilter.vue'
 	import uiSettingsPanelViewsViewMarkingSettingsViewFuelstock 	from './_ui-settings-panel-views__view-marking-settings__view-fuelstock.vue'
 	import uiSettingsPanelViewsViewMarkingSettingsViewFuelsell 		from './_ui-settings-panel-views__view-marking-settings__view-fuelsell.vue'
 	import uiSettingsPanelViewsViewMarkingSettingsViewArticlesell 	from './_ui-settings-panel-views__view-marking-settings__view-articlesell.vue'
@@ -23,7 +21,6 @@
 		name: 'ui-settings-panel-views__view-marking-settings',
 		components: {
 			'menu-datatype'		: uiSettingsPanelViewsViewMarkingSettingsMenuDatatype,
-			'menu-datafilter'	: uiSettingsPanelViewsViewMarkingSettingsMenuDatafilter,
 			'view-fuelstock'	: uiSettingsPanelViewsViewMarkingSettingsViewFuelstock,
 			'view-fuelsell'		: uiSettingsPanelViewsViewMarkingSettingsViewFuelsell,
 			'view-articlesell'	: uiSettingsPanelViewsViewMarkingSettingsViewArticlesell,
@@ -70,11 +67,10 @@
 	.marking-settings
 	.view-layout
 		width: 100%
-		overflow: hidden
 		position: relative
-		top: 8px
+		top: 4px
 		left: 0
-		height: 100px
+		box-sizing: border-box
 		display: flex
 		flex-basis: auto
 		flex-direction: column

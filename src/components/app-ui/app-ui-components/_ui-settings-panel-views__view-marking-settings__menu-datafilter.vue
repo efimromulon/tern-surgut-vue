@@ -29,13 +29,12 @@
 				'get_uiMarkingMenuDatafilter',
 			]),
 			uiMarkingMenuDatafilter(){
-				return this.$store.getters.get_uiMarkingMenuDatafilter
+				return this.get_uiMarkingMenuDatafilter
 			},
 		},
 
 		watch: {
 			uiMarkingMenuDatafilter(newCount, oldCount){
-				return this.get_uiMarkingMenuDatafilter
 			},
 		},
 	}
@@ -45,11 +44,6 @@
 
 	.menu-datafilter
 		width: 100%
-		overflow: hidden
-		position: relative
-		top: 4px
-		left: 0
-		height: 37px
 		display: flex
 		flex-basis: auto
 		flex-direction: row
@@ -57,8 +51,5 @@
 		flex-shrink: 1
 		flex-wrap: nowrap
 		justify-content: start
-		@include shadow(2)
-		@include border(2)
-		background-color: $color-white
 
 </style>

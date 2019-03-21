@@ -101,16 +101,7 @@
 		position: relative
 		cursor: pointer
 		line-height: 37px
-		margin: 0 10px
+		margin-right: 10px
 		font-family: 'Montserrat-Medium'
 		font-size: 14px
-		&:hover
-			&:after
-				content: ''
-				position: absolute
-				bottom: 0
-				left: 0
-				color: black
-				width: 100%
-				height: 3px
 </style>
