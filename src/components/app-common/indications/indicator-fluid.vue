@@ -1,18 +1,24 @@
 <template>
 	<ul class="page-indicator">
-		<li class="indicator1">
+		<li class="indicator1" :class="{ active: uiMarkingMenuDatafilter[0].buttonState }">
 			<div class="bar"></div>
 		</li>
-		<li class="indicator2">
+		<li class="indicator2" :class="{ active: uiMarkingMenuDatafilter[1].buttonState }">
 			<div class="bar"></div>
 		</li>
-		<li class="indicator3">
+		<li class="indicator3" :class="{ active: uiMarkingMenuDatafilter[2].buttonState }">
 			<div class="bar"></div>
 		</li>
-		<li class="indicator4">
+		<li class="indicator4" :class="{ active: uiMarkingMenuDatafilter[3].buttonState }">
 			<div class="bar"></div>
 		</li>
-		<li class="indicator5">
+		<li class="indicator5" :class="{ active: uiMarkingMenuDatafilter[4].buttonState }">
+			<div class="bar"></div>
+		</li>
+		<li class="indicator6" :class="{ active: uiMarkingMenuDatafilter[5].buttonState }">
+			<div class="bar"></div>
+		</li>
+		<li class="indicator7" :class="{ active: uiMarkingMenuDatafilter[6].buttonState }">
 			<div class="bar"></div>
 		</li>
 	</ul>
@@ -51,42 +57,40 @@
 			this.timeline = new TimelineMax();
 		},
 		methods: {
-			// frt(){
+			animateIndicator(e, t){
 				
-			// 	function(e, t) {
-			// 		var n = this.$element.find("li.active"), 
-			// 			a = n.find(".bar"), 
-			// 			i = this.$element.find("li.indicator" + e), 
-			// 			r = i.find(".bar");
+				var n = this.$element.find("li.active"), 
+					a = n.find(".bar"), 
+					i = this.$element.find("li.indicator" + e), 
+					r = i.find(".bar");
 
-			// 		n.removeClass("active"),
-			// 		i.addClass("active");
+				n.removeClass("active"),
+				i.addClass("active");
 
-			// 		var s = 0.7, 
-			// 			l = t ? "right top" : "left top",
-			// 			d = t ? "left top" : "right top";
+				var s = 0.7, 
+					l = t ? "right top" : "left top",
+					d = t ? "left top" : "right top";
 
-			// 		0 < n.length && (o.to(n, s, {
-			// 			width: 30,
-			// 			ease: Power3.easeInOut
-			// 		}),
-			// 		o.to(a, s, {
-			// 			transformOrigin: l,
-			// 			scaleX: 0,
-			// 			ease: Power3.easeInOut
-			// 		})),
-			// 		o.to(i, s, {
-			// 			width: 60,
-			// 			ease: Power3.easeInOut
-			// 		}),
-			// 		o.to(r, s, {
-			// 			transformOrigin: d,
-			// 			scaleX: 1,
-			// 			ease: Power3.easeInOut
-			// 		})
-			// 	};
+				0 < n.length && (o.to(n, s, {
+					width: 30,
+					ease: Power3.easeInOut
+				}),
+				o.to(a, s, {
+					transformOrigin: l,
+					scaleX: 0,
+					ease: Power3.easeInOut
+				})),
+				o.to(i, s, {
+					width: 60,
+					ease: Power3.easeInOut
+				}),
+				o.to(r, s, {
+					transformOrigin: d,
+					scaleX: 1,
+					ease: Power3.easeInOut
+				})
 
-			// },
+			},
 		},
 		watch: {
 		},
