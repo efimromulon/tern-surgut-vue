@@ -5,35 +5,53 @@
 				<menu-datafilter/>
 			</div>
 			<div class="view-layout-header__snippet">
-				<vue-slider 
-					v-model="sliderValue"
-					:min="min"
-					:max="max"
-					:min-range="1"
-					:enable-cross="false"
-				></vue-slider>
+				<div class="view-layout-header__snippet-title">
+					Диапазон прироста
+				</div>
+				<div class="view-layout-header__snippet-slider">
+					<vue-slider 
+						v-model="sliderValue"
+						:min="min"
+						:max="max"
+						:min-range="1"
+						:enable-cross="false"
+					></vue-slider>
+				</div>
 			</div>
 		</div>
 		<div class="view-layout-body">
-			<div class="date-picker">
-				<date-picker 
-				v-model="time1" 
-				range 
-				:shortcuts="shortcuts1" 
-				:lang="lang" 
-				confirm
-				:first-day-of-week="1"
-				></date-picker>
-			</div>
-			<div class="date-picker">
-				<date-picker 
-				v-model="time2" 
-				range 
-				:shortcuts="shortcuts2" 
-				:lang="lang" 
-				confirm
-				:first-day-of-week="1"
-				></date-picker>
+			<div class="view-layout-body__snippet">
+				<div class="view-layout-body__snippet-title">
+					Диапазон дат
+				</div>
+				<div class="view-layout-body__snippet-datepickers">
+					<div class="date-picker">
+						<div class="date-picker-title">
+							анализ
+						</div>
+						<date-picker 
+						v-model="time1" 
+						range 
+						:shortcuts="shortcuts1" 
+						:lang="lang" 
+						confirm
+						:first-day-of-week="1"
+						></date-picker>
+					</div>
+					<div class="date-picker">
+						<div class="date-picker-title">
+							сравнение
+						</div>
+						<date-picker 
+						v-model="time2" 
+						range 
+						:shortcuts="shortcuts2" 
+						:lang="lang" 
+						confirm
+						:first-day-of-week="1"
+						></date-picker>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="view-layout-footer">
@@ -160,23 +178,64 @@
 			opacity: .3
 			z-index: 1
 	.view-layout-header__snippet
-		margin-top: 1rem
+		margin-top: 2rem
+		width: 100%
+		display: flex
+		flex-basis: auto
+		flex-direction: row
+		flex-grow: 0
+		flex-shrink: 1
+		flex-wrap: nowrap
+		justify-content: start
+	.view-layout-header__snippet-title
+		font-size: .8rem
+		width: 30%
+	.view-layout-header__snippet-slider
+		width: 70%
 
-
-
+	.view-layout-header__snippet-title, .view-layout-body__snippet-title, .date-picker-title
+		font-size: .8rem
+	.date-picker-title
+		text-transform: uppercase
 
 	.view-layout-body
 		padding: 0 1rem
-		margin-top: 1rem
+		margin-top: 2rem
+	.view-layout-body__snippet
+		width: 100%
+		display: flex
+		flex-basis: auto
+		flex-direction: row
+		flex-grow: 0
+		flex-shrink: 1
+		flex-wrap: nowrap
+		justify-content: start
+	.view-layout-body__snippet-title
+		width: 30%
+		padding-top: 1.85rem
+	.view-layout-body__snippet-datepickers
+		width: 70%
+		display: flex
+		flex-basis: auto
+		flex-direction: row
+		flex-grow: 0
+		flex-shrink: 1
+		flex-wrap: nowrap
+		justify-content: start
+	.date-picker
+		margin: 0 .5rem
+		width: 50%
 		.mx-datepicker-range
-			width: 50%
+			width: 100%
+		.date-picker-title
+			margin-bottom: .5rem
 
 	.view-layout-footer
 		padding: 1rem
-		padding-top: 0
 		margin-top: 1rem
 		//padding: 0 1rem 1rem
 		text-align: right
+		background-color: #F4F4F4
 
 	.view-layout-btn
 		margin-left: 1rem

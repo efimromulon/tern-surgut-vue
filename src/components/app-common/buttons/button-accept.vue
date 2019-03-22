@@ -58,11 +58,11 @@
 		text-align: center
 		vertical-align: middle
 
-		border: 2px solid $btn-accept
-		border-radius: 5px
+		background-color: $btn-accept-bg-color
+		border: 2px solid $btn-accept-border-color
 		color: $btn-accept-font-color
+		border-radius: 5px
 		font-family: 'Montserrat-Bold'
-		background-color: transparent
 		text-decoration: none
 		text-transform: none
 
@@ -77,5 +77,7 @@
 		white-space: normal
 		user-select: none
 		//transition: color .05s linear,background-color .05s linear
+		&:hover 
+			background-color: $color-green--hover
 
 </style>

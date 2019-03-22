@@ -2,6 +2,8 @@
 	<button
 		:class="['btn-reset-to-default', getBtnClassName()]"
 		@click = "resetToDefault"
+		ripple
+		ref='ripple'
 
 	>
 		Сбросить
@@ -10,6 +12,7 @@
 
 <script>
 
+	import debounce from 'lodash/debounce'
 
 	export default {
 
@@ -28,8 +31,16 @@
 		},
 		data() {
 			return {
-
+				rippleTarget: null,
+				rippleContainer: null,
 			};
+		},
+		mounted(){
+			console.log(this.$refs.ripple);
+			this.rippleTarget = this.$refs.ripple;
+			this.rippleContainer = document.createElement('div');
+			this.rippleContainer.className = 'ripple--container';
+			this.rippleTarget.appendChild(this.rippleContainer);
 		},
 		methods: {
 			getBtnClassName(){
@@ -37,11 +48,36 @@
 				let b = a;
 				return b;
 			},
-			resetToDefault(){
+			resetToDefault(e){
+				this.rippleEffect(e);
 				// switch (true){
 				// 	case this.btnType === '' :
 				// 		//this.$store.dispatch('');
-				// };			
+				// };
+
+			},
+			rippleEffect(e){
+				let ripple = this.rippleTarget,
+					rippleContainer = this.rippleContainer;
+
+				let size, pos, x, y, style, rippler;
+				size = ripple.offsetWidth;
+				pos = ripple.getBoundingClientRect();
+				rippler  = document.createElement('span');
+				x = e.pageX - pos.left - (size / 2);
+				y = e.pageY - pos.top  - (size / 2);
+				style = 'top:' + y + 'px; left:' + x + 'px; height: ' + size + 'px; width: ' + size + 'px;';
+				rippleContainer.appendChild(rippler);
+				rippler.setAttribute('style', style);
+
+
+
+				setTimeout(function() {
+					while (rippleContainer.firstChild) {
+						rippleContainer.removeChild(rippleContainer.firstChild);
+					}
+				}, 800);
+
 			},
 		},
 	};
@@ -58,10 +94,11 @@
 		text-align: center
 		vertical-align: middle
 
-		border: 2px solid $btn-reset-to-default
-		background-color: $btn-reset-to-default
+
+		border: 2px solid $color-green--enabled
+		background-color: $color-green--enabled
 		border-radius: 5px
-		color: $btn-reset-to-default-font-color
+		color: #000
 		font-family: 'Montserrat-Bold'
 		text-decoration: none
 		text-transform: none
@@ -76,6 +113,9 @@
 		line-height: 1.875rem
 		white-space: normal
 		user-select: none
+		&:hover
+			border: 2px solid $color-green--hover
+			background-color: $color-green--hover
 		//transition: color .05s linear,background-color .05s linear
 
 </style>
