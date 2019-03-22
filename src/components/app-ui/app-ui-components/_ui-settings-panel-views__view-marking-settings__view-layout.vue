@@ -55,14 +55,18 @@
 			</div>
 		</div>
 		<div class="view-layout-footer">
-			<button-reset-to-default
-					:btnClassName="btnAcceptClassName"
+			<buttonRectangle
+					:btnClassName="btnClassName"
+					:btnType="btnRectResetName"
+					:btnText="btnRectResetText"
 					:btnDisable="false"
-			></button-reset-to-default>
-			<button-accept
-					:btnClassName="btnAcceptClassName"
+			></buttonRectangle>
+			<buttonRectangle
+					:btnClassName="btnClassName"
+					:btnType="btnRectAcceptName"
+					:btnText="btnRectAcceptText"
 					:btnDisable="false"
-			></button-accept>
+			></buttonRectangle>
 		</div>
 	</div>
 </template>
@@ -97,8 +101,11 @@
 		data () {
 			return {
 				sliderValue: [33, 47],
-				btnAcceptClassName: 'view-layout-btn',
-
+				btnClassName: 'view-layout-btn',
+				btnRectAcceptName: 'btn-accept',
+				btnRectResetName: 'btn-reset',
+				btnRectResetText: 'Сбросить',
+				btnRectAcceptText: 'Применить',
 				time1: '',
 				time2: '',
 				lang: {
@@ -237,7 +244,5 @@
 		text-align: right
 		background-color: #F4F4F4
 
-	.view-layout-btn
-		margin-left: 1rem
 
 </style>

@@ -1,22 +1,19 @@
-[ripple]
-	position: relative
-	overflow: hidden
-	background-color: red
-	.ripple--container
-		position: absolute
-		top: 0
-		right: 0
-		bottom: 0
-		left: 0
-		span
-			transform: scale(0)
-			border-radius: 100%
-			position: absolute
-			opacity: 0.75
-			background-color: #fff
-			animation: ripple 1000ms
+$green: #2FD782
+$red: #AF0023
 
-@keyframes ripple
-	to
-		opacity: 0
-		transform: scale(2)
+$color-green--enabled: rgba($green, .0)
+$color-green--hover: rgba($green, .08)
+$color-green--focus: rgba($green, .24)
+$color-green--selected: rgba($green, .16)
+$color-green--activated: rgba($green, .24)
+$color-green--pressed: rgba($green, .32)
+$color-green--dragged: rgba($green, .16)
+
+$color-red--enabled: rgba($red, .0)
+$color-red--hover: rgba($red, .08)
+$color-red--focus: rgba($red, .24)
+$color-red--selected: rgba($red, .16)
+$color-red--activated: rgba($red, .24)
+$color-red--pressed: rgba($red, .32)
+$color-red--dragged: rgba($red, .16)
+
