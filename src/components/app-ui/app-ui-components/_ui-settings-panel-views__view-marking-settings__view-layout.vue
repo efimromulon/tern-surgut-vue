@@ -3,7 +3,6 @@
 		<div class="view-layout-header">
 			<div class="view-layout-header__menu">
 				<menu-datafilter/>
-				<indicator-fluid/>
 			</div>
 			<div class="view-layout-header__snippet">
 				<vue-slider 

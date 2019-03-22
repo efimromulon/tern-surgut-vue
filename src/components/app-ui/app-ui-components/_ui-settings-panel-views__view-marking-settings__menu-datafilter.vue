@@ -51,5 +51,13 @@
 		flex-shrink: 1
 		flex-wrap: nowrap
 		justify-content: start
-
+		&:before
+			content: ""
+			position: absolute
+			opacity: 1
+			width: 100%
+			height: 1px
+			bottom: 1px
+			left: 0
+			background-color: #DAF0E4
 </style>

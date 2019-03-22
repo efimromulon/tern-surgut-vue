@@ -300,8 +300,9 @@ export default ({
 		get_range_Datafilter_default: (state) => {
 			return state.range_Datafilter_default;
 		},
+		get_uiMarkingMenuDatafilterActive: (state, getters) => {
+			return state[getters.get_uiMarkingMenuDatatypeButton_active].find(button => button.buttonState === true).buttonID
+		},
 
 	}
 })
-
-
