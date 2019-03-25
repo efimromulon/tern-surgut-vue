@@ -6,7 +6,7 @@
 		ref='ripple'
 
 	>
-		{{btnText}}
+		<span>{{btnText}}</span>
 	</button>
 </template>
 
@@ -49,7 +49,7 @@
 			this.rippleTarget = this.$refs.ripple;
 			this.rippleContainer = document.createElement('div');
 			this.rippleContainer.className = 'ripple--container';
-			this.rippleTarget.appendChild(this.rippleContainer);
+			this.rippleTarget.insertBefore(this.rippleContainer, this.rippleTarget.childNodes[0]);
 		},
 		methods: {
 			getBtnTypeName(){
@@ -76,7 +76,7 @@
 				x = e.pageX - pos.left - (size / 2);
 				y = e.pageY - pos.top  - (size / 2);
 				style = 'top:' + y + 'px; left:' + x + 'px; height: ' + size + 'px; width: ' + size + 'px;';
-				rippleContainer.appendChild(rippler);
+				rippleContainer.append(rippler);
 				rippler.setAttribute('style', style);
 
 
@@ -113,6 +113,9 @@
 		line-height: 1.875rem
 		white-space: normal
 		user-select: none
+		span
+			position: relative
+			z-index: 9999999
 
 	[ripple]
 		position: relative
@@ -127,35 +130,39 @@
 				transform: scale(0)
 				border-radius: 100%
 				position: absolute
-				animation: ripple 1000ms
+				animation: ripple 800ms
 
 	.btn-reset
 		.ripple--container
 			span
-				background-color: $color-red--pressed
+				background-color: $button-reset--pressed
 	.btn-accept	
+		color: rgba(#000, .74)
 		.ripple--container
 			span
-				background-color: $color-green--pressed
+				background-color: $button-accept--pressed
 	@keyframes ripple
 		to
 			opacity: 0
-			transform: scale(2)
+			transform: scale(3)
 
 	.view-layout-btn
 		margin-left: 1rem
 
 	.btn-reset
-		background-color: $color-red--enabled
-		color: #000
+		border: 2px solid transparent
+		background-color: transparent
 		&:hover
-			background-color: $color-red--hover
+			transition: all 150ms
+			color: rgba(#fff, 1)
+			border: 2px solid $button-reset--hover
+			background-color: $button-reset--hover
 
-	.btn-accept		
-		background-color: $green
-		border: 2px solid $green
-		color: #fff
+	.btn-accept
+		background-color: $button-accept--enabled
+		border: 2px solid $button-accept--enabled
 		&:hover 
-			border: 2px solid $color-green--hover
-			background-color: $color-green--hover
+			transition: all 150ms
+			border: 2px solid $button-accept--hover
+			background-color: $button-accept--hover
 </style>

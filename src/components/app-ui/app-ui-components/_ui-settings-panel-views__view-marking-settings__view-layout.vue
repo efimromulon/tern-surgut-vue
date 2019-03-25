@@ -230,8 +230,11 @@
 		flex-wrap: nowrap
 		justify-content: start
 	.date-picker
-		margin: 0 .5rem
 		width: 50%
+		&:first-child
+			margin-right: .5rem
+		&:last-child
+			margin-left: .5rem
 		.mx-datepicker-range
 			width: 100%
 		.date-picker-title
