@@ -15,6 +15,7 @@
 						:max="max"
 						:min-range="1"
 						:enable-cross="false"
+						:process="process"
 					></vue-slider>
 				</div>
 			</div>
@@ -96,11 +97,16 @@
 			max: {
 				type: Number,
 				required: false,
-			},
+			}
 		},
 		data () {
 			return {
 				sliderValue: [33, 47],
+				process: dotsPos => [
+					[0, dotsPos[0], { backgroundColor: 'red' }],
+					[dotsPos[0], dotsPos[1], { backgroundColor: 'orange' }],
+					[dotsPos[1], 100, { backgroundColor: 'green' }]
+				],
 				btnClassName: 'view-layout-btn',
 				btnRectAcceptName: 'btn-accept',
 				btnRectResetName: 'btn-reset',
