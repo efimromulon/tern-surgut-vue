@@ -1,9 +1,12 @@
 <template>
-	<view-layout
-		:vueSlider="vueSlider"
-		:min="min"
-		:max="max"
-	></view-layout>
+	<keep-alive>
+		<view-layout
+			:vueSlider="vueSlider"
+			:datePicker="datePicker"
+			:min="min"
+			:max="max"
+		></view-layout>
+	</keep-alive>
 </template>
 
 <script>

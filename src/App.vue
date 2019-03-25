@@ -11,7 +11,7 @@
 
 	import appUi 	from '@/components/app-ui/app-ui.vue';
 	import appMap 	from '@/components/app-map/app-map.vue';
-	import { mapActions } from 'vuex'
+	import { mapActions, mapGetters } from 'vuex'
 	import jsongetCurrentUser from '../public/json/getCurrentUser.json'
 	import jsongetAzsInfo from '../public/json/getAzsInfo.json'
 	import jsongetFuelStock from '../public/json/getFuelStock.json'
@@ -31,20 +31,35 @@
 		computed: {
 
 		},
+		computed: {
+			...mapGetters([
+				'get_uiMarkingMenuDatatypeButton_active',
+			]),
+			uiMarkingMenuDatatypeButton_active(){
+				return this.get_uiMarkingMenuDatatypeButton_active
+			},
+		},
+		watch: {
+			uiMarkingMenuDatatypeButton_active(newCount, oldCount){
+			},
+		},
 		methods: {
-			...mapActions(['get_local_json', 'get_indicator_json', 'get_json_map', 'testaction', 'stations_sort_by_colors']),
+			...mapActions(['get_local_json', 'get_indicator_json', 'set_stations', 'set_stations_colors', 'get_json_map', 'set_fuel_sell', 'stations_sort_by_colors']),
 
 			/// MAP - JSON's
 			LOAD_JSONS_FOR_MAP(){
-				var a = {jsonName: 'getFuelSell', jsonData: jsongetFuelSell};
-				var b = {jsonName: 'getFuelStock', jsonData: jsongetFuelStock};
-				var c = {jsonName: 'getArticleSell', jsonData: jsongetArticleSell};
-				var d = {jsonName: 'getDepartmentFull', jsonData: jsongetDepartmentFull};
-				this.$store.dispatch('testaction', a).then(
+				var a = {jsonName: 'getFuelSell', jsonData: jsongetFuelSell},
+					b = {jsonName: 'getFuelStock', jsonData: jsongetFuelStock},
+					c = {jsonName: 'getArticleSell', jsonData: jsongetArticleSell},
+					d = {jsonName: 'getDepartmentFull', jsonData: jsongetDepartmentFull};
+				this.$store.dispatch('set_fuel_sell', a).then(
 					result => {
 						this.$store.dispatch('get_json_map', b);
 						this.$store.dispatch('get_json_map', c);
-						this.$store.dispatch('get_json_map', d);
+					}
+				).then(
+					result => {
+						this.$store.dispatch('set_stations', d);
 					}
 				).then(
 					result => {
@@ -52,11 +67,17 @@
 					}
 				).then(
 					result => {
-						this.$store.dispatch('stations_sort_by_colors');
+						this.$store.dispatch('set_ui_marking_menu_gas_buttons');
 					}
 				).then(
 					result => {
-						this.$store.dispatch('set_ui_marking_menu_gas_buttons');
+						var m = this.uiMarkingMenuDatatypeButton_active;
+						console.log('app - datatype', m)
+						this.$store.dispatch('set_stations_colors', m);
+					}
+				).then(
+					result => {
+						this.$store.dispatch('stations_sort_by_colors');
 					}
 				)
 			},

@@ -97,8 +97,10 @@ export default ({
 		uiMarkingMenuDatafilterFuelSellButtons: [],
 		uiMarkingMenuDatafilterArticleSellButtons: [],
 
-		range_Datafilter_default: [0, 13],
-		range_Datafilter_current: [],
+		range_Datafilter_default: [-100, -30],
+		range_Datafilter_fuelsell: [],
+		range_Datafilter_fuelstock: [],
+		range_Datafilter_articlesell: [],
 
 	},
 
@@ -218,7 +220,7 @@ export default ({
 
 			let fstock = rootState.map.fuel_stock_filters,
 				fsell = rootState.map.fuel_sell_filters,
-				asell = rootState.map.acrticle_sell_filters,
+				asell = rootState.map.article_sell_filters,
 				payload = {'fstock': fstock, 'fsell': fsell, 'asell': asell};
 
 			

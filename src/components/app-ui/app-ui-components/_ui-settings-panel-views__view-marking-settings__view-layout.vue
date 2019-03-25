@@ -4,7 +4,7 @@
 			<div class="view-layout-header__menu">
 				<menu-datafilter/>
 			</div>
-			<div class="view-layout-header__snippet">
+			<div class="view-layout-header__snippet" v-if="vueSlider">
 				<div class="view-layout-header__snippet-title">
 					Диапазон прироста
 				</div>
@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="view-layout-body">
-			<div class="view-layout-body__snippet">
+			<div class="view-layout-body__snippet" v-if="datePicker">
 				<div class="view-layout-body__snippet-title">
 					Диапазон дат
 				</div>
@@ -87,6 +87,10 @@
 
 		props: {
 			vueSlider: {
+				type: Boolean,
+				required: true,
+			},
+			datePicker: {
 				type: Boolean,
 				required: false,
 			},
@@ -155,6 +159,7 @@
 			},
 		},
 		mounted(){
+			console.log(this.datePicker);
 			this.SET_DEFAULT_VALUE();
 		},
 		methods: {
