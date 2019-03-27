@@ -100,7 +100,7 @@ export default ({
 		range_Datafilter_default: [-5, 2],
 		range_Datafilter_fuelsell: [-50, 20],
 		range_Datafilter_fuelstock: [],
-		range_Datafilter_articlesell: [],
+		range_Datafilter_articlesell: [-34, 100],
 
 	},
 

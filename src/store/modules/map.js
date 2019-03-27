@@ -41,21 +41,31 @@ export default ({
 
 		fuel_sell_data: [],
 		fuel_sell_dates_compare: [
-			"[native Date Fri Mar 01 2019 00:00:00 GMT+0300 (Москва, стандартное время)]",
-			"[native Date Sun Mar 03 2019 00:00:00 GMT+0300 (Москва, стандартное время)]"
+			"2019-03-01",
+			"2019-03-02"
 		],
 		fuel_sell_dates_analysis: [
-			"[native Date Thu Mar 07 2019 00:00:00 GMT+0300 (Москва, стандартное время)]",
-			"[native Date Fri Mar 15 2019 00:00:00 GMT+0300 (Москва, стандартное время)]"
+			"2019-04-06",
+			"2019-05-13"
 		],
+		fuel_sell_dates_compare_default: [],
+		fuel_sell_dates_analysis_default: [],
 		fuel_sell_filters: '',
 
 		fuel_stock_data: [],
 		fuel_stock_filters: '',
 
 		article_sell_data: [],
-		article_sell_dates_compare: [],
-		article_sell_dates_analysis: [],
+		article_sell_dates_compare: [
+			"2019-04-07",
+			"2019-04-09"
+		],
+		article_sell_dates_analysis: [
+			"2019-01-01",
+			"2019-05-28"
+		],
+		article_sell_dates_compare_default: [],
+		article_sell_dates_analysis_default: [],
 		article_sell_filters: '',
 	},
 
@@ -397,6 +407,24 @@ export default ({
 		},
 		GET_dates_analysis: (state) => {
 			return x => state[x + '_dates_analysis'];
+		},
+		GET_dates_compare_default: (state) => {
+			return x => state[x + '_dates_compare_default'];
+		},
+		GET_dates_analysis_default: (state) => {
+			return x => state[x + '_dates_analysis_default'];
+		},
+		GET_fuel_sell_dates_compare: (state) => {
+			return state.fuel_sell_dates_compare;
+		},
+		GET_fuel_sell_dates_analysis: (state) => {
+			return state.fuel_sell_dates_analysis;
+		},
+		GET_article_sell_dates_compare: (state) => {
+			return state.article_sell_dates_compare;
+		},
+		GET_article_sell_dates_analysis: (state) => {
+			return state.article_sell_dates_analysis;
 		}
 
 	}
