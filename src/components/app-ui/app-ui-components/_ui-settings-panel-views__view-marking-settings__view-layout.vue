@@ -31,7 +31,7 @@
 							анализ
 						</div>
 						<date-picker 
-						v-model="time1" 
+						v-model="analysisValue" 
 						range 
 						:shortcuts="shortcuts1" 
 						:lang="lang" 
@@ -44,7 +44,7 @@
 							сравнение
 						</div>
 						<date-picker 
-						v-model="time2" 
+						v-model="compareValue" 
 						range 
 						:shortcuts="shortcuts2" 
 						:lang="lang" 
@@ -67,6 +67,7 @@
 					:btnType="btnRectAcceptName"
 					:btnText="btnRectAcceptText"
 					:btnDisable="false"
+					:btnClick="SEND_NEW_REQUEST"
 			></buttonRectangle>
 		</div>
 	</div>
@@ -86,6 +87,10 @@
 		},
 
 		props: {
+			viewName: {
+				type: String,
+				required: true,
+			},
 			vueSlider: {
 				type: Boolean,
 				required: true,
@@ -105,7 +110,8 @@
 		},
 		data () {
 			return {
-				sliderValue: [33, 47],
+				viewNameForDP: '',
+				sliderValue: [],
 				process: dotsPos => [
 					[0, dotsPos[0], { backgroundColor: 'red' }],
 					[dotsPos[0], dotsPos[1], { backgroundColor: 'orange' }],
@@ -116,8 +122,8 @@
 				btnRectResetName: 'btn-reset',
 				btnRectResetText: 'Сбросить',
 				btnRectAcceptText: 'Применить',
-				time1: '',
-				time2: '',
+				analysisValue: '',
+				compareValue: '',
 				lang: {
 					days: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
 					months: ['Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'],
@@ -131,7 +137,7 @@
 					{
 						text: 'Сегодня',
 						onClick: () => {
-							this.time1 = [ new Date(), new Date() ]
+							this.analysisValue = [ new Date(), new Date() ]
 						}
 					}
 				],
@@ -139,7 +145,7 @@
 					{
 						text: 'Сегодня',
 						onClick: () => {
-							this.time2 = [ new Date(), new Date() ]
+							this.compareValue = [ new Date(), new Date() ]
 						}
 					}
 				],
@@ -149,23 +155,78 @@
 		computed: {
 			...mapGetters([
 				'get_range_Datafilter_default',
+				'get_range_Datafilter_By_Name',
+				'GET_dates_compare',
+				'GET_dates_analysis',
 			]),
 			range_Datafilter_default(){
 				return this.get_range_Datafilter_default
+			},
+			current_range_Datafilter(){
+				return this.get_range_Datafilter_By_Name(this.viewName)
+			},
+			dates_compare(){
+				return this.GET_dates_compare(this.viewNameForDP)
+			},
+			dates_analysis(){
+				return this.GET_dates_analysis(this.viewNameForDP)
 			},
 		},
 		watch: {
 			range_Datafilter_default(newCount, oldCount){
 			},
+			current_range_Datafilter(newCount, oldCount){
+				this.SET_DEFAULT_SLIDER_VALUE();
+			},
+			dates_compare(newCount, oldCount){
+				this.SET_DEFAULT_DATEPICKERS_VALUE();
+			},
+			dates_analysis(newCount, oldCount){
+				this.SET_DEFAULT_DATEPICKERS_VALUE();
+			},
 		},
 		mounted(){
 			console.log(this.datePicker);
-			this.SET_DEFAULT_VALUE();
+			this.SET_PAYLOAD_FOR_DP(this.viewName);
+			this.SET_DEFAULT_SLIDER_VALUE();
+			this.SET_DEFAULT_DATEPICKERS_VALUE();
 		},
 		methods: {
-			SET_DEFAULT_VALUE(){
-				this.sliderValue.length === 0 ? this.sliderValue = this.range_Datafilter_default : this.sliderValue;
-				//this.sliderValue = this.range_Datafilter_default;
+			SET_PAYLOAD_FOR_DP(viewName){
+				switch (true) {
+					case viewName === 'fuelsell' : 
+						this.viewNameForDP = 'fuel_sell';
+						break;
+					case viewName === 'fuelstock' : 
+						this.viewNameForDP = 'fuel_stock';
+						break;
+					case viewName === 'articlesell' : 
+						this.viewNameForDP = 'article_sell';
+						break;
+				};
+			},
+			SET_DEFAULT_SLIDER_VALUE(){
+
+				console.log('SET_DEFAULT_SLIDER_VALUE');
+
+				let newRangeValue;
+
+				newRangeValue = this.current_range_Datafilter.length === 0 ? this.range_Datafilter_default : this.current_range_Datafilter;
+				this.sliderValue = this.sliderValue.length === 0 ? newRangeValue : this.sliderValue;
+
+			},
+			SET_DEFAULT_DATEPICKERS_VALUE(){
+
+				console.log('SET_DEFAULT_DATEPICKERS_VALUE');
+				console.log(this.dates_compare);
+				console.log(this.dates_analysis);
+
+				this.compareValue 	= this.compareValue.length 	=== 0 	? this.dates_compare : this.compareValue;
+				this.analysisValue 	= this.analysisValue.length === 0 	? this.dates_analysis : this.analysisValue;
+
+			},
+			SEND_NEW_REQUEST(){
+				
 			},
 		},
 	}

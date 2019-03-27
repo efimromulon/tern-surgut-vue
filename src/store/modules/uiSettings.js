@@ -80,12 +80,12 @@ export default ({
 			{
 				buttonID: 0, 
 				buttonName: 'Дней до исчерпания резервуара',
-				buttonState: true
+				buttonState: false
 			},
 			{
 				buttonID: 1, 
 				buttonName: 'Динамика реализации топлива',
-				buttonState: false
+				buttonState: true
 			},
 			{
 				buttonID: 2, 
@@ -97,8 +97,8 @@ export default ({
 		uiMarkingMenuDatafilterFuelSellButtons: [],
 		uiMarkingMenuDatafilterArticleSellButtons: [],
 
-		range_Datafilter_default: [-100, -30],
-		range_Datafilter_fuelsell: [],
+		range_Datafilter_default: [-5, 2],
+		range_Datafilter_fuelsell: [-50, 20],
 		range_Datafilter_fuelstock: [],
 		range_Datafilter_articlesell: [],
 
@@ -301,6 +301,9 @@ export default ({
 		},
 		get_range_Datafilter_default: (state) => {
 			return state.range_Datafilter_default;
+		},
+		get_range_Datafilter_By_Name: (state) => {
+			return x => state['range_Datafilter_' + x];
 		},
 		get_uiMarkingMenuDatafilterActive: (state, getters) => {
 			return state[getters.get_uiMarkingMenuDatatypeButton_active].find(button => button.buttonState === true).buttonID

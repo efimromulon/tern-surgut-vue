@@ -5,6 +5,7 @@
 			:datePicker="datePicker"
 			:min="min"
 			:max="max"
+			:viewName="viewName"
 		></view-layout>
 	</keep-alive>
 </template>
@@ -20,6 +21,7 @@
 		},
 		data () {
 			return {
+				viewName: 'fuelsell',
 				vueSlider: true,
 				datePicker: true,
 				min: -100,

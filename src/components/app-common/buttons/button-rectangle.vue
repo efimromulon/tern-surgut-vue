@@ -1,7 +1,7 @@
 <template>
 	<button
 		:class="['button-rectangle', getBtnTypeName(), btnClassName]"
-		@click = "resetToDefault"
+		@click = "resetToDefault, btnClick"
 		ripple
 		ref='ripple'
 
@@ -34,6 +34,10 @@
 			},
 			btnDisable: {
 				type: Boolean,
+				required: false,
+			},
+			btnClick: {
+				type: Function,
 				required: false,
 			},
 		},

@@ -1,4 +1,13 @@
 <template>
+	<keep-alive>
+		<view-layout
+			:vueSlider="vueSlider"
+			:datePicker="datePicker"
+			:min="min"
+			:max="max"
+			:viewName="viewName"
+		></view-layout>
+	</keep-alive>
 </template>
 
 <script>
@@ -12,7 +21,11 @@
 		},
 		data () {
 			return {
-
+				viewName: 'articlesell',
+				vueSlider: true,
+				datePicker: true,
+				min: -100,
+				max: 100
 			}
 		},
 		computed: {

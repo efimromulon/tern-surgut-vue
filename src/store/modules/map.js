@@ -40,8 +40,14 @@ export default ({
 		stations_tnp: [],
 
 		fuel_sell_data: [],
-		fuel_sell_dates_compare: [],
-		fuel_sell_dates_analysis: [],
+		fuel_sell_dates_compare: [
+			"[native Date Fri Mar 01 2019 00:00:00 GMT+0300 (Москва, стандартное время)]",
+			"[native Date Sun Mar 03 2019 00:00:00 GMT+0300 (Москва, стандартное время)]"
+		],
+		fuel_sell_dates_analysis: [
+			"[native Date Thu Mar 07 2019 00:00:00 GMT+0300 (Москва, стандартное время)]",
+			"[native Date Fri Mar 15 2019 00:00:00 GMT+0300 (Москва, стандартное время)]"
+		],
 		fuel_sell_filters: '',
 
 		fuel_stock_data: [],
@@ -143,84 +149,59 @@ export default ({
 
 		},
 		SET_STATIONS_COLORS: (state, payload) => {
-			console.log(payload);
-			// let n = jsonPayload.jsonPayload.jsonName,
-				// d = jsonPayload.jsonPayload.jsonData,
-				// f = state.fuel_sell_filter_current,
-				// range = jsonPayload[1],
-				// res =[];
-			// console.log(jsonPayload.range);
-			// console.log(f);
-			// d.forEach(item => {
+			// console.log(payload);//{dataArrayName: "fuel_stock_data", dataFilter: "ВСЕ", dataRange: Array(2)}
+			// console.log(state[payload.dataArrayName][0].aFuelStock[0]['А92']);
+			// console.log(state[payload.dataArrayName][0].sStationId);
+			// console.log(state.stations_knp[0].valueRange);
+			// console.log(state.stations_knp[0].id);
+			// console.log(state.stations_kas);
+			// console.log(state.stations_nnp);
+			// console.log(state.stations_pnp);
+			// console.log(state.stations_tnp);
+			// console.log(state.stations_sorted);
 
-				// let a = item.sStationId,
-					// c = item.sStationCategory.replace(/\s+/g, ''),
-					// g = item.sCompanyName,//
-					// h = item.sStationAddress,
-					// k = item.sStationCity,
-					// l = item.sStationLabel,
-					// u = item.sStationName,
-					// p = item.sStationPhone,//
-					// latlng = [item.dStationLatitude, item.dStationLongitude],
-					// fuel = state.fuel_sell_data,
-					// value,
-					// color;
-
-				// fuel = fuel.find(i => {return i.sStationId === a;});
-				//результаты, id которых есть в json
-
-				// if ( (fuel !== undefined) && (fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)}) ) ) {
-
-					// value = fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)})[f] ;
-					// switch (true) {
-						// case value >= range[1]:
-							// color = 'g';
-							// break;
-						// case ( ( value >= range[0] ) && ( value < range[1] ) ):
-							// color = 'o';
-							// break;
-						// case value < range[0]:
-							// color = 'r';
-							// break;
-					// };
-
-					// res.push({
-						// id: a, 
-						// latlng: latlng, 
-						// category: c, 
-						// color: color, 
-						// valueRange: fuel.aFuelSell.find(i => {return Object.keys(i).includes(f)})[f],
-						// companyName: g,
-						// stationAddress: h,
-						// stationCity: k,
-						// stationLabel: l,
-						// stationName: u,
-						// stationPhone: p
-					// });
+			let filterArray 			= payload.dataArrayName,
+				dataFilter 				= payload.dataFilter,
+				sdo 					= ['stations_knp','stations_kas','stations_nnp','stations_pnp','stations_tnp'],
+				result 					= [],
+				currentValue,
+				currentRangeMin 		= payload.dataRange[0],
+				currentRangeMax 		= payload.dataRange[1],
+				currentComingDataName 	= payload.dataComingName;
 
 
-				// } else {
+			for (var i = 0; i <= sdo.length - 1; i++) {
+				console.log(i, 'iteration')
+				filter_and_set_color(sdo[i], state);
+			}
 
-					//Результаты, id которых нет в json
-					// res.push({
-						// id: a, 
-						// latlng: latlng, 
-						// category: c, 
-						// color: 'colorless', 
-						// valueRange: null,
-						// companyName: g,
-						// stationAddress: h,
-						// stationCity: k,
-						// stationLabel: l,
-						// stationName: u,
-						// stationPhone: p
-					// });
+			function filter_and_set_color(cursdo, state){
+				//console.log(cursdo, state);
+				state[cursdo].forEach( sdo_item => {
 
-				// };
+					let jsonDataItemExisting = state[payload.dataArrayName].find( dan_item => { return dan_item.sStationId === sdo_item.id});
 
-			// });
+					if(
+						jsonDataItemExisting
+					){
+						currentValue = jsonDataItemExisting[currentComingDataName].find(i => {return Object.keys(i).includes(dataFilter)})[dataFilter];
+						//console.log('match by ID', jsonDataItemExisting);
+						//console.log('currentValue', currentValue);
+						if( currentValue >=  currentRangeMax ){
+							sdo_item.color = 'g';
+						} else 
+						if ( (currentValue <  currentRangeMax) && (currentValue >=  currentRangeMin) ){
+							sdo_item.color = 'o';
+						} else 
+						if ( currentValue <  currentRangeMin ){
+							sdo_item.color = 'r';
+						};
+					} else {
+						sdo_item.color = 'colorless';
+					};
 
-			// state.stations = res;
+				});
+			};
 
 		},
 		STATIONS_SORT_BY_COLORS: (state) => {
@@ -232,7 +213,7 @@ export default ({
 				sdo = ['stations_knp','stations_kas','stations_nnp','stations_pnp','stations_tnp'],
 				colors = [g, o, r, c];
 
-			for (var i = 0, j = 0; i < colors.length, j < sdo.length; i++) {
+			for (var i = 0, j = 0; i < colors.length, j < sdo.length - 1; i++) {
 
 				var currentColor = colors[i],
 					currentSdo = sdo[j];
@@ -268,34 +249,38 @@ export default ({
 
 		},
 		set_stations_colors({state, commit, rootState}, datafilter) {
-			
+
 			let a = rootState.uiSettings[datafilter].find( btn => { return btn.buttonState === true }).buttonName,
 				b,
 				c,
-				d;
+				d,
+				g;
 
 			switch (true) {
 				case datafilter.search( /FuelSell/i ) 	 !== -1 : 
 					b = 'fuel_sell_data';
+					g = 'aFuelSell';
 					c = rootState.uiSettings.range_Datafilter_fuelsell;
 					d = c.length === 0 ? rootState.uiSettings.range_Datafilter_default : c;
 					break;
 
 				case datafilter.search( /FuelStock/i ) 	 !== -1 : 
 					b = 'fuel_stock_data';
+					g = 'aFuelStock';
 					c = rootState.uiSettings.range_Datafilter_fuelstock;
 					d = c.length === 0 ? rootState.uiSettings.range_Datafilter_default : c;
 					break;
 
 				case datafilter.search( /ArticleSell/i ) !== -1 :
 					b = 'article_sell_data';
+					g = 'aArticleSell';
 					c = rootState.uiSettings.range_Datafilter_articlesell;
 					d = c.length === 0 ? rootState.uiSettings.range_Datafilter_default : c;
 					break;
 
 			};
 
-			commit('SET_STATIONS_COLORS', {dataArray: b, dataFilter: a, dataRange: d});
+			commit('SET_STATIONS_COLORS', {dataArrayName: b, dataFilter: a, dataRange: d, dataComingName: g});
 
 		},
 		stations_sort_by_colors({state, commit, rootState}) {
@@ -407,6 +392,12 @@ export default ({
 		GET_article_sell_filters: (state) => {
 			return state.article_sell_filters;
 		},
+		GET_dates_compare: (state) => {
+			return x => state[x + '_dates_compare'];
+		},
+		GET_dates_analysis: (state) => {
+			return x => state[x + '_dates_analysis'];
+		}
 
 	}
 })
