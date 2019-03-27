@@ -65,6 +65,7 @@
 					:btnType="btnRectResetName"
 					:btnText="btnRectResetText"
 					:btnDisable="false"
+					:btnClick="SEND_NEW_REQUEST"
 			></buttonRectangle>
 			<buttonRectangle
 					:btnClassName="btnClassName"
@@ -243,7 +244,17 @@
 
 			},
 			SEND_NEW_REQUEST(){
-				
+
+				let payload;
+				payload = {
+					'viewName': this.viewName, 
+					'viewNameForDP': this.viewNameForDP, 
+					'sliderValue': this.sliderValue, 
+					'analysisValue': this.analysisValue, 
+					'compareValue': this.compareValue, 
+				};
+				console.log('SEND_NEW_REQUEST', payload);
+				this.$store.dispatch('set_filter_values', payload);
 			},
 		},
 	}

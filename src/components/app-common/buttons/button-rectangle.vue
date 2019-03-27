@@ -1,7 +1,7 @@
 <template>
 	<button
 		:class="['button-rectangle', getBtnTypeName(), btnClassName]"
-		@click = "resetToDefault, btnClick"
+		@click = "resetToDefault"
 		ripple
 		ref='ripple'
 
@@ -38,7 +38,7 @@
 			},
 			btnClick: {
 				type: Function,
-				required: false,
+				required: true,
 			},
 		},
 		data() {
@@ -49,7 +49,6 @@
 		},
 		mounted(){
 			this.buttonText = 'Сбросить';
-			console.log(this.$refs.ripple);
 			this.rippleTarget = this.$refs.ripple;
 			this.rippleContainer = document.createElement('div');
 			this.rippleContainer.className = 'ripple--container';
@@ -62,7 +61,9 @@
 				return b;
 			},
 			resetToDefault(e){
+				console.log('BUTTON ACCEPT');
 				this.rippleEffect(e);
+				this.btnClick();
 				// switch (true){
 				// 	case this.btnType === '' :
 				// 		//this.$store.dispatch('');

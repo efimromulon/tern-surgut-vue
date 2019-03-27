@@ -233,6 +233,9 @@ export default ({
 			};
 
 		},
+		SET_FILTER_VALUES: (state, payload) => {
+			console.log('SET_FILTER_VALUES', payload);
+		},
 
 	},
 	actions: {
@@ -316,6 +319,10 @@ export default ({
 					commit('SET_ARTICLE_SELL', jsonPayload);
 					break;
 			}
+		},
+		set_filter_values({state, commit, rootState}, payload){
+			commit('SET_UI_RANGE', payload);
+			commit('SET_FILTER_VALUES', payload);
 		},
 	},
 	getters: {

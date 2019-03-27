@@ -101,6 +101,9 @@ export default ({
 		range_Datafilter_fuelsell: [-50, 20],
 		range_Datafilter_fuelstock: [],
 		range_Datafilter_articlesell: [-34, 100],
+		range_Datafilter_fuelsell_new: [],
+		range_Datafilter_fuelstock_new: [],
+		range_Datafilter_articlesell_new: [],
 
 	},
 
@@ -205,6 +208,12 @@ export default ({
 
 			};
 
+		},
+		SET_UI_RANGE: (state, payload) => {
+			console.log('UI', payload);
+			// state.range_Datafilter_fuelsell_new
+			// state.range_Datafilter_fuelstock_new
+			// state.range_Datafilter_articlesell_new
 		},
 
 	},
