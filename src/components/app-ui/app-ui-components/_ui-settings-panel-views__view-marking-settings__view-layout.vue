@@ -60,9 +60,6 @@
 			</div>
 		</div>
 		<div class="view-layout-footer">
-						{{dates_compare}}
-
-						{{dates_analysis}}
 			<buttonRectangle
 					:btnClassName="btnClassName"
 					:btnType="btnRectResetName"
@@ -166,11 +163,7 @@
 				'GET_dates_compare',
 				'GET_dates_analysis',
 				'GET_dates_compare_default',
-				'GET_dates_analysis_default',
-				'GET_fuel_sell_dates_compare',
-				'GET_fuel_sell_dates_analysis',
-				'GET_article_sell_dates_compare',
-				'GET_article_sell_dates_analysis',
+				'GET_dates_analysis_default'
 			]),
 			range_Datafilter_default(){
 				return this.get_range_Datafilter_default
@@ -189,7 +182,7 @@
 			},
 			dates_analysis_default(){
 				return this.GET_dates_analysis_default(this.viewNameForDP)
-			},
+			}
 		},
 		watch: {
 			range_Datafilter_default(newCount, oldCount){
@@ -198,17 +191,17 @@
 				this.SET_DEFAULT_SLIDER_VALUE();
 			},
 			dates_compare(newCount, oldCount){
-			this.SET_DEFAULT_DATEPICKERS_VALUE();
+				this.SET_DEFAULT_DATEPICKERS_VALUE();
 			},
 			dates_analysis(newCount, oldCount){
-			this.SET_DEFAULT_DATEPICKERS_VALUE();
+				this.SET_DEFAULT_DATEPICKERS_VALUE();
 			},
 			dates_compare_default(newCount, oldCount){
-			this.SET_DEFAULT_DATEPICKERS_VALUE();
+				this.SET_DEFAULT_DATEPICKERS_VALUE();
 			},
 			dates_analysis_default(newCount, oldCount){
-			this.SET_DEFAULT_DATEPICKERS_VALUE();
-			},
+				this.SET_DEFAULT_DATEPICKERS_VALUE();
+			}
 		},
 		mounted(){
 			this.SET_PAYLOAD_FOR_DP(this.viewName);
@@ -239,11 +232,12 @@
 			},
 			SET_DEFAULT_DATEPICKERS_VALUE(){
 
-				let newDPValue_compare = [],
-					newDPValue_analysis = [];
+				let newDPValue_compare,
+					newDPValue_analysis;
 
-				newDPValue_compare = this.dates_compare.length === 0 ? newDPValue_compare : this.dates_compare;
-				newDPValue_analysis = this.dates_compare.length === 0 ? newDPValue_analysis : this.dates_compare;
+				newDPValue_compare = this.dates_compare.length === 0 ? this.dates_compare_default : this.dates_compare;
+				newDPValue_analysis = this.dates_analysis.length === 0 ? this.dates_analysis_default : this.dates_analysis;
+
 				this.compareValue 	= this.compareValue.length 	=== 0 	? newDPValue_compare : this.compareValue;
 				this.analysisValue 	= this.analysisValue.length === 0 	? newDPValue_analysis : this.analysisValue;
 

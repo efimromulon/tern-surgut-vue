@@ -41,12 +41,8 @@ export default ({
 
 		fuel_sell_data: [],
 		fuel_sell_dates_compare: [
-			"2019-03-01",
-			"2019-03-02"
 		],
 		fuel_sell_dates_analysis: [
-			"2019-04-06",
-			"2019-05-13"
 		],
 		fuel_sell_dates_compare_default: [],
 		fuel_sell_dates_analysis_default: [],
@@ -57,12 +53,8 @@ export default ({
 
 		article_sell_data: [],
 		article_sell_dates_compare: [
-			"2019-04-07",
-			"2019-04-09"
 		],
 		article_sell_dates_analysis: [
-			"2019-01-01",
-			"2019-05-28"
 		],
 		article_sell_dates_compare_default: [],
 		article_sell_dates_analysis_default: [],
@@ -114,9 +106,9 @@ export default ({
 				d = jsonPayload.jsonData;
 
 			state.fuel_sell_data 				= d.data;
-			state.fuel_sell_dates_compare 		= d.dates_compare;
-			state.fuel_sell_dates_analysis 		= d.dates_analysis;
 			state.fuel_sell_filters 			= d.filters;
+			state.fuel_sell_dates_compare 		= state.fuel_sell_dates_compare.length 	=== 0 ? d.dates_compare 	: state.fuel_sell_dates_compare;
+			state.fuel_sell_dates_analysis 		= state.fuel_sell_dates_analysis.length === 0 ? d.dates_analysis 	: state.fuel_sell_dates_analysis;
 
 		},
 		SET_FUEL_STOCK: (state, jsonPayload) => {
@@ -134,11 +126,14 @@ export default ({
 				d = jsonPayload.jsonData;
 
 			state.article_sell_data 			= d.data;
-			state.article_sell_dates_compare 	= d.dates_compare;
-			state.article_sell_dates_analysis 	= d.dates_analysis;
-			state.article_sell_filters 		= d.filters;
+			state.article_sell_filters 			= d.filters;
+			state.article_sell_dates_compare 	= state.article_sell_dates_compare.length 	=== 0 ? d.dates_compare 	: state.article_sell_dates_compare;
+			state.article_sell_dates_analysis 	= state.article_sell_dates_analysis.length 	=== 0 ? d.dates_analysis 	: state.article_sell_dates_analysis;
 
 		},
+
+
+
 		STATIONS_SORT_BY_SDO: (state) => {
 
 			state.stations_knp = state.stations.filter(i => {
@@ -413,18 +408,6 @@ export default ({
 		},
 		GET_dates_analysis_default: (state) => {
 			return x => state[x + '_dates_analysis_default'];
-		},
-		GET_fuel_sell_dates_compare: (state) => {
-			return state.fuel_sell_dates_compare;
-		},
-		GET_fuel_sell_dates_analysis: (state) => {
-			return state.fuel_sell_dates_analysis;
-		},
-		GET_article_sell_dates_compare: (state) => {
-			return state.article_sell_dates_compare;
-		},
-		GET_article_sell_dates_analysis: (state) => {
-			return state.article_sell_dates_analysis;
 		}
 
 	}
