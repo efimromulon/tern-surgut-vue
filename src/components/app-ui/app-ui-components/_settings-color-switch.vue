@@ -36,7 +36,7 @@
 		},
 
 		watch: {
-			uiColorSwitchButtons(newCount, oldCount){},
+			uiColorSwitchButtons(newCount, oldCount){}
 		},
 		
 	}

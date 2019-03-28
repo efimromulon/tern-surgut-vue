@@ -6,7 +6,7 @@
 		<div class="button_circle_part">
 			<div :class="['circle_part', getColorClass()]"></div>
 		</div>
-		<div class="button_rect_part">{{buttonsData.buttonState}}</div>
+		<div class="button_rect_part"><span v-if="buttonsData.buttonState">{{stations_color_value_by_color}}</span></div>
 	</button>
 </template>
 
@@ -16,19 +16,41 @@
 	// из props ButtonName с пом. methods.getColorClass() получается
 	// доп класс для кнопки 'circle_' + G или O, R и т.д.
 
+	import {mapGetters} from 'vuex'
 	import debounce from 'lodash/debounce'
 
 	export default {
+
 		name: 'settings-color-switch-button',
+
 		props: {
 			buttonsData: {
 				type: Object,
 				required: true,
 			},
 		},
+
 		data () {
-			return {}
+			return {
+			}
 		},
+
+		computed: {
+			...mapGetters([
+				'GET_stations_color_value_by_color',
+			]),
+			stations_color_value_by_color(){
+				return this.GET_stations_color_value_by_color(this.buttonsData.buttonName.substring(7).charAt(0).toLowerCase())
+			},
+		},
+
+		watch: {
+			stations_color_value_by_color(newCount, oldCount){}
+		},
+
+		mounted(){
+		},
+
 		methods: {		
 			getColorClass(){
 				let a = this.buttonsData.buttonName.substring(7);//button_>>Green<< 7 
@@ -46,6 +68,7 @@
 					125
 			)
 		},
+
 	}
 </script>
 
@@ -90,7 +113,7 @@
 				transition: all .3s
 				box-shadow: 0 3px 6px rgba(#CC0000, 0.16), 0 3px 6px rgba(#CC0000, 0.23)
 				background: #CC0000
-			.circle_Grey
+			.circle_Colorless
 				transition: all .3s
 				box-shadow: 0 3px 6px rgba(#C8C8C8, 0.16), 0 3px 6px rgba(#C8C8C8, 0.23)
 				background: #C8C8C8
@@ -101,6 +124,8 @@
 			right: 0% 
 			height: 45px
 			width: calc(100% - 12.5px)
+			span
+				line-height: 45px
 
 	.colors_buttons_wrapper_item
 		transition: all .3s

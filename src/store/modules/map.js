@@ -6,31 +6,31 @@ export default ({
 				g: [],
 				o: [],
 				r: [],
-				colorless: []
+				c: []
 			},
 			stations_kas: {
 				g: [],
 				o: [],
 				r: [],
-				colorless: []
+				c: []
 			},
 			stations_nnp: {
 				g: [],
 				o: [],
 				r: [],
-				colorless: []
+				c: []
 			},
 			stations_pnp: {
 				g: [],
 				o: [],
 				r: [],
-				colorless: []
+				c: []
 			},
 			stations_tnp: {
 				g: [],
 				o: [],
 				r: [],
-				colorless: []
+				c: []
 			},			
 		},
 		stations_knp: [],
@@ -216,7 +216,7 @@ export default ({
 							sdo_item.color = 'r';
 						};
 					} else {
-						sdo_item.color = 'colorless';
+						sdo_item.color = 'c';
 					};
 
 				});
@@ -228,7 +228,7 @@ export default ({
 			let g 	= 'g',
 				o 	= 'o',
 				r 	= 'r',
-				c 	= 'colorless',
+				c 	= 'c',
 				sdo = ['stations_knp','stations_kas','stations_nnp','stations_pnp','stations_tnp'],
 				colors = [g, o, r, c];
 
@@ -366,7 +366,7 @@ export default ({
 			return state.stations_sorted.stations_knp.r;
 		},
 		GET_stations_knp_c: (state) => {
-			return state.stations_sorted.stations_knp.colorless;
+			return state.stations_sorted.stations_knp.c;
 		},
 		GET_stations_kas_g: (state) => {
 			return state.stations_sorted.stations_kas.g;
@@ -378,7 +378,7 @@ export default ({
 			return state.stations_sorted.stations_kas.r;
 		},
 		GET_stations_kas_c: (state) => {
-			return state.stations_sorted.stations_kas.colorless;
+			return state.stations_sorted.stations_kas.c;
 		},
 		GET_stations_nnp_g: (state) => {
 			return state.stations_sorted.stations_nnp.g;
@@ -390,7 +390,7 @@ export default ({
 			return state.stations_sorted.stations_nnp.r;
 		},
 		GET_stations_nnp_c: (state) => {
-			return state.stations_sorted.stations_nnp.colorless;
+			return state.stations_sorted.stations_nnp.c;
 		},
 		GET_stations_pnp_g: (state) => {
 			return state.stations_sorted.stations_pnp.g;
@@ -402,7 +402,7 @@ export default ({
 			return state.stations_sorted.stations_pnp.r;
 		},
 		GET_stations_pnp_c: (state) => {
-			return state.stations_sorted.stations_pnp.colorless;
+			return state.stations_sorted.stations_pnp.c;
 		},
 		GET_stations_tnp_g: (state) => {
 			return state.stations_sorted.stations_tnp.g;
@@ -414,7 +414,7 @@ export default ({
 			return state.stations_sorted.stations_tnp.r;
 		},
 		GET_stations_tnp_c: (state) => {
-			return state.stations_sorted.stations_tnp.colorless;
+			return state.stations_sorted.stations_tnp.c;
 		},
 		GET_fuel_sell_filters: (state) => {
 			return state.fuel_sell_filters;
@@ -436,7 +436,10 @@ export default ({
 		},
 		GET_dates_analysis_default: (state) => {
 			return x => state[x + '_dates_analysis_default'];
-		}
+		},
+		GET_stations_all: (state) => {
+			return state.stations
+		},
 
 	}
 })

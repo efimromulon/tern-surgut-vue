@@ -27,7 +27,7 @@ export default ({
 			},
 			{
 				buttonID: 3, 
-				buttonName: 'button_Grey', 
+				buttonName: 'button_Colorless', 
 				buttonState: true
 			}
 		],
@@ -96,7 +96,6 @@ export default ({
 		uiMarkingMenuDatafilterFuelStockButtons: [],
 		uiMarkingMenuDatafilterFuelSellButtons: [],
 		uiMarkingMenuDatafilterArticleSellButtons: [],
-
 		range_Datafilter_default: [-5, 2],
 		range_Datafilter_fuelsell: [-50, 20],
 		range_Datafilter_fuelstock: [],
@@ -316,6 +315,9 @@ export default ({
 		},
 		get_uiMarkingMenuDatafilterActive: (state, getters) => {
 			return state[getters.get_uiMarkingMenuDatatypeButton_active].find(button => button.buttonState === true).buttonID
+		},
+		GET_stations_color_value_by_color: (state, getters, rootState) => {
+			return x => rootState.map.stations.filter( s => { return s.color === x}).length;
 		},
 
 	}
