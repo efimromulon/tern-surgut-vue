@@ -1,10 +1,10 @@
 <template>
 	<li class="search-snippet-view">
 		<div class="search-snippet-name">{{searchItemArr[0].category}}</div>
-		<div class="search-business-snippet-view">
+		<div class="search-business-snippet-view"  v-for="i in searchItemArr">
 			<div class="search-business-snippet-view__body">
 				<ul>
-					<li v-for="i in searchItemArr">
+					<li>
 						{{i.color}}<br/>
 						{{i.companyName}}<br/>
 						{{i.id}}<br/>
@@ -14,7 +14,6 @@
 						{{i.stationLabel}}<br/>
 						{{i.stationName}}<br/>
 						{{i.stationPhone}}<br/>
-						{{i.valueRange}}<br/>
 					</li>
 				</ul>
 			</div>
@@ -57,6 +56,7 @@
 <style lang='sass'>
 	.search-snippet-view
 		display: list-item
+		padding: 16px
 		background-color: #fff
 		user-select: none
 		text-decoration: none

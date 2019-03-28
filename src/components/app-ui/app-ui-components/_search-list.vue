@@ -156,7 +156,7 @@
 	.search-list-view__list
 		list-style: none
 		margin: 0
-		padding: 0
+		padding: 16px
 	.search-page-view
 		list-style: none
 		margin: 0
