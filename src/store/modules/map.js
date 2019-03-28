@@ -39,26 +39,29 @@ export default ({
 		stations_pnp: [],
 		stations_tnp: [],
 
-		fuel_sell_data: [],
-		fuel_sell_dates_compare: [
-		],
-		fuel_sell_dates_analysis: [
-		],
-		fuel_sell_dates_compare_default: [],
-		fuel_sell_dates_analysis_default: [],
-		fuel_sell_filters: '',
+		fuel_sell_data: 	[],
+		fuel_stock_data: 	[],
+		article_sell_data: 	[],
 
-		fuel_stock_data: [],
-		fuel_stock_filters: '',
+		fuel_sell_filters: 		'',
+		fuel_stock_filters: 	'',
+		article_sell_filters: 	'',
 
-		article_sell_data: [],
-		article_sell_dates_compare: [
-		],
-		article_sell_dates_analysis: [
-		],
-		article_sell_dates_compare_default: [],
-		article_sell_dates_analysis_default: [],
-		article_sell_filters: '',
+		fuel_sell_dates_compare_default: 		[],
+		fuel_sell_dates_compare: 				["2011-01-01", "2011-02-02"],
+		fuel_sell_dates_compare_prev: 			[],
+
+		fuel_sell_dates_analysis_default: 		[],
+		fuel_sell_dates_analysis: 				["2011-03-03", "2011-04-04"],
+		fuel_sell_dates_analysis_prev: 			[],
+
+		article_sell_dates_compare_default: 	[],
+		article_sell_dates_compare: 			["2010-01-01", "2010-02-02"],
+		article_sell_dates_compare_prev: 		[],
+
+		article_sell_dates_analysis_default: 	[],
+		article_sell_dates_analysis: 			["2010-03-03", "2010-03-03"],
+		article_sell_dates_analysis_prev: 		[],
 	},
 
 	mutations: {
@@ -107,8 +110,14 @@ export default ({
 
 			state.fuel_sell_data 				= d.data;
 			state.fuel_sell_filters 			= d.filters;
-			state.fuel_sell_dates_compare 		= state.fuel_sell_dates_compare.length 	=== 0 ? d.dates_compare 	: state.fuel_sell_dates_compare;
-			state.fuel_sell_dates_analysis 		= state.fuel_sell_dates_analysis.length === 0 ? d.dates_analysis 	: state.fuel_sell_dates_analysis;
+			//state.fuel_sell_dates_compare 		= state.fuel_sell_dates_compare.length 	=== 0 ? d.dates_compare 	: state.fuel_sell_dates_compare;
+			//state.fuel_sell_dates_analysis 		= state.fuel_sell_dates_analysis.length === 0 ? d.dates_analysis 	: state.fuel_sell_dates_analysis;
+
+			state.fuel_sell_dates_compare_prev 	= state.fuel_sell_dates_compare;
+			state.fuel_sell_dates_compare 		= d.dates_compare;
+
+			state.fuel_sell_dates_analysis_prev = state.fuel_sell_dates_analysis;
+			state.fuel_sell_dates_analysis 		= d.dates_analysis;
 
 		},
 		SET_FUEL_STOCK: (state, jsonPayload) => {
@@ -127,9 +136,14 @@ export default ({
 
 			state.article_sell_data 			= d.data;
 			state.article_sell_filters 			= d.filters;
-			state.article_sell_dates_compare 	= state.article_sell_dates_compare.length 	=== 0 ? d.dates_compare 	: state.article_sell_dates_compare;
-			state.article_sell_dates_analysis 	= state.article_sell_dates_analysis.length 	=== 0 ? d.dates_analysis 	: state.article_sell_dates_analysis;
+			//state.article_sell_dates_compare 	= state.article_sell_dates_compare.length 	=== 0 ? d.dates_compare 	: state.article_sell_dates_compare;
+			//state.article_sell_dates_analysis 	= state.article_sell_dates_analysis.length 	=== 0 ? d.dates_analysis 	: state.article_sell_dates_analysis;
 
+			state.article_sell_dates_compare_prev 	= state.article_sell_dates_compare;
+			state.article_sell_dates_compare 		= d.dates_compare;
+
+			state.article_sell_dates_analysis_prev 	= state.article_sell_dates_analysis;
+			state.article_sell_dates_analysis 		= d.dates_analysis;
 		},
 
 
@@ -239,12 +253,6 @@ export default ({
 
 	},
 	actions: {
-// uiMarkingMenuDatafilterFuelStockButtons
-// uiMarkingMenuDatafilterFuelSellButtons
-// uiMarkingMenuDatafilterArticleSellButtons
-// range_Datafilter_fuelsell
-// range_Datafilter_fuelstock
-// range_Datafilter_articlesell
 		set_fuel_sell: (state, jsonPayload) => {
 			return new Promise ((resolve, reject) => {
 				state.commit('SET_FUEL_SELL', jsonPayload)
@@ -321,8 +329,21 @@ export default ({
 			}
 		},
 		set_filter_values({state, commit, rootState}, payload){
-			commit('SET_UI_RANGE', payload);
-			commit('SET_FILTER_VALUES', payload);
+
+			let payload_ui 		= {
+					'sliderValue'	: payload.sliderValue, 
+					'viewName'		: payload.viewName
+				},
+				payload_map 	= { 
+					'viewNameForDP'	: payload.viewNameForDP, 
+					'sliderValue'	: payload.sliderValue, 
+					'analysisValue'	: payload.analysisValue, 
+					'compareValue'	: payload.compareValue, 
+				};
+
+			commit(	'SET_UI_RANGE', 		payload_ui	);
+			commit(	'SET_FILTER_VALUES', 	payload_map	);
+
 		},
 	},
 	getters: {

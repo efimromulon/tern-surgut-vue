@@ -90,11 +90,8 @@
 		cursor: pointer
 		padding-left: 1rem
 		padding-right: 1rem
-
 		text-align: center
 		vertical-align: middle
-
-
 		border: 2px solid $color-green--enabled
 		background-color: $color-green--enabled
 		border-radius: 5px
@@ -102,12 +99,9 @@
 		font-family: 'Montserrat-Bold'
 		text-decoration: none
 		text-transform: none
-
 		overflow: visible
-
 		position: relative
 		display: inline-block
-
 		background-clip: border-box
 		font-size: .75rem
 		line-height: 1.875rem
@@ -116,6 +110,4 @@
 		&:hover
 			border: 2px solid $color-green--hover
 			background-color: $color-green--hover
-		//transition: color .05s linear,background-color .05s linear
-
 </style>

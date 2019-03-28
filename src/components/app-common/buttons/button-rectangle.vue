@@ -136,7 +136,6 @@
 				border-radius: 100%
 				position: absolute
 				animation: ripple 800ms
-
 	.btn-reset
 		.ripple--container
 			span
@@ -150,10 +149,8 @@
 		to
 			opacity: 0
 			transform: scale(3)
-
 	.view-layout-btn
 		margin-left: 1rem
-
 	.btn-reset
 		border: 2px solid transparent
 		background-color: transparent
@@ -162,7 +159,6 @@
 			color: rgba(#fff, 1)
 			border: 2px solid $button-reset--hover
 			background-color: $button-reset--hover
-
 	.btn-accept
 		background-color: $button-accept--enabled
 		border: 2px solid $button-accept--enabled

@@ -70,7 +70,6 @@
 		svg
 			height: 30px
 			width: 30px
-			//vertical-align: middle
 	.appInterface_button
 		@include shadow(2)
 	.button_funnel

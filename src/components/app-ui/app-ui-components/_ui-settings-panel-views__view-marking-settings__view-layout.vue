@@ -261,91 +261,83 @@
 </script>
 
 <style lang="sass">
-
-	.marking-settings__view-layout
-		position: relative
-
-	.view-layout-header
-		box-sizing: border-box
+.marking-settings__view-layout
+	position: relative
+.view-layout-header
+	box-sizing: border-box
+	width: 100%
+	padding: 1rem
+	padding-bottom: 0
+.view-layout-header__menu
+	padding-bottom: 0
+	position: relative
+	&:after
+		content: ''
 		width: 100%
-		padding: 1rem
-		padding-bottom: 0
-	.view-layout-header__menu
-		padding-bottom: 0
-		position: relative
-		&:after
-			content: ''
-			width: 100%
-			height: 1px
-			position: absolute
-			bottom: 0
-			left: 0
-			right: 0
-			border-top: 1px solid $srgt-light-blue
-			opacity: .3
-			z-index: 1
-	.view-layout-header__snippet
-		margin-top: 2rem
+		height: 1px
+		position: absolute
+		bottom: 0
+		left: 0
+		right: 0
+		border-top: 1px solid $srgt-light-blue
+		opacity: .3
+		z-index: 1
+.view-layout-header__snippet
+	margin-top: 2rem
+	width: 100%
+	display: flex
+	flex-basis: auto
+	flex-direction: row
+	flex-grow: 0
+	flex-shrink: 1
+	flex-wrap: nowrap
+	justify-content: flex-start
+.view-layout-header__snippet-title
+	font-size: .8rem
+	width: 30%
+.view-layout-header__snippet-slider
+	width: 70%
+.view-layout-header__snippet-title, .view-layout-body__snippet-title, .date-picker-title
+	font-size: .8rem
+.date-picker-title
+	text-transform: uppercase
+.view-layout-body
+	padding: 0 1rem
+	margin-top: 2rem
+.view-layout-body__snippet
+	width: 100%
+	display: flex
+	flex-basis: auto
+	flex-direction: row
+	flex-grow: 0
+	flex-shrink: 1
+	flex-wrap: nowrap
+	justify-content: flex-start
+.view-layout-body__snippet-title
+	width: 30%
+	padding-top: 1.85rem
+.view-layout-body__snippet-datepickers
+	width: 70%
+	display: flex
+	flex-basis: auto
+	flex-direction: row
+	flex-grow: 0
+	flex-shrink: 1
+	flex-wrap: nowrap
+	justify-content: flex-start
+.date-picker
+	width: 50%
+	&:first-child
+		margin-right: .5rem
+	&:last-child
+		margin-left: .5rem
+	.mx-datepicker-range
 		width: 100%
-		display: flex
-		flex-basis: auto
-		flex-direction: row
-		flex-grow: 0
-		flex-shrink: 1
-		flex-wrap: nowrap
-		justify-content: start
-	.view-layout-header__snippet-title
-		font-size: .8rem
-		width: 30%
-	.view-layout-header__snippet-slider
-		width: 70%
-
-	.view-layout-header__snippet-title, .view-layout-body__snippet-title, .date-picker-title
-		font-size: .8rem
 	.date-picker-title
-		text-transform: uppercase
-
-	.view-layout-body
-		padding: 0 1rem
-		margin-top: 2rem
-	.view-layout-body__snippet
-		width: 100%
-		display: flex
-		flex-basis: auto
-		flex-direction: row
-		flex-grow: 0
-		flex-shrink: 1
-		flex-wrap: nowrap
-		justify-content: start
-	.view-layout-body__snippet-title
-		width: 30%
-		padding-top: 1.85rem
-	.view-layout-body__snippet-datepickers
-		width: 70%
-		display: flex
-		flex-basis: auto
-		flex-direction: row
-		flex-grow: 0
-		flex-shrink: 1
-		flex-wrap: nowrap
-		justify-content: start
-	.date-picker
-		width: 50%
-		&:first-child
-			margin-right: .5rem
-		&:last-child
-			margin-left: .5rem
-		.mx-datepicker-range
-			width: 100%
-		.date-picker-title
-			margin-bottom: .5rem
-
-	.view-layout-footer
-		padding: 1rem
-		margin-top: 1rem
-		//padding: 0 1rem 1rem
-		text-align: right
-		background-color: #F4F4F4
-
-
+		margin-bottom: .5rem
+.view-layout-footer
+	padding: 1rem
+	margin-top: 1rem
+	text-align: right
+	background-color: #F4F4F4
 </style>

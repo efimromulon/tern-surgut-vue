@@ -101,9 +101,9 @@ export default ({
 		range_Datafilter_fuelsell: [-50, 20],
 		range_Datafilter_fuelstock: [],
 		range_Datafilter_articlesell: [-34, 100],
-		range_Datafilter_fuelsell_new: [],
-		range_Datafilter_fuelstock_new: [],
-		range_Datafilter_articlesell_new: [],
+		range_Datafilter_fuelsell_prev: [],
+		range_Datafilter_fuelstock_prev: [],
+		range_Datafilter_articlesell_prev: [],
 
 	},
 
@@ -136,7 +136,7 @@ export default ({
 
 			///
 			function toggleUiButton (a, b, c){
-				console.log('a', a, 'b', b, 'c', c);
+				//console.log('a', a, 'b', b, 'c', c);
 				a === 0 ? state[b].find(button => button.buttonID === buttonId).buttonState = !c : false;
 
 				if ( a === 1 ) {

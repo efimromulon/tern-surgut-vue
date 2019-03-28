@@ -100,11 +100,7 @@
 <style lang="sass">
 
 	.page-indicator
-		//element.style 
-		//opacity: 1
-		//transform: matrix(1, 0, 0, 1, 0, 0)
 		list-style: none
-		//margin: -100px 0 0 0
 		padding: 0
 		display: block
 		overflow: hidden
@@ -130,9 +126,6 @@
 		width: 60px
 
 	.bar
-		// element.style
-		// transform: matrix(1, 0, 0, 1, 0, 0)
-		// transform-origin: center bottom 0px
 		width: 60px
 		height: 2px
 		background: #FFFFFF

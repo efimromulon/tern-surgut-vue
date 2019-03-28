@@ -1,5 +1,5 @@
 <template>
-	<keep-alive>
+
 		<view-layout
 			:vueSlider="vueSlider"
 			:datePicker="datePicker"
@@ -7,7 +7,7 @@
 			:max="max"
 			:viewName="viewName"
 		></view-layout>
-	</keep-alive>
+
 </template>
 
 <script>

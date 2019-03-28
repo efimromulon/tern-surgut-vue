@@ -131,8 +131,6 @@
 		position: absolute
 		top: 0
 		width: 100vw
-		// left: 1rem
-		// right: 1rem
 
 	.header-view
 		position: absolute
@@ -172,7 +170,6 @@
 		height: auto
 		user-select: none
 		white-space: nowrap
-		//background-color: red
 		width: 40vw
 
 	.app-ui-main-view

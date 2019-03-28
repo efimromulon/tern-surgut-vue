@@ -54,10 +54,8 @@
 		cursor: pointer
 		padding-left: 1rem
 		padding-right: 1rem
-
 		text-align: center
 		vertical-align: middle
-
 		background-color: $btn-accept-bg-color
 		border: 2px solid $btn-accept-border-color
 		color: $btn-accept-font-color
@@ -65,18 +63,14 @@
 		font-family: 'Montserrat-Bold'
 		text-decoration: none
 		text-transform: none
-
 		overflow: visible
-
 		position: relative
 		display: inline-block
-
 		background-clip: border-box
 		font-size: .75rem
 		line-height: 1.875rem
 		white-space: normal
 		user-select: none
-		//transition: color .05s linear,background-color .05s linear
 		&:hover 
 			background-color: $color-green--hover
 

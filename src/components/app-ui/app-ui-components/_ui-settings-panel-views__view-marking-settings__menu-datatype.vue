@@ -54,7 +54,7 @@
 		flex-grow: 0
 		flex-shrink: 1
 		flex-wrap: nowrap
-		justify-content: start
+		justify-content: flex-start
 		@include shadow(2)
 		@include border(2)
 		background-color: $color-white
