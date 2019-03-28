@@ -39,6 +39,7 @@
 			this.UPDATE_BUTTON_DATA_STATE();
 		},
 		mounted(){
+			console.log('12455')
 		},
 		methods: {
 			UPDATE_BUTTON_DATA_STATE(){
