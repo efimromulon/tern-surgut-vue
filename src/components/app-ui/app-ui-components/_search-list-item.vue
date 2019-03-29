@@ -11,7 +11,13 @@
 						{{i.stationAddress}}<br/>
 					</div>
 					<div class="search-business-snippet-view__footer">
-						{{i.stationAddress}}<br/>
+						<button-rectangle-text
+							:btnClassName="btnClassName"
+							:btnType="btnRectTextName"
+							:btnText="btnRectTextText"
+							:btnDisable="false"
+							:btnClick="SEND_OPEN"
+						></button-rectangle-text>
 					</div>
 				</div>
 			</li>
@@ -34,12 +40,15 @@
 		},
 		data () {
 			return {
+				btnClassName: 'search-business-snippet-view__button',
+				btnRectTextName: 'search-business-snippet-view__button-detailed',
+				btnRectTextText: 'подробнее',
 			}
 		},
 		computed: {
 		},
 		methods: {
-
+			SEND_OPEN(){},
 		},
 		mounted(){
 
@@ -81,10 +90,15 @@
 	.search-snippet-name
 		padding: 16px
 	.search-business-snippet-view
-		padding: 16px
+		+border(2)
+		+shadow(2)
 	.search-business-snippet-view__header
+		padding: 16px 16px 0 16px
 	.search-business-snippet-view__body
+		padding: 0 16px 0 16px
 	.search-business-snippet-view__footer
+		padding: 0 16px 16px 16px
+		text-align: right
 
 
 	.sidebar-left-panel-header-view
