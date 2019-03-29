@@ -1,23 +1,21 @@
 <template>
 	<li class="search-snippet-view">
 		<div class="search-snippet-name">{{searchItemArr[0].category}}</div>
-		<div class="search-business-snippet-view"  v-for="i in searchItemArr">
-			<div class="search-business-snippet-view__body">
-				<ul>
-					<li>
-						{{i.color}}<br/>
-						{{i.companyName}}<br/>
-						{{i.id}}<br/>
-						{{i.latlng}}<br/>
-						{{i.stationAddress}}<br/>
-						{{i.stationCity}}<br/>
-						{{i.stationLabel}}<br/>
+		<ul>
+			<li  v-for="i in searchItemArr">
+				<div class="search-business-snippet-view">
+					<div class="search-business-snippet-view__header">
 						{{i.stationName}}<br/>
-						{{i.stationPhone}}<br/>
-					</li>
-				</ul>
-			</div>
-		</div>
+					</div>
+					<div class="search-business-snippet-view__body">
+						{{i.stationAddress}}<br/>
+					</div>
+					<div class="search-business-snippet-view__footer">
+						{{i.stationAddress}}<br/>
+					</div>
+				</div>
+			</li>
+		</ul>
 	</li>
 </template>
 <script>
@@ -78,8 +76,15 @@
 			background-color: #ededed
 			height: 1px
 			width: 100%
+		ul
+			list-style: none
 	.search-business-snippet-view
+		padding: 16px
+	.search-business-snippet-view__header
 	.search-business-snippet-view__body
+	.search-business-snippet-view__footer
+
+	
 	.sidebar-left-panel-header-view
 		border-bottom: 1px solid #ededed
 		padding-right: 70px
