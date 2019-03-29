@@ -78,13 +78,15 @@
 			width: 100%
 		ul
 			list-style: none
+	.search-snippet-name
+		padding: 16px
 	.search-business-snippet-view
 		padding: 16px
 	.search-business-snippet-view__header
 	.search-business-snippet-view__body
 	.search-business-snippet-view__footer
 
-	
+
 	.sidebar-left-panel-header-view
 		border-bottom: 1px solid #ededed
 		padding-right: 70px
