@@ -30,7 +30,7 @@
 		data () {
 
 			return {
-
+				tl: null,
 			}
 			
 		},
@@ -58,7 +58,6 @@
 			},
 
 			...mapActions(['search', 'setSearchQuery']),
-
 			debouncedSearch: 
 				debounce(
 					function(e){
@@ -71,7 +70,7 @@
 		},
 
 		mounted(){
-
+			this.tl = new TimelineMax();
 		},
 	}
 

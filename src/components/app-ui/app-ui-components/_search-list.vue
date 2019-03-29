@@ -53,7 +53,9 @@
 		data () {
 			return {
 				data_displayResultLabels: null,
-				data_SearchInput: null
+				data_SearchInput: null,
+				tl: null,
+				tl_options: {},
 			}
 		},
 		computed: {
@@ -65,6 +67,7 @@
 				'getSearchResultTNP',
 				'getSearchResultNNP',
 				'getSearchResultKAS',
+				'getNumberOfSearchResults',
 			]),
 			get_searchResults(){
 				return this.$store.getters.get_searchResults;
@@ -105,13 +108,39 @@
 				return result;
 			},
 		},
+		watch: {
+			get_searchResults(newCount, oldCount){
+				this.searchDataToComponentData();
+			},
+			searchCollapsed(newCount, oldCount){},
+			getSearchLoading(newCount, oldCount){},
+			getSearchResultKNP(newCount, oldCount){},
+			getSearchResultPNP(newCount, oldCount){},
+			getSearchResultTNP(newCount, oldCount){},
+			getSearchResultNNP(newCount, oldCount){},
+			getSearchResultKAS(newCount, oldCount){},
+			getNumberOfSearchResults(newCount, oldCount){
+				if(newCount === 0){
+					this.sl_animate_in();
+				} else {
+					this.sl_animate_out();
+				};
+			},
+		},
 		methods: {
 			searchDataToComponentData(){
 				this.data_SearchInput = this.SearchInput;
 				this.data_displayResultLabels = this.displayResultLabels;
 			},
+			sl_animate_in(){
+				tl.to('.Search-results',.2,{top: 300,ease: Power2.easeInOut}, 0)
+			},
+			sl_animate_out(){
+
+			},
 		},
 		mounted(){
+			this.tl = new TimelineMax();
 			this.searchDataToComponentData();
 			Scrollbar.use(OverscrollPlugin)
 			Scrollbar.init(document.querySelector('.Search-results'), {
@@ -130,25 +159,6 @@
 				}
 			});
 		},
-		watch: {
-			get_searchResults(newCount, oldCount){
-				this.searchDataToComponentData();
-			},
-			searchCollapsed(newCount, oldCount){
-			},
-			getSearchLoading(newCount, oldCount){
-			},
-			getSearchResultKNP(newCount, oldCount){
-			},
-			getSearchResultPNP(newCount, oldCount){
-			},
-			getSearchResultTNP(newCount, oldCount){
-			},
-			getSearchResultNNP(newCount, oldCount){
-			},
-			getSearchResultKAS(newCount, oldCount){
-			},
-		}
 	}
 </script>
 
@@ -160,4 +170,12 @@
 		list-style: none
 		margin: 0
 		padding: 0
+	.Search-results
+		position: relative
+		top: -100px
+	.sidebar-left-panel-header-view
+		position: relative
+		overflow: hidden
+	.sidebar-left-panel-view
+		overflow: hidden
 </style>

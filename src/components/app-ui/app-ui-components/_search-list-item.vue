@@ -87,6 +87,9 @@
 			width: 100%
 		ul
 			list-style: none
+			li
+				&:hover
+					background-color: $button-text--hover
 	.search-snippet-name
 		padding: 16px
 	.search-business-snippet-view
@@ -94,8 +97,10 @@
 		+shadow(2)
 	.search-business-snippet-view__header
 		padding: 16px 16px 0 16px
+		font-size: .95rem
 	.search-business-snippet-view__body
 		padding: 0 16px 0 16px
+		font-size: .85rem
 	.search-business-snippet-view__footer
 		padding: 0 16px 16px 16px
 		text-align: right

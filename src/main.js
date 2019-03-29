@@ -8,6 +8,7 @@ import uiSettingsPanelViewsViewMarkingSettingsViewLayout from '@/components/app-
 import buttonRectangle from '@/components/app-common/buttons/button-rectangle.vue'
 import buttonRectangleText from '@/components/app-common/buttons/button-rectangle-text.vue'
 import indicatorFluid from '@/components/app-common/indications/indicator-fluid.vue'
+import { TimelineMax } from 'gsap'
 
 Vue.config.productionTip = false;
 Vue.component('VueSlider', VueSlider);

@@ -160,5 +160,18 @@ export default ({
 		getSearchResultKAS(state){
 			return state.searchResultKAS;
 		},
+		getNumberOfSearchResults(state){
+			if(
+				state.searchResultKNP.length > 0 ||
+				state.searchResultPNP.length > 0 ||
+				state.searchResultTNP.length > 0 ||
+				state.searchResultNNP.length > 0 ||
+				state.searchResultKAS.length > 0
+			){
+				return 0
+			} else {
+				return -1
+			};
+		},
 	}
 })
