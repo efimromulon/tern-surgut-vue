@@ -23,7 +23,7 @@
 							autocorrect="off"
 							v-model="qQuery"
 							@input="debouncedSearch"
-							@blur="SEARCH_BLUR"
+							
 						>
 					</span>
 				</span>
@@ -148,6 +148,8 @@
 		height: 100%
 		overflow: hidden
 		cursor: text
+		input
+			text-align: center
 	.input_air-search-large-control
 		font-size: 14px
 		line-height: 1.2em

@@ -235,12 +235,13 @@
 		position: relative
 		width: 20vw
 		min-height: 36px
-		background: #fff
+		//background: #fff
 		border-radius: 4px
 		overflow: hidden
+		//color: $color-white
 		@include shadow(2)
-		color: $color-white
-
+	.Search-results
+	.search-list-view
 	.sidebar-right-panel-view
 		transform: translateX(-100%)
 
@@ -264,10 +265,12 @@
 		position: absolute
 		top: 0
 		right: 0
+		z-index: 999999999
 
 	.sidebar-left-panel-view__close
 		right: 36px
 		position: absolute
 		top: 0
+		z-index: 999999999
 
 </style>

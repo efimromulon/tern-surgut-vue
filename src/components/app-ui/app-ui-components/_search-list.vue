@@ -1,5 +1,5 @@
 <template>
-	<div class="search-list-view">
+	<div class="search-list-view" ref="SearchListView" >
 		<div class="sidebar-left-panel-header-view">
 			<div class="sidebar-left-panel-header-view__title">
 				<div class="sidebar-left-panel-header-view__title-text">
@@ -7,34 +7,47 @@
 				</div>
 			</div>
 		</div>
-		<div class="Search-results"  data-scrollbar tabindex="1" v-show="!searchCollapsed">
-			<div class="scroll-content" style="overflow: hidden; outline: none;">
-				<div class="search-list-view__list">
-				<ul class="search-page-view">
-					<search-list-item
-						:searchItemArr="getSearchResultKNP"
-						v-if="getSearchResultKNP.length !== 0"
-					></search-list-item>
-					<search-list-item
-						:searchItemArr="getSearchResultPNP"
-						v-if="getSearchResultPNP.length !== 0"
-					></search-list-item>
-					<search-list-item
-						:searchItemArr="getSearchResultTNP"
-						v-if="getSearchResultTNP.length !== 0"
-					></search-list-item>
-					<search-list-item
-						:searchItemArr="getSearchResultNNP"
-						v-if="getSearchResultNNP.length !== 0"
-					></search-list-item>
-					<search-list-item
-						:searchItemArr="getSearchResultKAS"
-						v-if="getSearchResultKAS.length !== 0"
-					></search-list-item>
-				</ul>
+		<transition
+			v-on:before-enter="beforeEnter"
+			v-on:enter="enter"
+			v-on:after-enter="afterEnter"
+			v-on:enter-cancelled="enterCancelled"
+
+			v-on:before-leave="beforeLeave"
+			v-on:leave="leave"
+			v-on:after-leave="afterLeave"
+			v-on:leave-cancelled="leaveCancelled"
+			mode="out-in"
+		>
+			<div class="Search-results"  data-scrollbar tabindex="1" v-show="!searchCollapsed">
+				<div class="scroll-content" style="overflow: hidden; outline: none;">
+					<div class="search-list-view__list">
+					<ul class="search-page-view">
+						<search-list-item
+							:searchItemArr="getSearchResultKNP"
+							v-if="getSearchResultKNP.length !== 0"
+						></search-list-item>
+						<search-list-item
+							:searchItemArr="getSearchResultPNP"
+							v-if="getSearchResultPNP.length !== 0"
+						></search-list-item>
+						<search-list-item
+							:searchItemArr="getSearchResultTNP"
+							v-if="getSearchResultTNP.length !== 0"
+						></search-list-item>
+						<search-list-item
+							:searchItemArr="getSearchResultNNP"
+							v-if="getSearchResultNNP.length !== 0"
+						></search-list-item>
+						<search-list-item
+							:searchItemArr="getSearchResultKAS"
+							v-if="getSearchResultKAS.length !== 0"
+						></search-list-item>
+					</ul>
+					</div>
 				</div>
 			</div>
-		</div>
+		</transition>
 	</div>
 </template>
 <script>
@@ -79,11 +92,11 @@
 			getSearchResultNNP(newCount, oldCount){},
 			getSearchResultKAS(newCount, oldCount){},
 			getNumberOfSearchResults(newCount, oldCount){
-				if(newCount === 0){
-					this.sl_animate_in();
-				} else {
-					this.sl_animate_out();
-				};
+				// if(newCount === 0){
+				// 	this.sl_animate_in();
+				// } else {
+				// 	this.sl_animate_out();
+				// };
 			},
 		},
 		methods: {
@@ -98,9 +111,51 @@
 			sl_animate_out(){
 
 			},
+			beforeEnter: function (el) {
+			},
+			enter: function (el, done) {
+				console.log("Enter");
+				console.log(this.tl);
+				//Search-results
+				let vh = window.innerHeight * 0.01;
+				let newHeight = this.$refs.SearchListView.offsetHeight;
+				let H = newHeight + 'px';
+				let negH = '-' + H;
+				console.log(H);
+				console.log(negH);
+				this.tl
+				//.fromTo('.Search-results', 1, {top: negH}, {top: "0px", ease: Power2.easeInOut})
+				.fromTo('.sidebar-left-panel-view', 1, {height: "37px"},{height: H, ease: Power2.easeInOut, onComplete: done});
+			},
+			afterEnter: function (el) {
+			},
+			enterCancelled: function (el) {
+			},
+			beforeLeave: function (el) {
+			},
+			leave: function (el, done) {
+				console.log("Leave");
+				let vh = window.innerHeight * 0.01;
+				let newHeight = this.$refs.SearchListView.offsetHeight;
+				let H = newHeight + 'px';
+				let negH = '-' + H;
+				console.log(H);
+				console.log(negH);
+				this.tl
+				.fromTo('.sidebar-left-panel-view', 1, {height: H},{height: "37px", ease: Power2.easeInOut, onComplete: done});
+				//.fromTo('.Search-results', 1, {top: "0px"}, {top: negH, ease: Power2.easeInOut, onComplete: done}, "-=1");
+				
+			},
+			afterLeave: function (el) {
+			},
+			// leaveCancelled only available with v-show
+			leaveCancelled: function (el) {
+
+			},
 		},
 		mounted(){
 			this.tl = new TimelineMax();
+
 			this.searchDataToComponentData();
 			Scrollbar.use(OverscrollPlugin)
 			Scrollbar.init(document.querySelector('.Search-results'), {
@@ -134,7 +189,9 @@
 		position: relative
 	.sidebar-left-panel-header-view
 		position: relative
+		top: 0
 		overflow: hidden
+		z-index: 1
 	.sidebar-left-panel-view
 		overflow: hidden
 </style>

@@ -10,6 +10,7 @@
 
 	import uiSettingsPanelViewsViewMarkingExpress from './_ui-settings-panel-views__view-marking-express.vue'
 	import uiSettingsPanelViewsViewMarkingSettings from './_ui-settings-panel-views__view-marking-settings.vue'
+	import uiSettingsPanelViewsViewLayers from './_ui-settings-panel-views__view-layers.vue'
 
 	export default {
 
@@ -17,6 +18,7 @@
 		components: {
 			uiSettingsPanelViewsViewMarkingExpress,
 			uiSettingsPanelViewsViewMarkingSettings,
+			uiSettingsPanelViewsViewLayers,
 		},
 		data () {
 			return {
@@ -26,6 +28,7 @@
 		computed: {
 			...mapGetters([
 				'get_uiMarkingMenuButtons_active_componentName',
+				'get_uiCoreMenuButton_active_componentName',
 			]),
 			activePanelView(){
 				
@@ -49,8 +52,14 @@
 				// };
 
 				// console.log(testInput(testString));
+				if(this.get_uiCoreMenuButton_active_componentName === 'ui-settings-panel-menus-menu-marking-settings'){
+					return this.get_uiMarkingMenuButtons_active_componentName
+				} else 
+				if(this.get_uiCoreMenuButton_active_componentName === 'ui-settings-panel-menus-menu-layers-settings'){
+					return 'uiSettingsPanelViewsViewLayers'
+				};
 
-				return this.get_uiMarkingMenuButtons_active_componentName
+				
 			},
 		},
 		watch: {

@@ -95,11 +95,12 @@
 		position: relative
 		cursor: pointer
 		line-height: 37px
-		margin: 0 10px
 		font-family: 'Montserrat-Medium'
 		font-size: 14px
 		white-space: nowrap
 		text-overflow: ellipsis
+		overflow: hidden
+		padding: 0 16px
 		&:hover
 			&:after
 				content: ''

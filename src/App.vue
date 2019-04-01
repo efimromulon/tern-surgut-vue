@@ -71,6 +71,7 @@
 					}
 				).then(
 					result => {
+						console.log('app', this.uiMarkingMenuDatatypeButton_active);
 						var m = this.uiMarkingMenuDatatypeButton_active;
 						console.log('app - datatype', m)
 						this.$store.dispatch('set_stations_colors', m);

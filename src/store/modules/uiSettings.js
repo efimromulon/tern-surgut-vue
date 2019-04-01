@@ -140,7 +140,7 @@ export default ({
 
 			///
 			function toggleUiButton (a, b, c){
-				//console.log('a', a, 'b', b, 'c', c);
+				console.log('a', a, 'b', b, 'c', c);
 				a === 0 ? state[b].find(button => button.buttonID === buttonId).buttonState = !c : false;
 
 				if ( a === 1 ) {
@@ -319,7 +319,10 @@ export default ({
 			return x => state['range_Datafilter_' + x];
 		},
 		get_uiMarkingMenuDatafilterActive: (state, getters) => {
-			return state[getters.get_uiMarkingMenuDatatypeButton_active].find(button => button.buttonState === true).buttonID
+			if(getters.get_uiMarkingMenuDatatypeButton_active){
+				return state[getters.get_uiMarkingMenuDatatypeButton_active].find(button => button.buttonState === true).buttonID
+			} else { return };
+			
 		},
 		GET_stations_color_value_by_color: (state, getters, rootState) => {
 			return x => rootState.map.stations.filter( s => { return s.color === x}).length;
