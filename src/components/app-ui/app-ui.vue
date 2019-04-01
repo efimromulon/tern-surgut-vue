@@ -64,7 +64,7 @@
 			</div>
 		</div>
 
-		<div class="sidebar-right-container">
+		<div class="sidebar-right-container" v-if="rightContainer">
 			<div class="sidebar-right-view">	
 				<div class="sidebar-right-panel-view">
 
@@ -108,7 +108,9 @@
 				buttonFunnelId: 0,
 				buttonSearchId: 1,
 				buttonSearchClass: 'button_search',
-				searchInputComponent: 'search-input'
+				searchInputComponent: 'search-input',
+				rightContainer: false,
+				tl: null,
 			}
 		},
 
@@ -123,6 +125,9 @@
 			buttonSearch(){
 				return this.getButtonSquareById(this.buttonSearchId)
 			},
+		},
+
+		mounted(){
 		},
 
 		methods: {

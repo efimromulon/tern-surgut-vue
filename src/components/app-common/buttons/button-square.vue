@@ -1,18 +1,28 @@
 <template>
-	<button 
-		@click="onClick" 
-		class="app-ui__button" 
-		:class="[
-			buttonBackroundActive ? 'appInterface_button' : '', 
-			buttonClass, 
-			isActive ? buttonClass + '_active' : ''
-		]"
+	<transition
+		v-on:enter="enter"
+		v-on:leave="leave"
+		v-bind:css="false"
+		mode="out-in"
 	>
-		<slot></slot>
-	</button>
+		<button 
+			@click="buttonSquareClick" 
+			class="app-ui__button" 
+			:class="[
+				buttonBackroundActive ? 'appInterface_button' : '', 
+				buttonClass, 
+				isActive ? buttonClass + '_active' : ''
+			]"
+		>
+			<slot></slot>
+		</button>
+	</transition>
 </template>
 
 <script>
+
+	import { TimelineMax } from 'gsap'
+
 	export default {
 		name: 'button-square',
 		props: {
@@ -36,7 +46,8 @@
 		},
 		data () {
 			return {
-				isActive: true
+				isActive: true,
+				tl: null,
 			}
 		},
 		computed: {
@@ -44,8 +55,41 @@
 				return this.$store.getters.getButtonSquare;
 			},
 		},
+		created(){
+			this.tl = new TimelineMax();
+		},
 		methods: {
+			buttonSquareClick(e){
+				//this.rippleEffect(e);
+				this.onClick();
+			},
+			beforeEnter: function (el) {
+			},
+			enter: function (el, done) {
+				console.log("Enter button", this.tl);
+				this.tl.fromTo(el, .5,{scaleX: 0.035, scaleY: 1.115, left: '-5%'},{scaleX: 1.0, scaleY: 1.0, left: '0%', ease: Power2.easeInOut, onComplete: done}, +1.0);
+				console.log("Enter button", this.tl);
+			},
+			afterEnter: function (el) {
+			},
+			enterCancelled: function (el) {
+			},
+			beforeLeave: function (el) {
+			},
+			leave: function (el, done) {
+				console.log("Leave button", this.tl);
+				this.tl
+				.to(el, .5, {scaleX: 0.035, scaleY: 1.115, ease: Power2.easeInOut})
+				.to(el, .5, {left: '-5%', ease: Power2.easeInOut, onComplete: done});
+				console.log("Leave button", this.tl);
+				
+			},
+			afterLeave: function (el) {
+			},
+			// leaveCancelled only available with v-show
+			leaveCancelled: function (el) {
 
+			}
 		},
 		watch: {
 

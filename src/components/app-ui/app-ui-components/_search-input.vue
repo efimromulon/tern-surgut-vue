@@ -1,22 +1,35 @@
 <template>
-	<form class="search-form-view">
-		<div class="search-form-view__input">
-			<span class="input_air-search-large">
-				<span class="input_air-search-large-context">
-					<input 
-						type="text" 
-						class="input_air-search-large-control"
-						placeholder="Поиск АЗС, городов, трасс"
-						autocomplete="off"
-						autocorrect="off"
-						v-model="qQuery"
-						@input="debouncedSearch"
-						@blur="SEARCH_BLUR"
-					>
+	<transition
+		v-on:before-enter="beforeEnter"
+		v-on:enter="enter"
+		v-on:after-enter="afterEnter"
+		v-on:enter-cancelled="enterCancelled"
+
+		v-on:before-leave="beforeLeave"
+		v-on:leave="leave"
+		v-on:after-leave="afterLeave"
+		v-on:leave-cancelled="leaveCancelled"
+		mode="out-in"
+	>
+		<form class="search-form-view">
+			<div class="search-form-view__input">
+				<span class="input_air-search-large">
+					<span class="input_air-search-large-context">
+						<input 
+							type="text" 
+							class="input_air-search-large-control"
+							placeholder="Поиск АЗС, городов, трасс"
+							autocomplete="off"
+							autocorrect="off"
+							v-model="qQuery"
+							@input="debouncedSearch"
+							@blur="SEARCH_BLUR"
+						>
+					</span>
 				</span>
-			</span>
-		</div>
-	</form>
+			</div>
+		</form>
+	</transition>
 </template>
 
 <script>
@@ -49,9 +62,36 @@
 			}
 
 		},
-
+		created(){
+			this.tl = new TimelineMax();
+		},
 		methods: {
+			beforeEnter: function (el) {
+			},
+			enter: function (el, done) {
+				console.log("Enter");
+				console.log(this.tl);
+				this.tl
+				.to(el, 1, {width: '100%', onComplete: done}, +1.0);
+			},
+			afterEnter: function (el) {
+			},
+			enterCancelled: function (el) {
+			},
+			beforeLeave: function (el) {
+			},
+			leave: function (el, done) {
+				console.log("Leave");
+				this.tl
+				.to(el, 1, {width: '0%', onComplete: done});
+				
+			},
+			afterLeave: function (el) {
+			},
+			// leaveCancelled only available with v-show
+			leaveCancelled: function (el) {
 
+			},
 			blurSearch(){
 				//@blur="blurSearch" - вставить в input
 				//this.qQuery = "";
@@ -74,10 +114,6 @@
 				)
 
 		},
-
-		mounted(){
-			this.tl = new TimelineMax();
-		},
 	}
 
 </script>
@@ -85,7 +121,7 @@
 <style lang="sass">
 	.search-form-view
 		display: flex
-		width: 100%
+		width: 0%
 		background-color: #fff
 		border-radius: 4px
 		overflow: hidden

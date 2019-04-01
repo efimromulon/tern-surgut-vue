@@ -61,7 +61,6 @@
 				return b;
 			},
 			resetToDefault(e){
-				console.log('BUTTON ACCEPT');
 				this.rippleEffect(e);
 				this.btnClick();
 				// switch (true){
