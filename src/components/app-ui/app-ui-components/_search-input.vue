@@ -125,7 +125,7 @@
 		background-color: #fff
 		border-radius: 4px
 		overflow: hidden
-		@include shadow(1)
+		@include shadow(2)
 		transform: translate3d(0,0,0)
 	.search-form-view__input
 		width: 100%
@@ -138,7 +138,6 @@
 		background-clip: padding-box
 		vertical-align: middle
 		line-height: normal
-		background-color: #fff
 		border: 0
 	.input_air-search-large-context
 		//border: 2px solid #fff

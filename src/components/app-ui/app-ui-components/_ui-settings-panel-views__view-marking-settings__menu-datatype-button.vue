@@ -93,10 +93,14 @@
 		vertical-align: middle
 		position: relative
 		cursor: pointer
-		line-height: 37px
-		margin: 0 10px
+		line-height: 60px
 		font-family: 'Montserrat-Medium'
 		font-size: 14px
+		white-space: pre-wrap
+		text-overflow: ellipsis
+		overflow: hidden
+		padding: 0 16px
+		width: calc( 100% / 3)
 		&:hover
 			&:after
 				content: ''
@@ -106,4 +110,9 @@
 				color: black
 				width: 100%
 				height: 3px
+		span
+			display: inline-block
+			margin: auto
+			vertical-align: middle
+			line-height: normal
 </style>

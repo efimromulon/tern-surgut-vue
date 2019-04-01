@@ -98,6 +98,8 @@
 		margin: 0 10px
 		font-family: 'Montserrat-Medium'
 		font-size: 14px
+		white-space: nowrap
+		text-overflow: ellipsis
 		&:hover
 			&:after
 				content: ''

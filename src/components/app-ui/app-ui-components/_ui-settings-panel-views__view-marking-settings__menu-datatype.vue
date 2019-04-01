@@ -47,13 +47,15 @@
 		position: relative
 		top: 0
 		left: 0
-		height: 37px
+		height: 60px
 		display: flex
 		flex-basis: auto
 		flex-direction: row
 		flex-grow: 0
 		flex-shrink: 1
 		flex-wrap: nowrap
+		vertical-align: middle
+		text-align: center
 		justify-content: flex-start
 		@include shadow(2)
 		@include border(2)

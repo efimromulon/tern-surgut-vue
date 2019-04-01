@@ -156,13 +156,10 @@
 		&:hover
 			transition: all 150ms
 			color: rgba(#fff, 1)
-			border: 2px solid $button-reset--hover
 			background-color: $button-reset--hover
 	.btn-accept
 		background-color: $button-accept--enabled
-		border: 2px solid $button-accept--enabled
 		&:hover 
 			transition: all 150ms
-			border: 2px solid $button-accept--hover
 			background-color: $button-accept--hover
 </style>
