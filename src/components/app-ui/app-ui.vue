@@ -16,7 +16,7 @@
 							<icon-search/>
 						</button-square>
 						<search-input
-							v-else
+							v-if="!buttonSearch"
 						></search-input>
 					</div>
 				</div>
@@ -58,6 +58,7 @@
 					<button-cross
 						:btnClassName = "`sidebar-left-panel-view`"
 						:btnType = "`search`"
+						:btnClick = "CLOSE_BUTTON_CROSS"
 					></button-cross>
 
 				</div>
@@ -132,7 +133,11 @@
 
 		methods: {
 			TOGGLE_BUTTON_SEARCH(){
-				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId})
+				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
+			},
+			CLOSE_BUTTON_CROSS(){
+				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
+				this.$store.dispatch('close_search');
 			},
 		},
 
@@ -235,11 +240,13 @@
 		position: relative
 		width: 20vw
 		min-height: 36px
-		//background: #fff
+		background: #fff
 		border-radius: 4px
 		overflow: hidden
 		//color: $color-white
 		@include shadow(2)
+	.sidebar-left-panel-view
+		height: 37px
 	.Search-results
 	.search-list-view
 	.sidebar-right-panel-view

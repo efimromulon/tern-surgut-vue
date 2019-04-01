@@ -23,7 +23,6 @@
 							autocorrect="off"
 							v-model="qQuery"
 							@input="debouncedSearch"
-							
 						>
 					</span>
 				</span>

@@ -4,7 +4,7 @@ export default ({
 		searchLoading: false,
 		searchResult: null,
 		searchResultTabClosed: true,
-		searchCollapsed: true,
+		searchCollapsed: false,
 		searchResultKAS: [],
 		searchResultKNP: [],
 		searchResultPNP: [],

@@ -27,6 +27,10 @@ export default {
 			type: String,
 			required: true,
 		},
+		btnClick: {
+			type: Function,
+			required: true,
+		},
 	},
 	data() {
 		return {
@@ -43,6 +47,7 @@ export default {
 			switch (true){
 				case this.btnType === 'search' :
 					this.$store.dispatch('close_search_result_tab');
+					this.btnClick();
 			};			
 		},
 	},

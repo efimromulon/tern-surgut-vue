@@ -19,7 +19,7 @@
 			v-on:leave-cancelled="leaveCancelled"
 			mode="out-in"
 		>
-			<div class="Search-results"  data-scrollbar tabindex="1" v-show="!searchCollapsed">
+			<div class="Search-results"  data-scrollbar tabindex="1" v-show="numberOfSearchResults">
 				<div class="scroll-content" style="overflow: hidden; outline: none;">
 					<div class="search-list-view__list">
 					<ul class="search-page-view">
@@ -81,7 +81,28 @@
 				'getSearchResultNNP',
 				'getSearchResultKAS',
 				'getNumberOfSearchResults',
-			])
+			]),
+			numberOfSearchResults(){
+				// if((this.getNumberOfSearchResults === 0)&&(!this.searchCollapsed)){
+				// 	return true
+				// } else {
+				// 	return false
+				// };
+				switch (true){
+					case ((this.getNumberOfSearchResults === 0)&&(this.searchCollapsed === true)) : 
+						return false
+						break;
+					case ((this.getNumberOfSearchResults === 0)&&(this.searchCollapsed === false)) : 
+						return true
+						break;
+					case ((this.getNumberOfSearchResults === 1)&&(this.searchCollapsed === true)) : 
+						return false
+						break;
+					case ((this.getNumberOfSearchResults === 1)&&(this.searchCollapsed === false)) : 
+						return false
+						break;
+				};
+			},
 		},
 		watch: {
 			searchCollapsed(newCount, oldCount){},
@@ -91,13 +112,8 @@
 			getSearchResultTNP(newCount, oldCount){},
 			getSearchResultNNP(newCount, oldCount){},
 			getSearchResultKAS(newCount, oldCount){},
-			getNumberOfSearchResults(newCount, oldCount){
-				// if(newCount === 0){
-				// 	this.sl_animate_in();
-				// } else {
-				// 	this.sl_animate_out();
-				// };
-			},
+			getNumberOfSearchResults(newCount, oldCount){},
+			numberOfSearchResults(newCount, oldCount){},
 		},
 		methods: {
 			searchDataToComponentData(){
@@ -124,8 +140,8 @@
 				console.log(H);
 				console.log(negH);
 				this.tl
-				//.fromTo('.Search-results', 1, {top: negH}, {top: "0px", ease: Power2.easeInOut})
-				.fromTo('.sidebar-left-panel-view', 1, {height: "37px"},{height: H, ease: Power2.easeInOut, onComplete: done});
+				.fromTo('.Search-results', .4, {top: negH}, {top: "0px", ease: Power2.easeInOut})
+				.fromTo('.sidebar-left-panel-view', .4, {height: "37px"},{height: H, ease: Power2.easeInOut, onComplete: done});
 			},
 			afterEnter: function (el) {
 			},
@@ -142,8 +158,8 @@
 				console.log(H);
 				console.log(negH);
 				this.tl
-				.fromTo('.sidebar-left-panel-view', 1, {height: H},{height: "37px", ease: Power2.easeInOut, onComplete: done});
-				//.fromTo('.Search-results', 1, {top: "0px"}, {top: negH, ease: Power2.easeInOut, onComplete: done}, "-=1");
+				.fromTo('.sidebar-left-panel-view', .4, {height: H},{height: "37px", ease: Power2.easeInOut})
+				.fromTo('.Search-results', .4, {top: "0px"}, {top: negH, ease: Power2.easeInOut, onComplete: done});
 				
 			},
 			afterLeave: function (el) {
