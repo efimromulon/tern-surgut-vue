@@ -58,8 +58,8 @@
 
 <style lang='sass'>
 	.app-ui__button
+		background: transparent
 		outline: none
-		background: $background-color-white
 		border: none
 		height: $buttonHW
 		width: $buttonHW
@@ -71,6 +71,7 @@
 			height: 30px
 			width: 30px
 	.appInterface_button
+		background: $background-color-white
 		@include shadow(2)
 	.button_funnel
 		svg
@@ -100,6 +101,18 @@
 				.st0
 					fill: #ffffff
 					stroke: #ffffff
+	.button_search
+		svg
+			.st0
+				fill: none
+				stroke: #000000
+				stroke-miterlimit: 10
+		&:hover
+			opacity: .5
+
+
+
+
 	.button_layers	
 		svg
 			.st0

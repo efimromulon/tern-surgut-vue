@@ -8,6 +8,11 @@ export default ({
 				buttonName: 'funnel', 
 				buttonState: false
 			},
+			{
+				buttonID: 1, 
+				buttonName: 'search', 
+				buttonState: true
+			},
 		],
 		uiColorSwitchButtons: [
 			{

@@ -68,50 +68,9 @@
 				'getSearchResultNNP',
 				'getSearchResultKAS',
 				'getNumberOfSearchResults',
-			]),
-			get_searchResults(){
-				return this.$store.getters.get_searchResults;
-			},
-			displayResultLabels(){
-				let a1=[], a2=[], a3=[], a4=[], a5=[];
-				let a = this.get_searchResults;
-
-				for( var i = 0; i < a.length; i++ ){
-					switch (a[i].category) {
-						case 'Киришиавтосервис' : 
-							a1.push(a[i].label);
-							break;
-						case 'Калининграднефтепродукт' : 
-							a2.push(a[i].label);
-							break;
-						case 'Тверьнефтепродукт' : 
-							a3.push(a[i].label);
-							break;
-						case 'Новгороднефтепродукт' : 
-							a4.push(a[i].label);
-							break;
-						case 'Псковнефтепродукт' : 
-							a5.push(a[i].label);
-							break;
-					};
-				};
-				let result = [
-
-					{name: "Киришиавтосервис", data: a1}, 
-					{name: "Калининграднефтепродукт", data: a2}, 
-					{name: "Тверьнефтепродукт", data: a3}, 
-					{name: "Новгороднефтепродукт", data: a4}, 
-					{name: "Псковнефтепродукт", data: a5}
-
-				];
-				
-				return result;
-			},
+			])
 		},
 		watch: {
-			get_searchResults(newCount, oldCount){
-				this.searchDataToComponentData();
-			},
 			searchCollapsed(newCount, oldCount){},
 			getSearchLoading(newCount, oldCount){},
 			getSearchResultKNP(newCount, oldCount){},
@@ -133,7 +92,8 @@
 				this.data_displayResultLabels = this.displayResultLabels;
 			},
 			sl_animate_in(){
-				tl.to('.Search-results',.2,{top: 300,ease: Power2.easeInOut}, 0)
+				console.log('sl-ani-in');
+				tl.to('.Search-results',.2,{top: 3000,ease: Power2.easeInOut}, 0)
 			},
 			sl_animate_out(){
 
@@ -172,7 +132,6 @@
 		padding: 0
 	.Search-results
 		position: relative
-		top: -100px
 	.sidebar-left-panel-header-view
 		position: relative
 		overflow: hidden

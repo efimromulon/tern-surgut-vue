@@ -11,6 +11,7 @@
 						autocorrect="off"
 						v-model="qQuery"
 						@input="debouncedSearch"
+						@blur="SEARCH_BLUR"
 					>
 				</span>
 			</span>
@@ -31,6 +32,7 @@
 
 			return {
 				tl: null,
+				buttonSearchId: 1,
 			}
 			
 		},
@@ -55,6 +57,10 @@
 				//this.qQuery = "";
 				//this.$store.dispatch('reset_search');
 				this.$store.dispatch('close_search');
+			},
+			SEARCH_BLUR(){
+				this.$store.dispatch('close_search');
+				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId})
 			},
 
 			...mapActions(['search', 'setSearchQuery']),

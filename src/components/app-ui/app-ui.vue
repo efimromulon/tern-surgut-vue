@@ -6,7 +6,18 @@
 			<header class="header-view">
 				<div class="header-view__search-layout">
 					<div class="header-view__form-layout">
-						<search-input/>
+						<button-square 
+							v-if="buttonSearch"
+							:onClick="TOGGLE_BUTTON_SEARCH"
+							:buttonClass="buttonSearchClass"
+							:buttonBackroundActive="false"
+							:buttonID="buttonSearchId"
+						>
+							<icon-search/>
+						</button-square>
+						<search-input
+							v-else
+						></search-input>
 					</div>
 				</div>
 				<div class="header-view__settings-layout">
@@ -79,9 +90,6 @@
 	import uiSettingsPanelMenu from './app-ui-components/_ui-settings-panel-menu.vue'
 	import uiSettingsPanelView from './app-ui-components/_ui-settings-panel-view.vue'
 
-	import buttonCross from '@/components/app-common/buttons/button-cross.vue'
-	import buttonCollapse from '@/components/app-common/buttons/button-collapse.vue'
-
 	export default {
 
 		name: 'app-ui',
@@ -92,14 +100,15 @@
 			uiSettingsHeader,
 			uiSettingsPanelCoreMenu,
 			uiSettingsPanelMenu,
-			uiSettingsPanelView,
-			buttonCross,
-			buttonCollapse,
+			uiSettingsPanelView
 		},
 
 		data () {
 			return {
 				buttonFunnelId: 0,
+				buttonSearchId: 1,
+				buttonSearchClass: 'button_search',
+				searchInputComponent: 'search-input'
 			}
 		},
 
@@ -111,13 +120,20 @@
 			buttonFunnel(){
 				return this.getButtonSquareById(this.buttonFunnelId)
 			},
+			buttonSearch(){
+				return this.getButtonSquareById(this.buttonSearchId)
+			},
 		},
 
 		methods: {
+			TOGGLE_BUTTON_SEARCH(){
+				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId})
+			},
 		},
 
 		watch: {
 			buttonFunnel(newCount, oldCount){},
+			buttonSearch(newCount, oldCount){},
 		},
 
 	}
@@ -152,7 +168,7 @@
 	.header-view__search-layout
 		display: flex
 		flex-shrink: 2
-		min-width: 448px
+		//min-width: 448px
 
 	.header-view__settings-layout
 		position: absolute
