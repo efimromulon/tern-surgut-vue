@@ -3,23 +3,26 @@
 		<!-- <app-preloader></app-preloader> -->
 		<app-map></app-map>
 		<app-ui></app-ui>
-		<!-- <app-popup-extended></app-popup-extended> -->
+		<app-popup-large></app-popup-large>
 	</div>
 </template>
 
 <script>
 
-	import appUi 	from '@/components/app-ui/app-ui.vue';
-	import appMap 	from '@/components/app-map/app-map.vue';
-	import { mapActions, mapGetters } from 'vuex'
-	import jsongetCurrentUser from '../public/json/getCurrentUser.json'
-	import jsongetAzsInfo from '../public/json/getAzsInfo.json'
-	import jsongetFuelStock from '../public/json/getFuelStock.json'
-	import jsongetFuelSell from '../public/json/getFuelSell.json'
-	import jsongetArticleSell from '../public/json/getArticleSell.json'
-	import jsongetStationsLatLng from '../public/json/getStationsLatLng.json'
-	import jsongetStationsInfo from '../public/json/getStationsInfo.json'
-	import jsongetDepartmentFull from '../public/json/getDepartmentFull.json'
+	import { mapActions, mapGetters } 	from 'vuex'
+
+	import appUi 						from '@/components/app-ui/app-ui.vue'
+	import appMap 						from '@/components/app-map/app-map.vue'
+	import appPopupLarge 				from '@/components/app-popup-large/app-popup-large.vue'
+
+	import jsongetCurrentUser 			from '../public/json/getCurrentUser.json'
+	import jsongetAzsInfo 				from '../public/json/getAzsInfo.json'
+	import jsongetFuelStock 			from '../public/json/getFuelStock.json'
+	import jsongetFuelSell 				from '../public/json/getFuelSell.json'
+	import jsongetArticleSell 			from '../public/json/getArticleSell.json'
+	import jsongetStationsLatLng 		from '../public/json/getStationsLatLng.json'
+	import jsongetStationsInfo 			from '../public/json/getStationsInfo.json'
+	import jsongetDepartmentFull 		from '../public/json/getDepartmentFull.json'
 
 	export default {
 		name: 'app',
@@ -104,8 +107,9 @@
 
 		},
 		components: {
-			appUi,
-			appMap,
+			'app-ui': appUi,
+			'app-map': appMap,
+			'app-popup-large': appPopupLarge,
 		}
 	}
 </script>
