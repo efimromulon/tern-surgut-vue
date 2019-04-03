@@ -32,9 +32,6 @@
 			}
 		},
 		computed: {
-
-		},
-		computed: {
 			...mapGetters([
 				'get_uiMarkingMenuDatatypeButton_active',
 			]),

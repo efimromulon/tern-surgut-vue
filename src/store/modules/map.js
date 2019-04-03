@@ -440,6 +440,52 @@ export default ({
 		GET_stations_all: (state) => {
 			return state.stations
 		},
+		GET_station_info_by_Id: (state) => x => {
+
+			let result = null;
+
+			function findStation(objStations, stationId){
+				
+
+				if( objStations instanceof Array){
+
+					for(var i = 0; i < objStations.length; i++){
+						result = findStation(objStations[i], stationId);
+					};
+
+				} else {
+
+					for(var prop in objStations){
+
+						if( prop === 'id'){
+							if( objStations[prop] === stationId){ 
+
+								
+								console.log('RESULT meh', `${prop}`, objStations);
+								result = objStations; 
+								return result;
+
+							};
+						};
+
+						if( objStations[prop] instanceof Object || objStations[prop] instanceof Array ){
+
+							result = findStation(objStations[prop], stationId);
+
+						};
+
+					};
+
+				};
+				return result;
+
+			};
+
+			findStation(state.stations_sorted, x);
+				
+			if( result !== null ){ return result }
+
+		},
 
 	}
 })
