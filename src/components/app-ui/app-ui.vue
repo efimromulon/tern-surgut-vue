@@ -153,10 +153,10 @@
 <style lang='sass'>
 
 	.app-ui
-		z-index: 7000
 		position: absolute
 		top: 0
 		width: 100vw
+		z-index: 2
 
 	.header-view
 		position: absolute

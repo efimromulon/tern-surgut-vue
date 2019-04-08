@@ -1,9 +1,9 @@
 <template>
 	<div id="app">
-		<!-- <app-preloader></app-preloader> -->
 		<app-map></app-map>
 		<app-ui></app-ui>
 		<app-popup-large></app-popup-large>
+		<app-preloader></app-preloader>
 	</div>
 </template>
 
@@ -11,6 +11,7 @@
 
 	import { mapActions, mapGetters } 	from 'vuex'
 
+	import appPreloader 				from '@/components/app-preloader/app-preloader.vue'
 	import appUi 						from '@/components/app-ui/app-ui.vue'
 	import appMap 						from '@/components/app-map/app-map.vue'
 	import appPopupLarge 				from '@/components/app-popup-large/app-popup-large.vue'
@@ -26,6 +27,12 @@
 
 	export default {
 		name: 'app',
+		components: {
+			'app-ui': appUi,
+			'app-map': appMap,
+			'app-popup-large': appPopupLarge,
+			'app-preloader': appPreloader,
+		},
 		data(){
 			return {
 
@@ -99,15 +106,8 @@
 			// this.LOAD_JSON_MAP_ARTICLE_SELL();
 			// this.LOAD_JSON_MAP_STATIONS();
 
-		},
-		watch: {
-
-		},
-		components: {
-			'app-ui': appUi,
-			'app-map': appMap,
-			'app-popup-large': appPopupLarge,
 		}
+
 	}
 </script>
 

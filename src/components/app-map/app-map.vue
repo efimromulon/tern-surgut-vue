@@ -768,6 +768,7 @@ import { mapGetters } from 'vuex'
 		position: absolute
 		top: 0
 		left: 0
+		z-index: 1
 	.fuck
 		background-color: green 
 	.marker-cluster-red
