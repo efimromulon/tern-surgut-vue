@@ -1024,20 +1024,28 @@
 		data () {
 			return {
 				tl: null,
+				mapTime: 1200
 			}
 		},
 		watch: {
 		},
 		mounted(){
-			this.tl = new TimelineMax();
+			this.tl = new TimelineMax({repeat: -1});
 			this.animateButtonOut();
 		},
 
 		methods: {
 			animateButtonOut(){
 				this.tl
-				.to('#app-preloader-svg', 1140,{
-					x: '-50%'});
+				.to('#app-preloader-svg', this.mapTime / 3,{
+					x: '-50%'
+				})
+				.to('#app-preloader-svg', this.mapTime / 3,{
+					x: '0%'
+				})
+				.to('#app-preloader-svg', this.mapTime / 3,{
+					x: '50%'
+				});
 			},
 		},
 	}
