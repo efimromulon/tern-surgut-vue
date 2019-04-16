@@ -38,7 +38,7 @@ export default ({
 
 				var currentCategory = x.category,
 					currentResultItem = [];
-				if ( x.stationName === query ) {
+				if ( x.stationName && x.stationName.indexOf(query) !== -1  ) {
 					currentResultItem.push(x);
 					switch (true) {
 						case currentCategory === 'Калининграднефтепродукт' : 
@@ -109,8 +109,8 @@ export default ({
 		search({state, commit, rootState}, query) {
 			let stations = rootState.map.stations,
 				payload = {stations, query};
-
 			
+
 
 			let promiseSearchLoading = new Promise((resolve, reject) => {
 				function search(){
