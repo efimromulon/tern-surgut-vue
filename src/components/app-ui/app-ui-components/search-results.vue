@@ -27,7 +27,7 @@
 			displayResultLabels(){
 				let a1=[], a2=[], a3=[], a4=[], a5=[];
 				let a = this.get_searchResults;
-
+			
 				for( var i = 0; i < a.length; i++ ){
 					switch (a[i].category) {
 						case 'Киришиавтосервис' : 

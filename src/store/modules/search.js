@@ -27,41 +27,40 @@ export default ({
 			state.searchResultKAS = [];
 		},
 		SEARCH: (state, payload) => {
-			console.log('SEARCH', typeof payload, payload);
+			// console.log('SEARCH', typeof payload, payload);
 			const 	stations 	= payload.stations;
 			let 	query 		= payload.query;
 
 			//let searchResult = stations.filter(x => {return x.stationName === query});
-		 
+		
 
-			let searchFilterByCat = stations.map( x => {
-
-				var currentCategory = x.category,
-					currentResultItem = [];
-				if ( x.stationName && x.stationName.indexOf(query) !== -1  ) {
-					currentResultItem.push(x);
-					switch (true) {
-						case currentCategory === 'Калининграднефтепродукт' : 
-							state.searchResultKNP = currentResultItem;
+			stations.forEach( x => {	
+				if ( x.stationName && x.stationName.toLowerCase().indexOf(query.toLowerCase()) !== -1  ) {
+					let currentCategory = x.category;	
+					switch (currentCategory) {
+						case 'Калининграднефтепродукт' : 
+							state.searchResultKNP.push(x);
 							break;
-						case currentCategory === 'Псковнефтепродукт' : 	
-							state.searchResultPNP = currentResultItem;
+						case 'Псковнефтепродукт' : 	
+							state.searchResultPNP.push(x);
 							break;
-						case currentCategory === 'Тверьнефтепродукт' : 	
-							state.searchResultTNP = currentResultItem;
+						case 'Тверьнефтепродукт' : 	
+							state.searchResultTNP.push(x);
 							break;
-						case currentCategory === 'Новгороднефтепродукт' : 	
-							state.searchResultNNP = currentResultItem;
+						case 'Новгороднефтепродукт' : 	
+							state.searchResultNNP.push(x);
 							break;
-						case currentCategory === 'Киришиавтосервис' : 	
-							state.searchResultKAS = currentResultItem;
+						case 'Киришиавтосервис' : 	
+							state.searchResultKAS.push(x);
 							break;
 					};
 				};
 			
 			});
 
-					// if(item.label.toLowerCase().indexOf(keyword)!==-1){
+			
+
+					// if(item.label.indexOf(keyword)!==-1){
 					// 	var ty = item.label;
 					// 	return ty;
 					// } else {return false};
