@@ -2,7 +2,7 @@
 	<li class="search-snippet-view">
 		<div class="search-snippet-name">{{searchItemArr[0].category}}</div>
 		<ul>
-			<li  v-for="i in searchItemArr">
+			<li :key="'asdgasg'+index" v-for="(i,index) in searchItemArr">
 				<div class="search-business-snippet-view">
 					<div class="search-business-snippet-view__header">
 						{{i.stationName}}<br/>

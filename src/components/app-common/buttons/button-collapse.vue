@@ -40,10 +40,11 @@ export default {
 			return b;
 		},
 		collapse(){
-			switch (true){
-				case this.btnType === 'search' :
+			// switch (true){
+			// 	case this.btnType === 'search' :
+		
 					this.$store.dispatch('collapse_search');
-			};			
+			// };			
 		},
 	},
 };

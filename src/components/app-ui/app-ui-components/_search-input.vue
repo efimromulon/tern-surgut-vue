@@ -11,7 +11,7 @@
 		v-on:leave-cancelled="leaveCancelled"
 		mode="out-in"
 	>
-		<form class="search-form-view">
+		<div class="search-form-view">
 			<div class="search-form-view__input">
 				<span class="input_air-search-large">
 					<span class="input_air-search-large-context">
@@ -27,7 +27,7 @@
 					</span>
 				</span>
 			</div>
-		</form>
+		</div>
 	</transition>
 </template>
 
@@ -68,8 +68,7 @@
 			beforeEnter: function (el) {
 			},
 			enter: function (el, done) {
-				console.log("Enter");
-				console.log(this.tl);
+		
 				this.tl
 				.to(el, 1, {width: '100%', onComplete: done}, +1.0);
 			},
@@ -80,7 +79,7 @@
 			beforeLeave: function (el) {
 			},
 			leave: function (el, done) {
-				console.log("Leave");
+		
 				this.tl
 				.to(el, 1, {width: '0%', onComplete: done});
 				

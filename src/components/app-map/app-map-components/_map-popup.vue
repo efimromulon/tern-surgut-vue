@@ -1,10 +1,10 @@
 <template>
 	<div class="app-map-popup">
-		{{popupCaller.stationLabel}}<br/>
-		{{popupCaller.category}}<br/>
-		{{popupCaller.color}}<br/>
-		{{popupCaller.stationCity}}<br/>
-		{{popupCaller.stationAddress}}<br/>
+		<h2> {{popupCaller.stationLabel}}</h2>
+
+		<p> {{popupCaller.stationCity}} <br/>
+			 {{popupCaller.stationAddress}} </p>
+
 	</div>
 </template>
 
@@ -27,5 +27,7 @@ export default {
 </script>
 
 <style lang="sass">
+.app-map-popup
+	width: 100%
 
 </style>

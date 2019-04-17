@@ -3,11 +3,13 @@
 		<div class="sidebar-left-panel-header-view">
 			<div class="sidebar-left-panel-header-view__title">
 				<div class="sidebar-left-panel-header-view__title-text">
-					Результаты поиска
+					{{ numberOfSearchResults > 0 ? "Найдено: " + numberOfSearchResults : "Ничего не найдено" }}
 				</div>
 			</div>
 		</div>
-		<transition
+		
+		<transition			
+			v-bind:css="false"
 			v-on:before-enter="beforeEnter"
 			v-on:enter="enter"
 			v-on:after-enter="afterEnter"
@@ -17,10 +19,10 @@
 			v-on:leave="leave"
 			v-on:after-leave="afterLeave"
 			v-on:leave-cancelled="leaveCancelled"
-			mode="out-in"
 		>
-			<div class="Search-results"  data-scrollbar tabindex="1" v-show="numberOfSearchResults">
-				<div class="scroll-content" style="overflow: hidden; outline: none;">
+	
+			<div class="Search-results" data-scrollbar tabindex="1" v-show="numberOfSearchResults && (!searchCollapsed)">
+				<div class="scroll-content" style="overflow: hidden; outline: none;" >
 					<div class="search-list-view__list">
 					<ul class="search-page-view">
 						<search-list-item
@@ -47,12 +49,14 @@
 					</div>
 				</div>
 			</div>
+	
+			
 		</transition>
 	</div>
 </template>
 <script>
 
-	import {mapGetters} from 'vuex'
+	import {mapGetters, mapState} from 'vuex'
 	import Scrollbar from 'smooth-scrollbar'
 	import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 	import searchListItem from './_search-list-item'
@@ -68,12 +72,12 @@
 				data_displayResultLabels: null,
 				data_SearchInput: null,
 				tl: null,
-				tl_options: {},
+				tl_options: {}
 			}
 		},
 		computed: {
+			...mapState({ searchCollapsed: state => state.search.searchCollapsed }),
 			...mapGetters([
-				'searchCollapsed', 
 				'getSearchLoading', 
 				'getSearchResultKNP',
 				'getSearchResultPNP',
@@ -88,32 +92,55 @@
 				// } else {
 				// 	return false
 				// };
-				switch (true){
-					case ((this.getNumberOfSearchResults === 0)&&(this.searchCollapsed === true)) : 
-						return false
-						break;
-					case ((this.getNumberOfSearchResults === 0)&&(this.searchCollapsed === false)) : 
-						return true
-						break;
-					case ((this.getNumberOfSearchResults === 1)&&(this.searchCollapsed === true)) : 
-						return false
-						break;
-					case ((this.getNumberOfSearchResults === 1)&&(this.searchCollapsed === false)) : 
-						return false
-						break;
-				};
+				
+				return this.getNumberOfSearchResults;
+				
+				// switch (true){
+				// 	case ((this.getNumberOfSearchResults === 1)&&(this.searchCollapsed === true)) : 
+				// 		return false
+				// 		break;
+				// 	case ((this.getNumberOfSearchResults === 1)&&(this.searchCollapsed === false)) : 
+				// 		return true
+				// 		break;
+				// 	case ((this.getNumberOfSearchResults === 1)&&(this.searchCollapsed === true)) : 
+				// 		return false
+				// 		break;
+				// 	case ((this.getNumberOfSearchResults === 1)&&(this.searchCollapsed === false)) : 
+				// 		return false
+				// 		break;
+				// };
 			},
 		},
 		watch: {
-			searchCollapsed(newCount, oldCount){},
+			searchCollapsed: {
+				handler: function(newCount, oldCount){
+					
+					if(!oldCount || newCount !== oldCount){
+						
+					}	
+				},
+				immediate:true
+			},
 			getSearchLoading(newCount, oldCount){},
 			getSearchResultKNP(newCount, oldCount){},
 			getSearchResultPNP(newCount, oldCount){},
 			getSearchResultTNP(newCount, oldCount){},
 			getSearchResultNNP(newCount, oldCount){},
 			getSearchResultKAS(newCount, oldCount){},
-			getNumberOfSearchResults(newCount, oldCount){},
-			numberOfSearchResults(newCount, oldCount){},
+			getNumberOfSearchResults:{
+				handler: function(newCount, oldCount){
+					
+				if(!oldCount || newCount !== oldCount){
+					
+				}	
+			},
+				immediate:true
+			},
+			numberOfSearchResults(newCount, oldCount){
+				if(!oldCount || newCount !== oldCount){
+					
+				}
+			},
 		},
 		methods: {
 			searchDataToComponentData(){
@@ -121,7 +148,8 @@
 				this.data_displayResultLabels = this.displayResultLabels;
 			},
 			sl_animate_in(){
-				console.log('sl-ani-in');
+				// console.log('sl-ani-in');
+				
 				tl.to('.Search-results',.2,{top: 3000,ease: Power2.easeInOut}, 0)
 			},
 			sl_animate_out(){
@@ -130,18 +158,15 @@
 			beforeEnter: function (el) {
 			},
 			enter: function (el, done) {
-				console.log("Enter");
-				console.log(this.tl);
+				// console.log(this.tl);
 				//Search-results
 				let vh = window.innerHeight * 0.01;
 				let newHeight = this.$refs.SearchListView.offsetHeight;
 				let H = newHeight + 'px';
-				let negH = '-' + H;
-				console.log(H);
-				console.log(negH);
+	
 				this.tl
-				.fromTo('.Search-results', .4, {top: negH}, {top: "0px", ease: Power2.easeInOut})
-				.fromTo('.sidebar-left-panel-view', .4, {height: "37px"},{height: H, ease: Power2.easeInOut, onComplete: done});
+				.fromTo('.Search-results', .4, {top: "0px"}, {top: "0px", ease: Power2.easeInOut})
+				// .fromTo('.sidebar-left-panel-view', .4, {height: "37px"},{height: H, ease: Power2.easeInOut, onComplete: done});
 			},
 			afterEnter: function (el) {
 			},
@@ -150,15 +175,15 @@
 			beforeLeave: function (el) {
 			},
 			leave: function (el, done) {
-				console.log("Leave");
+				// console.log("Leave");
 				let vh = window.innerHeight * 0.01;
 				let newHeight = this.$refs.SearchListView.offsetHeight;
 				let H = newHeight + 'px';
 				let negH = '-' + H;
-				console.log(H);
-				console.log(negH);
+				// console.log(H);
+				// console.log(negH);
 				this.tl
-				.fromTo('.sidebar-left-panel-view', .4, {height: H},{height: "37px", ease: Power2.easeInOut})
+				// .fromTo('.sidebar-left-panel-view', .4, {height: H},{height: "37px", ease: Power2.easeInOut})
 				.fromTo('.Search-results', .4, {top: "0px"}, {top: negH, ease: Power2.easeInOut, onComplete: done});
 				
 			},
@@ -194,6 +219,10 @@
 </script>
 
 <style lang='sass'>
+#testgtt
+	max-height: 893px
+	// overflow: hidden
+
 	.search-list-view__list
 		list-style: none
 		margin: 0

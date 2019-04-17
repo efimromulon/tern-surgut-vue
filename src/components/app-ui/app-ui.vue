@@ -246,7 +246,7 @@
 		//color: $color-white
 		@include shadow(2)
 	.sidebar-left-panel-view
-		height: 37px
+		// height: 37px
 	.Search-results
 	.search-list-view
 	.sidebar-right-panel-view

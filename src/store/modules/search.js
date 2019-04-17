@@ -4,7 +4,7 @@ export default ({
 		searchLoading: false,
 		searchResult: null,
 		searchResultTabClosed: true,
-		searchCollapsed: false,
+		searchCollapsed: true,
 		searchResultKAS: [],
 		searchResultKNP: [],
 		searchResultPNP: [],
@@ -32,7 +32,16 @@ export default ({
 			let 	query 		= payload.query;
 
 			//let searchResult = stations.filter(x => {return x.stationName === query});
-		
+			
+			if (!query) {
+				state.searchResultKNP = [];
+				state.searchResultPNP = [];
+				state.searchResultTNP = [];
+				state.searchResultNNP = [];
+				state.searchResultKAS = [];
+
+				return false
+			}
 
 			stations.forEach( x => {	
 				if ( x.stationName && x.stationName.toLowerCase().indexOf(query.toLowerCase()) !== -1  ) {
@@ -141,7 +150,7 @@ export default ({
 		searchResultTabClosed(state){
 			return state.searchResultTabClosed;
 		},
-		searchCollapsed(state){
+		getSearchCollapsed(state){
 			return state.searchCollapsed;
 		},
 		getSearchResultKNP(state){
@@ -160,17 +169,7 @@ export default ({
 			return state.searchResultKAS;
 		},
 		getNumberOfSearchResults(state){
-			if(
-				state.searchResultKNP.length > 0 ||
-				state.searchResultPNP.length > 0 ||
-				state.searchResultTNP.length > 0 ||
-				state.searchResultNNP.length > 0 ||
-				state.searchResultKAS.length > 0
-			){
-				return 0
-			} else {
-				return -1
-			};
+			return state.searchResultKNP.length + state.searchResultPNP.length + state.searchResultTNP.length + state.searchResultNNP.length + state.searchResultKAS.length 
 		},
 	}
 })
