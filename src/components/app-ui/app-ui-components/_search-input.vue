@@ -105,7 +105,6 @@
 			debouncedSearch: 
 				debounce(
 					function(e){
-						console.log('Starting search');
 						this.$store.dispatch('search', e.target.value);
 					}, 
 					500

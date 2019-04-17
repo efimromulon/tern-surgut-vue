@@ -3,6 +3,7 @@
 		:class="['btn-collapse', getBtnClassName()]"
 		title="Свернуть"
 		@click = "collapse"
+		
 	>
 		<span>
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
 
 	name: 'button-collapse',
@@ -33,11 +35,13 @@ export default {
 
 		};
 	},
+	computed: {
+		...mapState({ isCollapsed: state => state.search.searchCollapsed }),
+	},
 	methods: {
 		getBtnClassName(){
-			let a = this.btnClassName;//button_>>G<< 7 - G
-			let b = a + '__collapse';
-			return b;
+			let isRotated = this.isCollapsed ? ' rotated' : ''
+			return this.btnClassName + '__collapse' + isRotated;
 		},
 		collapse(){
 			// switch (true){
@@ -57,4 +61,6 @@ export default {
 		margin: 6px
 		cursor: pointer
 		opacity: .4
+	.rotated
+		transform: rotate(180deg)
 </style>

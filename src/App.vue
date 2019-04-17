@@ -4,12 +4,16 @@
 		<app-ui></app-ui>
 		<!-- <app-popup-large></app-popup-large> -->
 		<!-- <app-preloader></app-preloader> -->
+		
 	</div>
 </template>
 
 <script>
 
-	import { mapActions, mapGetters } 	from 'vuex'
+
+
+
+	import { mapActions, mapGetters, mapState } 	from 'vuex'
 
 	import appPreloader 				from '@/components/app-preloader/app-preloader.vue'
 	import appUi 						from '@/components/app-ui/app-ui.vue'
@@ -39,6 +43,7 @@
 			}
 		},
 		computed: {
+			
 			...mapGetters([
 				'get_uiMarkingMenuDatatypeButton_active',
 			]),
@@ -114,4 +119,29 @@
 		user-select: none
 		overflow: hidden
 		font-family: 'Montserrat-Medium'
+
+	.left-component-wrapper
+		@include shadow(2)
+		border-radius: 4px
+		overflow: hidden
+		position: absolute
+		top: 64px
+		left: 12px
+		background-color: white
+		height: calc(100vh - 64px - 12px)
+		z-index: 9999
+		width: 20vw
+	.center-component-wrapper
+		@include shadow(2)
+		border-radius: 4px
+		overflow: hidden
+		position: absolute
+		top: 64px
+		left: calc(20vw + 32px)
+		background-color: white
+		height: calc(100vh - 64px - 12px)
+		width: calc(80vw - 164px)
+		z-index: 9999
+
+
 </style>

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import map from './modules/map.js'
 import search from './modules/search.js'
 import uiSettings from './modules/uiSettings.js'
+import dynamicComponents from './modules/dynamicComponents.js'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
 		map,
 		search,
 		uiSettings,
+		dynamicComponents
 	},
 	state: {
 		//Preloader

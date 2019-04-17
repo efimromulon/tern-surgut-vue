@@ -47,8 +47,15 @@
 					<div class="sidebar-left-panel-view__content">
 						<div class="sidebar-left-panel-view__content-wrapper">
 							
-							<search-list/>
-						
+							<!-- <search-list/> -->
+							<!-- <div class="left-component-wrapper"> -->
+								<component v-bind:is="leftComponent"></component>
+							<!-- </div> -->
+
+
+							
+
+
 						</div>
 					</div>
 					<button-collapse
@@ -73,16 +80,20 @@
 			</div>
 		</div>
 
+		<div class="center-component-wrapper">
+				<component v-bind:is="centerComponent"></component>
+		</div>
+
 	</div>
 	
 </template>
 
 <script>
 	
-	import {mapGetters} from 'vuex'
+	import {mapGetters, mapState} from 'vuex'
 
 	import searchInput from './app-ui-components/_search-input.vue'
-	import searchList from './app-ui-components/_search-list.vue'
+	
 
 	import uiSettingsHeader from './app-ui-components/_ui-settings-header.vue'
 
@@ -90,6 +101,10 @@
 
 	import uiSettingsPanelMenu from './app-ui-components/_ui-settings-panel-menu.vue'
 	import uiSettingsPanelView from './app-ui-components/_ui-settings-panel-view.vue'
+
+	//left side components with names after //
+		import searchList from './app-ui-components/_search-list.vue' //search-list
+	// center side components with names after //
 
 	export default {
 
@@ -120,6 +135,11 @@
 				'searchResultTabClosed',
 				'getButtonSquareById',
 			]),
+			...mapState({
+				leftComponent: state => state.dynamicComponents.leftMenuComponent,
+				centerComponent: state => state.dynamicComponents.centralComponent,
+				searchResultTabClosed: state =>state.search.searchResultTabClosed
+			}),
 			buttonFunnel(){
 				return this.getButtonSquareById(this.buttonFunnelId)
 			},
@@ -134,6 +154,17 @@
 		methods: {
 			TOGGLE_BUTTON_SEARCH(){
 				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
+				let componentName = ''
+				
+				if (this.searchResultTabClosed) {
+					componentName = 'search-list'
+				}
+				
+				this.$store.dispatch('setComponent', {
+					componentPosition: 'leftMenuComponent',
+					componentName
+				})
+			
 			},
 			CLOSE_BUTTON_CROSS(){
 				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});

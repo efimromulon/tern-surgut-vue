@@ -76,7 +76,8 @@
 			}
 		},
 		computed: {
-			...mapState({ searchCollapsed: state => state.search.searchCollapsed }),
+			...mapState({ searchCollapsed: state => state.search.searchCollapsed,
+						  searchQuery: state => state.search.searchQuery	 }),
 			...mapGetters([
 				'getSearchLoading', 
 				'getSearchResultKNP',
@@ -144,7 +145,8 @@
 		},
 		methods: {
 			searchDataToComponentData(){
-				this.data_SearchInput = this.SearchInput;
+				// this.data_SearchInput = this.SearchInput;
+				this.data_SearchInput = this.searchQuery;
 				this.data_displayResultLabels = this.displayResultLabels;
 			},
 			sl_animate_in(){

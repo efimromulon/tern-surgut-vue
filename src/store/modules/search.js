@@ -30,7 +30,7 @@ export default ({
 			// console.log('SEARCH', typeof payload, payload);
 			const 	stations 	= payload.stations;
 			let 	query 		= payload.query;
-
+			state.searchQuery = query
 			//let searchResult = stations.filter(x => {return x.stationName === query});
 			
 			if (!query) {
