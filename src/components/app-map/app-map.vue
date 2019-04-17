@@ -18,16 +18,17 @@
 		<l-tile-layer :url="tileLayer"></l-tile-layer>
 
 		<l-feature-group ref="features">
-			<l-popup>
-				<map-popup 
+			
+				<map-popup				
 					:popupCaller = "popupCaller"
 				>
 				</map-popup>
-			</l-popup>
+			
 		</l-feature-group>
 
 		<v-marker-cluster :options="clusterOptions_g" @clusterclick="click()">
 			<l-marker 
+				
 				v-for="i in markers_knp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
@@ -225,7 +226,7 @@
 import { L, LMap, LTileLayer, LMarker, LFeatureGroup, LPopup, LIcon, LControlZoom } from 'vue2-leaflet'
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 import mapPopup from './app-map-components/_map-popup.vue'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 	export default {
 		name: 'app-map',
@@ -426,7 +427,7 @@ import { mapGetters } from 'vuex'
 					disableClusteringAtZoom: 11,
 					spiderfyOnMaxZoom: false,
 					showCoverageOnHover: false,
-					zoomToBoundsOnClick: false,
+					zoomToBoundsOnClick: true,
 					iconCreateFunction: function (cluster) {
 						var childCount = cluster.getChildCount();
 
@@ -452,7 +453,7 @@ import { mapGetters } from 'vuex'
 					disableClusteringAtZoom: 11,
 					spiderfyOnMaxZoom: false,
 					showCoverageOnHover: false,
-					zoomToBoundsOnClick: false,
+					zoomToBoundsOnClick: true,
 					iconCreateFunction: function (cluster) {
 						var childCount = cluster.getChildCount();
 
@@ -478,7 +479,7 @@ import { mapGetters } from 'vuex'
 					disableClusteringAtZoom: 11,
 					spiderfyOnMaxZoom: false,
 					showCoverageOnHover: false,
-					zoomToBoundsOnClick: false,
+					zoomToBoundsOnClick: true,
 					iconCreateFunction: function (cluster) {
 						var childCount = cluster.getChildCount();
 
@@ -541,9 +542,11 @@ import { mapGetters } from 'vuex'
 				oId: 1,
 				rId: 2,
 				cId: 3,
+				popupObj: null
 			}
 		},
 		computed:  {
+			...mapState({ activeAzs: state => state.map.active_station }),
 			...mapGetters([
 				'GET_stations_knp_g',
 				'GET_stations_knp_o',
@@ -590,10 +593,30 @@ import { mapGetters } from 'vuex'
 		mounted(){
 			this.UPDATE_stations();
 			this.UPDATE_colors_states();
+			let _that = this;
+
+
+			this.$nextTick(() => {
+				let obj = this.$refs.features.mapObject
+				this.popupObj = obj
+				obj.on('popupclose', function() {
+					_that.$store.dispatch('set_active_station', null);
+					_that.$store.dispatch('setComponent', {
+						componentPosition: 'leftMenuComponent',
+						componentName: ''
+					})
+				})
+			})
+			
 		},
 		methods: {
-			click: function (e) {
-				alert("clusterclick")
+			handleEvent(e) {
+				console.log(e)
+			},
+			click: function () {
+				// console.log(e)
+				// let zoom = this.zoom;
+				// this.zoomUpdated(zoom + 1)
 			},
 			UPDATE_stations(){
 				this.markers_knp_g = this.GET_stations_knp_g;
@@ -624,9 +647,20 @@ import { mapGetters } from 'vuex'
 				this.cIsVisible = this.colorSwitchButtonC;
 			},
 			openPopUp (i) {
-				this.popupCaller 	= i;
-				this.popupCallerId 	= i.id;
-				this.$refs.features.mapObject.openPopup(i.latlng);
+				// this.popupCaller 	= i;
+				// this.popupCallerId 	= i.id;
+
+
+				// this.$refs.features.mapObject.openPopup(i.latlng);
+				
+				this.$store.dispatch('set_active_station', i)
+
+				this.$store.dispatch('setComponent', {
+					componentPosition: 'leftMenuComponent',
+					componentName: 'detailed-info'
+				})
+
+
 			},
 			zoomUpdated(zoom){
 				this.zoom = zoom;
@@ -643,7 +677,25 @@ import { mapGetters } from 'vuex'
 			
 		},
 		watch: {
-			
+			activeAzs(val, oldVal) {
+				if(!val) {
+					this.$refs.features.mapObject.closePopup();
+				}
+
+				if(val && !oldVal || val && oldVal && val.id !== oldVal.id) {
+					this.$refs.features.mapObject.openPopup(val.latlng)
+				}
+
+				if (val && oldVal && val.id === oldVal.id) {
+					this.$refs.features.mapObject.closePopup();
+						this.$store.dispatch('set_active_station', null)
+
+					this.$store.dispatch('setComponent', {
+						componentPosition: 'leftMenuComponent',
+						componentName: ''
+					})
+				}
+			},
 			searchCollapsed(newCount, oldCount){},
 			get_uiColorSwitchButtonsById(newCount, oldCount){
 				console.log('get_uiColorSwitchButtonsById');
@@ -750,7 +802,7 @@ import { mapGetters } from 'vuex'
 				this.UPDATE_stations();
 			},
 			
-		},
+		}
 	}
 </script>
 

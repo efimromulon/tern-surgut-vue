@@ -1,5 +1,6 @@
 export default ({
 	state: {
+		popup_ref: null,
 		stations: [],
 		stations_sorted: {
 			stations_knp: {
@@ -62,9 +63,17 @@ export default ({
 		article_sell_dates_analysis_default: 	[],
 		article_sell_dates_analysis: 			["2010-03-03", "2010-03-03"],
 		article_sell_dates_analysis_prev: 		[],
+
+		active_station: null
 	},
 
 	mutations: {
+		SET_POPUP_REF: (state, ref) => {
+			state.popup_ref = ref
+		},
+		SET_ACTIVE_STATION: (state, payload) => {
+			state.active_station = payload
+		},
 		SET_STATIONS: (state, jsonPayload) => {
 
 			let n = jsonPayload.jsonName,
@@ -253,6 +262,12 @@ export default ({
 
 	},
 	actions: {
+		set_popup_ref:(state,ref) => {
+			state.commit('SET_POPUP_REF',ref)
+		},
+		set_active_station: (state, payload) => {
+			state.commit("SET_ACTIVE_STATION", payload)
+		},
 		set_fuel_sell: (state, jsonPayload) => {
 			return new Promise ((resolve, reject) => {
 				state.commit('SET_FUEL_SELL', jsonPayload)

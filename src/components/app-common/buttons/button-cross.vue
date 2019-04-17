@@ -29,7 +29,7 @@ export default {
 		},
 		btnClick: {
 			type: Function,
-			required: true,
+			required: false,
 		},
 	},
 	data() {
@@ -47,7 +47,22 @@ export default {
 			switch (true){
 				case this.btnType === 'search' :
 					this.$store.dispatch('close_search_result_tab');
+					this.$store.dispatch('close_search');
+                
+					this.$store.dispatch('setComponent', {
+						componentPosition: 'leftMenuComponent',
+						componentName: ''
+					})
 					this.btnClick();
+				case this.btnType === 'popup':
+					this.$store.dispatch('set_active_station', null)
+
+					this.$store.dispatch('setComponent', {
+						componentPosition: 'leftMenuComponent',
+						componentName: ''
+					})
+
+
 			};			
 		},
 	},

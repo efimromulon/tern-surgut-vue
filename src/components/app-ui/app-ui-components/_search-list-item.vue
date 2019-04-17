@@ -48,7 +48,9 @@
 		computed: {
 		},
 		methods: {
-			SEND_OPEN(){},
+			SEND_OPEN(){
+				
+			},
 		},
 		mounted(){
 

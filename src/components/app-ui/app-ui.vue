@@ -42,33 +42,7 @@
 
 		<div class="sidebar-left-container">
 			<div class="sidebar-left-view">	
-				<div class="sidebar-left-panel-view"  v-if="!searchResultTabClosed">
-					
-					<div class="sidebar-left-panel-view__content">
-						<div class="sidebar-left-panel-view__content-wrapper">
-							
-							<!-- <search-list/> -->
-							<!-- <div class="left-component-wrapper"> -->
-								<component v-bind:is="leftComponent"></component>
-							<!-- </div> -->
-
-
-							
-
-
-						</div>
-					</div>
-					<button-collapse
-						:btnClassName = "`sidebar-left-panel-view`"
-						:btnType = "`search`"
-					></button-collapse>
-					<button-cross
-						:btnClassName = "`sidebar-left-panel-view`"
-						:btnType = "`search`"
-						:btnClick = "CLOSE_BUTTON_CROSS"
-					></button-cross>
-
-				</div>
+				<component v-bind:is="leftComponent"></component>
 			</div>
 		</div>
 
@@ -80,9 +54,9 @@
 			</div>
 		</div>
 
-		<div class="center-component-wrapper">
+		<!-- <div class="center-component-wrapper">
 				<component v-bind:is="centerComponent"></component>
-		</div>
+		</div> -->
 
 	</div>
 	
@@ -91,8 +65,8 @@
 <script>
 	
 	import {mapGetters, mapState} from 'vuex'
-
 	import searchInput from './app-ui-components/_search-input.vue'
+
 	
 
 	import uiSettingsHeader from './app-ui-components/_ui-settings-header.vue'
@@ -103,7 +77,8 @@
 	import uiSettingsPanelView from './app-ui-components/_ui-settings-panel-view.vue'
 
 	//left side components with names after //
-		import searchList from './app-ui-components/_search-list.vue' //search-list
+		const search = () => import('./app-ui-components/_search.vue') //search
+		const detailedInfo = () => import('../app-map/app-map-components/_detailed-info.vue') //detailed-info
 	// center side components with names after //
 
 	export default {
@@ -111,7 +86,8 @@
 		name: 'app-ui',
 
 		components: {
-			searchList,
+			search,
+			detailedInfo,
 			searchInput,
 			uiSettingsHeader,
 			uiSettingsPanelCoreMenu,
@@ -157,7 +133,7 @@
 				let componentName = ''
 				
 				if (this.searchResultTabClosed) {
-					componentName = 'search-list'
+					componentName = 'search'
 				}
 				
 				this.$store.dispatch('setComponent', {
@@ -166,10 +142,7 @@
 				})
 			
 			},
-			CLOSE_BUTTON_CROSS(){
-				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
-				this.$store.dispatch('close_search');
-			},
+			
 		},
 
 		watch: {
@@ -276,6 +249,7 @@
 		overflow: hidden
 		//color: $color-white
 		@include shadow(2)
+
 	.sidebar-left-panel-view
 		// height: 37px
 	.Search-results
@@ -292,13 +266,6 @@
 		flex-direction: column
 		min-height: 1em
 
-	.search-list-view
-		display: flex
-		flex-direction: column
-		max-height: calc(100vh - 64px - 12px)
-		min-height: 37px
-		overflow: auto
-
 	.sidebar-left-panel-view__collapse
 		position: absolute
 		top: 0
@@ -310,5 +277,6 @@
 		position: absolute
 		top: 0
 		z-index: 999999999
+		
 
 </style>
