@@ -6,7 +6,7 @@
 
 <script>
 
-	import {TimelineMax} from 'gsap'
+	import {TimelineMax, TweenMax} from 'gsap'
 	import * as PIXI from 'pixi.js'
 
 	export default {
@@ -23,105 +23,109 @@
 		watch: {
 		},
 		mounted(){
-		/* eslint-disable */
-		let that = this,
-			canvas = that.$refs.preloaderCanvas,
-			circle;
-		class Circlec {
-			constructor(x, y, color, cx, cy, cr){
-				this.circle = new PIXI.Graphics();
-				this.circle.x = x;
-				this.circle.y = y;
-				this.circle.beginFill(0x51cc00);
-				this.circle.drawCircle(cx, cy, cr);
-				this.circle.endFill();
-			}
-		}
-		class ParticleText {
-
-			constructor(){
-
-				this.pixiapp = new PIXI.Application({
+			/* eslint-disable */
+		
+			let canvas 	= this.$refs.preloaderCanvas,
+				pixiApp = new PIXI.Application({
 					view: canvas,
 					width: window.innerWidth,
 					height: window.innerHeight, 
 					resolution: window.devicePixelRatio,
-					autoresize: true
-				});
-				this.container = new PIXI.Container();
-				this.pixiapp.stage.addChild(this.container);
-				this._rw = this.pixiapp.renderer.width;
-				this._rh = this.pixiapp.renderer.height;
-				this._radius = 15;
-				this._cx = 0;
-				this._cy = 0;
-				this.circles = [];
-				this.colors = ['0x51cc00', '0xff9100', '0xcc0000'];
-				this.coords = [
-					{x: this._rw / 2, 		y: this._rh * 2 / 3},
-					{x: this._rw * 1 / 3, 	y: this._rh * 1 / 3},
-					{x: this._rw * 2 / 3, 	y: this._rh * 1 / 3}
-				];
-				console.log('coords', this.coords, 'colors', this.colors, '_radius', this._radius);
+					autoresize: true,
+					antialias: true
+				}),
+				container = new PIXI.Container(),
+				_rw = pixiApp.renderer.width,
+				_rh = pixiApp.renderer.height,
+				_radius = 7,
+				_rwidth = 15,
+				_cx = 0,
+				_cy = 0,
+				circles = [],
+				colors = ['0x51cc00', '0xff9100', '0xcc0000'],
+				coords = [
+					{x: _rw / 2, 			y: _rh / 2 + Math.sqrt(3) * _rwidth / 2},
+					{x: _rw / 2 - _rwidth, 	y: _rh / 2 - Math.sqrt(3) * _rwidth / 2},
+					{x: _rw / 2 + _rwidth, 	y: _rh / 2 - Math.sqrt(3) * _rwidth / 2}
+				]
+				;
 
-				this.addObjects();
+			pixiApp.stage.addChild(container);
 
-			}
+			class Circle {
+				constructor(container, color, cx, cy, cr, coords, curCoords){
+					this.decorate(container, color, cx, cy, cr, coords, curCoords);
+					//this.move(coords, curCoords);
+					this.tl = new TimelineMax({repeat: -1});
+					let tw1, tw2, tw3;
+					switch(true){
+						case curCoords === 0:
+							tw1 = 1;
+							tw2 = 2;
+							tw3 = 0;
+							break;
+						case curCoords === 1:
+							tw1 = 2;
+							tw2 = 0;
+							tw3 = 1;
+							break;
+						case curCoords === 2:
+							tw1 = 0;
+							tw2 = 1;
+							tw3 = 2;
+							break;
+					};
+					this.tween1 = TweenMax.to(this.circle, 1, {x: coords[tw1].x, y: coords[tw1].y});
+					this.tween2 = TweenMax.to(this.circle, 1, {x: coords[tw2].x, y: coords[tw2].y});
+					this.tween3 = TweenMax.to(this.circle, 1, {x: coords[tw3].x, y: coords[tw3].y});
+					this.tl.add([this.tween1, this.tween2, this.tween3], "+=0", "sequence", 0.0)
 
-			addObjects(){
-
-
-
-				
-				
-
-				for (let i = 0; i < this.colors.length; i+=1) {
-					console.log(
-						'x', this.coords[i].x, 
-						'y', this.coords[i].y, 
-						'colors', this.colors[i], 
-						'_cx', this._cx, 
-						'_cy', this._cy, 
-						'_radius', this._radius
-					);
+				}
+				decorate(container, color, cx, cy, cr, coords, curCoords){
+					this.circle = new PIXI.Graphics();
+					this.circle.x = coords[curCoords].x;
+					this.circle.y = coords[curCoords].y;
+					this.circle.beginFill(color);
+					this.circle.drawCircle(cx, cy, cr);
+					this.circle.endFill();
+					container.addChild(this.circle);
+				}
+				move(coords, curCoords){
+					var numb;
+					this.tl.play();
+					// this.tween_2 = TweenMax.to(this.circle, 1, {x: coords[2].x, y: coords[2].y})
+					// this.tween_3 = TweenMax.to(this.circle, 1, {x: coords[0].x, y: coords[0].y})
 					
-					const circ = new Circlec(
-						this.coords[i].x, 
-						this.coords[i].y, 
-						this.colors[i], 
-						this._cx, 
-						this._cy, 
-						this._radius
-					);
-
-					this.circles.push(circ);
-					this.container.addChild(circ);
-					cosnsole.log(this.circles);
-
-				};
-
-				this.animate();
-
-			}
-
-			animate(){
-				let delta = 0;
-				this.pixiapp.ticker.add(() => {
+					//tl.add(this.tween_1,this.tween_2,this.tween_3);
+						
 					
-					//that.delta += 0.1;
-					//this.circle.x += Math.sin(that.delta)*10;
-					//this.mouse = this.pixiapp.renderer.plugins.interaction.mouse.global;
-					// this.particless.forEach(p => {
-					// 	p.update(this.mouse);
-					// });
-
-				});
-
+					
+				}
 			}
-		};
 
-		let PT = new ParticleText();
-		console.log('end',PT);
+			for (let i = 0; i < colors.length; i+=1) {
+				const circ = new Circle(
+					container,
+					colors[i], 
+					_cx, 
+					_cy, 
+					_radius,
+					coords,
+					i
+				);
+				circles.push(circ);
+
+			};
+			function animate(){
+				//console.log(circles),
+				pixiApp.ticker.add(() => {
+				//console.log(circles)
+					for (let i = 0; i < circles.length; i+=1) {
+						circles[i].move(coords, i) 
+					};
+				});
+			};
+			animate();
 		},
 
 		methods: {
