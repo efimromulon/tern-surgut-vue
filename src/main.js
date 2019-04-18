@@ -19,8 +19,14 @@ import svgIconErase from '@/components/app-common/svg/svg-icon-erase.vue'
 import svgIconFunnel from '@/components/app-common/svg/svg-icon-funnel.vue'
 import svgIconLayers from '@/components/app-common/svg/svg-icon-layers.vue'
 import svgIconSearch from '@/components/app-common/svg/svg-icon-search.vue'
+import svgIconReport from '@/components/app-common/svg/svg-icon-report.vue'
+import svgIconPanorama from '@/components/app-common/svg/svg-icon-panorama.vue'
+import svgIconCard from '@/components/app-common/svg/svg-icon-card.vue'
+import svgIconFavorite from '@/components/app-common/svg/svg-icon-favorite.vue'
+import svgIconNotFavorite from '@/components/app-common/svg/svg-icon-not-favorite.vue'
+import svgIconNewtab from '@/components/app-common/svg/svg-icon-newtab.vue'
 
-import { TimelineMax } from 'gsap'
+
 
 Vue.config.productionTip = false;
 
@@ -38,6 +44,13 @@ Vue.component('iconErase', svgIconErase);
 Vue.component('iconFunnel', svgIconFunnel);
 Vue.component('iconLayers', svgIconLayers);
 Vue.component('iconSearch', svgIconSearch);
+Vue.component('iconReport', svgIconReport);
+Vue.component('iconPanorama', svgIconPanorama);
+Vue.component('iconCard', svgIconCard);
+Vue.component('iconFavorite', svgIconFavorite);
+Vue.component('iconNotFavorite', svgIconNotFavorite);
+Vue.component('iconNewtab', svgIconNewtab);
+
 
 // eslint-disable-next-line  
 delete L.Icon.Default.prototype._getIconUrl  

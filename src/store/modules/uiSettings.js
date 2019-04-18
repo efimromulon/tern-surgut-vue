@@ -225,7 +225,6 @@ export default ({
 	actions: {
 
 		toggle_ui_settings_button: (state, payload) => {
-				
 			state.commit('TOGGLE_UI_SETTINGS_BUTTON', payload);
 
 		},
@@ -320,7 +319,14 @@ export default ({
 		},
 		get_uiMarkingMenuDatafilterActive: (state, getters) => {
 			if(getters.get_uiMarkingMenuDatatypeButton_active){
-				return state[getters.get_uiMarkingMenuDatatypeButton_active].find(button => button.buttonState === true).buttonID
+				let activeButtons = state[getters.get_uiMarkingMenuDatatypeButton_active]
+				let activeButton = activeButtons.find(button => button.buttonState === true);
+				if (activeButton) {
+					return activeButton.buttonID
+				} else {
+					return
+				}
+				
 			} else { return };
 			
 		},

@@ -6,7 +6,9 @@ const devlinks = {
     getFuelSell: './json/getFuelSell.json',
     getFuelStock: './json/getFuelStock.json',
     getStationInfo: './json/getStationsInfo.json',
-    getStationsLatLng: './json/getStationsLatLng.json'
+    getStationsLatLng: './json/getStationsLatLng.json',
+    azsReport: "https://www.google.com/search?",
+    setFavReports: ''
 }
 
 const prodLinks = {
@@ -17,7 +19,9 @@ const prodLinks = {
     getFuelSell: '',
     getFuelStock: '',
     getStationInfo: '',
-    getStationsLatLng: ''
+    getStationsLatLng: '',
+    azsReport: '',
+    setFavReports: ''
 }
 
 let link = devlinks;

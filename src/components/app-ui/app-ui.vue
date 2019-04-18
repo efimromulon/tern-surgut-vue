@@ -54,9 +54,14 @@
 			</div>
 		</div>
 
-		<!-- <div class="center-component-wrapper">
+		<div class="center-component-wrapper" v-if="centerComponent">
+				<button-cross
+					:btnClassName = "`sidebar-left-panel-view`"
+					:btnType = "`central`"
+                ></button-cross>
+
 				<component v-bind:is="centerComponent"></component>
-		</div> -->
+		</div>
 
 	</div>
 	
@@ -80,12 +85,13 @@
 		const search = () => import('./app-ui-components/_search.vue') //search
 		const detailedInfo = () => import('../app-map/app-map-components/_detailed-info.vue') //detailed-info
 	// center side components with names after //
-
+		const reportsIframe = () => import('../app-reports/_reports-iframe.vue')
 	export default {
 
 		name: 'app-ui',
 
 		components: {
+			reportsIframe,
 			search,
 			detailedInfo,
 			searchInput,
@@ -143,7 +149,8 @@
 		watch: {
 			buttonFunnel(newCount, oldCount){},
 			buttonSearch(newCount, oldCount){},
-			searchResultTabClosed(){}
+			searchResultTabClosed(){},
+			centerComponent(){}
 		},
 
 	}
@@ -265,11 +272,11 @@
 	.sidebar-left-panel-view__collapse
 		position: absolute
 		top: 0
-		right: 0
+		right: 36px
 		z-index: 999999999
 
 	.sidebar-left-panel-view__close
-		right: 36px
+		right: 0
 		position: absolute
 		top: 0
 		z-index: 999999999

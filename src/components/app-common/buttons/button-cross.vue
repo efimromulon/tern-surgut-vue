@@ -60,7 +60,12 @@ export default {
 					this.$store.dispatch('setComponent', {
 						componentPosition: 'leftMenuComponent',
 						componentName: ''
-					})
+				});
+				case this.btnType === 'central':
+					this.$store.dispatch('setComponent', {
+					componentPosition: 'centralComponent',
+					componentName: ''
+				})
 
 
 			};			

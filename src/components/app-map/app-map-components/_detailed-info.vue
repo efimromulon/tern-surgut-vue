@@ -14,6 +14,31 @@
                     {{activeAzs.stationAddress}}
 
                 </p>
+                <div class="station-info-divider">
+
+                </div>
+                <div class="station-info-buttons-container">
+                    <div>
+                        <div class="station-info-button-wrapper">
+                            <icon-panorama/>
+                        </div>
+                        <p class="station-info-button-label">АЗС 360°</p>
+                    </div>
+                    <div>
+                        <div class="station-info-button-wrapper" @click="toggleReport()">
+                         <icon-report />
+                        </div>
+                        <p class="station-info-button-label">Отчёт</p>
+                    </div>
+                    <div>
+                        <div class="station-info-button-wrapper">
+                            <icon-card/>
+                        </div>
+                        <p class="station-info-button-label">Карточка АЗС</p>
+                    </div>
+                    
+
+                </div>
             </div>
        
    
@@ -23,11 +48,50 @@
 
 <script>
 import {mapState} from 'vuex'
+import link from '../../../constants.js'
 
     export default {
         name: 'detailed-info',
         computed: {
             ...mapState({ activeAzs: state => state.map.active_station })
+        },
+        methods: {
+            toggleReport(){
+                const activeAzs = this.activeAzs;
+                var time = new Date();
+
+                function addZero(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
+
+                var fullTime = "" + addZero(time.getHours()) + ":" + addZero(time.getMinutes());
+
+
+
+                let reportObj = {
+                    cuid: link.azsReport + activeAzs.id,
+                    name: "Отчёт по " + activeAzs.stationName,
+                    time: fullTime
+                }
+                
+                this.$store.dispatch('changeCurrentReport', reportObj);
+               
+
+
+                this.$store.dispatch('setComponent', {
+					componentPosition: 'centralComponent',
+					componentName: 'reports-iframe'
+				});
+            }
+        },
+        beforeDestroy(){
+            this.$store.dispatch('setComponent', {
+					componentPosition: 'centralComponent',
+					componentName: ''
+				})
         }
     }
 </script>
@@ -52,4 +116,29 @@ import {mapState} from 'vuex'
     margin: 12px
     font-size: 0.9em
     color: #707070
+.station-info-divider
+    height: 4vh
+    width: 100%
+    background-color: #E3E3E3
+    margin: 1vh 0
+.station-info-buttons-container
+    width: 100%
+    display: flex
+    align-items: space-around
+    justify-content: center
+.station-info-button-wrapper
+    display: flex
+    align-items: center
+    justify-content: center
+    background-color: white
+    flex: auto 0
+    border-radius: 50%
+    margin: 1vh 2vh
+    width: 6vh
+    height: 6vh
+    @include shadow(2)
+    cursor: pointer
+.station-info-button-label
+    text-align: center
+    font-size: 0.8em
 </style>
