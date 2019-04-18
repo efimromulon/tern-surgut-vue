@@ -49,7 +49,14 @@
 				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
 			},
         },
+        watch: {
+            searchResultTabClosed(val) {
+                console.log(val)
+            }
+        },
         beforeDestroy() {
+           this.$store.dispatch('close_search');
+           this.$store.dispatch('reset_search');
            this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
         }
     }

@@ -199,7 +199,7 @@ export default ({
 
 
 			for (var i = 0; i <= sdo.length - 1; i++) {
-				console.log(i, 'iteration')
+				// console.log(i, 'iteration')
 				filter_and_set_color(sdo[i], state);
 			}
 

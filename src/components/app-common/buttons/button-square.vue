@@ -66,9 +66,9 @@
 			beforeEnter: function (el) {
 			},
 			enter: function (el, done) {
-				console.log("Enter button", this.tl);
+				// console.log("Enter button", this.tl);
 				this.tl.fromTo(el, .5,{scaleX: 0.035, scaleY: 1.115, left: '-5%'},{scaleX: 1.0, scaleY: 1.0, left: '0%', ease: Power2.easeInOut, onComplete: done}, +1.0);
-				console.log("Enter button", this.tl);
+				// console.log("Enter button", this.tl);
 			},
 			afterEnter: function (el) {
 			},
@@ -77,11 +77,11 @@
 			beforeLeave: function (el) {
 			},
 			leave: function (el, done) {
-				console.log("Leave button", this.tl);
+				// console.log("Leave button", this.tl);
 				this.tl
 				.to(el, .5, {scaleX: 0.035, scaleY: 1.115, ease: Power2.easeInOut})
 				.to(el, .5, {left: '-5%', ease: Power2.easeInOut, onComplete: done});
-				console.log("Leave button", this.tl);
+				// console.log("Leave button", this.tl);
 				
 			},
 			afterLeave: function (el) {

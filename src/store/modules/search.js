@@ -20,6 +20,7 @@ export default ({
 			state.searchLoading = searchLoading
 		},
 		RESET_SEARCH: (state) => {
+			state.searchQuery = ''
 			state.searchResultKNP = [];
 			state.searchResultPNP = [];
 			state.searchResultTNP = [];

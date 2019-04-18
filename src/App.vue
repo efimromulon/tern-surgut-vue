@@ -11,7 +11,7 @@
 <script>
 
 
-
+	import axios from 'axios'
 
 	import { mapActions, mapGetters, mapState } 	from 'vuex'
 
@@ -19,15 +19,9 @@
 	import appUi 						from '@/components/app-ui/app-ui.vue'
 	import appMap 						from '@/components/app-map/app-map.vue'
 	import appPopupLarge 				from '@/components/app-popup-large/app-popup-large.vue'
+	import link from './constants.js'
 
-	import jsongetCurrentUser 			from '../public/json/getCurrentUser.json'
-	import jsongetAzsInfo 				from '../public/json/getAzsInfo.json'
-	import jsongetFuelStock 			from '../public/json/getFuelStock.json'
-	import jsongetFuelSell 				from '../public/json/getFuelSell.json'
-	import jsongetArticleSell 			from '../public/json/getArticleSell.json'
-	import jsongetStationsLatLng 		from '../public/json/getStationsLatLng.json'
-	import jsongetStationsInfo 			from '../public/json/getStationsInfo.json'
-	import jsongetDepartmentFull 		from '../public/json/getDepartmentFull.json'
+	
 
 	export default {
 		name: 'app',
@@ -59,11 +53,22 @@
 			...mapActions(['get_local_json', 'get_indicator_json', 'set_stations', 'set_stations_colors', 'get_json_map', 'set_fuel_sell', 'stations_sort_by_colors']),
 
 			/// MAP - JSON's
-			LOAD_JSONS_FOR_MAP(){
+			async LOAD_JSONS_FOR_MAP(){
+				
+				const jsongetCurrentUser = await axios.get(link.getCurrentUser).then(res => res.data)
+				const jsongetAzsInfo = await axios.get(link.getAzsInfo).then(res => res.data) 
+				const jsongetStationsLatLng = await axios.get(link.getStationsLatLng).then(res => res.data) 
+				const jsongetStationsInfo = await axios.get(link.getStationInfo).then(res => res.data) 
+				const jsongetFuelStock = await axios.get(link.getFuelStock).then(res => res.data) 
+				const jsongetFuelSell = await axios.get(link.getFuelSell).then(res => res.data)
+				const jsongetArticleSell = await axios.get(link.getArticleSell).then(res => res.data)
+				const jsongetDepartmentFull = await axios.get(link.getDepartmentFull).then(res => res.data)
+
 				var a = {jsonName: 'getFuelSell', jsonData: jsongetFuelSell},
 					b = {jsonName: 'getFuelStock', jsonData: jsongetFuelStock},
 					c = {jsonName: 'getArticleSell', jsonData: jsongetArticleSell},
 					d = {jsonName: 'getDepartmentFull', jsonData: jsongetDepartmentFull};
+
 				this.$store.dispatch('set_fuel_sell', a).then(
 					result => {
 						this.$store.dispatch('get_json_map', b);

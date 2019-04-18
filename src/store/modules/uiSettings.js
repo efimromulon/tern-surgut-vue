@@ -139,13 +139,13 @@ export default ({
 			};
 
 			///
-			function toggleUiButton (a, b, c){
-				console.log('a', a, 'b', b, 'c', c);
-				a === 0 ? state[b].find(button => button.buttonID === buttonId).buttonState = !c : false;
+			function toggleUiButton (buttonPressType, buttonArray, buttonPressedState){
+			
+				buttonPressType === 0 ? state[buttonArray].find(button => button.buttonID === buttonId).buttonState = !buttonPressedState : false;
 
-				if ( a === 1 ) {
-					for(var i = 0; i < state[b].length - 1; i++){
-						state[b].forEach(function(button) {
+				if ( buttonPressType === 1 ) {
+					for(var i = 0; i < state[buttonArray].length - 1; i++){
+						state[buttonArray].forEach(function(button) {
 
 							// if ( button.buttonID === buttonId ) {
 							// 	button.buttonState = !c
@@ -155,12 +155,12 @@ export default ({
 
 							switch (true) {
 								case ( ( button.buttonID === buttonId ) && ( button.buttonState !== true ) ):
-									button.buttonState = !c;
+									button.buttonState = !buttonPressedState;
 									break;
 								case ( ( button.buttonID === buttonId ) && ( button.buttonState === true ) ):
 									break;
 								case ( ( button.buttonID !== buttonId ) && ( button.buttonState !== true ) ):
-									break;									break;
+									break;									
 								case ( ( button.buttonID !== buttonId ) && ( button.buttonState === true ) ):
 									button.buttonState = false;
 									break;

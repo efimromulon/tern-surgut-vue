@@ -114,7 +114,7 @@
 			...mapState({
 				leftComponent: state => state.dynamicComponents.leftMenuComponent,
 				centerComponent: state => state.dynamicComponents.centralComponent,
-				searchResultTabClosed: state =>state.search.searchResultTabClosed
+				searchResultTabClosed: state => state.search.searchResultTabClosed
 			}),
 			buttonFunnel(){
 				return this.getButtonSquareById(this.buttonFunnelId)
@@ -130,15 +130,10 @@
 		methods: {
 			TOGGLE_BUTTON_SEARCH(){
 				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
-				let componentName = ''
-				
-				if (this.searchResultTabClosed) {
-					componentName = 'search'
-				}
 				
 				this.$store.dispatch('setComponent', {
 					componentPosition: 'leftMenuComponent',
-					componentName
+					componentName: 'search'
 				})
 			
 			},
@@ -148,6 +143,7 @@
 		watch: {
 			buttonFunnel(newCount, oldCount){},
 			buttonSearch(newCount, oldCount){},
+			searchResultTabClosed(){}
 		},
 
 	}

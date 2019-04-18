@@ -17,6 +17,7 @@
 							:btnText="btnRectTextText"
 							:btnDisable="false"
 							:btnClick="SEND_OPEN"
+							v-on:click.native="handleClick(i)"
 						></button-rectangle-text>
 					</div>
 				</div>
@@ -48,8 +49,18 @@
 		computed: {
 		},
 		methods: {
+			handleClick(i){
+
+					this.$store.dispatch('set_active_station', i)
+
+					this.$store.dispatch('setComponent', {
+						componentPosition: 'leftMenuComponent',
+						componentName: 'detailed-info'
+					})
+			},
 			SEND_OPEN(){
-				
+			
+					
 			},
 		},
 		mounted(){

@@ -8,6 +8,7 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "fluent-reveal-effect": "^1.0.0",
     "gsap": "^2.0.2",
     "jquery": "^3.3.1",

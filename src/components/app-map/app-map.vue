@@ -11,6 +11,7 @@
 		@update:zoom="zoomUpdated"
 		@update:center="centerUpdated"
 		@update:bounds="boundsUpdated"
+		ref="map"
 	>
 
 		<l-control-zoom position="topright"></l-control-zoom>
@@ -32,7 +33,7 @@
 				v-for="i in markers_knp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
 				:visible="knpIsVisible && gIsVisible"
 			>
@@ -41,7 +42,7 @@
 				v-for="i in markers_kas_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
 				:visible="kasIsVisible && gIsVisible"
 			>
@@ -50,7 +51,7 @@
 				v-for="i in markers_nnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
 				:visible="nnpIsVisible && gIsVisible"
 			>
@@ -59,7 +60,7 @@
 				v-for="i in markers_pnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
 				:visible="pnpIsVisible && gIsVisible"
 			>
@@ -68,7 +69,7 @@
 				v-for="i in markers_tnp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
 				:visible="tnpIsVisible && gIsVisible"
 			>
@@ -79,7 +80,7 @@
 				v-for="i in markers_knp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
 				:visible="knpIsVisible && oIsVisible"
 			>
@@ -88,7 +89,7 @@
 				v-for="i in markers_kas_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
 				:visible="kasIsVisible && oIsVisible"
 			>
@@ -97,7 +98,7 @@
 				v-for="i in markers_nnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
 				:visible="nnpIsVisible && oIsVisible"
 			>
@@ -106,7 +107,7 @@
 				v-for="i in markers_pnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
 				:visible="pnpIsVisible && oIsVisible"
 			>
@@ -115,7 +116,7 @@
 				v-for="i in markers_tnp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
 				:visible="tnpIsVisible && oIsVisible"
 			>
@@ -126,7 +127,7 @@
 				v-for="i in markers_knp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
 				:visible="knpIsVisible && rIsVisible"
 			>
@@ -135,7 +136,7 @@
 				v-for="i in markers_kas_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
 				:visible="kasIsVisible && rIsVisible"
 			>
@@ -144,7 +145,7 @@
 				v-for="i in markers_nnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
 				:visible="nnpIsVisible && rIsVisible"
 			>
@@ -153,7 +154,7 @@
 				v-for="i in markers_pnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
 				:visible="pnpIsVisible && rIsVisible"
 			>
@@ -162,7 +163,7 @@
 				v-for="i in markers_tnp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
 				:visible="tnpIsVisible && rIsVisible"
 			>
@@ -174,7 +175,7 @@
 				v-for="i in markers_knp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
 				:visible="knpIsVisible && cIsVisible"
 			>
@@ -183,7 +184,7 @@
 				v-for="i in markers_kas_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
 				:visible="kasIsVisible && cIsVisible"
 			>
@@ -192,7 +193,7 @@
 				v-for="i in markers_nnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
 				:visible="nnpIsVisible && cIsVisible"
 			>
@@ -201,7 +202,7 @@
 				v-for="i in markers_pnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
 				:visible="pnpIsVisible && cIsVisible"
 			>
@@ -210,7 +211,7 @@
 				v-for="i in markers_tnp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
-				@click="openPopUp(i)"
+				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
 				:visible="tnpIsVisible && cIsVisible"
 			>
@@ -646,54 +647,49 @@ import { mapGetters, mapState } from 'vuex'
 				this.rIsVisible = this.colorSwitchButtonR;
 				this.cIsVisible = this.colorSwitchButtonC;
 			},
-			openPopUp (i) {
-				// this.popupCaller 	= i;
-				// this.popupCallerId 	= i.id;
-
-
-				// this.$refs.features.mapObject.openPopup(i.latlng);
-				
-				this.$store.dispatch('set_active_station', i)
-
+			openPopup(i) {
+				this.$refs.features.mapObject.openPopup(i.latlng)	
 				this.$store.dispatch('setComponent', {
 					componentPosition: 'leftMenuComponent',
 					componentName: 'detailed-info'
 				})
-
-
+			},
+			closePopup(){
+				this.$refs.features.mapObject.closePopup();
+				this.$store.dispatch('set_active_station', null)
+				this.$store.dispatch('setComponent', {
+					componentPosition: 'leftMenuComponent',
+					componentName: ''
+				})
+			},
+			handlePopupClick(i){
+				
+				this.$store.dispatch('set_active_station', i)
 			},
 			zoomUpdated(zoom){
 				this.zoom = zoom;
 				this.UPDATE_stations();
-				this.$refs.features.mapObject.closePopup();
+				// this.$refs.features.mapObject.closePopup();
 			},
 			centerUpdated(center){
 				this.center = center;
 			},
 			boundsUpdated(bounds){
-				if (this.searchCollapsed === false){this.$store.dispatch('close_search');};
-				this.bounds = bounds;
+				
+				// if (this.searchCollapsed === false){this.$store.dispatch('close_search');};
+				// this.bounds = bounds;
 			},
 			
 		},
 		watch: {
 			activeAzs(val, oldVal) {
-				if(!val) {
-					this.$refs.features.mapObject.closePopup();
+				if(val && !oldVal || val && oldVal && val.id !== oldVal.id) {					
+					this.openPopup(val)
+					this.centerUpdated(val.latlng)
 				}
 
-				if(val && !oldVal || val && oldVal && val.id !== oldVal.id) {
-					this.$refs.features.mapObject.openPopup(val.latlng)
-				}
-
-				if (val && oldVal && val.id === oldVal.id) {
-					this.$refs.features.mapObject.closePopup();
-						this.$store.dispatch('set_active_station', null)
-
-					this.$store.dispatch('setComponent', {
-						componentPosition: 'leftMenuComponent',
-						componentName: ''
-					})
+				if (!val || val && oldVal && val.id === oldVal.id) {
+					this.closePopup()
 				}
 			},
 			searchCollapsed(newCount, oldCount){},

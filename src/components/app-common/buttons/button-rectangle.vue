@@ -38,7 +38,7 @@
 			},
 			btnClick: {
 				type: Function,
-				required: true,
+				required: false,
 			},
 		},
 		data() {
