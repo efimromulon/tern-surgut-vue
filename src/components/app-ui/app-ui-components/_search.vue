@@ -46,7 +46,7 @@
         },
         methods:{
             CLOSE_BUTTON_CROSS(){
-				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
+				// this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
 			},
         },
         watch: {

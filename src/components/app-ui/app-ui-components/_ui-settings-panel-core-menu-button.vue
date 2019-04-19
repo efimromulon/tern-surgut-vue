@@ -53,8 +53,23 @@
 		methods: {
 
 			TOGGLE_CURRENT_FILTER_MENU_BUTTON(){
+				
 				let payload = {buttonArray: 'uiCoreMenuButtons', id: this.buttonData.buttonID};
 				this.$store.dispatch('toggle_ui_settings_button', payload);
+
+				if (this.buttonData.buttonName === 'Отчёты') {
+					this.$store.dispatch('setComponent', {
+						componentPosition: 'leftMenuComponent',
+						componentName: 'reports-navigation'
+					})
+
+				} else {
+					this.$store.dispatch('setComponent', {
+						componentPosition: 'leftMenuComponent',
+						componentName: ''
+					})
+				}
+
 			},
 			UPDATE_BUTTON_ANIMATION(){
 

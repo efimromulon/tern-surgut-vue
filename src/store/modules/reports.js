@@ -6,7 +6,7 @@ export default ({
         availableReports: [],
         favoriteReports: [],
         reportsHistory: [],
-        currentReport: null
+        currentReport: null,
 	},
 	mutations: {
 		SET_AVAILABLE_REPORTS(state, array) {
@@ -24,7 +24,7 @@ export default ({
                 if (report.cuid === object.cuid) { isUniqueIndex = index } 
             })
 
-            if (!!isUniqueIndex) {
+            if (isUniqueIndex === 0 || isUniqueIndex) {
                 tempArr.splice(isUniqueIndex,1)
             }
 
@@ -71,7 +71,7 @@ export default ({
 
             state.commit('SET_AVAILABLE_REPORTS', responseArr)
         },
-       async  prepareFavoriteReports(state) {
+        async prepareFavoriteReports(state) {
             //fetch reports
             const responseArr = []
 
@@ -80,14 +80,51 @@ export default ({
         setFavoriteReports(state,array) {
             state.commit('SET_FAVORITE_REPORTS', array)
         },
-        addToHistory(state,object) {
-            state.commit('ADD_TO_HISTORY', object)
-        },
         changeCurrentReport(state, object) {
-            if (!state.currentReport || state.currentReport.cuid !== object.cuid) {
-                state.commit('CHANGE_CURRENT_REPORT', object)
-                state.commit('ADD_TO_HISTORY', object)
+
+            let activeAzs = state.rootState.map.active_station
+            var time = new Date();
+
+            function addZero(i) {
+                if (i < 10) {
+                    i = "0" + i;
+                }
+                return i;
             }
+
+            var fullTime = "" + addZero(time.getHours()) + ":" + addZero(time.getMinutes());
+
+            let reportObj;
+
+            if(!object) {
+                reportObj = {
+                    cuid: link.azsReport + activeAzs.id,
+                    name: "Отчёт по " + activeAzs.stationName,
+                    time: fullTime
+                }
+            } else {
+                reportObj = object,
+                reportObj.time = fullTime
+            }
+
+            if (!state.currentReport || state.currentReport.cuid !== reportObj.cuid) {
+
+
+                state.commit('CHANGE_CURRENT_REPORT', reportObj)
+                state.commit('ADD_TO_HISTORY', reportObj)
+
+                let iframeOpened = state.rootState.dynamicComponents.centralComponent;
+
+                if (!iframeOpened) {
+                    state.commit('SET_COMPONENT', {
+                        componentPosition: 'centralComponent',
+					    componentName: 'reports-iframe'
+                    }, 
+                    {rootState: true})
+                }
+            }
+
+
         },
         updateFavorite(state, object) {
             let favoriteReports = state.state.favoriteReports
@@ -115,27 +152,27 @@ export default ({
 	},
 	getters: {
         getFavorite(state) {
-            let object = state.currentReport;
 
-            if (!object) {
-                return false
-            }
-            let id = object.cuid
-            let favoriteReports = state.favoriteReports
-
-            if (favoriteReports.length === 0) {
-                return false
-            } else {
-                
-                for (let i = 0; i < favoriteReports.length; i++) {
-                    if (favoriteReports[i].cuid === id) {
-                        return true
-                    }
+            return (object) => {
+                if (!object) {
+                    return false
                 }
-
-                return false
+                let id = object.cuid
+                let favoriteReports = state.favoriteReports
+    
+                if (favoriteReports.length === 0) {
+                    return false
+                } else {
+                    
+                    for (let i = 0; i < favoriteReports.length; i++) {
+                        if (favoriteReports[i].cuid === id) {
+                            return true
+                        }
+                    }
+    
+                    return false
+                }
             }
-
         }
     }
 })

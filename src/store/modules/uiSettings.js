@@ -49,6 +49,12 @@ export default ({
 				buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', 
 				buttonState: false
 			},
+			{
+				buttonID: 2, 
+				buttonName: 'Отчёты', 
+				buttonFilterName: null, 
+				buttonState: false
+			}
 		],
 		uiMarkingMenuButtons: [
 			{

@@ -1,17 +1,25 @@
 <template>
-    <div class="fav-container">
-        <icon-favorite v-if="isFavorite" />
+    <div class="fav-container" @click="handleFavClick">
+        <icon-favorite v-if="getFavorite(report)" />
         <icon-not-favorite v-else />
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
     export default {
-        props: ['isFavorite'],
-        watch: {
-            isFavorite() { }
+        props: ['report'],
+        computed: {
+             ...mapGetters(['getFavorite']),
+        },
+        methods: {
+            handleFavClick() {           
+                let object = this.report
+                this.$store.dispatch('updateFavorite', object);
             }
-    }
+        }
+            
+}
 </script>
 
 <style scoped lang="sass">

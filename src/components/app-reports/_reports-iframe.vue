@@ -5,7 +5,7 @@
                {{ currentReport.name }}
            </div>
            <div class="iframe-control-buttons">
-                <reports-favorite :isFavorite="getFavorite" @click.native="handleFavClick"/>
+                <reports-favorite :report="currentReport" />
                 <icon-newtab @click.native="handleNewTabClick"/>
            </div>
        </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import ReportsFavorite from './_reports-favorite'
 
 
@@ -29,14 +29,11 @@ import ReportsFavorite from './_reports-favorite'
             ...mapState({ 
                 currentReport: state => state.reports.currentReport
                 }),
-            ...mapGetters(['getFavorite'])
+           
             
         },
         methods: {
-            handleFavClick() {
-                let object = this.currentReport
-                this.$store.dispatch('updateFavorite', object);
-            },
+            
             handleNewTabClick() {
                 let url = this.currentReport.cuid
                 window.open(url, '_blank');

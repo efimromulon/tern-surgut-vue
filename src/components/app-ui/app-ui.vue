@@ -42,7 +42,10 @@
 
 		<div class="sidebar-left-container">
 			<div class="sidebar-left-view">	
-				<component v-bind:is="leftComponent"></component>
+				<keep-alive>
+					<component v-bind:is="leftComponent"></component>
+				</keep-alive>
+				
 			</div>
 		</div>
 
@@ -59,8 +62,10 @@
 					:btnClassName = "`sidebar-left-panel-view`"
 					:btnType = "`central`"
                 ></button-cross>
-
-				<component v-bind:is="centerComponent"></component>
+				<keep-alive>
+					<component v-bind:is="centerComponent"></component>
+				</keep-alive>
+				
 		</div>
 
 	</div>
@@ -84,6 +89,7 @@
 	//left side components with names after //
 		const search = () => import('./app-ui-components/_search.vue') //search
 		const detailedInfo = () => import('../app-map/app-map-components/_detailed-info.vue') //detailed-info
+		const reportsNavigation = () => import('../app-reports/_reports-navigation.vue')
 	// center side components with names after //
 		const reportsIframe = () => import('../app-reports/_reports-iframe.vue')
 	export default {
@@ -92,6 +98,7 @@
 
 		components: {
 			reportsIframe,
+			reportsNavigation,
 			search,
 			detailedInfo,
 			searchInput,

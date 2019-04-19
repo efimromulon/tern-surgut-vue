@@ -58,40 +58,14 @@ import link from '../../../constants.js'
         methods: {
             toggleReport(){
                 const activeAzs = this.activeAzs;
-                var time = new Date();
-
-                function addZero(i) {
-                    if (i < 10) {
-                        i = "0" + i;
-                    }
-                    return i;
-                }
-
-                var fullTime = "" + addZero(time.getHours()) + ":" + addZero(time.getMinutes());
-
-
-
-                let reportObj = {
-                    cuid: link.azsReport + activeAzs.id,
-                    name: "Отчёт по " + activeAzs.stationName,
-                    time: fullTime
-                }
-                
-                this.$store.dispatch('changeCurrentReport', reportObj);
-               
-
-
-                this.$store.dispatch('setComponent', {
-					componentPosition: 'centralComponent',
-					componentName: 'reports-iframe'
-				});
+                this.$store.dispatch('changeCurrentReport');
             }
         },
         beforeDestroy(){
             this.$store.dispatch('setComponent', {
-					componentPosition: 'centralComponent',
-					componentName: ''
-				})
+                componentPosition: 'centralComponent',
+                componentName: ''
+			})
         }
     }
 </script>

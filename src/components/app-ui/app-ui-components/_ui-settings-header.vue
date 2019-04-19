@@ -1,5 +1,7 @@
 <template>
 	<div class="ui-settings-view">
+		<settings-color-switch></settings-color-switch>
+		
 		<button-square 
 			:onClick = "TOGGLE_BUTTON_FUNNEL" 
 			:buttonClass = "`button_funnel`" 
@@ -8,7 +10,7 @@
 		>
 			<svg-icon-funnel></svg-icon-funnel>
 		</button-square>
-		<settings-color-switch></settings-color-switch>
+		
 	</div>
 </template>
 
