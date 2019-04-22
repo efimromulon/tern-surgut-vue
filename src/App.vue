@@ -145,7 +145,7 @@
 		left: calc(20vw + 32px)
 		background-color: white
 		height: calc(100vh - 64px - 12px)
-		width: calc(80vw - 164px)
+		width: calc(80vw - 64px)
 		z-index: 9999
 
 

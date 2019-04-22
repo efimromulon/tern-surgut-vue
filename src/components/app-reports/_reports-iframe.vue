@@ -48,7 +48,6 @@ import ReportsFavorite from './_reports-favorite'
 .iframe-controls
     width: 100%
     height: 5vh
-    margin-bottom: 2vh
     display: flex
     align-items: center
     justify-content: center
@@ -57,11 +56,11 @@ import ReportsFavorite from './_reports-favorite'
     width: 100%
     display: flex
     align-items: center
-    justify-content: flex-end
+    justify-content: flex-start
     flex-direction: column
 .iframe-container
-    height: 80vh
-    width: calc(80vh * 1.7)
+    height: 85vh
+    width: calc(85vh * 1.7)
     background-color: #E3E3E3
     margin-bottom: 1vh
 .iframe
@@ -71,7 +70,7 @@ import ReportsFavorite from './_reports-favorite'
 .iframe-report-name
     flex: 9
     text-align: left
-    padding-left: 3vh
+    padding-left: 4vh
 .iframe-control-buttons
     flex: 1
     display: flex

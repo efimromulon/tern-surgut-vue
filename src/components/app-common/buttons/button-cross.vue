@@ -54,6 +54,7 @@ export default {
 						componentName: ''
 					})
 					this.btnClick();
+					break
 				case this.btnType === 'popup':
 					this.$store.dispatch('set_active_station', null)
 
@@ -61,13 +62,17 @@ export default {
 						componentPosition: 'leftMenuComponent',
 						componentName: ''
 				});
+				break
 				case this.btnType === 'central':
 					this.$store.dispatch('setComponent', {
 					componentPosition: 'centralComponent',
 					componentName: ''
-				})
-
-
+				});
+					this.$store.dispatch('setComponent', {
+					componentPosition: 'leftMenuComponent',
+					componentName: ''
+				});
+				break
 			};			
 		},
 	},

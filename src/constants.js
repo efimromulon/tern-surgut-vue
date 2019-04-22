@@ -8,7 +8,9 @@ const devlinks = {
     getStationInfo: './json/getStationsInfo.json',
     getStationsLatLng: './json/getStationsLatLng.json',
     azsReport: "https://www.google.com/search?",
-    setFavReports: ''
+    setFavReports: '',
+    getHeatmapData: './json/getAllRestarts.json',
+    getHeatmapChartData: './json/getRestartsGraphData.json'
 }
 
 const prodLinks = {
@@ -21,7 +23,9 @@ const prodLinks = {
     getStationInfo: '',
     getStationsLatLng: '',
     azsReport: '',
-    setFavReports: ''
+    setFavReports: '',
+    getHeatmapData: '',
+    getHeatmapChartData: ''
 }
 
 let link = devlinks;

@@ -29,6 +29,7 @@
             return {
                 buttonSearchId: 1,
                 buttonSearchClass: 'button_search',
+                // isClosing: false
             }
         },
         components: {
@@ -46,7 +47,10 @@
         },
         methods:{
             CLOSE_BUTTON_CROSS(){
-				// this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
+                this.$store.dispatch('close_search');
+                this.$store.dispatch('reset_search');
+                this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
+                // this.isClosing = true
 			},
         },
         watch: {
@@ -55,9 +59,13 @@
             }
         },
         beforeDestroy() {
-           this.$store.dispatch('close_search');
-           this.$store.dispatch('reset_search');
-           this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
+            this.$store.dispatch('close_search');
+            this.$store.dispatch('reset_search');
+            // console.log('111')
+            // if(!isClosing) {
+            //     this.CLOSE_BUTTON_CROSS()
+            // }
+            // this.isClosing = false
         }
     }
 </script>

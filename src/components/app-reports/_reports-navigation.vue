@@ -3,12 +3,13 @@
         <div class="sidebar-left-panel-view__content">
             <div class="reports-tabs-container">
                 <div class="reports-tabs-wrapper" >
-                    <div class="reports-tab" v-for="tab in tabNames" :key="tab" @click="changeActiveTab(tab)">
+                    <div v-for="tab in tabNames" :key="tab" @click="changeActiveTab(tab)" :class="{'reports-tab': true, 'active-tab': tab === activeTab}">
                         {{ tab }}
                     </div>
                 </div>
+
                 <div data-scrollbar class="reports-items-wrapper">
-                    <div v-if="reportsData[activeTab].length === 0" class="reports-nodata">
+                    <div v-if="reportsData[activeTab] && reportsData[activeTab].length === 0" class="reports-nodata">
                         <p class="reports-nodata-text">{{ mapNoData(activeTab) }} <icon-not-favorite v-if="activeTab === 'Избранное'"/> </p>
                 </div>
                 <report-item v-else v-for="report in reportsData[activeTab]" :key="report.cuid" class="" :report="report"/>   
@@ -33,8 +34,8 @@ import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
         },
         data() {
             return {
-                activeTab: 'Избранное',
-                tabNames: ['Доступные','Избранное','История']
+                activeTab: '',
+                tabNames: ['Избранное','Доступные','История']
             }
         },
         computed: {
@@ -43,8 +44,6 @@ import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
                 favoriteReports: state => state.reports.favoriteReports,
                 reportsHistory: state => state.reports.reportsHistory
             }),
-
-            
             reportsData() {
                 return {
                     'Доступные': this.availableReports,
@@ -88,12 +87,16 @@ import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 .reports-tabs-wrapper
     display: flex
     flex-direction: row
-    justify-content: space-around
-    
+    justify-content: space-evenly
+    @include shadow(1)
 .reports-tab
+    flex: 1
     font-size: .9em
     padding: 8px 0
+    text-align: center
     cursor: pointer
+.active-tab
+    background-color: #ededed
 .reports-items-wrapper
     max-height: calc(100vh - 32px)
     overflow: hidden

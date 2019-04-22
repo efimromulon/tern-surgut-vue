@@ -106,6 +106,7 @@ export default ({
 		},
 		close_search: (state) => {
 			state.commit('CLOSE_SEARCH');
+			state.commit('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: 1});
 		},
 		close_search_result_tab: (state) => {
 			state.commit('SET_SEARCH_QUERY', '');

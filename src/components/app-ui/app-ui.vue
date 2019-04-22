@@ -90,13 +90,17 @@
 		const search = () => import('./app-ui-components/_search.vue') //search
 		const detailedInfo = () => import('../app-map/app-map-components/_detailed-info.vue') //detailed-info
 		const reportsNavigation = () => import('../app-reports/_reports-navigation.vue')
+		const heatmapControls = () => import('../app-heatmap/_heatmap-controls.vue')
 	// center side components with names after //
 		const reportsIframe = () => import('../app-reports/_reports-iframe.vue')
+		const heatmapGraph = () => import('../app-heatmap/_heatmap-graph.vue')
 	export default {
 
 		name: 'app-ui',
 
 		components: {
+			heatmapGraph,
+			heatmapControls,
 			reportsIframe,
 			reportsNavigation,
 			search,

@@ -57,18 +57,32 @@
 				let payload = {buttonArray: 'uiCoreMenuButtons', id: this.buttonData.buttonID};
 				this.$store.dispatch('toggle_ui_settings_button', payload);
 
-				if (this.buttonData.buttonName === 'Отчёты') {
+
+				switch (this.buttonData.buttonName) {
+					case 'Отчёты':
 					this.$store.dispatch('setComponent', {
 						componentPosition: 'leftMenuComponent',
 						componentName: 'reports-navigation'
-					})
-
-				} else {
+					})	
+					break;
+					case 'Графика':
 					this.$store.dispatch('setComponent', {
+						componentPosition: 'leftMenuComponent',
+						componentName: 'heatmap-controls'
+					})
+					this.$store.dispatch('setComponent', {
+						componentPosition: 'centralComponent',
+					    componentName: 'heatmap-graph'
+					})	
+					break;
+				
+					default:
+						this.$store.dispatch('setComponent', {
 						componentPosition: 'leftMenuComponent',
 						componentName: ''
 					})
 				}
+
 
 			},
 			UPDATE_BUTTON_ANIMATION(){

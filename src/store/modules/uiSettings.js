@@ -54,6 +54,12 @@ export default ({
 				buttonName: 'Отчёты', 
 				buttonFilterName: null, 
 				buttonState: false
+			},
+			{
+				buttonID: 3, 
+				buttonName: 'Графика', 
+				buttonFilterName: null, 
+				buttonState: false
 			}
 		],
 		uiMarkingMenuButtons: [

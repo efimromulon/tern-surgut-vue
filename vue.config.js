@@ -6,5 +6,6 @@ module.exports = {
 			}
 		}
 	},
-	publicPath: process.env.NODE_ENV === 'production' ? 'http://hana103:8051/sngias/oilix_prd/map_dev/' : '/'
+	// publicPath: process.env.NODE_ENV === 'production' ? 'http://hana103:8051/sngias/oilix_prd/map_dev/' : '/'
+	publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
 };

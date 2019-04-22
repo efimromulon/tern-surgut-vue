@@ -5,7 +5,7 @@ import search from './modules/search.js'
 import uiSettings from './modules/uiSettings.js'
 import dynamicComponents from './modules/dynamicComponents.js'
 import reports from './modules/reports.js'
-
+import heatmap from './modules/heatmap.js'
 
 Vue.use(Vuex)
 
@@ -16,7 +16,8 @@ export default new Vuex.Store({
 		search,
 		uiSettings,
 		dynamicComponents,
-		reports
+		reports,
+		heatmap
 	},
 	state: {
 		//Preloader
