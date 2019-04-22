@@ -15,7 +15,7 @@
             </div>
             <p  v-if="highlightedAzs" class="heatmap-controls-highlighted-azs-description" >Количество перезагрузок и обновления ПО на {{ highlightedAzsName }}</p> 
             <div v-if="highlightedAzs" class="heatmap-controls-highlighted-azs-container">  
-                <!-- <heatmap-chart :chartData="chartData"/>           -->
+                <heatmap-chart :chartData="chartData" v-if="chartData && chartData.data"/>          
             </div >
             </div>
      </div>
@@ -27,10 +27,13 @@
 
 import { mapState } from 'vuex'
 import SelectInput from './_heatmap-select-input'
+import heatmapChart from './_heatmap-chart'
+
     export default {
          name: 'heatmap-controls',
          components: {
-             SelectInput
+             SelectInput,
+             heatmapChart
              },
     data(){
         return {           
@@ -141,5 +144,10 @@ import SelectInput from './_heatmap-select-input'
     width: calc(100% - 2vh)
     margin-left: 1vh
 .heatmap-controls-highlighted-azs-description
+    margin-left: 1vh
+    font-size: .9em
+    width: 80%
 .heatmap-controls-highlighted-azs-container
+    width: 100%
+    height: 30vh
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div v-if="heatmapData">
-         
-      <heatmap-legend :colorSteps="colorSteps" /> 
+    <h3 class="heatmap-title" v-if="dataType">{{ dataType }}</h3>
+    <heatmap-legend :colorSteps="colorSteps" />
       <div class="heatmap-items-container">
             <heatmap-item 
             v-for="item in heatmapData" 
@@ -22,6 +22,8 @@
 import { mapState } from 'vuex'
 import heatmapItem from './_heatmap-item'
 import heatmapLegend from './_heatmap-legend'
+
+
 
 var color1 = [173, 219, 252];
 var color2 = [63, 138, 177];
@@ -119,7 +121,9 @@ function makeGradient(max) {
             weekNames: state => state.heatmap.weekNames,
             weekIndex: state => state.heatmap.weekIndex,
             averageVal: state => state.heatmap.averageVal,
-            highlightedAzs: state => state.heatmap.highlightedAzs
+            highlightedAzs: state => state.heatmap.highlightedAzs,
+            dataType: state => state.heatmap.dataType,
+            weekHipe: state => state.heatmap.weekHipe
         }),
         maxVal: {
             get() {
@@ -187,14 +191,14 @@ function makeGradient(max) {
             this.$store.dispatch('highlightAzs', item)
             
         },
-
-        isSelected(item) {
-  
+        isSelected(item) {  
             let reboots = item.aReboots
             let minVal = this.averageVal
             let weeksToCalc = this.weekNames.length
 
             let activeCondition = this.weekHipe;
+
+        
 
             function countHipe() {
                 let count = 0;
@@ -211,7 +215,7 @@ function makeGradient(max) {
             }
 
             let hipeWeeks = countHipe();
-            
+
             if (activeCondition) {
                 return hipeWeeks >= activeCondition
             }
@@ -238,13 +242,14 @@ function makeGradient(max) {
 
 <style scoped lang="sass">
 .heatmap-items-container
-    width: 100%
-    height: calc(100% - 2em)
-    padding: 1em
+    width: calc(100% - 4em)
+    height: calc(100% - 4em)
+    padding: 2em
     margin: 0
     display: flex
     flex-wrap: wrap
     overflow-y: auto
     align-content: flex-start
-
+.heatmap-title
+    margin: 1vh 3vh
 </style>

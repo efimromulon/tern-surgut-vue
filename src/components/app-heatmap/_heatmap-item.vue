@@ -37,11 +37,9 @@
             }
 
             if (this.highlighted) {
-                styleObject['outline'] = '#28747a 2px solid' 
-                styleObject['outlineOffset'] = '-2px'   
+                styleObject['box-shadow'] = '0 0 3pt 2pt #6200ee'  
             } else {
-                styleObject['outline'] = 'none'  
-                styleObject['outlineOffset'] = '0'    
+                styleObject['box-shadow'] = 'none'     
             }
 
             return styleObject
@@ -63,15 +61,15 @@
 <style scoped lang="sass">
 .heatmap-item
     flex: none
-    width: 7vh
-    height: 7vh
-    margin: .5vh
+    width: calc( (80vw - 64px - 6em) / 20)
+    height: calc( (80vw - 64px - 6em) / 20)
+    margin: .25vh
     transition: background-color cubic-bezier(.62,.28,.23,.99) 600ms, opacity cubic-bezier(.62,.28,.23,.99) 600ms, color cubic-bezier(.62,.28,.23,.99) 600ms
-    box-shadow: 0 1px 2px rgba(255, 255, 255, 0.3)  
     display: flex
     flex-direction: column
     align-items: center
     justify-content: space-around
+    border-radius: 4px
     @include shadow(2)
 .heatmap-item-text
     font-size: 0.9em

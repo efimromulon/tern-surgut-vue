@@ -27,10 +27,11 @@
     display: flex
     flex-direction: column
     align-items: center
+    margin: 0 .25vh
 .heatmap-legend-tile-square
     width: 3em
-    height: .25em 
-   
+    height: .5em 
+    
 .heatmap-legend-tile-text
     margin: 0
     padding: 0
