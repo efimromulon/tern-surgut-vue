@@ -52,12 +52,13 @@
 				// };
 
 				// console.log(testInput(testString));
+				
 				if(this.get_uiCoreMenuButton_active_componentName === 'ui-settings-panel-menus-menu-marking-settings'){
 					return this.get_uiMarkingMenuButtons_active_componentName
 				} else 
 				if(this.get_uiCoreMenuButton_active_componentName === 'ui-settings-panel-menus-menu-layers-settings'){
 					return 'uiSettingsPanelViewsViewLayers'
-				};
+				} 
 
 				
 			},

@@ -76,6 +76,21 @@ export default ({
 				buttonState: false
 			},
 		],
+		uiLayersButtons: [{
+			buttonID: 0, 
+			buttonName: 'Калининграднефтепродукт', 
+			buttonLayerName: 'knp', 
+			buttonState: true
+		},
+		{
+			buttonID: 1, 
+			buttonName: 'Киришиавтосервис', 
+			buttonLayerName: 'kas', 
+			buttonState: false
+		},
+	
+	
+	],
 		uiMarkingExpressButtons: [
 			{
 				buttonID: 0, 

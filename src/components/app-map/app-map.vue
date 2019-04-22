@@ -569,7 +569,6 @@ import { mapGetters, mapState } from 'vuex'
 				'GET_stations_tnp_o',
 				'GET_stations_tnp_r',
 				'GET_stations_tnp_c',
-				'searchCollapsed',
 				'get_uiColorSwitchButtonsById',
 			]),
 			colorSwitchButtonG(){

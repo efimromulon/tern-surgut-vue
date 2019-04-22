@@ -6,6 +6,7 @@
 				:class="{'marking-settings-menu-main_typeActive' : item.active == true}"
 				v-for="(item, key) in get_indicatorsMainMenuButtons" 
 				@click="TOGGLE_MAIN_MENU_BUTTON(key)"
+				:key="key"
 			>
 				{{ item.mainMenuButtonName }}
 			</div>

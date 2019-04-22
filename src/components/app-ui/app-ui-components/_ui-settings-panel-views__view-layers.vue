@@ -1,17 +1,43 @@
 <template>
-	<div></div>
+	<div class="menu-marking">
+		<ui-settings-panel-menus-menu-marking-settings-button
+			:buttonData = "uiLayersButtons[buttonID]"
+			 v-for = "(buttonName, buttonID) in uiLayersButtons"
+			:key = "buttonID"
+		>
+		</ui-settings-panel-menus-menu-marking-settings-button>
+	</div>
 </template>
 
 <script>
+import uiSettingsPanelMenusMenuMarkingSettingsButton from "./_ui-settings-panel-menus__menu-marking-settings-button.vue"
+import {mapState} from 'vuex'
+
 export default {
 
 	name: 'ui-settings-panel-views__view-layers',
-
+	components: {
+		uiSettingsPanelMenusMenuMarkingSettingsButton
+	},
 	data () {
 		return {
 
 		}
-	}
+	},
+	computed: {
+			...mapState({
+				uiLayersButtons: state => state.uiSettings.uiLayersButtons
+			})
+		},
+
+
+		methods: {
+
+		},
+
+		watch: {
+			uiMarkingMenuButtons(newCount, oldCount){},
+		},
 }
 </script>
 
