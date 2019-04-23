@@ -98,6 +98,28 @@ export default ({
 				buttonState: false
 			},
 		],
+		uiPopupLargeMenuVerticalButtons: [
+			{
+				buttonID: 0, 
+				buttonName: 'Заполненность резервуаров',
+				buttonState: true
+			},
+			{
+				buttonID: 1, 
+				buttonName: 'Реализация топлива',
+				buttonState: false
+			},
+			{
+				buttonID: 2, 
+				buttonName: 'Реализация сопутствующих товаров',
+				buttonState: false
+			},
+			{
+				buttonID: 3, 
+				buttonName: 'Услуги',
+				buttonState: false
+			},
+		],
 		uiMarkingMenuDatafilterFuelStockButtons: [],
 		uiMarkingMenuDatafilterFuelSellButtons: [],
 		uiMarkingMenuDatafilterArticleSellButtons: [],
@@ -132,7 +154,8 @@ export default ({
 					buttonArray === 'uiMarkingMenuDatatypeButtons' 		|| 
 					buttonArray === 'uiMarkingMenuDatafilterFuelStockButtons' 	||
 					buttonArray === 'uiMarkingMenuDatafilterFuelSellButtons' 		||
-					buttonArray === 'uiMarkingMenuDatafilterArticleSellButtons' 	: 
+					buttonArray === 'uiMarkingMenuDatafilterArticleSellButtons' 	||
+					buttonArray === 'uiPopupLargeMenuVerticalButtons' 	: 
 					buttonPressType = 1; //onlyOneButtonCanBePressed
 					toggleUiButton(buttonPressType, buttonArray, buttonPressedState);
 					break;
@@ -326,6 +349,14 @@ export default ({
 		},
 		GET_stations_color_value_by_color: (state, getters, rootState) => {
 			return x => rootState.map.stations.filter( s => { return s.color === x}).length;
+		},
+		get_uiPopupLargeMenuVerticalButtons: (state) => {
+			return state.uiPopupLargeMenuVerticalButtons
+		},
+		get_uiPopupLargeMenuVerticalButtonsActive: (state, getters) => {
+
+			return state.uiPopupLargeMenuVerticalButtons.find(button => button.buttonState === true).buttonID
+		
 		},
 
 	}

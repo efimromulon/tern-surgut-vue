@@ -1,12 +1,16 @@
 <template>
 	<div class="app-preloader">
-		<canvas ref="preloaderCanvas"></canvas>
+		<!-- <canvas ref="preloaderCanvas"></canvas> -->
+		<div ref="testR" class="testR">
+			<canvas ref="preloaderCanvas"></canvas>
+		</div>
 	</div>
 </template>
 
 <script>
 
-	import {TimelineMax, TweenMax} from 'gsap'
+	import {TimelineMax, TweenMax, TweenLite} from 'gsap'
+	import { CSSRulePlugin } from "gsap/all"
 	import * as PIXI from 'pixi.js'
 
 	export default {
@@ -17,14 +21,22 @@
 			return {
 				tl: null,
 				mapTime: 1200,
-				delta: 0
+				delta: 0,
+				uniforms: {},
+				smokeShader: null,
 			}
 		},
 		watch: {
 		},
 		mounted(){
 			/* eslint-disable */
-		
+			//let tl = new TimelineMax();
+			// var rule = CSSRulePlugin.getRule(".testR:after"); //get the rule
+			// var rule1 = CSSRulePlugin.getRule(".testR:before"); //get the rule
+			// TweenLite.to(rule, 3, {cssRule:{yPercent: 100}});
+			//TweenLite.to(this.$refs.testR, 3, { ease: Power3.easeInOut, yPercent: -100, force3D: true , delay: 2});
+			//TweenLite.to(rule1, 3, {cssRule:{yPercent: -100}});
+			//tl.to(this.$refs.testR);
 			let canvas 	= this.$refs.preloaderCanvas,
 				pixiApp = new PIXI.Application({
 					view: canvas,
@@ -47,91 +59,47 @@
 					{x: _rw / 2, 			y: _rh / 2 + Math.sqrt(3) * _rwidth / 2},
 					{x: _rw / 2 - _rwidth, 	y: _rh / 2 - Math.sqrt(3) * _rwidth / 2},
 					{x: _rw / 2 + _rwidth, 	y: _rh / 2 - Math.sqrt(3) * _rwidth / 2}
-				]
-				;
+				];
 
-			pixiApp.stage.addChild(container);
+			function createGradTexture(){
+				// adjust it if somehow you need better quality for very very big images
+				const quality = 256;
+				const canvas = document.createElement('canvas');
+				canvas.width = 1;
+				canvas.height = 1;
 
-			class Circle {
-				constructor(container, color, cx, cy, cr, coords, curCoords){
-					this.decorate(container, color, cx, cy, cr, coords, curCoords);
-					//this.move(coords, curCoords);
-					this.tl = new TimelineMax({repeat: -1});
-					let tw1, tw2, tw3;
-					switch(true){
-						case curCoords === 0:
-							tw1 = 1;
-							tw2 = 2;
-							tw3 = 0;
-							break;
-						case curCoords === 1:
-							tw1 = 2;
-							tw2 = 0;
-							tw3 = 1;
-							break;
-						case curCoords === 2:
-							tw1 = 0;
-							tw2 = 1;
-							tw3 = 2;
-							break;
-					};
-					this.tween1 = TweenMax.to(this.circle, 1, {x: coords[tw1].x, y: coords[tw1].y});
-					this.tween2 = TweenMax.to(this.circle, 1, {x: coords[tw2].x, y: coords[tw2].y});
-					this.tween3 = TweenMax.to(this.circle, 1, {x: coords[tw3].x, y: coords[tw3].y});
-					this.tl.add([this.tween1, this.tween2, this.tween3], "+=0", "sequence", 0.0)
+				const ctx = canvas.getContext('2d');
 
-				}
-				decorate(container, color, cx, cy, cr, coords, curCoords){
-					this.circle = new PIXI.Graphics();
-					this.circle.x = coords[curCoords].x;
-					this.circle.y = coords[curCoords].y;
-					this.circle.beginFill(color);
-					this.circle.drawCircle(cx, cy, cr);
-					this.circle.endFill();
-					container.addChild(this.circle);
-				}
-				move(coords, curCoords){
-					var numb;
-					this.tl.play();
-					// this.tween_2 = TweenMax.to(this.circle, 1, {x: coords[2].x, y: coords[2].y})
-					// this.tween_3 = TweenMax.to(this.circle, 1, {x: coords[0].x, y: coords[0].y})
-					
-					//tl.add(this.tween_1,this.tween_2,this.tween_3);
-						
-					
-					
-				}
-			}
+				// use canvas2d API to create gradient
+				
+				const grd = ctx.createRadialGradient(75, 50, 0, 90, 60, quality);
+				grd.addColorStop(0, "blue");
+				grd.addColorStop(1, "white");
 
-			for (let i = 0; i < colors.length; i+=1) {
-				const circ = new Circle(
-					container,
-					colors[i], 
-					_cx, 
-					_cy, 
-					_radius,
-					coords,
-					i
-				);
-				circles.push(circ);
+				// Fill with gradient
+				ctx.fillStyle = grd;
+				ctx.fillRect(0, 0, quality, 1);
 
+
+				return PIXI.Texture.from(canvas);
 			};
+			const gradTexture = createGradTexture();
+
+			const sprite = new PIXI.Sprite(gradTexture);
+			sprite.position.set(100, 100);
+			sprite.width = _rw;
+			sprite.height = _rh;
+			pixiApp.stage.addChild(sprite);
+
 			function animate(){
-				//console.log(circles),
 				pixiApp.ticker.add(() => {
-				//console.log(circles)
-					for (let i = 0; i < circles.length; i+=1) {
-						circles[i].move(coords, i) 
-					};
+
 				});
 			};
 			animate();
 		},
 
 		methods: {
-			animateButtonOut(){
-
-			},
 		},
 	}
 
@@ -145,11 +113,49 @@ $strokecolor: #555555
 	left: 0
 	width: 100vw
 	height: 100vh
-	background-color: #131313
 	z-index: 4
-	canvas 
-		position: absolute
-		top: 0
-		left: 0
+	// canvas 
+	// 	position: absolute
+	// 	top: 0
+	// 	left: 0
+.testR
+	position: absolute 
+	height: 100vh
+	width: 100vw
+	top: 0
+	left: 0
+	will-change: transform
+	background-color: #131313
+	z-index: 5
+	transform: matrix(1, 0, 0, 1, 0, 0)
 
+	// &:before, &:after
+	// 	content: ""
+	// 	position: absolute
+	// 	top: 0px
+	// 	left: 0
+	// 	width: 100%
+	// 	height: 100%
+	// 	will-change: transform
+	// &:before
+	// 	opacity: 1
+	// 	background: red
+	// 	transition: opacity .4s cubic-bezier(.165,.84,.44,1)
+	// &:after
+	// 	position: absolute
+	// 	top: 0%
+	// 	left: 0%
+	// 	opacity: 1
+	// 	background: blue
+	// 	transition: opacity 1.2s cubic-bezier(.165,.84,.44,1)
+	// 	transform-origin: top
+.testP
+	z-index: 6
+	font-size: 18.68vw
+	text-transform: capitalize
+	opacity: 1
+	white-space: nowrap
+	transform: translateX(0%) translateZ(0)
+	color: white
+	font-size: 90px 
 </style>
