@@ -1,6 +1,5 @@
 <template>
     <div v-if="heatmapData">
-    <h3 class="heatmap-title" v-if="dataType">{{ dataType }}</h3>
     <heatmap-legend :colorSteps="colorSteps" />
       <div class="heatmap-items-container">
             <heatmap-item 

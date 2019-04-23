@@ -123,7 +123,8 @@
 	body
 		user-select: none
 		overflow: hidden
-		font-family: 'Montserrat-Medium'
+		// font-family: 'Montserrat-Medium'
+		font-family: 'SegoeUI'
 
 	.left-component-wrapper
 		@include shadow(2)

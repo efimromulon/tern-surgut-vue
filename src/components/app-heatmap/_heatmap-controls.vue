@@ -1,7 +1,9 @@
 <template>
      <div class="sidebar-left-panel-view" v-if="weekNames && weekNames.length > 0">
+         <div class="sidebar-left-panel-header">Перезагрузки</div>
          <div class="heatmap-controls-container">        
-             <select-input :options="['Перезагрузки']"/>
+             <!-- <select-input :options="['Перезагрузки']"/> -->
+             
              <div class="heatmap-checkboxes-container">
                 <p>Среднее значение: <input :disabled="!weekHipe || weekHipe === '0'"  type="number" v-model="averageVal" class="heatmap-controls-average-input"> </p>
                 <p><input type="radio" name="rad" value="0" v-model="weekHipe"> Все значения </p>
@@ -125,7 +127,6 @@ import heatmapChart from './_heatmap-chart'
     flex-direction: column 
     background-color: white
     width: 100%
-    @include shadow(1)
 .heatmap-checkboxes-container > p
     margin: 1vh
     font-size: .9em

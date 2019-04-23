@@ -290,5 +290,10 @@
 		top: 0
 		z-index: 999999999
 		
-
+	.sidebar-left-panel-header
+		font-weight: normal
+		padding: 2vh 0 0 1vh
+		font-size: 1em
+		color: #6200ee
+		text-align: center
 </style>

@@ -50,8 +50,11 @@ Vue.component('iconCard', svgIconCard);
 Vue.component('iconFavorite', svgIconFavorite);
 Vue.component('iconNotFavorite', svgIconNotFavorite);
 Vue.component('iconNewtab', svgIconNewtab);
+require('./libs/panellum.css');
+const panellum = import('./libs/panellum.min.js')
 
 
+Vue.use(panellum)
 // eslint-disable-next-line  
 delete L.Icon.Default.prototype._getIconUrl  
 // eslint-disable-next-line  

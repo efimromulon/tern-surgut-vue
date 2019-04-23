@@ -11,7 +11,9 @@ const devlinks = {
     setFavReports: '',
     getHeatmapData: './json/getAllRestarts.json',
     getHeatmapChartData: './json/getRestartsGraphData.json',
-    getDepartmentScheme: './json/getDepartmentScheme.json'
+    getDepartmentScheme: './json/getDepartmentScheme.json',
+    getPanoramaImage: './json/getPanoramaImage.json',
+    getSnackBarImage: './json/getSnackBarImage.json'
 
 }
 
@@ -28,7 +30,9 @@ const prodLinks = {
     setFavReports: '',
     getHeatmapData: '',
     getHeatmapChartData: '',
-    getDepartmentScheme: ''
+    getDepartmentScheme: '',
+    getPanoramaImage: '',
+    getSnackBarImage: ''
 }
 
 let link = devlinks;

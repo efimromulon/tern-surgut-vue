@@ -61,12 +61,13 @@ import link from '../../../constants.js'
                 this.$store.dispatch('changeCurrentReport');
             },
             togglePanorama() {
-                const activeAzs = this.activeAzs;                
+                const activeAzs = this.activeAzs; 
+                this.$store.dispatch('resetComponents');          
                 this.$store.dispatch('getPanoramaData',activeAzs.id);
             }
         },
         beforeDestroy(){
-            this.$store.dispatch('resetComponents')
+            // this.$store.dispatch('resetComponents')
         }
     }
 </script>

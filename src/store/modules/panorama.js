@@ -5,17 +5,27 @@ export default ({
 	state: {
         mediaUrl: '',
         activeData: '',
-        activePin: '',
+        activePin: {},
         panoramaImageSrc: '',
-        panoramaData: {}
+        panoramaData: null
 	},
 	mutations: {
 		SET_PANORAMA_DATA(state, object) {
             state.panoramaData = object
+        },
+        SET_PANORAMA_IMAGE_SRC(state, string) {
+            state.panoramaImageSrc = string
+        },
+        SET_ACTIVE_PIN(state, object) {
+            state.activePin = object
+        },
+        SET_ACTIVE_DATA(state, number) {
+            state.activeData = number
         }
 	},
 	actions: {
 		async getPanoramaData(state, id) {
+            state.commit('SET_PANORAMA_DATA', null)
             const options = {
                 sStationId: id,
             }
@@ -30,6 +40,12 @@ export default ({
                 componentPosition: 'leftMenuComponent',
                 componentName: 'panorama-controls'
 			})
+        },
+        updateActivePin(state, object) {
+            state.commit('SET_ACTIVE_PIN', object)  
+        },
+        setActiveData(state, number) {
+            state.commit('SET_ACTIVE_DATA', number)  
         }
 	},
 	getters: {
