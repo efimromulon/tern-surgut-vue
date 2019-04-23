@@ -18,7 +18,7 @@
 	import appPreloader 				from '@/components/app-preloader/app-preloader.vue'
 	import appUi 						from '@/components/app-ui/app-ui.vue'
 	import appMap 						from '@/components/app-map/app-map.vue'
-	import appPopupLarge 				from '@/components/app-popup-large/app-popup-large.vue'
+	// import appPopupLarge 				from '@/components/app-popup-large/app-popup-large.vue'
 	import link from './constants.js'
 
 	
@@ -28,7 +28,7 @@
 		components: {
 			'app-ui': appUi,
 			'app-map': appMap,
-			'app-popup-large': appPopupLarge,
+			// 'app-popup-large': appPopupLarge,
 			'app-preloader': appPreloader,
 		},
 		data(){

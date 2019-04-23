@@ -7,7 +7,7 @@ import VueSlider from 'vue-slider-component'
 import 'leaflet/dist/leaflet.css'
 import 'vue-slider-component/theme/material.css'
 
-import uiSettingsPanelViewsViewMarkingSettingsViewLayout from '@/components/app-ui/app-ui-components/_ui-settings-panel-views__view-marking-settings__view-layout.vue'
+// import uiSettingsPanelViewsViewMarkingSettingsViewLayout from '@/components/app-ui/app-ui-components/_ui-settings-panel-views__view-marking-settings__view-layout.vue'
 
 import buttonRectangle from '@/components/app-common/buttons/button-rectangle.vue'
 import buttonRectangleText from '@/components/app-common/buttons/button-rectangle-text.vue'
@@ -32,7 +32,7 @@ Vue.config.productionTip = false;
 
 Vue.component('VueSlider', VueSlider);
 
-Vue.component('ViewLayout', uiSettingsPanelViewsViewMarkingSettingsViewLayout);
+// Vue.component('ViewLayout', uiSettingsPanelViewsViewMarkingSettingsViewLayout);
 
 Vue.component('buttonRectangle', buttonRectangle);
 Vue.component('buttonRectangleText', buttonRectangleText);
