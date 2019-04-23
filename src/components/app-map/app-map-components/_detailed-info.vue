@@ -19,7 +19,7 @@
                 </div>
                 <div class="station-info-buttons-container">
                     <div>
-                        <div class="station-info-button-wrapper">
+                        <div class="station-info-button-wrapper" @click="togglePanorama()">
                             <icon-panorama/>
                         </div>
                         <p class="station-info-button-label">АЗС 360°</p>
@@ -59,13 +59,14 @@ import link from '../../../constants.js'
             toggleReport(){
                 const activeAzs = this.activeAzs;
                 this.$store.dispatch('changeCurrentReport');
+            },
+            togglePanorama() {
+                const activeAzs = this.activeAzs;                
+                this.$store.dispatch('getPanoramaData',activeAzs.id);
             }
         },
         beforeDestroy(){
-            this.$store.dispatch('setComponent', {
-                componentPosition: 'centralComponent',
-                componentName: ''
-			})
+            this.$store.dispatch('resetComponents')
         }
     }
 </script>

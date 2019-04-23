@@ -49,29 +49,16 @@ export default {
 					this.$store.dispatch('close_search_result_tab');
 					this.$store.dispatch('close_search');
                 
-					this.$store.dispatch('setComponent', {
-						componentPosition: 'leftMenuComponent',
-						componentName: ''
-					})
+					this.$store.dispatch('resetComponents')
 					this.btnClick();
 					break
 				case this.btnType === 'popup':
 					this.$store.dispatch('set_active_station', null)
 
-					this.$store.dispatch('setComponent', {
-						componentPosition: 'leftMenuComponent',
-						componentName: ''
-				});
+					this.$store.dispatch('resetComponents')
 				break
 				case this.btnType === 'central':
-					this.$store.dispatch('setComponent', {
-					componentPosition: 'centralComponent',
-					componentName: ''
-				});
-					this.$store.dispatch('setComponent', {
-					componentPosition: 'leftMenuComponent',
-					componentName: ''
-				});
+					this.$store.dispatch('resetComponents')
 				break
 			};			
 		},

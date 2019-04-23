@@ -77,10 +77,7 @@
 					break;
 				
 					default:
-						this.$store.dispatch('setComponent', {
-						componentPosition: 'leftMenuComponent',
-						componentName: ''
-					})
+					 this.$store.dispatch('resetComponents')
 				}
 
 

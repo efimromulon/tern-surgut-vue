@@ -10,7 +10,9 @@ const devlinks = {
     azsReport: "https://www.google.com/search?",
     setFavReports: '',
     getHeatmapData: './json/getAllRestarts.json',
-    getHeatmapChartData: './json/getRestartsGraphData.json'
+    getHeatmapChartData: './json/getRestartsGraphData.json',
+    getDepartmentScheme: './json/getDepartmentScheme.json'
+
 }
 
 const prodLinks = {
@@ -25,7 +27,8 @@ const prodLinks = {
     azsReport: '',
     setFavReports: '',
     getHeatmapData: '',
-    getHeatmapChartData: ''
+    getHeatmapChartData: '',
+    getDepartmentScheme: ''
 }
 
 let link = devlinks;

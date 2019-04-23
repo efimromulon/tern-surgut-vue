@@ -37,17 +37,17 @@ export default ({
 			}
 		],
 		uiCoreMenuButtons: [
-			{
-				buttonID: 0, 
-				buttonName: 'Слои', 
-				buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', 
-				buttonState: true
-			},
+			// {
+			// 	buttonID: 0, 
+			// 	buttonName: 'Слои', 
+			// 	buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', 
+			// 	buttonState: true
+			// },
 			{
 				buttonID: 1, 
 				buttonName: 'Настройки маркировки', 
 				buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', 
-				buttonState: false
+				buttonState: true
 			},
 			{
 				buttonID: 2, 

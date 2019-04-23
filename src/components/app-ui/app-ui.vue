@@ -90,10 +90,12 @@
 		const search = () => import('./app-ui-components/_search.vue') //search
 		const detailedInfo = () => import('../app-map/app-map-components/_detailed-info.vue') //detailed-info
 		const reportsNavigation = () => import('../app-reports/_reports-navigation.vue')
-		const heatmapControls = () => import('../app-heatmap/_heatmap-controls.vue')
+        const heatmapControls = () => import('../app-heatmap/_heatmap-controls.vue')
+        const panoramaControls = () => import('../app-panorama/_panorama-controls.vue')
 	// center side components with names after //
 		const reportsIframe = () => import('../app-reports/_reports-iframe.vue')
-		const heatmapGraph = () => import('../app-heatmap/_heatmap-graph.vue')
+        const heatmapGraph = () => import('../app-heatmap/_heatmap-graph.vue')
+        const panoramaContainer = () => import('../app-panorama/_panorama-container.vue')
 	export default {
 
 		name: 'app-ui',
@@ -109,7 +111,9 @@
 			uiSettingsHeader,
 			uiSettingsPanelCoreMenu,
 			uiSettingsPanelMenu,
-			uiSettingsPanelView
+            uiSettingsPanelView,
+            panoramaControls,
+            panoramaContainer
 		},
 
 		data () {
@@ -126,19 +130,15 @@
 		computed: {
 			...mapGetters([
 				'searchResultTabClosed',
-				'getButtonSquareById',
 			]),
 			...mapState({
 				leftComponent: state => state.dynamicComponents.leftMenuComponent,
 				centerComponent: state => state.dynamicComponents.centralComponent,
-				searchResultTabClosed: state => state.search.searchResultTabClosed
-			}),
-			buttonFunnel(){
-				return this.getButtonSquareById(this.buttonFunnelId)
-			},
-			buttonSearch(){
-				return this.getButtonSquareById(this.buttonSearchId)
-			},
+                searchResultTabClosed: state => state.search.searchResultTabClosed,
+                buttonFunnel: state => state.uiSettings.uiButtonSquare[0].buttonState,
+                buttonSearch: state => state.uiSettings.uiButtonSquare[1].buttonState,
+			})
+
 		},
 
 		mounted(){
@@ -146,8 +146,8 @@
 
 		methods: {
 			TOGGLE_BUTTON_SEARCH(){
-				this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
-				
+				// this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: 1});
+				this.$store.dispatch('resetComponents')
 				this.$store.dispatch('setComponent', {
 					componentPosition: 'leftMenuComponent',
 					componentName: 'search'
@@ -158,10 +158,8 @@
 		},
 
 		watch: {
-			buttonFunnel(newCount, oldCount){},
-			buttonSearch(newCount, oldCount){},
 			searchResultTabClosed(){},
-			centerComponent(){}
+            centerComponent(){},
 		},
 
 	}

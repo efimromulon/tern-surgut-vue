@@ -6,6 +6,7 @@ import uiSettings from './modules/uiSettings.js'
 import dynamicComponents from './modules/dynamicComponents.js'
 import reports from './modules/reports.js'
 import heatmap from './modules/heatmap.js'
+import panorama from './modules/panorama.js'
 
 Vue.use(Vuex)
 
@@ -17,7 +18,8 @@ export default new Vuex.Store({
 		uiSettings,
 		dynamicComponents,
 		reports,
-		heatmap
+		heatmap,
+		panorama
 	},
 	state: {
 		//Preloader

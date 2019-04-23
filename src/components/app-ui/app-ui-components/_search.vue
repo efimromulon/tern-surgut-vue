@@ -49,7 +49,7 @@
             CLOSE_BUTTON_CROSS(){
                 this.$store.dispatch('close_search');
                 this.$store.dispatch('reset_search');
-                this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: this.buttonSearchId});
+                // this.$store.dispatch('toggle_ui_settings_button',{buttonArray: 'uiButtonSquare', id: 1});
                 // this.isClosing = true
 			},
         },

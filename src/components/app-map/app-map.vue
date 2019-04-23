@@ -601,10 +601,7 @@ import { mapGetters, mapState } from 'vuex'
 				this.popupObj = obj
 				obj.on('popupclose', function() {
 					_that.$store.dispatch('set_active_station', null);
-					_that.$store.dispatch('setComponent', {
-						componentPosition: 'leftMenuComponent',
-						componentName: ''
-					})
+					_that.$store.dispatch('resetComponents')
 				})
 			})
 			
