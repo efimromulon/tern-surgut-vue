@@ -102,7 +102,7 @@
 			border-radius: 1px
 			bottom: 0
 			left: 0
-			background-color: #2FD782
+			background-color: #682AC2
 			z-index: 2
 			transition: all 0.3s ease-in-out 0s
 

@@ -22,9 +22,20 @@
 				</div>
 				<div class="popup-large-snippet__body">
 					<div class="popup-large-snippet__body-top">
-						<span>{{bodyName.buttonName}}</span>
+						<span class="body-top__view-name">{{currentView.buttonName}}</span>
+						
+						<div class="body-top__controls-right">
+							<div class="body-top__control">
+								<span>{{currentDate}}</span>
+							</div>
+							<div class="body-top__control">
+								<v-select :options="shiftSelectOptions"></v-select>
+							</div>
+						</div>
 					</div>
-					<app-popup-body/>
+					<div class="popup-large-snippet__body-wrapper">
+						<component :is="currentView.view" :stationId="stationId"></component>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -40,6 +51,11 @@
 	import body 			from './popup-large-components/_body.vue'
 	import menuVertical 	from './popup-large-components/_menu-vertical.vue'
 
+	import viewServices 	from './popup-large-components/view-services.vue'
+	import viewFuelstock 	from './popup-large-components/view-fuelstock.vue'
+	import viewFuelsell 	from './popup-large-components/view-fuelsell.vue'
+	import viewArticlesell 	from './popup-large-components/view-articlesell.vue'
+
 	export default {
 
 		name: 'app-popup-large',
@@ -49,11 +65,16 @@
 			'app-popup-sidebar': 	sidebar,
 			'app-popup-body': 		body,
 			'menu-vertical': 		menuVertical,
+			'view-services': viewServices,
+			'view-fuelstock': viewFuelstock,
+			'view-fuelsell': viewFuelsell,
+			'view-articlesell': viewArticlesell,
 		},
 
 		data () {
 			return {
 				stationId: 'nnp-m1_117',
+				shiftSelectOptions: ['последняя смена','предыдущая смена']
 			}
 		},
 
@@ -66,9 +87,19 @@
 			stationInfo(){
 				return this.GET_station_info_by_Id(this.stationId);
 			},
-			bodyName(){
+			currentView(){
 				return this.get_uiPopupLargeMenuVerticalButtonsActive;
 			},
+			currentDate(){
+				var options = {
+						year: 'numeric',
+						month: 'long',
+						day: 'numeric'
+					},
+					curDate = new Date();
+
+				return curDate.toLocaleString("ru", options);
+			}
 
 		},
 
@@ -76,7 +107,7 @@
 
 			stationInfo(newCount, oldCount){
 			},
-			bodyName(newCount, oldCount){
+			currentView(newCount, oldCount){
 			},
 
 		},
@@ -188,9 +219,45 @@
 		border-right: 1px solid rgba(0, 0, 0, .1)
 	.popup-large-snippet__body
 		width: 82.5%
+		background-color: #FAFAF9
 	.popup-large-snippet__body-top
 		width: 100%
-		height: 90px
+		height: 45px
 		border-bottom: 1px solid rgba(0, 0, 0, .1)
-		
+		display: flex
+		white-space: nowrap
+		flex-direction: row
+		.body-top__view-name
+			padding-left: calc((100px - 48px) / 2)
+			line-height: 45px
+			font-weight: 600
+	.body-top__controls-right
+		position: absolute
+		right: calc((100px - 48px) / 2)
+		top: 0
+	.body-top__control
+		display: inline-block
+		margin-right: 15px
+		line-height: 45px
+		&:first-child
+			line-height: 45px
+		&:last-child
+			margin-right: 0
+		select
+			border-radius: 5px
+			border-color: #686868
+			box-sizing: border-box
+			align-items: center
+			white-space: pre
+			color: white
+			background-color: #686868
+			cursor: default
+			border-width: 1px
+			border-style: solid
+			border-color: initial
+			border-image: initial
+		.v-select
+			width: 250px
+			input
+				outline-offset: none !important
 </style>

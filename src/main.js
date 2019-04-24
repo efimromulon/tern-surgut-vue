@@ -7,6 +7,9 @@ import VueSlider from 'vue-slider-component'
 import 'leaflet/dist/leaflet.css'
 import 'vue-slider-component/theme/material.css'
 
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css'
+
 import uiSettingsPanelViewsViewMarkingSettingsViewLayout from '@/components/app-ui/app-ui-components/_ui-settings-panel-views__view-marking-settings__view-layout.vue'
 
 import buttonRectangle from '@/components/app-common/buttons/button-rectangle.vue'
@@ -25,6 +28,7 @@ import { TimelineMax } from 'gsap'
 Vue.config.productionTip = false;
 
 Vue.component('VueSlider', VueSlider);
+Vue.component('v-select', vSelect)
 
 Vue.component('ViewLayout', uiSettingsPanelViewsViewMarkingSettingsViewLayout);
 

@@ -102,21 +102,25 @@ export default ({
 			{
 				buttonID: 0, 
 				buttonName: 'Заполненность резервуаров',
+				view: 'view-fuelstock',
 				buttonState: true
 			},
 			{
 				buttonID: 1, 
 				buttonName: 'Реализация топлива',
+				view: 'view-fuelsell',
 				buttonState: false
 			},
 			{
 				buttonID: 2, 
 				buttonName: 'Реализация сопутствующих товаров',
+				view: 'view-articlesell',
 				buttonState: false
 			},
 			{
 				buttonID: 3, 
 				buttonName: 'Услуги',
+				view: 'view-services',
 				buttonState: false
 			},
 		],
