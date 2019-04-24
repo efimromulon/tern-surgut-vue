@@ -353,9 +353,14 @@ export default ({
 		get_uiPopupLargeMenuVerticalButtons: (state) => {
 			return state.uiPopupLargeMenuVerticalButtons
 		},
-		get_uiPopupLargeMenuVerticalButtonsActive: (state, getters) => {
+		get_uiPopupLargeMenuVerticalButtonsActiveId: (state) => {
 
 			return state.uiPopupLargeMenuVerticalButtons.find(button => button.buttonState === true).buttonID
+		
+		},
+		get_uiPopupLargeMenuVerticalButtonsActive: (state) => {
+
+			return state.uiPopupLargeMenuVerticalButtons.find(button => button.buttonState === true)
 		
 		},
 

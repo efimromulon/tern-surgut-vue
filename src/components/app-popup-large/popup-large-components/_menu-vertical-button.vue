@@ -41,10 +41,10 @@
 		},
 		computed: {
 			...mapGetters([
-				'get_uiPopupLargeMenuVerticalButtonsActive',
+				'get_uiPopupLargeMenuVerticalButtonsActiveId',
 			]),
 			activeBtnId(){
-				return this.get_uiPopupLargeMenuVerticalButtonsActive
+				return this.get_uiPopupLargeMenuVerticalButtonsActiveId
 			},
 		},
 

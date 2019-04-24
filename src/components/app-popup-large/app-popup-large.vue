@@ -21,6 +21,9 @@
 					<menu-vertical/>
 				</div>
 				<div class="popup-large-snippet__body">
+					<div class="popup-large-snippet__body-top">
+						<span>{{bodyName.buttonName}}</span>
+					</div>
 					<app-popup-body/>
 				</div>
 			</div>
@@ -58,9 +61,13 @@
 
 			...mapGetters([
 				'GET_station_info_by_Id',
+				'get_uiPopupLargeMenuVerticalButtonsActive',
 			]),
 			stationInfo(){
 				return this.GET_station_info_by_Id(this.stationId);
+			},
+			bodyName(){
+				return this.get_uiPopupLargeMenuVerticalButtonsActive;
 			},
 
 		},
@@ -68,7 +75,8 @@
 		watch: {
 
 			stationInfo(newCount, oldCount){
-				console.log('VUE',this.stationInfo);
+			},
+			bodyName(newCount, oldCount){
 			},
 
 		},
@@ -180,5 +188,9 @@
 		border-right: 1px solid rgba(0, 0, 0, .1)
 	.popup-large-snippet__body
 		width: 82.5%
+	.popup-large-snippet__body-top
+		width: 100%
+		height: 90px
+		border-bottom: 1px solid rgba(0, 0, 0, .1)
 		
 </style>
