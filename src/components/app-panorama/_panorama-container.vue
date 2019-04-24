@@ -1,5 +1,5 @@
 <template>
-    <div class="panorama-container" v-if="active_station">
+    <div class="panorama-container" v-if="active_station && activePin && activePin.data">
         <div ref="panorama" v-if="activePin && !activePin.data"></div>
         <panorama-detailed v-else />
     </div>

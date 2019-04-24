@@ -79,8 +79,8 @@ export default ({
              state.commit('SET_MAX_VALUE', maxVal)
         },
         async highlightAzs(state, object) {
-
-            if (!state.highlightedAzs || state.highlightedAzs  !== object.sStationId) {
+         
+            if (!state.state.highlightedAzs || state.state.highlightedAzs  !== object.sStationId) {
               
                 let weekNames = state.state.weekNames;
                 let weekIndex = state.state.weekIndex;
@@ -97,6 +97,7 @@ export default ({
                 state.commit('SET_CHARTDATA_LOADING', false)
                 state.commit('SET_CHART_DATA', tempObj)
             } else {
+                
                 state.commit('SET_HIGHLIGHTED_AZS', {
                     sStationId: '',
                     sDisplayName: ''
