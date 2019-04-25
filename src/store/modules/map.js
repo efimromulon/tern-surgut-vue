@@ -343,11 +343,11 @@ export default ({
 				sdo = ['stations_knp','stations_kas','stations_nnp','stations_pnp','stations_tnp'],
 				colors = [g, o, r, c];
 
-			for (var i = 0, j = 0; i < colors.length, j < sdo.length - 1; i++) {
+			for (var i = 0, j = 0; i < colors.length, j < sdo.length; i++) {
 
 				var currentColor = colors[i],
 					currentSdo = sdo[j];
-
+				
 				state.stations_sorted[currentSdo][currentColor] = state[currentSdo].filter(i => {return i.color === currentColor});
 
 				if(i > 3){
@@ -624,7 +624,7 @@ export default ({
 							if( objStations[prop] === stationId){ 
 
 								
-								console.log('RESULT meh', `${prop}`, objStations);
+							
 								result = objStations; 
 								return result;
 
