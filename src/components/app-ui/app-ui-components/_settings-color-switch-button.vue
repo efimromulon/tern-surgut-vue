@@ -60,10 +60,13 @@
 			TOGGLE_CURRENT_COLOR_BUTTON:
 				debounce(
 					function(){
-
+						// console.log(this.buttonsData.buttonID)
 						let payload = {buttonArray: 'uiColorSwitchButtons', id: this.buttonsData.buttonID};
 						this.$store.dispatch('toggle_ui_settings_button', payload);
 
+						let buttonName = this.buttonsData.buttonName.substring(7);
+
+						this.$store.dispatch('toggleColorType', { name: buttonName.toLowerCase() })
 					},
 					125
 			)

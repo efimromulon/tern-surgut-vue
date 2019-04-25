@@ -27,15 +27,14 @@
 			
 		</l-feature-group>
 
-		<v-marker-cluster :options="clusterOptions_g" @clusterclick="click()">
+		<v-marker-cluster :options="clusterOptions_g" v-if="gIsVisible">
 			<l-marker 
-				
 				v-for="i in markers_knp_g"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
-				:visible="knpIsVisible && gIsVisible"
+				:visible="getActiveAzsTypeById('stations_knp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -44,7 +43,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
-				:visible="kasIsVisible && gIsVisible"
+				:visible="getActiveAzsTypeById('stations_kas')"
 			>
 			</l-marker>
 			<l-marker 
@@ -53,7 +52,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
-				:visible="nnpIsVisible && gIsVisible"
+				:visible="getActiveAzsTypeById('stations_nnp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -62,7 +61,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
-				:visible="pnpIsVisible && gIsVisible"
+				:visible="getActiveAzsTypeById('stations_pnp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -71,18 +70,18 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_g"
-				:visible="tnpIsVisible && gIsVisible"
+				:visible="getActiveAzsTypeById('stations_tnp')"
 			>
 			</l-marker>
 		</v-marker-cluster>
-		<v-marker-cluster :options="clusterOptions_o" @clusterclick="click()">
+		<v-marker-cluster :options="clusterOptions_o" v-if="oIsVisible">
 			<l-marker 
 				v-for="i in markers_knp_o"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
-				:visible="knpIsVisible && oIsVisible"
+				:visible="getActiveAzsTypeById('stations_knp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -91,7 +90,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
-				:visible="kasIsVisible && oIsVisible"
+				:visible="getActiveAzsTypeById('stations_kas')"
 			>
 			</l-marker>
 			<l-marker 
@@ -100,7 +99,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
-				:visible="nnpIsVisible && oIsVisible"
+				:visible="getActiveAzsTypeById('stations_nnp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -109,7 +108,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
-				:visible="pnpIsVisible && oIsVisible"
+				:visible="getActiveAzsTypeById('stations_pnp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -118,18 +117,18 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_o"
-				:visible="tnpIsVisible && oIsVisible"
+				:visible="getActiveAzsTypeById('stations_tnp')"
 			>
 			</l-marker>
 		</v-marker-cluster>
-		<v-marker-cluster :options="clusterOptions_r" @clusterclick="click()">
+		<v-marker-cluster :options="clusterOptions_r" v-if="rIsVisible">
 			<l-marker 
 				v-for="i in markers_knp_r"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
-				:visible="knpIsVisible && rIsVisible"
+				:visible="getActiveAzsTypeById('stations_knp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -138,7 +137,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
-				:visible="kasIsVisible && rIsVisible"
+				:visible="getActiveAzsTypeById('stations_kas')"
 			>
 			</l-marker>
 			<l-marker 
@@ -147,7 +146,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
-				:visible="nnpIsVisible && rIsVisible"
+				:visible="getActiveAzsTypeById('stations_nnp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -156,7 +155,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
-				:visible="pnpIsVisible && rIsVisible"
+				:visible="getActiveAzsTypeById('stations_pnp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -165,19 +164,19 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_r"
-				:visible="tnpIsVisible && rIsVisible"
+				:visible="getActiveAzsTypeById('stations_tnp')"
 			>
 			</l-marker>
 		</v-marker-cluster>
 
-		<v-marker-cluster :options="clusterOptions_c" @clusterclick="click()">
+		<v-marker-cluster :options="clusterOptions_c" v-if="cIsVisible">
 			<l-marker 
 				v-for="i in markers_knp_c"
 				:key = "i.id"
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
-				:visible="knpIsVisible && cIsVisible"
+				:visible="getActiveAzsTypeById('stations_knp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -186,7 +185,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
-				:visible="kasIsVisible && cIsVisible"
+				:visible="getActiveAzsTypeById('stations_kas')"
 			>
 			</l-marker>
 			<l-marker 
@@ -195,7 +194,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
-				:visible="nnpIsVisible && cIsVisible"
+				:visible="getActiveAzsTypeById('stations_nnp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -204,7 +203,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
-				:visible="pnpIsVisible && cIsVisible"
+				:visible="getActiveAzsTypeById('stations_pnp')"
 			>
 			</l-marker>
 			<l-marker 
@@ -213,7 +212,7 @@
 				:lat-lng="i.latlng" 
 				@click="handlePopupClick(i)"
 				:icon = "marker_icon_c"
-				:visible="tnpIsVisible && cIsVisible"
+				:visible="getActiveAzsTypeById('stations_tnp')"
 			>
 			</l-marker>
 		</v-marker-cluster>
@@ -547,7 +546,9 @@ import { mapGetters, mapState } from 'vuex'
 			}
 		},
 		computed:  {
-			...mapState({ activeAzs: state => state.map.active_station }),
+			...mapState({ 
+				activeAzs: state => state.map.active_station
+				}),
 			...mapGetters([
 				'GET_stations_knp_g',
 				'GET_stations_knp_o',
@@ -570,6 +571,7 @@ import { mapGetters, mapState } from 'vuex'
 				'GET_stations_tnp_r',
 				'GET_stations_tnp_c',
 				'get_uiColorSwitchButtonsById',
+				'getActiveAzsTypeById'
 			]),
 			colorSwitchButtonG(){
 				return this.get_uiColorSwitchButtonsById(this.gId);

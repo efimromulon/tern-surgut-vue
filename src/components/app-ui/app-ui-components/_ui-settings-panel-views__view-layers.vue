@@ -1,11 +1,6 @@
 <template>
 	<div class="menu-marking">
-		<ui-settings-panel-menus-menu-marking-settings-button
-			:buttonData = "uiLayersButtons[buttonID]"
-			 v-for = "(buttonName, buttonID) in uiLayersButtons"
-			:key = "buttonID"
-		>
-		</ui-settings-panel-menus-menu-marking-settings-button>
+		
 	</div>
 </template>
 

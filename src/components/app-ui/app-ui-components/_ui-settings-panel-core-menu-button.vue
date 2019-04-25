@@ -121,7 +121,6 @@
 		position: relative
 		cursor: pointer
 		line-height: 37px
-		font-family: 'Montserrat-Medium'
 		font-size: 14px
 		white-space: nowrap
 		text-overflow: ellipsis

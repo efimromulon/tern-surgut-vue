@@ -50,7 +50,7 @@
 			},
 		},
 		methods: {
-			...mapActions(['get_local_json', 'get_indicator_json', 'set_stations', 'set_stations_colors', 'get_json_map', 'set_fuel_sell', 'stations_sort_by_colors']),
+			...mapActions(['get_local_json', 'get_indicator_json', 'set_stations', 'set_stations_colors', 'get_json_map', 'set_fuel_sell']),
 
 			/// MAP - JSON's
 			async LOAD_JSONS_FOR_MAP(){
@@ -69,6 +69,8 @@
 					c = {jsonName: 'getArticleSell', jsonData: jsongetArticleSell},
 					d = {jsonName: 'getDepartmentFull', jsonData: jsongetDepartmentFull};
 
+				
+
 				this.$store.dispatch('set_fuel_sell', a).then(
 					result => {
 						this.$store.dispatch('get_json_map', b);
@@ -82,20 +84,8 @@
 					result => {
 						this.$store.dispatch('stations_sort_by_sdo');
 					}
-				).then(
-					result => {
-						this.$store.dispatch('set_ui_marking_menu_gas_buttons');
-					}
-				).then(
-					result => {
-						var m = this.uiMarkingMenuDatatypeButton_active;
-						this.$store.dispatch('set_stations_colors', m);
-					}
-				).then(
-					result => {
-						this.$store.dispatch('stations_sort_by_colors');
-					}
 				)
+				
 			},
 
 			/// USER

@@ -1,0 +1,137 @@
+{
+    "search": {
+        "folder": [],
+        "connection": [],
+        "universe": [],
+        "spreadsheet": [],
+        "document": [
+            {
+                "id": 205829,
+                "occurrence": [],
+                "cuid": "AZ8.ujoRE39HjvjkpY_2BfA",
+                "name": "100 - Сведения о резервуарах АЗК",
+                "folderId": 205816
+            },
+            {
+                "id": 205843,
+                "occurrence": [],
+                "cuid": "AYQxhZfdrppKtzWfHM0rM3M",
+                "name": "101 - Сведения о наличии и реализации нефтепродуктов на НБ и АЗС",
+                "folderId": 205816
+            },
+            {
+                "id": 205826,
+                "occurrence": [],
+                "cuid": "AXEyZhK9nGJMhYDxG9NzPeg",
+                "name": "102 - Сведения об остатках и реализации на АЗС",
+                "folderId": 205816
+            },
+            {
+                "id": 205818,
+                "occurrence": [],
+                "cuid": "ATEYZ7jcH.REh5wkHFymXmc",
+                "name": "103 - Сведения о реализации нефтепродуктов и товаров на АЗС",
+                "folderId": 205816
+            },
+            {
+                "id": 205838,
+                "occurrence": [],
+                "cuid": "AZK1P6taqUVLumGUH5A4nSA",
+                "name": "104 - Текущие остатки нефтепродуктов на АЗС",
+                "folderId": 205816
+            },
+            {
+                "id": 205833,
+                "occurrence": [],
+                "cuid": "ASVuJiJUYGdJkWVdLjIN4hU",
+                "name": "105 - Еженедельный отчет",
+                "folderId": 205816
+            },
+            {
+                "id": 205841,
+                "occurrence": [],
+                "cuid": "AakS6ckKwVJMgeIJHmvBNpE",
+                "name": "106 - Пропускная способность ТРК",
+                "folderId": 205816
+            },
+            {
+                "id": 205820,
+                "occurrence": [],
+                "cuid": "AWMtP87KzYRKglwxGOT84po",
+                "name": "107 - Контроль розничных цен на АЗС",
+                "folderId": 205816
+            },
+            {
+                "id": 205855,
+                "occurrence": [],
+                "cuid": "AcqAu3E7ox1AqA3F1mkBJPU",
+                "name": "108 - Анализ чеков",
+                "folderId": 205816
+            },
+            {
+                "id": 205848,
+                "occurrence": [],
+                "cuid": "Afj1Gwirtu9JoqwltjUgCj0",
+                "name": "109 - Анализ снабжения НП",
+                "folderId": 205816
+            },
+            {
+                "id": 205863,
+                "occurrence": [],
+                "cuid": "ARWJQ8QfI0FAuqlKcIGxdX0",
+                "name": "110 - Анализ Акций",
+                "folderId": 205816
+            },
+            {
+                "id": 205828,
+                "occurrence": [],
+                "cuid": "Aa6XPmymAxxEqrO234XeMqo",
+                "name": "111 - Детальный анализ результатов розничной торговли",
+                "folderId": 205816
+            },
+            {
+                "id": 205822,
+                "occurrence": [],
+                "cuid": "AWjABsXz0eZPphU2QbglPU8",
+                "name": "112 - Движение НП на АЗС",
+                "folderId": 205816
+            },
+            {
+                "id": 205875,
+                "occurrence": [],
+                "cuid": "Aaghg07r5.lEgo6h00ccyIY",
+                "name": "113 - История заполняемости резервуаров за период",
+                "folderId": 205816
+            },
+            {
+                "id": 205825,
+                "occurrence": [],
+                "cuid": "AddoRy6dtUtIm.rAp55k5as",
+                "name": "114 - Загруженность АЗС по дням\/часам",
+                "folderId": 205816
+            },
+            {
+                "id": 205862,
+                "occurrence": [],
+                "cuid": "Ab.jZ7NKyI1Fr_.N5oRcMHw",
+                "name": "115 - Отчет по выручке",
+                "folderId": 205816
+            },
+            {
+                "id": 228629,
+                "occurrence": [],
+                "cuid": "AahPBOaRRpRMobSD3VC.AYI",
+                "name": "116 - План-факт анализ продаж НП",
+                "folderId": 205816
+            },
+            {
+                "id": 299638,
+                "occurrence": [],
+                "cuid": "AeMUXMC7fZpLgeI7gxmWOd8",
+                "name": "117 - Средний чек за период",
+                "folderId": 205816
+            }
+        ],
+        "csvfile": []
+    }
+}

@@ -28,15 +28,18 @@
 		
 		<div class="app-ui-main-container" v-show="buttonFunnel">
 			<div class="app-ui-main-view">
-				<div class="app-ui-main-view__panel-core-menu">
+				<!-- <div class="app-ui-main-view__panel-core-menu">
 					<ui-settings-panel-core-menu/>
 				</div>
+
+				
 				<div class="app-ui-main-view__panel-menus">
 					<ui-settings-panel-menu/>
 				</div>
 				<div class="app-ui-main-view__panel-view">
 					<ui-settings-panel-view/>
-				</div>
+				</div> -->
+				<settingsContainer />
 			</div>
 		</div>
 
@@ -76,16 +79,16 @@
 	
 	import {mapGetters, mapState} from 'vuex'
 	import searchInput from './app-ui-components/_search-input.vue'
-
+	import settingsContainer from '../app-settings/_setting-container.vue'
 	
 
 	import uiSettingsHeader from './app-ui-components/_ui-settings-header.vue'
 
 	import uiSettingsPanelCoreMenu from './app-ui-components/_ui-settings-panel-core-menu.vue'
 
-	import uiSettingsPanelMenu from './app-ui-components/_ui-settings-panel-menu.vue'
-	import uiSettingsPanelView from './app-ui-components/_ui-settings-panel-view.vue'
-
+	// import uiSettingsPanelMenu from './app-ui-components/_ui-settings-panel-menu.vue'
+	// import uiSettingsPanelView from './app-ui-components/_ui-settings-panel-view.vue'
+	
 	//left side components with names after //
 		const search = () => import('./app-ui-components/_search.vue') //search
 		const detailedInfo = () => import('../app-map/app-map-components/_detailed-info.vue') //detailed-info
@@ -95,7 +98,8 @@
 	// center side components with names after //
 		const reportsIframe = () => import('../app-reports/_reports-iframe.vue')
         const heatmapGraph = () => import('../app-heatmap/_heatmap-graph.vue')
-        const panoramaContainer = () => import('../app-panorama/_panorama-container.vue')
+		const panoramaContainer = () => import('../app-panorama/_panorama-container.vue')
+	
 	export default {
 
 		name: 'app-ui',
@@ -110,10 +114,11 @@
 			searchInput,
 			uiSettingsHeader,
 			uiSettingsPanelCoreMenu,
-			uiSettingsPanelMenu,
-            uiSettingsPanelView,
+			// uiSettingsPanelMenu,
+            // uiSettingsPanelView,
             panoramaControls,
-            panoramaContainer
+			panoramaContainer,
+			settingsContainer
 		},
 
 		data () {
@@ -136,7 +141,8 @@
 				centerComponent: state => state.dynamicComponents.centralComponent,
                 searchResultTabClosed: state => state.search.searchResultTabClosed,
                 buttonFunnel: state => state.uiSettings.uiButtonSquare[0].buttonState,
-                buttonSearch: state => state.uiSettings.uiButtonSquare[1].buttonState,
+				buttonSearch: state => state.uiSettings.uiButtonSquare[1].buttonState,
+				activeMarking: state => state.settings.activeMarking 
 			})
 
 		},
@@ -158,8 +164,12 @@
 		},
 
 		watch: {
-			searchResultTabClosed(){},
-            centerComponent(){},
+			activeMarking: {
+				handler: function(val, oldVal) {
+					console.log(val)
+				},
+				immediate: true
+			}
 		},
 
 	}

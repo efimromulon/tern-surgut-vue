@@ -40,13 +40,27 @@ export default ({
 		stations_pnp: [],
 		stations_tnp: [],
 
+		filter_type_default: 					'FuelStock',
+
 		fuel_sell_data: 	[],
 		fuel_stock_data: 	[],
 		article_sell_data: 	[],
 
-		fuel_sell_filters: 		'',
-		fuel_stock_filters: 	'',
-		article_sell_filters: 	'',
+		fuel_sell_filters: 						'',
+		fuel_sell_filters_default: 				"А92",
+		fuel_stock_filters: 					'',
+		fuel_stock_filters_default: 			"ВСЕ",
+		article_sell_filters: 					'',
+		article_sell_filters_default: 			"Всего",
+
+		fuel_sell_min_max: 						[],
+		fuel_sell_min_max_default: 				[25,75],
+
+		fuel_stock_min_max: 					[],
+		fuel_stock_min_max_default: 			[3,11],
+
+		article_sell_min_max: 					[],
+		article_sell_min_max_default: 			[25,75],
 
 		fuel_sell_dates_compare_default: 		[],
 		fuel_sell_dates_compare: 				["2011-01-01", "2011-02-02"],
@@ -154,40 +168,121 @@ export default ({
 			state.article_sell_dates_analysis_prev 	= state.article_sell_dates_analysis;
 			state.article_sell_dates_analysis 		= d.dates_analysis;
 		},
+		SET_SDO_STATIONS: (state, payload) => {
+			let {sdoName, stations}  = payload;
+			state[sdoName]  = stations
+		},
+		PAINT_MARKERS: (state, payload) => {
+			let { filterType, filterName, minMax } = payload; // filterType -> FuelSell  filterName -> A95
+			let sdoList = ['stations_knp','stations_kas','stations_nnp','stations_pnp','stations_tnp'];
+			let storeFilterType = '';
+
+			if (!filterType) {
+				filterType = state.filter_type_default
+			}
+
+			switch (filterType) {
+				case 'FuelSell':
+				storeFilterType = 'fuel_sell'
+					break;
+				case 'FuelStock':
+				storeFilterType = 'fuel_stock'
+					break;
+				case 'ArticleSell':
+				storeFilterType = 'article_sell'
+					break;
+			}
+
+			if (!minMax || minMax.length === 0) {
+				minMax = state[storeFilterType+'_min_max_default']
+			}
+
+			if(!filterName) {
+				filterName = state[storeFilterType+'_filters_default']
+			}
+
+			let targetData = state[storeFilterType+'_data'].slice(0);
+			let targetDataKey = 'a'+filterType;
+
+			function compareToMinMax(value) {				
+					if (value > minMax[1]) {
+						return 'g'
+					} else if (value < minMax[0]) {
+						return 'r'
+					} else {
+						return 'o'
+					}
+			}
+
+			function setStationColor(station) {
+				if (station) {
+
+					let color = 'c';
+					let indexToSplice = null;
 
 
 
-		STATIONS_SORT_BY_SDO: (state) => {
+					targetData.find((item, index) => {
+						if (item && item[targetDataKey]) {
+							if (item.sStationId === station.id) {
+								let dataToSearch = item[targetDataKey];
+								for (let i = 0; i < dataToSearch.length; i++) {
+										let dataItem = dataToSearch[i];
+										if(dataItem[filterName]) {
+											color = compareToMinMax(dataItem[filterName])
+											indexToSplice = index
+										}	
+									}		
+							}
+						}
+					})
 
-			state.stations_knp = state.stations.filter(i => {
+
+
+					if(indexToSplice) {
+						targetData.splice(indexToSplice,1)
+					}
+						
+					return color
+
+				} else {
+					return 
+				}
+			}
+
+			sdoList.forEach(sdoName => {
+				if (state[sdoName] && state[sdoName].length > 0) {
+					for (let i = 0; i < state[sdoName].length; i++) {
+						let station = state[sdoName][i];
+						station.color = setStationColor(station)
+					}
+				}
+			})
+
+		},
+
+		//next to remove
+		STATIONS_SORT_BY_SDO: async (state) => {
+
+			state.stations_knp = await state.stations.filter(i => {
 				return i.category === 'Калининграднефтепродукт'
 			});
-			state.stations_kas = state.stations.filter(i => {
+			state.stations_kas = await state.stations.filter(i => {
 				return i.category === 'Киришиавтосервис'
 			});
-			state.stations_nnp = state.stations.filter(i => {
+			state.stations_nnp = await state.stations.filter(i => {
 				return i.category === 'Новгороднефтепродукт'
 			});
-			state.stations_pnp = state.stations.filter(i => {
+			state.stations_pnp = await state.stations.filter(i => {
 				return i.category === 'Псковнефтепродукт'
 			});
-			state.stations_tnp = state.stations.filter(i => {
+			state.stations_tnp = await state.stations.filter(i => {
 				return i.category === 'Тверьнефтепродукт'
 			});	
 
 		},
 		SET_STATIONS_COLORS: (state, payload) => {
-			// console.log(payload);//{dataArrayName: "fuel_stock_data", dataFilter: "ВСЕ", dataRange: Array(2)}
-			// console.log(state[payload.dataArrayName][0].aFuelStock[0]['А92']);
-			// console.log(state[payload.dataArrayName][0].sStationId);
-			// console.log(state.stations_knp[0].valueRange);
-			// console.log(state.stations_knp[0].id);
-			// console.log(state.stations_kas);
-			// console.log(state.stations_nnp);
-			// console.log(state.stations_pnp);
-			// console.log(state.stations_tnp);
-			// console.log(state.stations_sorted);
-
+		
 			let filterArray 			= payload.dataArrayName,
 				dataFilter 				= payload.dataFilter,
 				sdo 					= ['stations_knp','stations_kas','stations_nnp','stations_pnp','stations_tnp'],
@@ -198,23 +293,30 @@ export default ({
 				currentComingDataName 	= payload.dataComingName;
 
 
-			for (var i = 0; i <= sdo.length - 1; i++) {
+			for (var i = 0; i < sdo.length; i++) {
 				// console.log(i, 'iteration')
+				
 				filter_and_set_color(sdo[i], state);
 			}
 
 			function filter_and_set_color(cursdo, state){
-				//console.log(cursdo, state);
+			
 				state[cursdo].forEach( sdo_item => {
-
+					
 					let jsonDataItemExisting = state[payload.dataArrayName].find( dan_item => { return dan_item.sStationId === sdo_item.id});
 
 					if(
 						jsonDataItemExisting
 					){
-						currentValue = jsonDataItemExisting[currentComingDataName].find(i => {return Object.keys(i).includes(dataFilter)})[dataFilter];
-						//console.log('match by ID', jsonDataItemExisting);
-						//console.log('currentValue', currentValue);
+							
+						let data = jsonDataItemExisting[currentComingDataName].find(i => {return Object.keys(i).includes(dataFilter)});
+						if (data && data[dataFilter]) {
+							currentValue = data[dataFilter]
+						} else {
+							sdo_item.color = 'c';
+							return
+						}
+					
 						if( currentValue >=  currentRangeMax ){
 							sdo_item.color = 'g';
 						} else 
@@ -274,19 +376,60 @@ export default ({
 				resolve()
 			})
 		},
-		stations_sort_by_sdo: (state) => {
+		stations_sort_by_sdo: async (context) => {
+			
+			let tempObj = {
+				stations_knp: [],
+				stations_kas: [],
+				stations_nnp: [],
+				stations_pnp: [],
+				stations_tnp: []
+			}
+		
+			let stations = context.state.stations;
+			
+			function mapName(name) {
+				switch (name) {
+					case 'Калининграднефтепродукт':
+						return 'stations_knp'
+						case 'Киришиавтосервис':
+						return 'stations_kas'
+						case 'Новгороднефтепродукт':
+						return 'stations_nnp'
+						case 'Псковнефтепродукт':
+						return 'stations_pnp'
+						case 'Тверьнефтепродукт':
+						return 'stations_tnp'
+				}
+			}
 
-			state.commit('STATIONS_SORT_BY_SDO')
+			for (let i = 0; i < stations.length; i++) {
+				let station = stations[i];
+				if (station.category) {
+					tempObj[mapName(station.category)].push(station)
+				}
+			}
+
+			for (let item in tempObj) {
+				if (tempObj[item] && tempObj[item].length > 0) {			
+					await context.commit('SET_SDO_STATIONS', { sdoName: item, stations: tempObj[item] })
+				}
+			}
+
+			await context.commit("PAINT_MARKERS", {})
+			context.commit('STATIONS_SORT_BY_COLORS')
 
 		},
+		
 		set_stations_colors({state, commit, rootState}, datafilter) {
-
-			let a = rootState.uiSettings[datafilter].find( btn => { return btn.buttonState === true }).buttonName,
+			
+			// let a = rootState.uiSettings[datafilter].find( btn => { return btn.buttonState === true }).buttonName,
+			let a = datafilter === 'FuelStock' ? "ВСЕ" : "А95",
 				b,
 				c,
 				d,
 				g;
-
+		
 			switch (true) {
 				case datafilter.search( /FuelSell/i ) 	 !== -1 : 
 					b = 'fuel_sell_data';
@@ -310,8 +453,9 @@ export default ({
 					break;
 
 			};
+		
 
-			commit('SET_STATIONS_COLORS', {dataArrayName: b, dataFilter: a, dataRange: d, dataComingName: g});
+			// commit('PAINT_MARKERS', { filterType: datafilter});
 
 		},
 		stations_sort_by_colors({state, commit, rootState}) {
@@ -330,7 +474,7 @@ export default ({
 
 			let n = jsonPayload.jsonName,
 				d = jsonPayload.jsonData;
-
+		
 			switch (true) {
 				case n === 'getFuelSell' : 
 					commit('SET_FUEL_SELL'	, jsonPayload);
@@ -360,6 +504,10 @@ export default ({
 			commit(	'SET_FILTER_VALUES', 	payload_map	);
 
 		},
+		async paintMarkers(context, payload) {
+			await context.commit('PAINT_MARKERS', payload)
+			context.commit('STATIONS_SORT_BY_COLORS')		
+		}
 	},
 	getters: {
 		// stations_sorted

@@ -37,17 +37,17 @@ export default ({
 			}
 		],
 		uiCoreMenuButtons: [
-			// {
-			// 	buttonID: 0, 
-			// 	buttonName: 'Слои', 
-			// 	buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', 
-			// 	buttonState: true
-			// },
+			{
+				buttonID: 0, 
+				buttonName: 'Слои', 
+				buttonFilterName: 'ui-settings-panel-menus-menu-layers-settings', 
+				buttonState: true
+			},
 			{
 				buttonID: 1, 
 				buttonName: 'Настройки маркировки', 
 				buttonFilterName: 'ui-settings-panel-menus-menu-marking-settings', 
-				buttonState: true
+				buttonState: false
 			},
 			{
 				buttonID: 2, 
@@ -78,16 +78,16 @@ export default ({
 		],
 		uiLayersButtons: [{
 			buttonID: 0, 
-			buttonName: 'Калининграднефтепродукт', 
-			buttonLayerName: 'knp', 
+			buttonName: 'Типы АЗС', 
+			buttonLayerName: 'azs-types', 
 			buttonState: true
 		},
 		{
 			buttonID: 1, 
-			buttonName: 'Киришиавтосервис', 
-			buttonLayerName: 'kas', 
+			buttonName: 'Полигоны', 
+			buttonLayerName: 'polygons', 
 			buttonState: false
-		},
+		}
 	
 	
 	],
@@ -201,45 +201,45 @@ export default ({
 			///
 
 		},
-		SET_UI_MARKING_MENU_GAS_BUTTONS: (state, payload) => {
+		// SET_UI_MARKING_MENU_GAS_BUTTONS: (state, payload) => {
 			
-			let fstock = payload.fstock,
-				fsell = payload.fsell,
-				asell = payload.asell,
-				target = [
-					'uiMarkingMenuDatafilterFuelStockButtons',
-					'uiMarkingMenuDatafilterFuelSellButtons',
-					'uiMarkingMenuDatafilterArticleSellButtons'
-				];
+		// 	let fstock = payload.fstock,
+		// 		fsell = payload.fsell,
+		// 		asell = payload.asell,
+		// 		target = [
+		// 			'uiMarkingMenuDatafilterFuelStockButtons',
+		// 			'uiMarkingMenuDatafilterFuelSellButtons',
+		// 			'uiMarkingMenuDatafilterArticleSellButtons'
+		// 		];
 
-			function setButtons(d, r){
+		// 	function setButtons(d, r){
 				
-				var currentState,
-					result = [];
+		// 		var currentState,
+		// 			result = [];
 
-				for (var i = 0; i <= Object.keys(r).length - 1; i++) {
+		// 		for (var i = 0; i <= Object.keys(r).length - 1; i++) {
 
-					i === 0 ? currentState = true : currentState = false;
-					result.push({
-						buttonID: i, 
-						buttonName: r[i],
-						buttonState: currentState
-					});
-				};
+		// 			i === 0 ? currentState = true : currentState = false;
+		// 			result.push({
+		// 				buttonID: i, 
+		// 				buttonName: r[i],
+		// 				buttonState: currentState
+		// 			});
+		// 		};
 
-				state[d] = result;
+		// 		state[d] = result;
 
-			};
+		// 	};
 
-			for (var i = 0; i <= Object.keys(payload).length - 1; i++) {
+		// 	for (var i = 0; i <= Object.keys(payload).length - 1; i++) {
 
 
 
-				setButtons(target[i], payload[Object.keys(payload)[i]]);
+		// 		setButtons(target[i], payload[Object.keys(payload)[i]]);
 
-			};
+		// 	};
 
-		},
+		// },
 		SET_UI_RANGE: (state, payload) => {
 			console.log('UI', payload);
 			// state.range_Datafilter_fuelsell_new
@@ -255,18 +255,18 @@ export default ({
 			state.commit('TOGGLE_UI_SETTINGS_BUTTON', payload);
 
 		},
-		set_ui_marking_menu_gas_buttons({state, commit, rootState}, query) {
+		// set_ui_marking_menu_gas_buttons({state, commit, rootState}, query) {
 
-			let fstock = rootState.map.fuel_stock_filters,
-				fsell = rootState.map.fuel_sell_filters,
-				asell = rootState.map.article_sell_filters,
-				payload = {'fstock': fstock, 'fsell': fsell, 'asell': asell};
+		// 	let fstock = rootState.map.fuel_stock_filters,
+		// 		fsell = rootState.map.fuel_sell_filters,
+		// 		asell = rootState.map.article_sell_filters,
+		// 		payload = {'fstock': fstock, 'fsell': fsell, 'asell': asell};
 
 			
 
-				commit('SET_UI_MARKING_MENU_GAS_BUTTONS', payload);
+		// 		commit('SET_UI_MARKING_MENU_GAS_BUTTONS', payload);
 
-		},
+		// },
 
 
 

@@ -2,7 +2,7 @@ export default ({
 
 	state: {
         leftMenuComponent: '',
-        centralComponent: ""
+        centralComponent: "",
 	},
 
 	mutations: {
