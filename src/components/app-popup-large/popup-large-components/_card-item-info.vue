@@ -6,25 +6,27 @@
 		</div>
 		<div class="card-item-info__content">
 			<div class="card-item-info__content-item">
-				<div class="card-item-info__content-item__number"><span>{{currentInfoProp.maxCapacity}}</span></div>
+				<div ref="ciiContentNumber0" class="card-item-info__content-item__number" @click="UPDATE_NUMBERS"><span>{{currentInfoProp.maxCapacity}}</span></div>
 				<div class="card-item-info__content-item__expl"><span>Максимальный объем</span></div>
 			</div>
 			<div class="card-item-info__content-item">
-				<div class="card-item-info__content-item__number"><span>{{currentInfoProp.currentResidue}}</span></div>
+				<div ref="ciiContentNumber1" class="card-item-info__content-item__number" @click="UPDATE_NUMBERS"><span>{{currentInfoProp.currentResidue}}</span></div>
 				<div class="card-item-info__content-item__expl"><span>Текущий остаток</span></div>
 			</div>
 			<div class="card-item-info__content-item">
-				<div class="card-item-info__content-item__number"><span>{{currentInfoProp.nonRemovableResidue}}</span></div>
+				<div ref="ciiContentNumber2" class="card-item-info__content-item__number" @click="UPDATE_NUMBERS"><span>{{currentInfoProp.nonRemovableResidue}}</span></div>
 				<div class="card-item-info__content-item__expl"><span>Несливаемый остаток</span></div>
 			</div>
 			<div class="card-item-info__content-item">
-				<div class="card-item-info__content-item__number"><span>{{currentInfoProp.daysUntilExhaustion}}</span></div>
+				<div ref="ciiContentNumber2" class="card-item-info__content-item__number" @click="UPDATE_NUMBERS"><span>{{currentInfoProp.daysUntilExhaustion}}</span></div>
 				<div class="card-item-info__content-item__expl"><span>Дней до исчерпания остаток</span></div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+	import {TimelineMax, TweenMax, TweenLite} from 'gsap'
+	import { CSSRulePlugin } from "gsap/all"
 	export default {
 
 		name: 'card-item-info',
@@ -39,7 +41,18 @@
 			return {
 
 			}
-		}
+		},
+		mounted(){
+		},
+		methods: {
+			UPDATE_NUMBERS(){
+				var Cont={val:0} , NewVal = this.currentInfoProp.maxCapacity ;
+				let that = this;
+				TweenLite.to(Cont,.9,{val:NewVal,roundProps:"val",onUpdate:function(){
+				that.$refs.ciiContentNumber0.innerHTML=Cont.val
+				}});
+			},
+		},
 	}
 </script>
 <style lang="sass">
