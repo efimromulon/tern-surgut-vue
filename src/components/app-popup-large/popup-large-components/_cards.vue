@@ -1,6 +1,6 @@
 <template>
 	<div class="cards">
-		<card-item v-for="card in fuelSellInfo.data" :cardData="card"></card-item>
+		<card-item v-for="card in cardsInfo.data" :cardData="card"></card-item>
 	</div>
 </template>
 
@@ -14,8 +14,8 @@ export default {
 		'card-item': 	cardItem,
 	},
 	props: {
-		id: {
-			type: String,
+		cardsInfo: {
+			type: Object,
 			required: true,
 		},
 	},
@@ -26,12 +26,6 @@ export default {
 	},
 	computed: {
 
-		...mapGetters([
-			'T_GET_azsExtendedInfo',
-		]),
-		fuelSellInfo(){
-			return this.T_GET_azsExtendedInfo({datatype: 'oReservoir', id: this.id})
-		}
 
 
 
@@ -50,7 +44,6 @@ export default {
 		user-select: none
 		white-space: nowrap
 		flex-direction: row
-	.card-item
-		flex-basis: 100%
-		border: 1px solid blue
+		position: relative
+		height: 40%
 </style>

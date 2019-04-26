@@ -44,7 +44,7 @@
 
 <script>
 			
-	import { mapGetters } 	from 'vuex'
+	import { mapGetters, mapState } 	from 'vuex'
 
 	import header 			from './popup-large-components/_header.vue'
 	import sidebar 			from './popup-large-components/_sidebar.vue'
@@ -260,4 +260,7 @@
 			width: 250px
 			input
 				outline-offset: none !important
+	.popup-large-snippet__body-wrapper
+		height: calc(100% - 45px)
+
 </style>

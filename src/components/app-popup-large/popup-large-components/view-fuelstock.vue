@@ -1,13 +1,13 @@
 <template>
 	<div class="view-fuelstock">
-		<cards  :id="stationId"></cards>
-		<component :is="currentInfo"></component>
+		<cards  :cardsInfo="fuelSellInfo"></cards>
+		<component :is="currentInfo" :currentInfoProp="currentInfoProp"></component>
 	</div>
 </template>
 
 <script>
 
-	import { mapGetters } 	from 'vuex'
+	import { mapGetters, mapState } 	from 'vuex'
 
 	import cards 	from './_cards.vue'
 	import cardItem from './_card-item.vue'
@@ -28,30 +28,53 @@
 				stationId: {
 					type: String,
 					required: true,
+					activeComponentInfo: ''
 				},
 			},
 			data () {
 				return {
-					currentInfo: 'view-fuelstock-info'
+					currentInfo: '',
+					currentInfoProp: '',
+				}
+			},
+			computed: {
+				...mapState({
+					dataItemActive: state => state.popupLarge.dataItemActive
+				}),
+				...mapGetters([
+					'GET_station_info_by_Id',
+					'T_GET_azsExtendedInfo',
+				]),
+				fuelSellInfo(){
+					return this.T_GET_azsExtendedInfo({datatype: 'oReservoir', id: this.id})
+				}
+			},
+			mounted(){
+				this.UPDATE_ACTIVE_COMPONENT_INFO();
+			},
+			methods: {
+				UPDATE_ACTIVE_COMPONENT_INFO(){
+					if(this.dataItemActive === null){this.currentInfo = 'view-fuelstock-info'} else {this.currentInfo = 'card-item-info'};
+				},
+				UPDATE_COMPONENT_PROP(){
+					if(
+						this.currentInfo === 'view-fuelstock-info'
+					){
+						this.currentInfoProp = this.fuelSellInfo.summary
+					} else {
+						this.currentInfoProp = this.fuelSellInfo.data[this.dataItemActive]
+					};
 				}
 			},
 
-			computed: {
-
-				...mapGetters([
-					'GET_station_info_by_Id',
-				]),
-
-
-
-			},
-
 			watch: {
-
-
-			},
-
-			methods: {
+				fuelSellInfo(newCount, oldCount){},
+				dataItemActive(newCount, oldCount){
+					this.UPDATE_ACTIVE_COMPONENT_INFO();
+				},
+				currentInfo(newCount, oldCount){
+					this.UPDATE_COMPONENT_PROP();
+				},
 
 			}
 	}
