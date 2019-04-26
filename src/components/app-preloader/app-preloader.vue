@@ -1,7 +1,8 @@
 <template>
 	<div class="app-preloader">
 		<!-- <canvas ref="preloaderCanvas"></canvas> -->
-		<div ref="testR" class="testR">
+		<div ref="BG" class="preloader_bg">
+			<div ref="BG1" class="preloader_bg_1"></div>
 			<canvas ref="preloaderCanvas"></canvas>
 		</div>
 	</div>
@@ -12,7 +13,7 @@
 	import {TimelineMax, TweenMax, TweenLite} from 'gsap'
 	import { CSSRulePlugin } from "gsap/all"
 	import * as PIXI from 'pixi.js'
-
+	import Perlin from '@/js/Perlin';
 	export default {
 
 		name: 'app-preloader',
@@ -30,73 +31,87 @@
 		},
 		mounted(){
 			/* eslint-disable */
-			//let tl = new TimelineMax();
-			// var rule = CSSRulePlugin.getRule(".testR:after"); //get the rule
-			// var rule1 = CSSRulePlugin.getRule(".testR:before"); //get the rule
-			// TweenLite.to(rule, 3, {cssRule:{yPercent: 100}});
-			//TweenLite.to(this.$refs.testR, 3, { ease: Power3.easeInOut, yPercent: -100, force3D: true , delay: 2});
-			//TweenLite.to(rule1, 3, {cssRule:{yPercent: -100}});
-			//tl.to(this.$refs.testR);
-			let canvas 	= this.$refs.preloaderCanvas,
-				pixiApp = new PIXI.Application({
-					view: canvas,
-					width: window.innerWidth,
-					height: window.innerHeight, 
-					resolution: window.devicePixelRatio,
-					autoresize: true,
-					antialias: true
-				}),
-				container = new PIXI.Container(),
-				_rw = pixiApp.renderer.width,
-				_rh = pixiApp.renderer.height,
-				_radius = 7,
-				_rwidth = 15,
-				_cx = 0,
-				_cy = 0,
-				circles = [],
-				colors = ['0x51cc00', '0xff9100', '0xcc0000'],
-				coords = [
-					{x: _rw / 2, 			y: _rh / 2 + Math.sqrt(3) * _rwidth / 2},
-					{x: _rw / 2 - _rwidth, 	y: _rh / 2 - Math.sqrt(3) * _rwidth / 2},
-					{x: _rw / 2 + _rwidth, 	y: _rh / 2 - Math.sqrt(3) * _rwidth / 2}
-				];
-
-			function createGradTexture(){
-				// adjust it if somehow you need better quality for very very big images
-				const quality = 256;
-				const canvas = document.createElement('canvas');
-				canvas.width = 1;
-				canvas.height = 1;
-
-				const ctx = canvas.getContext('2d');
-
-				// use canvas2d API to create gradient
-				
-				const grd = ctx.createRadialGradient(75, 50, 0, 90, 60, quality);
-				grd.addColorStop(0, "blue");
-				grd.addColorStop(1, "white");
-
-				// Fill with gradient
-				ctx.fillStyle = grd;
-				ctx.fillRect(0, 0, quality, 1);
 
 
-				return PIXI.Texture.from(canvas);
-			};
-			const gradTexture = createGradTexture();
 
-			const sprite = new PIXI.Sprite(gradTexture);
-			sprite.position.set(100, 100);
-			sprite.width = _rw;
-			sprite.height = _rh;
-			pixiApp.stage.addChild(sprite);
 
-			function animate(){
-				pixiApp.ticker.add(() => {
 
-				});
-			};
-			animate();
+	let size = 1600;
+	let canvas = this.$refs.preloaderCanvas;
+	let ctx = canvas.getContext('2d');
+	canvas.width = size;
+	canvas.height = size;
+	let number = 100;
+	let radius = 100;
+	let x,y;
+
+	function getRandomColor() {
+	var letters = '0123456789ABCDEF';
+	var color = '#';
+	for (var i = 0; i < 6; i++) {
+	color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
+	}
+
+	function draw(){
+		ctx.clearRect(0,0,size,size);
+
+		// ctx.fillRect(100,600*Math.random(),10,10);
+		// ctx.fillRect(100,600*Perlin(time/100,0,0),10,10);
+		ctx.save();
+		ctx.translate(size/2,100);
+		ctx.fillRect(0,0,10,10);
+
+		var gradient = ctx.createRadialGradient(110,90,0, 100,100,0);
+
+		// Add three color stops
+		gradient.addColorStop(0, '#89D099');
+		gradient.addColorStop(1, '#D8EEDD');
+
+		// Set the fill style and draw a rectangle
+		ctx.fillStyle = gradient;
+
+		//ctx.fillStyle = col1;
+		ctx.beginPath();
+		for (var i = 0; i < number; i++) {
+			// ctx.fillRect(i,0,1,200*Perlin(i/10,time/100,0))
+			let angle = i*2*Math.PI/number;
+			x = radius*Math.sin(angle) + 40*Perlin(Math.sin(angle),time/100,0);
+			y = radius*Math.cos(angle) + 40*Perlin(Math.cos(angle),time/100,0);
+			ctx.lineTo(x,y);
+
+		}
+		ctx.closePath();
+		ctx.fill()
+
+
+		ctx.fillStyle = '#D8EEDD';
+		ctx.beginPath();
+		for (var i = 0; i < number; i++) {
+			// ctx.fillRect(i,0,1,200*Perlin(i/10,time/100,0))
+			let angle = i*2*Math.PI/number;
+			x = 8*radius*Math.sin(angle) + 40*Perlin(Math.sin(angle) + time/100,time/1000,0);
+			y = 8*radius*Math.cos(angle) + 40*Perlin(Math.cos(angle) + time/100,time/1000,0);
+			ctx.lineTo(x,y);
+
+		}
+		ctx.closePath();
+		ctx.fill();
+		ctx.restore()
+	}
+
+	let time = 0;
+	function render(){
+		let col1= getRandomColor(),col2 =getRandomColor(), col3 =getRandomColor(), col4 = getRandomColor();
+		draw();
+		
+		time++;
+		window.requestAnimationFrame(render);
+	}
+		
+	render();
+			
 		},
 
 		methods: {
@@ -118,44 +133,26 @@ $strokecolor: #555555
 	// 	position: absolute
 	// 	top: 0
 	// 	left: 0
-.testR
+.preloader_bg
 	position: absolute 
 	height: 100vh
 	width: 100vw
 	top: 0
 	left: 0
-	will-change: transform
-	background-color: #131313
+	will-change: transform, blur
+	background-image: radial-gradient(circle closest-side, #89D099, #F9F8ED)
 	z-index: 5
 	transform: matrix(1, 0, 0, 1, 0, 0)
-
-	// &:before, &:after
-	// 	content: ""
-	// 	position: absolute
-	// 	top: 0px
-	// 	left: 0
-	// 	width: 100%
-	// 	height: 100%
-	// 	will-change: transform
-	// &:before
-	// 	opacity: 1
-	// 	background: red
-	// 	transition: opacity .4s cubic-bezier(.165,.84,.44,1)
-	// &:after
-	// 	position: absolute
-	// 	top: 0%
-	// 	left: 0%
-	// 	opacity: 1
-	// 	background: blue
-	// 	transition: opacity 1.2s cubic-bezier(.165,.84,.44,1)
-	// 	transform-origin: top
-.testP
 	z-index: 6
-	font-size: 18.68vw
-	text-transform: capitalize
-	opacity: 1
-	white-space: nowrap
-	transform: translateX(0%) translateZ(0)
-	color: white
-	font-size: 90px 
+	canvas
+		filter: blur(20px)
+.preloader_top
+	width: 100%
+	height: 50vh
+	background-color: #f4f3f3
+	background-image: $topleft, $topright
+	position: absolute
+	top: 0
+	left: 0
+	z-index: 6
 </style>

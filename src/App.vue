@@ -2,8 +2,8 @@
 	<div id="app">
 		<app-map></app-map>
 		<app-ui></app-ui>
-		<app-popup-large></app-popup-large>
-		<!-- <app-preloader></app-preloader> -->
+		<!-- <app-popup-large></app-popup-large> -->
+		<app-preloader></app-preloader>
 	</div>
 </template>
 
